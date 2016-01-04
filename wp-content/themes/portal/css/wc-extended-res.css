@@ -1,0 +1,616 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .sidebarCell{
+        width:100% !important;
+        margin-left:15px;
+    }
+    .contentSub{
+        display:block;
+    }
+    .portalHome h1{
+        word-wrap: break-word;
+        width:35%;
+    }
+    .mainHomeClass div{
+        width:90%;
+        display: block;
+    }
+    .accountTitle, services h1, .contentBlock h1{
+        font-size:22px;
+    }
+    .home-mgmt li{
+        width:30%;
+    }
+    /** Account list **/
+    .pageContact{
+        margin-top:5px;
+    }
+    /*** View Account **/
+    
+    .titleWidth {
+        width: 80%;
+    }
+    .viewPage{
+     width: 280px;
+    }
+    
+ .advSearchItem{
+  display: block;
+}
+       #searchItems{
+    width:20%;
+}
+.docTh{
+    display:none;
+}
+ #noteTitle{
+            width:80%;
+        }
+         #noteBody{
+            width:80%;
+        }
+         .leftAttachDiv{width:30%;}
+         #attachTitle, #attachBody{ width:80%;}
+         .editAttachWidth{
+               width:35%;
+        }
+ .noteCaseHistoryBut{
+     margin-top:5px;
+ }
+ .caseAttachDiv,.serviceAttachDiv{ margin-top:150px;}
+ .gotoLink{ float: left;
+    margin-bottom: 5px;
+    margin-left: 10px !important;
+    text-align: center;
+    width: 50% !important;}
+ .btn-view-case{ width:auto;}
+.eachContactDetsDet div {
+    display: table-cell;
+    width: 121px;
+}
+.eachCaseDetsDet div {
+    display: table-cell;
+    width: 121px;
+}
+section[name="top-banner"] ul li
+{
+    width: 100%
+}
+.socialLink{
+    width: 30% !important;
+    margin-top:-10px;
+}
+.userLink{
+    width:50% !important;
+}
+}
+@media only screen and
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+        
+    .sidebarCell{
+        width:30% !important;
+        margin-left:15px;
+    }
+    .contentSub{
+        display:table-cell;
+    }
+    .portalHome h1{
+        word-wrap: break-word;
+        width:35%;
+    }
+    .mainHomeClass div{
+        width:90%;
+        display: block;
+    }
+    .accountTitle, services h1, .contentBlock h1{
+        font-size:22px;
+    }
+    .home-mgmt li{
+        width:30%;
+    }
+    .divMainAdv{ width:60%;}
+    .docTh{
+    display:none;
+}
+ #noteTitle{
+            width:80%;
+        }
+         #noteBody{
+            width:80%;
+        }
+        .attachEditDiv{ width:100%}
+        .rightAttachDiv{ margin-left: 110px;}
+        .leftAttachDiv{width:20%;}
+         .editAttachWidth{
+               width:35%;
+        }
+    /*    .caseDets
+    {
+         //width: 280px;
+         width:100%;
+    }
+    .caseDetsDet
+    {
+        width:100%;
+     //width:280px;
+    // width:475px;
+     display: block;
+    }
+     .eachCaseDetsDet{
+     //width:100%;
+     width:inherit;
+ }
+    .eachCaseDetsDet div{
+     //width:140px;
+     width:none !important;
+     display: table-cell;
+ }*/
+ .noteCaseHistoryBut{
+     margin-top:5px;
+ }
+ .caseAttachDiv, .serviceAttachDiv{ margin-top:150px;}
+ .gotoLink{ float: left;
+    margin-bottom: 5px;
+    margin-left: 10px !important;
+    text-align: center;
+    width: 50% !important;}
+ .btn-view-case{ width:auto;}
+ section[name="top-banner"] ul li
+{
+    width: 100%
+}
+.socialLink{
+    width: 15% !important;
+    margin-top:-10px;
+}
+.userLink{
+    width:50% !important;
+}
+}
+@media only screen and (min-device-width : 240px) and (max-device-width : 319px){
+     .sidebarCell{
+        width:100% !important;
+        margin-left:15px;
+    }
+    .contentSub{
+        display:block;
+    }
+    .searchDiv {
+     width:85%;   
+    }
+    .recentItemModule{
+        width:85%;
+    }
+    .messageModule{
+        width:85%;
+    }
+    .portalHome h1{
+        word-wrap: break-word;
+        width:25%;
+    }
+    .mainHomeClass div{
+        width:63%;
+        display: block;
+    }
+    .accountTitle, services h1, .contentBlock h1{
+        font-size:22px;
+    }
+    .home-mgmt li{
+        width:30%;
+    }
+    /** Account list **/
+    .pageContact{
+        margin-top:5px;
+    }
+    .selectBox{
+        width:80% !important;
+    }
+    #caseViewType,#serviceViewType{
+     width: 80% !important;   
+    }
+    .contactReset,.caseBtnCancel{
+        margin-top:5px;
+    }
+    #caseReason{ width:100px;}
+    .caseReasonSelect{ width:175px; }
+    .rightNoteDiv{
+        width: none;
+    }
+    .advSearchItem{
+    display: block;
+    }
+    #searchItems {
+    width: 13%;
+}
+.docTh{
+    display:none;
+}
+#noteTitle,#noteBody{width:75%;}
+ 
+        .editAttachWidth{
+         width:25%;   
+        }
+        .addDocButtonList{
+            margin-top:-5px;
+        }
+         .editAttachWidth{
+               width:100%;
+        }
+        .leftAttachDiv{ width:38%;}
+        #attachTitle,#attachBody  { width:50%;}
+        .rightAttachDiv{ margin-left:80px;}
+
+ .noteCaseHistoryBut{
+     margin-top:5px;
+ }
+ .caseAttachDiv,.serviceAttachDiv{ margin-top:150px;}
+ .gotoLink{ float: left;
+    margin-bottom: 5px;
+    margin-left: 10px !important;
+    text-align: center;
+    width: 80% !important;}
+ .btn-view-case{ width:auto;}        
+ .eachServiceDetsDet div {
+    display: table-cell;
+    width: 91px;
+}
+.eachAccountDetsDet div {
+    display: table-cell;
+    width: 91px;
+}
+.eachCaseDetsDet div {
+    display: table-cell;
+    width: 91px;
+}
+.eachContactDetsDet div {
+    display: table-cell;
+    width: 91px;
+}
+section[name="top-banner"] ul li
+{
+    width: 100%
+}
+.socialLink{
+    width: 100% !important;
+    margin-top:-10px;
+}
+.userLink{
+    width:50% !important;
+}
+.emptyLi{
+    display:none;
+}
+}
+
+
+@media only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+	 
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr { 
+			display: block; 
+		}
+		
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		
+		tr { border: 1px solid #ccc; }
+		
+		td { 
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee; 
+			position: relative;
+			// padding-left: 69.5%; 
+                        padding-left: 35%; 
+                        padding-top: 6px;
+		}
+		td.error { 
+			padding-left: 0 !important; 
+		}
+		td:before { 
+			/* Now like a table header */
+			//just comment position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px !important;
+			left: 6px !important;
+			//width: 45%; 
+                        //width: 35%; 
+			padding-right: 10px !important; 
+			//white-space: nowrap !important;
+                       // position:relative !important;
+                        position:unset !important;
+                        //float:left !important;
+                        width:35% !important;
+		}
+		
+		/*
+		Label the data for account list
+		*/
+		.accountListTable td:nth-of-type(1):before { content: "Account Name"; font-weight:bold;}
+                .accountListTable td.error:nth-of-type(1):before { content: "" !important; font-weight:bold;}
+		.accountListTable td:nth-of-type(2):before { content: "Store Number"; font-weight:bold;}
+		.accountListTable td:nth-of-type(3):before { content: "Shipping Street"; font-weight:bold;}
+		.accountListTable td:nth-of-type(4):before { content: "Shipping City"; font-weight:bold;}
+		.accountListTable td:nth-of-type(5):before { content: "Shipping Zip/Postal Code";font-weight:bold; }
+                
+                .accountListTable td:nth-of-type(6):before { content: "Phone";font-weight:bold; }
+                .accountListTable td:nth-of-type(7):before { content: "Active Services"; font-weight:bold;}
+                .accountListTable td:nth-of-type(8):before { content: "Parent Account"; font-weight:bold;}
+                
+                
+                .allAccountListTable td:nth-of-type(1):before { content: "Action"; font-weight:bold;}
+                .allAccountListTable td:nth-of-type(2):before { content: "Account Name"; font-weight:bold;}
+                .allAccountListTable td.error:nth-of-type(1):before { content: "" !important; font-weight:bold;}
+		.allAccountListTable td:nth-of-type(3):before { content: "Store Number"; font-weight:bold;}
+		.allAccountListTable td:nth-of-type(4):before { content: "Shipping Street";font-weight:bold; }
+		.allAccountListTable td:nth-of-type(5):before { content: "Shipping City"; font-weight:bold;}
+		.allAccountListTable td:nth-of-type(6):before { content: "Shipping Zip/Postal Code";font-weight:bold; }
+                
+                .allAccountListTable td:nth-of-type(7):before { content: "Phone"; font-weight:bold;}
+                .allAccountListTable td:nth-of-type(8):before { content: "Active Services"; font-weight:bold;}
+                .allAccountListTable td:nth-of-type(9):before { content: "Parent Account"; font-weight:bold;}
+            
+                /*** Contact List ***/
+                .contactListTable td:nth-of-type(1):before { content: "Action"; font-weight:bold;}
+                .contactListTable td.error:nth-of-type(1):before { content: "" !important;font-weight:bold; }
+                .contactListTable td:nth-of-type(2):before { content: "Name"; font-weight:bold;}
+                .contactListTable td:nth-of-type(3):before { content: "Account Name";font-weight:bold; }
+                .contactListTable td:nth-of-type(4):before { content: "Title"; font-weight:bold;}
+                .contactListTable td:nth-of-type(5):before { content: "Phone"; font-weight:bold;}
+                .contactListTable td:nth-of-type(6):before { content: "Mobile"; font-weight:bold;}
+                .contactListTable td:nth-of-type(7):before { content: "Email"; font-weight:bold;}
+                .contactListTable td:nth-of-type(8):before { content: "Mailing Zip/Postal Code";font-weight:bold; }
+                 .contact-list-res .dataCell{
+                        word-wrap: break-word;
+                        width:auto;
+                        padding-left:5px;
+                    }
+                    /** Services List **/
+                .serviceListTable td:nth-of-type(1):before { content: "Ref";font-weight:bold;}
+                .serviceListTable td.error:nth-of-type(1):before { content: "" !important; font-weight:bold;}
+                .serviceListTable td:nth-of-type(2):before { content: "Customer";font-weight:bold;}
+                .serviceListTable td:nth-of-type(3):before { content: "Store Number";font-weight:bold;}
+                .serviceListTable td:nth-of-type(4):before { content: "Status";font-weight:bold;}
+                .serviceListTable td:nth-of-type(5):before { content: "Waste Type";font-weight:bold;}
+                .serviceListTable td:nth-of-type(6):before { content: "Container Image";font-weight:bold;}
+                .serviceListTable td:nth-of-type(7):before { content: "Size";font-weight:bold;}
+                .serviceListTable td:nth-of-type(8):before { content: "Quantity";font-weight:bold;}
+                .serviceListTable td:nth-of-type(9):before { content: "Service Start Date";font-weight:bold;}
+                .serviceListTable td:nth-of-type(10):before { content: "Service End Date";font-weight:bold;}
+                
+                /***Cases List **/
+                .casesListTable td:nth-of-type(1):before { content: "Action";font-weight:bold;}
+                .casesListTable td.error:nth-of-type(1):before { content: "" !important;font-weight:bold; }
+                .casesListTable td:nth-of-type(2):before { content: "Case Number";font-weight:bold;}
+                .casesListTable td:nth-of-type(3):before { content: "Contact";font-weight:bold;}
+                .casesListTable td:nth-of-type(4):before { content: "Subject";font-weight:bold;}
+                .casesListTable td:nth-of-type(5):before { content: "Priority";font-weight:bold;}
+                .casesListTable td:nth-of-type(6):before { content: "Date/Time Opened";font-weight:bold;}
+                .casesListTable td:nth-of-type(7):before { content: "Owner First Name";font-weight:bold;}
+                
+                .openCasesListTable td:nth-of-type(1):before { content : "Case Number";font-weight:bold;}
+                .openCasesListTable td.error:nth-of-type(1):before { content : "" !important;font-weight:bold;}
+                .openCasesListTable td:nth-of-type(2):before { content : "Account";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(3):before { content : "Store Number";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(4):before { content : "Subject";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(5):before { content : "Status";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(6):before { content : "Priority Flag";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(7):before { content : "Date/Time Opened";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(8):before { content : "Case Origin";font-weight:bold;}
+                .openCasesListTable td:nth-of-type(9):before { content : "Case Reason";font-weight:bold;}
+                .recordTypeInfo .headerRow{ display:none}
+                .rowDisp td:nth-of-type(1):before { content: "Record Type Name"; font-weight: bold;}
+                .rowDisp td:nth-of-type(2):before { content: "Description"; font-weight: bold;}
+                
+                 /** Hierarchy List **/
+                 .accountHierarchyTable td:nth-of-type(1):before{ content: "Account Name";font-weight:bold;}
+                 .accountHierarchyTable td.error:nth-of-type(1):before{ content: "" !important; }
+                 .accountHierarchyTable td:nth-of-type(2):before{ content: "Site"; font-weight:bold;}
+                 .accountHierarchyTable td:nth-of-type(3):before{ content: "Billing City"; font-weight:bold;}
+                 .accountHierarchyTable td:nth-of-type(4):before{ content: "Billing State/Province";font-weight:bold;}
+                 .accountHierarchyTable td:nth-of-type(5):before{ content: "Account Owner";font-weight:bold;}
+                 
+                 /** Advanced Search **/
+                 /** Account ***/
+                 .advAccountList td:nth-of-type(1):before{content: "Account Name";font-weight:bold;}
+                 .advAccountList td.error:nth-of-type(1):before{content: "" !important;font-weight:bold;}
+                 .advAccountList td:nth-of-type(2):before{content: "Store Number"; font-weight:bold;}
+                 .advAccountList td:nth-of-type(3):before{content: "Shipping Street"; font-weight:bold;}
+                 .advAccountList td:nth-of-type(4):before{content: "Shipping City"; font-weight:bold;}
+                 .advAccountList td:nth-of-type(5):before{content: "Shipping Zip/Postal Code"; font-weight:bold;}
+                 .advAccountList td:nth-of-type(6):before{content: "Phone"; font-weight:bold;}
+                 .advAccountList td:nth-of-type(7):before{content: "Active Services"; font-weight:bold;}
+                 .advAccountList td:nth-of-type(8):before{content: "Parent Account"; font-weight:bold;}
+                 
+                 /** Contact **/
+                 .advContactList td:nth-of-type(1):before{content: "Action"; font-weight:bold;}
+                 .advContactList td.error:nth-of-type(1):before{content: "" !important; font-weight:bold;}
+                 .advContactList td:nth-of-type(2):before{content: "Name"; font-weight:bold;}
+                 .advContactList td:nth-of-type(3):before{content: "First Name"; font-weight:bold;}
+                 .advContactList td:nth-of-type(4):before{content: "Last Name"; font-weight:bold;}
+                 .advContactList td:nth-of-type(5):before{content: "Account Name"; font-weight:bold;}
+                 .advContactList td:nth-of-type(6):before{content: "Email"; font-weight:bold;}
+                 /** Cases **/
+                 .advCaseList td:nth-of-type(1):before{ content: "Action"; font-weight:bold;}
+                 .advCaseList td.error:nth-of-type(1):before{ content: "" !important; font-weight:bold;}
+                 .advCaseList td:nth-of-type(2):before{ content: "Case Number"; font-weight:bold;}
+                 .advCaseList td:nth-of-type(3):before{ content: "Subject"; font-weight:bold;}
+                 .advCaseList td:nth-of-type(4):before{ content: "Status"; font-weight:bold;}
+                 .advCaseList td:nth-of-type(5):before{ content: "Created Date"; font-weight:bold;}
+                 .advCaseList td:nth-of-type(6):before{ content: "Owner Alias"; font-weight:bold;}
+                 
+                 /** Service **/
+                 .advServiceList td:nth-of-type(1):before{ content: "Ref"; font-weight:bold;}
+                 .advServiceList td.error:nth-of-type(1):before{ content: "" !important; font-weight:bold;}
+                 .advServiceList td:nth-of-type(2):before{ content: "Customer"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(3):before{ content: "Store Number"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(4):before{ content: "Service Postcode"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(5):before{ content: "Container"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(6):before{ content: "Size"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(7):before{ content: "Status"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(8):before{ content: "Quantity"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(9):before{ content: "Service Delivery Date"; font-weight:bold;}
+                 .advServiceList td:nth-of-type(10):before{ content: "Days Of Service"; font-weight:bold;}
+                 
+                 /*** All Attach List **/
+                 .docListTable tr:nth-of-type(1)  td:nth-of-type(2):before{ content: "Title"; font-weight:bold;}
+                 .docListTable tr:nth-of-type(2) td:nth-of-type(2):before{ content: "Type"; font-weight:bold;}
+                 .docListTable tr:nth-of-type(3) td:nth-of-type(2):before{ content: "Last Modified"; font-weight:bold;}
+                 .docListTable tr:nth-of-type(4) td:nth-of-type(2):before{ content: "Description"; font-weight:bold;}
+                 /** case History details in view case **/
+                 .caseHistoryDiv table td:nth-of-type(1):before{ content: "Date"; font-weight:bold;}
+                 .caseHistoryDiv table td.error:nth-of-type(1):before{ content: "" !important; }
+                 .caseHistoryDiv table td:nth-of-type(2):before{ content: "User"; font-weight:bold;}
+                 .caseHistoryDiv table td:nth-of-type(3):before{ content: "Connection"; font-weight:bold;}
+                 .caseHistoryDiv table td:nth-of-type(4):before{ content: "Action"; font-weight:bold;}
+                 .caseHistoryRow  { display:none;}
+                 /**notes and attach list in view case **/
+                 .caseAttachDiv table td:nth-of-type(1):before { content : "Action"; font-weight:bold;}
+                 .caseAttachDiv table td.error:nth-of-type(1):before { content : "" !important; font-weight:bold;}
+                 .caseAttachDiv table td:nth-of-type(2):before { content : "Title"; font-weight:bold;}
+                 .caseAttachDiv table td:nth-of-type(3):before { content : "Type"; font-weight:bold;}
+                 .caseAttachDiv table td:nth-of-type(4):before { content : "last Modified"; font-weight:bold;}
+                 .caseAttachDiv table td:nth-of-type(5):before { content : "Created By"; font-weight:bold;}
+                 .headerNoteRow { display:none;}
+                 
+                 /**notes and attach list in view service **/
+                 .serviceAttachDiv table td:nth-of-type(1):before { content : "Action"; font-weight:bold;}
+                 .serviceAttachDiv table td.error:nth-of-type(1):before { content : "" !important; font-weight:bold;}
+                 .serviceAttachDiv table td:nth-of-type(2):before { content : "Title"; font-weight:bold;}
+                 .serviceAttachDiv table td:nth-of-type(3):before { content : "Type"; font-weight:bold;}
+                 .serviceAttachDiv table td:nth-of-type(4):before { content : "last Modified"; font-weight:bold;}
+                 .serviceAttachDiv table td:nth-of-type(5):before { content : "Created By"; font-weight:bold;}
+                 .headerNoteRow { display:none;}
+                 /*** Case History **/
+                 .caseHistoryListTable td:nth-of-type(1):before{ content : "Date"; font-weight:bold;}
+                 .caseHistoryListTable td.error:nth-of-type(1):before{ content : "" !important; font-weight:bold;}
+                 .caseHistoryListTable  td:nth-of-type(2):before{ content : "User"; font-weight:bold;}
+                 .caseHistoryListTable  td:nth-of-type(3):before{ content : "Connection";font-weight:bold;}
+                 .caseHistoryListTable  td:nth-of-type(4):before{ content : "Action";font-weight:bold;}
+                 
+                 /*** Attachment List **/
+                 .attachmentListTable td:nth-of-type(1):before { content: "Action"; font-weight:bold;}
+                 .attachmentListTable td.error:nth-of-type(1):before { content: "" !important; font-weight:bold;}
+                 .attachmentListTable td:nth-of-type(2):before { content: "Title";font-weight:bold;}
+                 .attachmentListTable td:nth-of-type(3):before { content: "Type";font-weight:bold;}
+                 .attachmentListTable td:nth-of-type(4):before { content: "Last Modified"; font-weight:bold;}
+                 .attachmentListTable td:nth-of-type(5):before { content: "Created By"; font-weight:bold;}
+                 /*** Contact List for view contact **/
+                 .contact-case-list td:nth-of-type(1):before { content: "Action"; font-weight: bold;}
+                 .contact-case-list td.error:nth-of-type(1):before { content: "" !important; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(2):before { content: "Case Number"; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(3):before { content: "Contact"; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(4):before { content: "Subject"; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(5):before { content: "Priority"; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(6):before { content: "Date/Time Opened"; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(7):before { content: "Status"; font-weight: bold;}
+                 .contact-case-list td:nth-of-type(8):before { content: "Owner First Name"; font-weight: bold;}
+                 
+                 /*** Live Service List for view Account **/
+                 .liveServiceAccount td:nth-of-type(1):before { content: "Action"; font-weight:bold;color:#444;width:15%; word-wrap:break-word; }
+                 .liveServiceAccount td.error:nth-of-type(1):before { content: ""!important;  }
+                 .liveServiceAccount td:nth-of-type(2):before { content: "Chosen Product (if 20 03 01)"; font-weight:bold;color:#444;
+                 }
+                 .liveServiceAccount td:nth-of-type(3):before { content: "Container"; font-weight:bold;color:#444;}
+                 .liveServiceAccount td:nth-of-type(4):before { content: "Size"; font-weight:bold;color:#444;}
+                 .liveServiceAccount td:nth-of-type(5):before { content: "Quantity"; font-weight:bold;color:#444;}
+                 .liveServiceAccount td:nth-of-type(6):before { content: "Service Provider Name"; font-weight:bold;color:#444;}
+                 .liveServiceAccount { width: 90%;}
+                 /*** Contact list for view Account **/
+                 .contactAccountList td:nth-of-type(1):before { content: "Action"; font-weight:bold; color:#444;}
+                 .contactAccountList td.error:nth-of-type(1):before { content: "" !important; font-weight:bold; color:#444;}
+                 .contactAccountList td:nth-of-type(2):before { content: "Contact Name"; font-weight:bold; color:#444;}
+                 .contactAccountList td:nth-of-type(3):before { content: "Title"; font-weight:bold; color:#444;}
+                 .contactAccountList td:nth-of-type(4):before { content: "Email"; font-weight:bold; color:#444;}
+                 .contactAccountList td:nth-of-type(5):before { content: "Phone"; font-weight:bold; color:#444;}
+                 /*** Cases list for view Account **/
+                 .casesAccountList td:nth-of-type(1):before{content: "Action"; font-weight:bold; color:#444;}
+                 .casesAccountList td.error:nth-of-type(1):before{content: "" !important; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(2):before{content: "Case Number"; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(3):before{content: "Contact"; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(4):before{content: "Subject"; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(5):before{content: "Priority"; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(6):before{content: "Date/Time Opened"; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(7):before{content: "Status"; font-weight:bold; color:#444;}
+                 .casesAccountList td:nth-of-type(8):before{content: "Owner First Name"; font-weight:bold; color:#444;}
+                 /*** Service list for view Account **/
+                 .serviceAccountList td:nth-of-type(1):before {content: "Action"; font-weight:bold;}
+                 .serviceAccountList td.error:nth-of-type(1):before {content: "" !important; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(2):before {content: "Ref"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(3):before {content: "Service Provider Name"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(4):before {content: "Chosen Product(if 20 03 01)"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(5):before {content: "Container"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(6):before {content: "Quantity"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(7):before {content: "Size"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(8):before {content: "Service Start Date"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(9):before {content: "Service End Date"; font-weight:bold;}
+                 .serviceAccountList td:nth-of-type(10):before {content: "Type"; font-weight:bold;}
+                 .navbar .nav > li { width:30%;}
+                 .accountSpan img{ width: 30%;}
+                  /** View Service **/
+ .serviceDetsDet{
+     width:100%;
+     display:block;
+ }
+ /** **/
+   /** View Contact **/
+ .contactDetsDet{
+     width:100%;
+     display:inline-table;
+ }
+ /*** **/
+ /*** View account **/
+ .accountDetsDet{
+     width:100%;
+     display:inline-table;
+ }
+ /*** **/
+ /*** View case **/
+ .caseDetsDet{
+     width:100%;
+     display:inline-table;
+ }
+ /*** **/
+
+	}
+        .labelCol{ 
+            width:auto;
+        }
+        .contactAddPage input, .contactAddPage select{
+            width:150px;
+        }
+        .contactAddPage input{
+            width:135px;
+        }
+        .contactAddPage textarea{
+            width:145px;
+        }
+        .caseTitleWidth{
+            width:90%;
+        }
+        .addCaseList select{
+            width:185px;
+        }
+        .requireText{
+            height:190px;
+        }
+        .leftNoteDiv{
+            width:30%;
+        }
+        
+       
+       
+ 
+.advSearchBtn{
+    margin-top:-10px;
+}
+/*.selectBox-dropdown {
+   // width: 88% !important;
+    width: 30% !important;
+}*/

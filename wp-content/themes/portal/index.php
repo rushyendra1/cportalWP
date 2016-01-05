@@ -14,7 +14,9 @@
  * @since Portal 1.0
  */
 
-get_header(); ?>
+get_header();
+
+?>
 
 <div class="row-fluid data-content-outer">
     <div class="post-cont">

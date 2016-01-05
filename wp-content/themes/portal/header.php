@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+ob_start();
 /**
  * The Header for our theme
  *
@@ -8,12 +11,16 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
-$pages = $_SERVER['REQUEST_URI'];
-$pages = str_replace("/project/hmw_c/", "",$pages); 
-$pages = str_replace("/", "",$pages); 
+/*$pages = $_SERVER['REQUEST_URI'];
+$pages = str_replace("/project/customePortal/cportalWp/", "",$pages); 
+$pages = str_replace("/", "",$pages);
+
+
 if($pages == "login" && is_user_logged_in()){
+    
         wp_redirect(get_site_url());
-}
+        exit;
+}*/
 
 ?>
 <!doctype html>
@@ -50,10 +57,20 @@ if($pages == "login" && is_user_logged_in()){
 <div>
      <?php
    
-          if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ ?>
+         // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
+     if(is_user_logged_in()){
+         $result = wp_get_current_user();
+         
+         if(isset($result->user_nicename))
+         $name = $result->user_nicename;
+         if($name == "")
+             $name = $result->user_login;
+         
+     ?>
           <div class="headerDiv">
-              Hello <a href="user-details.php"> <?php echo ucfirst($_SESSION['user']['name']). " ".ucfirst($_SESSION['user']['lname']) ?></a>
+              Hello <a href="user-details.php"> <?php echo $name; ?></a>
                <a   class="logouts logoutHeader logms">LOGOUT</a>
           </div>
           <?php } ?>
 </div>
+            

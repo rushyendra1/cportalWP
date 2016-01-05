@@ -59,8 +59,9 @@ $(document).ready(function(){
            
             return false;
         }
-       //alertData(title, "Login Successfully !!");
-        window.location.href='index.php';
+        
+        //alertData(title, "Login Successfully !!");
+        window.location.href=site;
    });
 });
 });

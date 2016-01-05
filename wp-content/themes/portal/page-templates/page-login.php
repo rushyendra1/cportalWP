@@ -6,12 +6,14 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
+
 //redirect_to_login();
 get_header(); ?>
 
 <div id="main-content" class="main-content">
 
 	<div class="row-fluid data-content-outer" >
+            <?php if(!is_user_logged_in()) { ?>
 		<div id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">
 
@@ -87,6 +89,11 @@ get_header(); ?>
 
 			</div><!-- #content -->
 		</div><!-- #primary -->
+            <?php }
+            /*else { 
+                echo get_home_page();
+             }*/
+            ?>
 	</div>
 	
 </div><!-- #main-content -->

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page Home
+ * Template Name: Page Profile
  *
  * @package WordPress
  * @subpackage Portal

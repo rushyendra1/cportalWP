@@ -873,9 +873,13 @@ function connects_salesforce($auth_url,$params,$is_header,$access_token,$type)
  * @return Void
  */
 function redirect_to_login(){
+   
     if(!is_user_logged_in()){
-        wp_redirect(get_site_url()."/login");
+      
+        header("Location:".get_site_url()."/login");
+        exit;
     }
+    
 }
 /**
  * Get the data from limit
@@ -1665,4 +1669,60 @@ function get_attach_results($result)
     usort($total_result,"dateCmp");
     $total_result = array_reverse($total_result);
     return $total_result;
+}
+function get_home_page()
+{
+    $result = '<div id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
+
+<div class=" contentSub sidebarCell">';
+            $result .='<!-- Sidebar Started -->';
+             //$result .= portal_sidebar();
+              
+            $result .='<!-- Sidebar ended -->
+
+</div>
+<div class="bodyCell contentSub" >
+<!-- Start page content -->
+<a name="skiplink">
+    <!--<img width="1" height="1" title="Content Starts Here" class="skiplink skipLinkTargetInner zen-skipLinkTarget" alt="Content Starts Here" src="/s.gif">-->
+</a>
+
+<input type="hidden" id="msg" value="<?php echo $msg ?>" >
+  <div class="row toggle-full-width">
+    <div class="large-12 columns">
+      <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
+      <h4><br>
+       Customer Portal</h4>
+      
+      <hr> 
+      <div id="section_1">
+         
+        <div class="row">
+          <div class="columns small-12"> ';
+            
+            if(is_user_logged_in()){
+            
+            $result .= ' <a href="user-details.php"  class="button radius submit link">My Account</a> <br>
+            <a href="#"  class="button radius submit link logouts">Logout</a>';
+             }else{ 
+          $result .='<a href="login.php"  class="button radius submit link">Login</a> <br>
+            <a href="register.php"  class="button radius submit link">Register</a>';
+             } 
+          $result .='</div>
+        </div>
+     </div>
+    </div>
+  </div>
+    
+<!-- Body events -->
+
+<!-- End page content -->
+</div>
+        <!-- Account Information end here -->
+				
+
+			</div><!-- #content -->
+		</div><!-- #primary -->';
+          return $result;
 }

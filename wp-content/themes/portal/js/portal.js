@@ -8,7 +8,9 @@ $(document).ready(function(){
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    /** Login Functionality **/
    $("#submit").on("click",function(e){
+       /** Stop the immediate propagation **/
         e.stopImmediatePropagation();
       var className = "ajaxCall";
         if($(this).hasClass(className))
@@ -18,12 +20,14 @@ $(document).ready(function(){
         $(this).addClass(className);
       showLoader(); 
       $(this).attr("disabled");
+      
       $(".errorInput").removeClass("errorInput");
       var username = $.trim($("#username").val());
       var pass = $.trim($("#lpassword").val());
       var title = "Request Message";
       var that = this;
       var error = [];
+      /** check the error validtions **/
       error = checkUserName("#username",error, "Please enter Username/E-mail.");
       error = checkPwdError("#lpassword",error,"");
       if(error.indexOf("e") != -1)
@@ -44,7 +48,8 @@ $(document).ready(function(){
           return false;
       }
       var that = this;
-      $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, password:pass},function(data){
+      $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
+          password:pass},function(data){
           data = $.trim(data);
         if(data != "")
         {
@@ -63,6 +68,22 @@ $(document).ready(function(){
         //alertData(title, "Login Successfully !!");
         window.location.href=site;
    });
+});
+/** logouts **/
+$(".logouts").on("click",function(e){
+       /** Stop the immediate propagation **/
+        e.stopImmediatePropagation();
+      var className = "ajaxCall";
+        if($(this).hasClass(className))
+        {
+            return false;
+        }
+        $(this).addClass(className);
+      showLoader(); 
+      $(this).attr("disabled");
+    $.post(root+"/ajax/loginmanage/logout.php", {},function(data){
+        window.location.href= site;
+          }); 
 });
 });
 /**

@@ -6,25 +6,22 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
-
-session_start();
-
-//redirect_to_login();
+redirect_to_login();
 /*if(!is_user_logged_in()){
     wp_redirect(get_site_url()."/login");
     exit;
 }*/
 get_header();
-if(!is_user_logged_in()){
+/*if(!is_user_logged_in()){
     wp_redirect(get_site_url()."/login");
     exit;
-}
+}*/
 ?>
 
 <div id="main-content" class="main-content">
 
 	<div class="row-fluid data-content-outer" >
-		<?php  echo get_home_page(); ?>
+	profile page
 	</div>
 	
 </div><!-- #main-content -->

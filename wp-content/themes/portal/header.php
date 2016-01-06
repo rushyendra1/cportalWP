@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 ob_start();
 /**
@@ -51,7 +50,7 @@ if($pages == "login" && is_user_logged_in()){
 <body>
 <!--<a id="toggle_full_width" href="#" class="button tiny fixed hide-for-medium-down"><i class="fi-arrows-out"></i>&nbsp;&nbsp;Toggle Wide Screen</a>-->
 <p class="hide-for-medium-down">&nbsp;</p>
-<a href="index.php" id="homeSite" >Home</a>
+<a href="<?php echo get_site_url() ?>" id="homeSite" >Home</a>
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
 <div>
@@ -68,7 +67,7 @@ if($pages == "login" && is_user_logged_in()){
          
      ?>
           <div class="headerDiv">
-              Hello <a href="user-details.php"> <?php echo $name; ?></a>
+              Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                <a   class="logouts logoutHeader logms">LOGOUT</a>
           </div>
           <?php } ?>

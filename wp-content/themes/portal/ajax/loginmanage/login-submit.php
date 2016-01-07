@@ -3,6 +3,7 @@ session_start();
 /** Load the configuration files **/
 global $wpdb;
 global $table_prefix;
+$max_login_attempts = 0;
 if(!isset($wpdb))
 {
     include_once('../../../../../wp-config.php');
@@ -10,30 +11,17 @@ if(!isset($wpdb))
     include_once('../../../../../wp-includes/wp-db.php');
     include_once('../../../../../wp-includes/class-phpass.php');
 }
-/* do after words $max_login_attempts = 0;
+// do after words $max_login_attempts = 0;
 $result_query = @pg_query($db,"SELECT min_pass_len,max_pass_len,max_login_attempts"
                             . " FROM settings"
-                           . " WHERE id=1");
+                           );
 $result = @pg_fetch_assoc($result_query);
-if(is_array($result) && count($result)>0)
+/* if(is_array($result) && count($result)>0)
 {
   $max_login_attempts = $result['max_login_attempts'] ;
-}
-$max_login_attempts +=1;
-
-if(!isset($_SESSION['forgot-times']))
-{
-    $_SESSION['forgot-times'] =1;
-}  else {
-    $_SESSION['forgot-times']+=1;
-}
-if($_SESSION['forgot-times'] >=$max_login_attempts)
-{
-    echo "If you forgot your password reset by click on <a href='forgot.php' class='forgot-link'>Forgot Password</a> link.";
-    exit;
-}*/
+} */
  $user = (isset($_POST['username']))?$_POST['username']: "";
-$pass = (isset($_POST['password']))?$_POST['password']: "";
+$pass = (isset($_POST['password']))?$_POST['password']: ""; 
 try{
 
 /*** Check the username is present in wp users ***/
@@ -51,9 +39,21 @@ if($result>0)
 	$check =$pass_obj->CheckPassword($pass, $db_pass);
         //if both are not same raise the error
         if(!$check){
-            echo "Username/E-mail or Password is incorrect.";
-            exit;
+            $max_login_attempts +=1;
+            if(!isset($_SESSION['forgot-times']))
+            {
+                $_SESSION['forgot-times'] =1;
+            }
+            else {
+                    $_SESSION['forgot-times']+=1;
+            }
+            if($_SESSION['forgot-times'] >=$max_login_attempts)
+            {
+                echo "If you forgot your password reset by click on <a href='forgot.php' class='forgot-link'>Forgot Password</a> link.";
+                exit;
+            }
         }
+        
         //Store the user name and id in session
          /* session_start();
 	  $_SESSION['user']= array( "name" =>$result->user_nicename,
@@ -73,6 +73,8 @@ wp_set_auth_cookie($user->ID, $credentials["remember"], $secure_cookie);*/
         $user = wp_signon( $credentials, false );
 //         do_action('wp_login', $user->user_login, $user);
         wp_set_current_user($user->ID);
+        
+
 //do_action('wp_login', $user->user_login, $user);
     /*    $creds = array();
 		$creds['user_login']    = $user;

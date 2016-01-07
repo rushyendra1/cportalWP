@@ -1726,3 +1726,117 @@ function get_home_page()
 		</div><!-- #primary -->';
           return $result;
 }
+
+/**** Descativation Process ***/
+//check the desctivation in login
+function check_deactivation_fun($user, $username,$password)
+{
+    if(is_wp_error($user))
+		return $user;
+    if(isset($user->is_deactive) && $user->is_deactive ==1 )
+    {
+        return new WP_Error('inactive', 'Your account has been temporarily deactivated.');
+    }
+    else return $user;
+}
+add_action("authenticate", "check_deactivation_fun",100,3 );
+//Add the actions in users table
+function add_action_in_user()
+{
+    if(!current_user_can('activate_plugins'))
+		return;
+    ?>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) { 
+				$('<option>').val('deactivate_user').text('Deactivate').appendTo("select[name='action']"); 
+				$('<option>').val('activate_user').text('Activate').appendTo("select[name='action']"); 
+			});
+		</script>
+<?php
+}
+add_action('admin_footer-users.php', 'add_action_in_user');
+
+//perform the deactivate and activate the users 
+function user_perform_action()
+{
+    global $wpdb;
+    global $table_prefix;
+    if(!current_user_can('activate_plugins'))
+		return;
+
+	$wp_list_table = _get_list_table('WP_Users_List_Table');
+	$action = $wp_list_table->current_action();
+	switch($action) {
+		case 'deactivate_user':
+			$user_ids = $_GET['users'];
+			$deactivated = 0;
+			foreach( $user_ids as $user_id ) {
+				if(get_current_user_id() != $user_id){
+					//update_user_meta($user_id, 'wpduact_status', 'inactive');
+                                   
+                                        $wpdb->update($table_prefix."users", array("is_deactive" =>1),array("ID" =>$user_id));
+                                   
+					$deactivated++;
+				}
+			}
+			$sendback = add_query_arg( array('deactivated' => $deactivated ), $sendback );
+		break;
+		case 'activate_user':
+			$user_ids = $_GET['users'];
+			$activated = 0;
+			foreach( $user_ids as $user_id ) {
+                            $wpdb->update($table_prefix."users", array("is_deactive" =>0),array("ID" =>$user_id));
+				//update_user_meta($user_id, 'wpduact_status', 'active');
+				$activated++;
+			}
+			$sendback = add_query_arg( array('activated' => $activated ), $sendback );
+		break;
+		default: return;
+	}
+	wp_redirect($sendback);
+	exit();
+}
+add_action('load-users.php', 'user_perform_action');
+//User activation and deactivation messages
+function user_admin_notices()
+{
+    global $pagenow;
+	if($pagenow == 'users.php'){
+		if(isset($_REQUEST['deactivated']) && (int) $_REQUEST['deactivated']) {
+			$message = sprintf( _n( 'User account deactivated.', '%s user accounts deactivated.', $_REQUEST['deactivated'] ), number_format_i18n( $_REQUEST['deactivated'] ) );
+			echo "<div class=\"updated\"><p>$message</p></div>";
+		}
+		elseif(isset($_REQUEST['activated']) && (int) $_REQUEST['activated']){
+			$message = sprintf( _n( 'User account activated.', '%s user accounts activated.', $_REQUEST['activated'] ), number_format_i18n( $_REQUEST['activated'] ) );
+			echo "<div class=\"updated\"><p>$message</p></div>";
+		}
+	}
+}
+add_action('admin_notices', 'user_admin_notices');
+
+/*
+* Display status of each account in the WordPress users table
+*/
+
+function add_user_id_column($columns) {
+    $columns['is_deactive'] = 'Status';
+    return $columns;
+}
+add_filter('manage_users_columns', 'add_user_id_column');
+
+function show_user_id_column_content($value, $column_name, $user_id)
+{
+    global $wpdb;
+    
+    if($column_name == "is_deactive") {
+      
+        $res = get_userdata( $user_id );
+        $status = "Active";
+        if(isset($res->is_deactive) && $res->is_deactive)
+            $status = "Deactive";
+        return $status;
+    }  
+    
+    return $value; 
+}
+add_action('manage_users_custom_column',  'show_user_id_column_content', 10, 3);

@@ -1,5 +1,5 @@
 <?php
- echo $email = (isset($_POST['email']))?$_POST['email']: "";
+  $email = (isset($_POST['email']))?$_POST['email']: "";
  //$id = (isset($_POST['id']))?base64_decode($_POST['id']): 0;
 
 
@@ -15,6 +15,13 @@ if(!isset($wpdb))
     include_once('../wp-load.php');
     include_once('../wp-includes/wp-db.php');
 }
+if($email != "" && !preg_match('/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/', $email))
+{
+     echo json_encode(array("errorCode" => "Failure", "message" => "Please enter valid email address"));
+      exit;
+}
+    
+
 //Check the email existed or not 
 $email_str = "SELECT ID FROM"
         . " ".$table_prefix."users WHERE user_email='".$email."'";

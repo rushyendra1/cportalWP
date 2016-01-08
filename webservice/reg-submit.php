@@ -23,7 +23,12 @@ $message = (isset($_POST['message']))?$_POST['message']: "";
 //$user['allow_login'] = 1;
 //$user['allow_admin'] = 0;
 //$user['status'] = 1;
- 
+
+if($email != "" && !preg_match('/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/', $email))
+{
+     echo json_encode(array("errorCode" => "Failure", "message" => "Please enter valid email address"));
+      exit;
+}
 global $wpdb;
 global $table_prefix;
 if(!isset($wpdb))
@@ -45,9 +50,11 @@ if(!$db){
     exit;
 }
 //Check the email existed or not 
-$email_str = "SELECT ID FROM"
-        . " ".$table_prefix."users WHERE user_email='".$user['email']."'";
+ $email_str = "SELECT ID FROM"
+        . " ".$table_prefix."users "
+        . " WHERE user_email='".$email."'";
 $user_exist_results = $wpdb->get_results($email_str);
+
 if(is_array($user_exist_results) && count($user_exist_results)>0)
 {
    echo json_encode(array("errorCode" => "Failure", "message" => "E-mail is already existed"));
@@ -256,7 +263,8 @@ $res = mysqli_query($con,$insert_act_id);
     
 }
 
-echo json_encode(array("errorCode" => "Success","message" =>"", "userID" => $user_id));
+echo json_encode(array("errorCode" => "Success","message" =>"", "userID" => $user_id,
+     "createdDateTime" => date("c", time())));
 exit;
 //echo $user_id; 
 }catch(Exception $e)

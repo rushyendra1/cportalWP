@@ -21,11 +21,6 @@ try{
 				FROM ".$table_prefix."users
 				WHERE user_login='".$user."'");
 
-if($result!=0)
-{
-    echo "Username is incorrect" ;
-    
-}
 if($result>=0)
 { //if data is there check password for given username
     $db_pass = $result->user_pass;

@@ -190,6 +190,13 @@ function wpmem_update_fields( $action ) {
 			$chk_fields[] = $field[2];
 		}
 		$add_field_err_msg = ( in_array( $_POST['add_option'], $chk_fields ) ) ? __( 'A field with that option name already exists', 'wp-members' ) : $add_field_err_msg;
+		
+		// Error check for reserved terms.
+		$reserved_terms = wpmem_wp_reserved_terms();
+		$submitted_term = $_POST['add_option'];
+		if ( in_array( strtolower( $submitted_term ), $reserved_terms ) ) {
+			$add_field_err_msg = sprintf( __( 'Sorry, "%s" is a <a href="https://codex.wordpress.org/Function_Reference/register_taxonomy#Reserved_Terms" target="_blank">reserved term</a>. Field was not added.', 'wp-members' ), $submitted_term );
+		}
 
 		// Error check option name for spaces and replace with underscores.
 		$us_option = $_POST['add_option'];
@@ -413,7 +420,8 @@ Last Row|last_row<?php } } ?></textarea>
 				</ul><br />
 				<?php if ( $mode == 'edit' ) { ?><input type="hidden" name="field_arr" value="<?php echo $field_arr[2]; ?>" /><?php } ?>
 				<input type="hidden" name="wpmem_admin_a" value="<?php echo ( $mode == 'edit' ) ? 'edit_field' : 'add_field'; ?>" />
-				<input type="submit" name="save"  class="button-primary" value="<?php echo ( $mode == 'edit' ) ? __( 'Edit Field', 'wp-members' ) : __( 'Add Field', 'wp-members' ); ?> &raquo;" /> 
+				<?php $text = ( $mode == 'edit' ) ? __( 'Edit Field', 'wp-members' ) : __( 'Add Field', 'wp-members' ); ?>
+				<?php submit_button( $text ); ?>
 			</form>
 		</div>
 	</div>
@@ -527,7 +535,7 @@ function wpmem_a_field_table( $wpmem_fields ) {
 								<?php echo ( ( $wpmem_ut_fields ) && ( in_array( 'Registration IP', $wpmem_ut_fields ) ) ) ? 'checked' : false; ?> />
 						</td>
 					</tr>
-				<?php if ( $wpmem->use_exp == 1 ) { ?>
+				<?php if ( defined( 'WPMEM_EXP_MODULE' ) && $wpmem->use_exp == 1 ) { ?>
 					<tr class="nodrag nodrop">
 						<td>&nbsp;</td>
 						<td><i>Subscription Type</i></td>
@@ -553,7 +561,7 @@ function wpmem_a_field_table( $wpmem_fields ) {
 				<?php } ?>
 				</table><br />
 				<input type="hidden" name="wpmem_admin_a" value="update_fields" />
-				<input type="submit" name="save"  class="button-primary" value="<?php _e( 'Update Fields', 'wp-members' ); ?> &raquo;" /> 
+				<?php submit_button( __( 'Update Fields', 'wp-members' ) ); ?>
 			</form>
 		</div><!-- .inside -->
 	</div>	

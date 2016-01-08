@@ -1,9 +1,9 @@
-﻿=== WP-Members ===
+﻿=== WP-Members: Membership Framework ===
 Contributors: cbutlerjr
 Tags: access, authentication, content, login, member, membership, password, protect, register, registration, restriction, subscriber
 Requires at least: 3.1
-Tested up to: 4.2.2
-Stable tag: 3.0.0.3
+Tested up to: 4.4.0
+Stable tag: 3.0.8
 License: GPLv2
 
 WP-Members&trade; is a free membership management framework for WordPress&reg; that restricts content to registered users.
@@ -111,8 +111,8 @@ Premium priority support is available at the plugin's site [RocketGeek.com](http
 
 == Upgrade Notice ==
 
-WP-Members 3.0.0.3 is bug fix release. See the change log for detail.
-WP-Members 3.0.0 is a major version release. Please be sure you have reviewed the changelog before upgrading.  http://rkt.bz/v30
+WP-Members 3.0.8 is a feature release, see release notes.
+WP-Members 3.0.0 is a major version release. Please review the changelog: http://rkt.bz/v30
 
 == Screenshots ==
 
@@ -130,25 +130,77 @@ WP-Members 3.0.0 is a major version release. Please be sure you have reviewed th
 
 7. Posts > Edit Post - The plugin adds a meta box to the post/page editor allowing you to set an individual post to be blocked or unblocked (the opposite of whatver your default setting is).
 
+8. Responsive forms.
+
 
 == Changelog ==
 
-= 3.0.0.3 =
+= 3.0.8 =
 
-* Removed sortable user columns. This class needs to be rebuilt to accommodate custom user columns outside of WP-Members.
-* Removed native support for Custom Post Types (CPTs). Native CPT support was to be included in 3.0. However, it became appearant during the initial rollout that there are some additional considerations that need to be made regarding CPT support. It is being rolled back until the issues that have come up can be addressed.
-* Changed the order of update functions for users upgrading from previous versions so that the rebuild of the plugin's settings happens first. The most critical function in 3.x updating is to rebuild the plugin's main options array to the new 3.0 format.
-* When settings are loaded, added a check to make sure that version 3 settings are there. If not, it runs the update script. (Resolves issues related to the "update now" link.)
+* Added process for forgotten username retrieval.
+* Removed last remaining instances of extract function.
+* Updated settings for special pages (login|register|user-profile) to store only the numeric primary key ID. This will eliminate the need to update these settings if the site is moved (from a dev to live site, for example).  Legacy full URL settings will still be compatible without needing to be updated, but will be automatically updated when main options are saved.
 
-= 3.0.0.2 =
+= 3.0.7 =
 
-* Patch correcting logic flaw in the login form shortcode that caused the form to not display at all if "show login" was turned off (should not effect the shortcode forms).
-* Patch correcting bad path for reCAPTCHA php library include.
-* Update to the reCAPTCHA library to avoid namespace collision until reCAPTCHA can be updated to 2.x.
+* Fix for use of display_name on profile update.
+* Fix for newer installs (post WP 4.0) where WPLANG is not defined and reCAPTCHA is used.
+* Fix in wpmem_form shortcode to skp if no additional tag exists.
+* Fix to plugin_basename.
+* Changes in core to use fields from WP_Members class (preparing for new form field process).
+* Reviews and updates to code standards and inline documentation.
+* Fix for password reset (typo in object name checking for moderated registration)
+* Fix for PayPal extension (http://rkt.bz/r3); added logic to avoid errors if the PayPal extension is disabled but the main option setting remained turned on.
 
-= 3.0.0.1 =
+= 3.0.6 =
 
-* Patch release correcting a logic flaw in the user profile page shortcode. The flaw causes the registration form to be shown or not shown opposite of the "show registration" setting for the post type the shortcode is used on.
+* Updates to localization function - documented plugin_locale filter, wpmem_localization_file filter, and improved load_textdomain logic.
+* Added /lang domain path to plugin header.
+* Fixed a bug in the user export function that broke CSV columns when moderated registration was turned on.
+* Improved current page retrieval in wpmem_redirect_to_login() function.
+* Fixed admin enqueued scripts (post/page screen hook did not load from new location).
+
+= 3.0.5 =
+
+* Updated wpmem_pwd_change and wpmem_pwd_reset action hooks to include password as a parameter.
+* Stylesheet updates for 2015, 2014, and generic (both float and no float).
+* Fix to TinyMCE shortcode button, should now load button on new post/page editor.
+* Added [WP-Members] to the TinyMCE shortcode button for clarity as to what it is.
+* Moved admin js and css files to /admin/js/ and /admin/css/
+* Moved admin class files to /admin/includes/
+* Updated and verified all directories contain an index.php file to prevent directory browsing.
+
+= 3.0.4 =
+
+* Reintroduced the global action variable $wpmem_a for backward compatibility with certain add-ons, most notably the WP-Members MailChimp extension ( see http://rkt.bz/3b ). Users of this extension should upgrade.  This variable had been replaced with the new WP-Members object class introduced in 3.0. However, users of older extensions and those that may have customziations with logic may be using this variable, so rather than force updating and upgrading, it is being added back in.
+* Change to the priority of functions hooked to the the_content filter. Lowering the priority should better integrate the plugin with various builder plugins and other processes that currently filter the_content after WP-Members since the content will now be filtered later in the process. This also should improve situations where in the past the on-the-fly texturization shortcode for the WP-Members forms might remain unparsed.
+
+= 3.0.3 =
+
+* Bug fix recaptcha v2 decode json response on validation.
+* Bug fix typo in $wpmem object name in admin/user-profile.php.
+* Bug fix message string variable in wpmem_msg_dialog_arr filter.
+* Fix register form shortcode redirect_to parameter.
+* Admin forms now use submit_button() function to generate submit button.
+* Changed localization to load on init action which will allow for more flexibility with filtering custom language files.
+* Added wpmem_localization_file and wpmem_localization_dir filters.
+* Localization checks for file in /wp-content/ language directory first, then loads plugin default.
+
+= 3.0.2 =
+
+* Added reCAPTCHA version 2 as an option. v1 will remain available for now, to be fully deprecated later.
+* Fixed widget to use __construct for WP 4.3 compatibility.
+* Added error checking for WP reserved names when adding new custom fields.
+* Added wpmem_wp_reserved_terms filter for overriding reserved terms list.
+* Added trim whitespace to password reset and password change form validation.
+
+= 3.0.1 =
+
+* Fixed use of wp_signon() for ssl.
+* Fixed [wpmem_msurl] email shortcode.
+* Fixed admin js and css load (removed unnecessary slash).
+* Fixed autoexcerpt to use setting from object and not wpmemembers_autoex option.
+* Added filter to remove comments array if content is blocked.
 
 = 3.0.0 =
 

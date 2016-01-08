@@ -192,6 +192,32 @@ function wpmem_registration( $toggle ) {
 					return "empty"; exit();
 				}
 			}
+		} elseif ( $wpmem->captcha == 3 && $wpmem_captcha['recaptcha'] ) {
+			// Get the captcha response.
+			if ( isset( $_POST['g-recaptcha-response'] ) ) {
+				$captcha = $_POST['g-recaptcha-response'];
+			}
+			
+			// If there is no captcha value, return error.
+			if ( ! $captcha ) {
+				$wpmem_themsg = __( 'You must complete the CAPTCHA form.', 'wp-members' );
+				return "empty"; exit();
+			}
+			
+			// We need the private key for validation.
+			$privatekey = $wpmem_captcha['recaptcha']['private'];
+			
+			// Validate the captcha.
+			$response = file_get_contents( "https://www.google.com/recaptcha/api/siteverify?secret=" . $privatekey . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR'] );
+			
+			// Decode the json response.
+			$response = json_decode( $response, true );
+			
+			// If captcha validation was unsuccessful.
+			if ( $response['success'] == false ) {
+				$wpmem_themsg = __( 'CAPTCHA was not valid.', 'wp-members' );
+				return "empty"; exit();
+			}
 		}
 
 		// Check for user defined password.
@@ -201,7 +227,7 @@ function wpmem_registration( $toggle ) {
 		$fields['user_registered'] = gmdate( 'Y-m-d H:i:s' );
 		$fields['user_role']       = get_option( 'default_role' );
 		$fields['wpmem_reg_ip']    = $_SERVER['REMOTE_ADDR'];
-		$fields['wpmem_reg_url']   = $_REQUEST['redirect_to'];
+		$fields['wpmem_reg_url']   = ( isset( $_REQUEST['wpmem_reg_page'] ) ) ? $_REQUEST['wpmem_reg_page'] : $_REQUEST['redirect_to'];
 
 		/*
 		 * These native fields are not installed by default, but if they
@@ -235,7 +261,7 @@ function wpmem_registration( $toggle ) {
 		 * @param array $fields The user's submitted registration data.
 		 */
 		do_action( 'wpmem_pre_register_data', $fields );
-exit;
+
 		// If the _pre_register_data hook sends back an error message.
 		if ( $wpmem_themsg ) { 
 			return $wpmem_themsg;

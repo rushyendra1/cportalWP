@@ -64,13 +64,13 @@ if($result>0)
                      'id' =>$result->ID);*/
         $login_array = array("Type" => "login","userId" => $result->ID,
                 "inOutDate" => date("Y-m-d\TH:i:s",time() ));
-        //echo json_encode($login_array);
+     
         /** Integrate the salesforce **/
         list($access_token,$instance_url) = get_connection_sales();
         global $login_time_url;
         $url = $instance_url.$login_time_url;
         $json_response = post_request($url, $access_token, json_encode($login_array),$method);
-       $response_array = explode("chunked",$json_response);
+        $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))
     $json_response = $response_array[1];
  //}
@@ -83,6 +83,10 @@ if($result>0)
         mail($admin_email,$response[0]->errorCode, $response[0]->message );
         echo  "Something event wrong. Please contact your system Administrator.";
         exit;
+    }
+    if($response == "There is no user in Salesforce")
+    {
+        echo $response; exit;
     }
         
         $credentials = array( 'user_login' =>  $user,

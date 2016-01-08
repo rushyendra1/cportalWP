@@ -3,7 +3,8 @@ session_start();
 /** Load the configuration files **/
 global $wpdb;
 global $table_prefix;
-global $max_login_attempts;
+$max_login_attempts = 0;
+
 if(!isset($wpdb))
 {
     include_once('../../../../../wp-config.php');
@@ -11,10 +12,35 @@ if(!isset($wpdb))
     include_once('../../../../../wp-includes/wp-db.php');
     include_once('../../../../../wp-includes/class-phpass.php');
 }
-$max_login_attempts=0;
-// do after words $max_login_attempts = 0;
-$result_query = $wpdb->get_row($db,"SELECT min_pass_len,max_pass_len,max_login_attempts"
-                            . " FROM $table_prefix");
+
+
+
+$result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+//var_dump($result_query);
+//exit;
+
+if(isset($result->max_login_attempts))
+
+  $max_login_attempts = $resul->max_login_attempts ;
+
+$max_login_attempts +=1;
+
+if(!isset($_SESSION['forgot-times']))
+{
+    $_SESSION['forgot-times'] =1;
+}  else {
+    $_SESSION['forgot-times']+=1;
+}
+if($_SESSION['forgot-times'] >=$max_login_attempts)
+{
+    echo "If you forgot your password reset by click on <a href='forgot.php' class='forgot-link'>Forgot Password</a> link.";
+    exit;
+}
+ $user = (isset($_POST['username']))?$_POST['username']: "";
+$pass = (isset($_POST['password']))?$_POST['password']: "";
+
 try{
 /*** Check the username is present in wp users ***/
  $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
@@ -38,6 +64,32 @@ if($result>=0)
          /* session_start();
 	  $_SESSION['user']= array( "name" =>$result->user_nicename,
                      'id' =>$result->ID);*/
+        $login_array = array("Type" => "login","userId" => $result->ID,
+                "inOutDate" => date("Y-m-d\TH:i:s",time() ));
+     
+        /** Integrate the salesforce **/
+        list($access_token,$instance_url) = get_connection_sales();
+        global $login_time_url;
+        $url = $instance_url.$login_time_url;
+        $json_response = post_request($url, $access_token, json_encode($login_array),$method);
+        $response_array = explode("chunked",$json_response);
+    if(isset($response_array[1]))
+    $json_response = $response_array[1];
+ //}
+ $response = json_decode($json_response); 
+ 
+ if(isset($response[0]->errorCode))
+    {
+        //var_dump($response);
+        $admin_email = get_option("admin_email");
+        mail($admin_email,$response[0]->errorCode, $response[0]->message );
+        echo  "Something event wrong. Please contact your system Administrator.";
+        exit;
+    }
+    if($response == "There is no user in Salesforce")
+    {
+        echo $response; exit;
+    }
         
         $credentials = array( 'user_login' =>  $user,
             'user_password' => $pass,

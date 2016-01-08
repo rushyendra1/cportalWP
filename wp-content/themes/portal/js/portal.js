@@ -82,6 +82,7 @@ $(".logouts").on("click",function(e){
       showLoader(); 
       $(this).attr("disabled");
     $.post(root+"/ajax/loginmanage/logout.php", {},function(data){
+        
         window.location.href= site;
           }); 
 });

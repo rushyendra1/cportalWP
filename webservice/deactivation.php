@@ -13,7 +13,7 @@ if(!isset($wpdb))
 $user_id = (isset($_POST['user_id']))?$_POST['user_id']: "";
   $type = (isset($_POST['type']))?$_POST['type']: "";
 //Check the user id is  existed or not 
-  echo $user_str = "SELECT ID FROM "
+   $user_str = "SELECT ID FROM "
         . $table_prefix."users "
         . "WHERE ID = '".$user_id."'";
 $user_exist_results = $wpdb->get_results($user_str);

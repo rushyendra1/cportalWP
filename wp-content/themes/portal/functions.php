@@ -32,133 +32,14 @@ define("REDIRECT_URI",get_option("wc_sf_client_redirect_uri"));
 define ("PUBLIC_URL",get_option("wc_sf_public_site_url"));
 define("REFRESH_TOKEN",get_option("wc_sf_refresh_token"));
 define("INSTANCE_URL",get_option("wc_sf_instance_url"));
- $current_user = wp_get_current_user();
+ /*$current_user = wp_get_current_user();
  $user_id = $current_user->ID;
  $username = $current_user->user_login;
- 
-  //owner_id         
- $owner_id = get_user_meta($user_id, "user_id" ); 
-
- if(count($owner_id)>0 && isset($owner_id[0]))
-  $owner_id =  $owner_id[0];
- else $owner_id =  '';
- 
- $owner_name = get_user_meta($user_id, "owner_name" ); 
-
- if(count($owner_name)>0 && isset($owner_name[0]))
-  $owner_name =  $owner_name[0];
- else $owner_name =  '';
- //account name
- $account_name = get_user_meta($user_id, "account_name" ); 
- if(isset($account_name[0]))
-  $account_name =  $account_name[0];
- else $account_name = '';
- if($account_name != "")         
-          $account_name = str_replace(" ","+",$account_name);
-
- //account_id
-/* global $wpdb;
- global $table_prefix;
- echo "SELECT meta_value FROM ". $table_prefix."usermeta "
-         . " WHERE user_id='".$user_id."' AND meta_key='account_id'";
- $results = $wpdb->get_results("SELECT meta_value FROM ". $table_prefix."usermeta "
-         . " WHERE user_id='".$user_id."' AND meta_key='account_id'");
-var_dump($results);*/
-  $account_array = get_user_meta($user_id,"account_id"); 
- //var_dump($account_array);
- if(isset($account_array[0]))
-  $account_ids =  $account_array[0];
- else $account_ids = '';
-//echo "account".$account_ids; 
- /*$first_name = get_user_meta($user_id, "first_name" ); 
- if(isset($first_name[0]))
-  $first_name =  $first_name[0];
- 
- $last_name = get_user_meta($user_id, "last_name" ); 
- if(isset($last_name[0]))
-  $last_name =  $last_name[0];*/
- 
- //$email = $current_user->user_email;
-//$name = $first_name." ".$last_name;
-$name = $username;
- 
+  $name = $username;
+ */
     
-$sales_url = "/services/apexrest/wastecollection/v1.0/AandSinformation";
-/** Owner ***/
- $get_owner_url = $sales_url."?method=LoginUserInfo&UserId=".$user_sales_id;
- $recent_items_url = "/services/data/v34.0/recent";
- /****Search ***/
- $search_all_url = $sales_url."?method=SearchAsPerObject&id=".$account_ids;
-  //parameters searchString,SelectedSobject
- $search_all_objects = $sales_url."?method=SearchInAllObjects&id=".$account_ids."&searchString=";
- $adv_search_url = $sales_url."?method=SearchForMultipleObjectSelection&id=".$account_ids;
-          //parameters Name --searchString
- 
- 
-/*** Account ***/
-//$account_list_url = $sales_url."?method=AllAccounts&Name=".$account_name;
- $account_list_url = $sales_url."?method=AllAccounts&id=".$account_ids;
-$account_active_accounts_url = $sales_url."?method=AllActiveAccounts&Name=".$account_name;
-//$account_hm_accounts_url = $sales_url."?method=HandMAccounts";
-//$my_account_url = $sales_url."?method=UserAccounts&Email=".$email;
-//$recently_account_url = $sales_url."?method=RecentlyViewedAccounts";
-$search_account_url = $sales_url."?method=SearchAccounts&Name=";
-$get_account_details_url = $sales_url."?method=GetAccountDetails&AccountId=";
-$search_account_all_flieds_url = $sales_url."?method=SearchAllFieldsInAccounts&Name=";
-$account_hierarchy_url = $sales_url."?method=AccountHierarchy&AccountID=";
-$account_history_list_url = $sales_url."?method=AccountHistory&Id=";
-$live_service_acct_url = $sales_url."?method=LiveServiceDetails&AccountID=";
-/**** Contact ****/
-//$contact_list_url = $sales_url."?method=AllContacts&Name=". $account_name;
-$contact_list_url = $sales_url."?method=AllContacts&id=".$account_ids;
-
-//$my_contact_list_url = $sales_url."?method=UserContacts&Email=".$email;
-//$contact_recently_url = $sales_url."?method=RecentlyViewedContacts";
-$contact_details_url = $sales_url."?method=GetContactDetails&ContactId=";
-$contact_submit_url = $sales_url."?method=InsertContact";
-$update_contact_url = $sales_url."?method=UpdateContact";
-$contact_history_list_url = $sales_url."?method=ContactHistory&Id=";
-$contact_list_by_account_url = $sales_url."?method=GetContactDetailsForAccount&AccountId=";
-/*** Cases ***/
-$case_reason_url = $sales_url."?method=CaseRegionvalues";
-$contact_case_record_type_url = $sales_url."?method=RecordTypesForCase";
-$inser_case_url = $sales_url."?method=InsertCaseContractorRelated";
-$display_cases_url = $sales_url."?method=DisplayCasesInfo&ContactId=";
-$update_case_url =  $sales_url."?method=UpdateCaseContractorRelated";
-$get_case_det_url = $sales_url."?method=GetCaseDetails&CaseId=";
-$case_history_list_url = $sales_url."?method=CaseHistory&Id=";
-$case_list_by_account_url = $sales_url."?method=DisplayCasesInfoForAccount&AccountId=";
-
-//$all_cases_url = $sales_url."?method=AllCases&AccountName=".$account_name; 
-$all_cases_url = $sales_url."?method=AllCases&id=".$account_ids; 
-
-//$all_closed_cases_url = $sales_url."?method=AllClosedCases&AccountName=".$account_name;
-$all_closed_cases_url = $sales_url."?method=AllClosedCases&id=".$account_ids;
-$all_open_cases_url = $sales_url."?method=AllOpenCases&AccountName=".$account_name;
-
-/*** Notes  And Attachments **/
-$insert_new_note_url = $sales_url."?method=InsertNote";
-$get_note_detais_url = $sales_url."?method=GetNoteDetails&NoteId=";
-$update_note_url = $sales_url."?method=UpdateNote";
-$delete_attach_url = $sales_url."?method=DeleteAttachment&AttachId=";
-$delete_note_url = $sales_url."?method=DeleteNote&NoteID=";
-$update_attachment_url = $sales_url."?method=UpdateAttachment";
-$all_attach_list_url = $sales_url."?method=NotesAndAttachments&CaseID=";
-$get_attach_dets_url = $sales_url."?method=AttachementDetailsForCase&AttachId=";
-$all_attach_list_by_service_url = $sales_url."?method=NotesAndAttachmentsForServices&ServiceID=";
-
-/*** Documents**/
-$insert_doc_url = $sales_url."?method=InsertGoogleDoc";
-$get_googledoc_dets_url = $sales_url."?method=GetGoogleDocDetails&GoogleDocId=";
-$update_doc_url = $sales_url."?method=UpdateGoogleDoc";
-
-/*** Services ***/
-$service_list_by_account = $sales_url."?method=DisplayServiceInfoForAccount&AccountId=";
-$current_service_url = $sales_url."?method=CurrentServices&AccountName=".$account_name;
-$ended_service_url = $sales_url."?method=EndedServices&AccountName=".$account_name;
-$service_dets_url = $sales_url."?method=ServiceDetails&ServiceId=";
-/**** ****/
-
+$sales_url = "/services/apexrest/CustomerPortal/";
+$login_time_url = $sales_url."LoginLogoutDetails";
 /**
  * Set up the content width value based on the theme's design.
  *
@@ -773,12 +654,13 @@ function get_connection_sales()
 
    $auth_url = LOGIN_URL."/services/oauth2/token";
  
+ 
      $params = "grant_type=refresh_token"
              . "&client_id=" . CLIENT_ID
              . "&client_secret=" . CLIENT_SECRET
              ."&refresh_token=".REFRESH_TOKEN;
     $json_response = connects_salesforce($auth_url,$params, FALSE,"","post");
-   
+ 
  
     if( is_string($json_response))
         $response = json_decode($json_response,true);
@@ -813,7 +695,7 @@ function connects_salesforce($auth_url,$params,$is_header,$access_token,$type)
         $headers = array("Authorization: OAuth $access_token");
         /*if($type == "patch"){
             $headers = array('Authorization: OAuth $access_token',
-                'X-HTTP-Method-Override:PATCH',
+                 'X-HTTP-Method-Override:PATCH',
                 'Content-type:application/json; charset=utf-8',
                 'Accept:application/json'
                 );
@@ -844,7 +726,7 @@ function connects_salesforce($auth_url,$params,$is_header,$access_token,$type)
     if($type == "post" || $type == "patch"){
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-            //curl_setopt($curl,CURLOPT_TIMEOUT,60);
+            //curl_setopt(c$url,CURLOPT_TIMEOUT,60);
             //curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
     }
   

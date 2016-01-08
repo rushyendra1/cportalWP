@@ -3,6 +3,7 @@ session_start();
 /** Load the configuration files **/
 global $wpdb;
 global $table_prefix;
+$max_login_attempts = 0;
 if(!isset($wpdb))
 {
     include_once('../../../../../wp-config.php');
@@ -10,10 +11,13 @@ if(!isset($wpdb))
     include_once('../../../../../wp-includes/wp-db.php');
     include_once('../../../../../wp-includes/class-phpass.php');
 }
-/* do after words $max_login_attempts = 0;
-$result_query = @pg_query($db,"SELECT min_pass_len,max_pass_len,max_login_attempts"
-                            . " FROM settings"
+/* do after words  **/
+/*
+$result_query = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts"
+                            . " FROM ".$table_prefix."settings"
                            . " WHERE id=1");
+//var_dump($result_query);
+//exit;
 $result = @pg_fetch_assoc($result_query);
 if(is_array($result) && count($result)>0)
 {
@@ -58,6 +62,28 @@ if($result>0)
          /* session_start();
 	  $_SESSION['user']= array( "name" =>$result->user_nicename,
                      'id' =>$result->ID);*/
+        $login_array = array("Type" => "login","userId" => $result->ID,
+                "inOutDate" => date("Y-m-d\TH:i:s",time() ));
+        //echo json_encode($login_array);
+        /** Integrate the salesforce **/
+        list($access_token,$instance_url) = get_connection_sales();
+        global $login_time_url;
+        $url = $instance_url.$login_time_url;
+        $json_response = post_request($url, $access_token, json_encode($login_array),$method);
+       $response_array = explode("chunked",$json_response);
+    if(isset($response_array[1]))
+    $json_response = $response_array[1];
+ //}
+ $response = json_decode($json_response); 
+ 
+ if(isset($response[0]->errorCode))
+    {
+        //var_dump($response);
+        $admin_email = get_option("admin_email");
+        mail($admin_email,$response[0]->errorCode, $response[0]->message );
+        echo  "Something event wrong. Please contact your system Administrator.";
+        exit;
+    }
         
         $credentials = array( 'user_login' =>  $user,
             'user_password' => $pass,

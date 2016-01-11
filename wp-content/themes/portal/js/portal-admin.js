@@ -5,5 +5,6 @@ $(document).ready(function(){
    $("#bulk-action-selector-top option[value=delete]").html("");
    $("#submit").remove();
    $("#wp-admin-bar-edit-profile").remove();
+   $(".page-title-action").remove();
    $(".add-new-h2").remove();
 });

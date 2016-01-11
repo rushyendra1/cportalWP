@@ -118,6 +118,7 @@ $is_edit =  (isset($set_results->allow_edit))?$set_results->allow_edit: 0;
             {
               if($each_set->attribute != "address"){  
              switch($each_set->attribute){
+
                    case "salutation":
                        $value = $salutation;
                        $edit_value = $salutation;

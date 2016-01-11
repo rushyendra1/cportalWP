@@ -20,7 +20,7 @@ $result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts"
 
 if(isset($result->max_login_attempts))
 
- $max_login_attempts = (int)$result->max_login_attempts ;
+ $max_login_attempts = $result->max_login_attempts ;
 
 $max_login_attempts +=1;
 
@@ -88,7 +88,7 @@ if($result>0)
     {
         echo $response; exit;
     }
-    unset($_SESSION['forgot-times']);      
+        
         $credentials = array( 'user_login' =>  $user,
             'user_password' => $pass,
             'remember' => true );

@@ -1,2 +1,9 @@
-alter table wp_3uvwes_users add copy_password varchar(255)
-alter table wp_3uvwes_users add is_deactive boolean
+CREATE TABLE  `wp_3uvwes_settings` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`min_pass_len` INT( 5 ) NOT NULL ,
+`max_pass_len` INT( 5 ) NOT NULL ,
+`max_login_attempts` INT( 5 ) NOT NULL ,
+`allow_edit` TINYINT( 1 ) NOT NULL
+) ;
+INSERT INTO `dev1`.`wp_3uvwes_settings` (`id`, `min_pass_len`, `max_pass_len`, `max_login_attempts`, `allow_edit`) VALUES (NULL, '5', '22', '3', '0');
+alter table wp_3uvwes_users add is_deactive boolean;

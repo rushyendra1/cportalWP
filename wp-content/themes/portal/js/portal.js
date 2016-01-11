@@ -3,7 +3,11 @@ var geocoder;
   var attachWindow ;
 $ = jQuery.noConflict();
 $(document).ready(function(){
-
+$(document).foundation({
+	abide:{
+		
+	}
+});
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
@@ -321,3 +325,5 @@ function alertData(title, statusContent)
        // hideLoader();
     }
 }
+//init foundation framework
+

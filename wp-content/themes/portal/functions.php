@@ -268,26 +268,27 @@ function twentyfourteen_scripts() {
 	// wp_enqueue_style( 'wc-muli', "//fonts.googleapis.com/css?family=Muli", array(), null );
 
 	// Add Genericons font, used in the main stylesheet.
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.2' );
+	//wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.2' );
 
 	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'twentyfourteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfourteen-style', 'genericons' ), '20131205' );
-	wp_style_add_data( 'twentyfourteen-ie', 'conditional', 'lt IE 9' );
+	//wp_enqueue_style( 'twentyfourteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfourteen-style', 'genericons' ), '20131205' );
+	//wp_style_add_data( 'twentyfourteen-ie', 'conditional', 'lt IE 9' );
 	
 	
 	
-	wp_enqueue_style( 'wc-jquery-ui', get_template_directory_uri() . '/css/jquery-ui-1.9.2.custom.min.css', array(), '20140215' );
-	wp_enqueue_style( 'wc-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'wc-jquery-ui' ), '20140215' );
-	wp_enqueue_style( 'wc-bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.min.css', array( 'wc-bootstrap' ), '20140215' );		
+	//wp_enqueue_style( 'wc-jquery-ui', get_template_directory_uri() . '/css/jquery-ui-1.9.2.custom.min.css', array(), '20140215' );
+        //wp_enqueue_style( 'wc-jquery-ui', get_template_directory_uri() . '/css/jquery-ui-1.9.2.custom.min.css', array(), '20140215' );
+	//wp_enqueue_style( 'wc-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'wc-jquery-ui' ), '20140215' );
+	//wp_enqueue_style( 'wc-bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.min.css', array( 'wc-bootstrap' ), '20140215' );		
 	
 	
 	// Load our main stylesheet.
-	wp_enqueue_style( 'twentyfourteen-style', get_stylesheet_uri(), array( 'wc-bootstrap-responsive' ) );
+	//wp_enqueue_style( 'twentyfourteen-style', get_stylesheet_uri(), array( 'wc-bootstrap-responsive' ) );
 	
 	
-	wp_enqueue_script( 'wc-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.4.min.js', array( 'jquery' ), '20140513' );
+	//wp_enqueue_script( 'wc-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.4.min.js', array( 'jquery' ), '20140513' );
 
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20141105', true );
+	//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20141105', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -315,7 +316,7 @@ function twentyfourteen_scripts() {
 
 	wp_enqueue_script( 'wc-jquery-cookie', get_template_directory_uri() . '/js/jquery.cookie.js', array( 'jquery' ), '20150624' );
 
-	wp_enqueue_script( 'wc-custom', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '20140109', true );
+	//wp_enqueue_script( 'wc-custom', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '20140109', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
@@ -787,35 +788,20 @@ function get_data_rec_pages($response,$start,$length)
  */
 function call_js_css_files()
 {
-    //wp_enqueue_style("jquery-ui", get_template_directory_uri()."/css/jquery-ui-min.css", array(), NULL,false);
-    //wp_enqueue_style("jquery-tool", get_template_directory_uri()."/css/jquery-tool.css", array(), NULL,false);
-    
-    //wp_enqueue_style("jquery.mobile.datepicker", get_template_directory_uri()."/css/jquery.mobile.datepicker.css", array(), NULL,false);
-    //wp_enqueue_style("jquery.mobile.datepicker.theme", get_template_directory_uri()."/css/jquery.mobile.datepicker.theme.css", array(), NULL,false);
- 
-    //wp_enqueue_style("jquery.selectBox", get_template_directory_uri()."/css/jquery.selectBox.css", array(), NULL,false);
-    
-   // wp_enqueue_style("style-name-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
-   // wp_enqueue_style("style-name-wc-res", get_template_directory_uri()."/css/wc-extended-res.css", array(), NULL,false);
-    //wp_enqueue_style("style-table-res", get_template_directory_uri()."/css/table-res.css", array(), NULL,false);
-    //wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/wc-extended.js", array(), NULL,true);
-    
-    
-   // wp_enqueue_script("datepicker", get_template_directory_uri()."/js/datepicker.js", array(), NULL,false);
-    //wp_enqueue_script("jquery.selectBox-js", get_template_directory_uri()."/js/jquery.selectBox.js", array(), NULL,false);
-    
-    //wp_enqueue_script("jquery-mobile-git", get_template_directory_uri()."/js/jquery-mobile-git.js", array(), NULL,false);
-    //wp_enqueue_script("jquery.mobile.datepicker", get_template_directory_uri()."/js/jquery.mobile.datepicker.js", array(), NULL,false);
-     /*$path =$_SERVER['REQUEST_URI'];
-     $path = str_replace("/project/hmw_c/", "",$path);
-     $path = str_replace("/", "",$path);
-     $path_replace  = explode("?", $path);
-     $path = $path_replace[0];*/
      $path = get_current_path();
-     if($path == "view-contact" || $path == "view-account"){
-        wp_enqueue_script("script-map-name", "https://maps.google.com/maps/api/js?sensor=false", array(), NULL,false);
-        wp_enqueue_script("script-info-name", "https://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js", array(), NULL,false);
-     }
+    wp_enqueue_style("style-google-api", get_template_directory_uri()."/css/google-api.css", array(), NULL,false);      
+    wp_enqueue_style("style-jquery-ui", get_template_directory_uri()."/css/jquery-ui.css", array(), NULL,false);      
+    wp_enqueue_style("style-site", get_template_directory_uri()."/css/site.css", array(), NULL,false);      
+    wp_enqueue_style("style-foundataion", get_template_directory_uri()."/css/foundation.css", array(), NULL,false);      
+    wp_enqueue_style("style-foundataion-icons", get_template_directory_uri()."/css/foundation-icons.css", array(), NULL,false);      
+    wp_enqueue_style("style-layout", get_template_directory_uri()."/css/layout.css", array(), NULL,false);      
+    wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
+    wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
+    
+    wp_enqueue_script("script-jquery", get_template_directory_uri()."/js/jquery-ui.js", array(), NULL,false);
+    wp_enqueue_script("script-foundation", get_template_directory_uri()."/js/foundation.min.js", array(), NULL,false);
+    wp_enqueue_script("script-moderan", get_template_directory_uri()."/js/vendor/modernizr.js", array(), NULL,false);
+    wp_enqueue_script("script-foundation-tooltip", get_template_directory_uri()."/js/foundation/foundation.tooltip.js", array(), NULL,false);
     wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal.js", array(), NULL,false);
     
     

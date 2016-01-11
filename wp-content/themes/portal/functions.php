@@ -1552,6 +1552,43 @@ function get_attach_results($result)
     $total_result = array_reverse($total_result);
     return $total_result;
 }
+function get_wp_settings()
+{
+    global $wpdb;
+    global $table_prefix;
+    $result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+
+$max_pass_len = $min_pass_len = 0;
+if( count($result)>0)
+{
+  $max_pass_len = $result->max_pass_len ;
+  $min_pass_len = $result->min_pass_len ;
+}
+return array("min_pass_len" => $min_pass_len, "max_pass_len" => $max_pass_len);
+
+}
+function login_check($status =0)
+{
+    if(!$status){
+    if(isset($_SESSION["user"]) && count($_SESSION["user"])>0)
+    {
+        header("Location:index.php");
+        exit;
+    }
+    }else{
+        
+    if(!isset($_SESSION["user"]) || !count($_SESSION["user"])){
+        header("Location:login.php");
+        exit;
+    }
+    }
+}
+function checkpassword()
+{
+    $p=$_POST['confirmPwd'];
+}
 function get_home_page()
 {
     $result = '<div id="primary" class="content-area">

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Template Name: Page Login2
+ *
+ * @package WordPress
+ * @subpackage Portal
+ * @since Portal 1.0
+ */
 @session_start();
 include_once('php/config.php');
 include_once('php/init.php');

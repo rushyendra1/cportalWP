@@ -54,13 +54,8 @@ get_header();
           echo "<pre>";
           var_dump( $current_user);
            echo "</pre>";
-          $sql = " SELECT  id,attribute,form_element, options, searchable,placeholder,
-                           class_name,style_name, is_required,title_placeholder
-                   FROM  user_settings
-		   WHERE searchable = 1  and is_visible_user=1
-                   ORDER BY order_by asc";
-          $query = @pg_query($db,$sql);
-          $i =0;
+         
+          
            while($result = @pg_fetch_assoc($query))
           {
                $value = '';

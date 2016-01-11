@@ -32,6 +32,7 @@ define("REDIRECT_URI",get_option("wc_sf_client_redirect_uri"));
 define ("PUBLIC_URL",get_option("wc_sf_public_site_url"));
 define("REFRESH_TOKEN",get_option("wc_sf_refresh_token"));
 define("INSTANCE_URL",get_option("wc_sf_instance_url"));
+
  /*$current_user = wp_get_current_user();
  $user_id = $current_user->ID;
  $username = $current_user->user_login;
@@ -1708,3 +1709,164 @@ function show_user_id_column_content($value, $column_name, $user_id)
     return $value; 
 }
 add_action('manage_users_custom_column',  'show_user_id_column_content', 10, 3);
+
+/**
+ * Generate the Element
+ * @param string $element
+ * @param string $options
+ * @param string $attribute
+ * @param int $is_searchable
+ * @param string $place_holder
+ * @param string $class_name
+ * @param string $style_name
+ * @param int $i
+ * @param int $is_required
+ * @param string $tool_tip
+ * @param string $value
+ * @param string $type
+ * @return string
+ */
+function generate_input($element, $options, $attribute, $is_searchable,  $place_holder,  $class_name, $style_name, $i,$is_required,$tool_tip,$value="",$type= "",$salutation= '') {
+    $result = "";
+    $attribute = $label = strtolower($attribute);
+     $id = preg_replace("/ /", "", $attribute);
+    $options = explode("\n", $options);
+    $tool_tip = ucwords($tool_tip);
+    $edit_class = '';
+    $style = '';
+    $disabled = '';
+    if($type == "edit"){
+        $edit_class = 'editRow';
+        $style = 'style="display:none"';
+        if($attribute== "email")
+            $disabled = 'disabled="disabled"';
+    }
+    if($attribute != "salutation")
+    $result = '<div class="row '.$edit_class.'" '.$style.'><div class="medium-6 columns">';
+    if($attribute != "address"){
+        if($attribute != "salutation")
+            $result .= '<label for="'.$id.'">';
+        $astrik = $req_stmt =  '';
+        $required =  'data-required=""';
+        if($is_required){
+            $astrik = '*';
+            $required =  'data-required="required"';
+            $req_stmt = 'This field is required.';
+        }
+        if($attribute != "salutation")
+        $result.= '  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="'.$tool_tip.'&lt;br&gt;&lt;small&gt;&lt;em&gt;'.$req_stmt.'&lt;/em&gt;&lt;/small&gt;"> 
+                   '.ucwords($label).$astrik.'</strong>';
+        if($attribute == "salutation")
+            $result .= '<span style="display:none" id="salSpan">';
+        
+    switch ($element) {
+         case "file":
+           $result .='<input type="file"  id="' . $id . '" value="" class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.' />';
+            break;
+        case "text":
+         if($attribute == "first name"){
+             $result .= '<select id="salutation" type="dropdown" class="radius " style="" data-required="">';
+             $sel = "";
+             if($salutation == "Mr.")
+                 $sel = 'selected="selected"';
+             $result.='<option value="Mr."'.$sel.'>Mr.</option>';
+             $sel = "";
+             if($salutation == "Ms.")
+                 $sel = 'selected="selected"';
+             $result .= '<option '.$sel.' value="Ms.">Ms.</option>';
+             $sel = "";
+             if($salutation == "Mrs.")
+                 $sel = 'selected="selected"';
+             $result.='<option value="Mrs." '.$sel.'>Mrs</option></select>';
+         }
+            $result .='<input type="text"  id="' . $id . '"  class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.' value="'.$value.'" '.$disabled.'  />';
+            break;
+        case "password":
+           
+            $result .='<input type="password"  id="' . $id . '" value="" class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.'  />';
+            break;
+        case "textarea":
+          
+            $result .= '<textarea  id="' . $id .  '"  class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.' '.$disabled.' >'.$value.'</textarea>';
+            break;
+        case "dropdown":
+           
+            $result .= '<select  id="' . $id .  '" type="dropdown"  class="radius ' . $class_name . '"  style="' . $style_name . '" '.$required.'>';
+            if ($place_holder != "")
+                $result .= '<option value="" >' . $place_holder . '</option>';
+            if (count($options) > 0) {
+
+                foreach ($options as $opt) {
+                    $each = explode("::", $opt);
+                     if (count($each) > 0) {
+                       
+                        if (isset($each[0]) && isset($each[1])){
+                            $val_opt = $each[1];
+                            $sel = '';
+                            if($value == $val_opt)
+                                $sel = 'selected="selected"';
+                            $result .= '<option value="' . $each[0] . '" '.$sel.' >' . $val_opt . '</option>';
+                        }
+                    } else{
+                        $sel = '';
+                            if($value == $opt)
+                                $sel = 'selected="selected"';
+                        $result .= '<option value="' . $opt . '" '.$sel.' >' . $opt . '</option>';
+                    }
+                }
+            }
+            $result.='</select>';
+            break;
+        case "range":
+           
+            $result .= '<input type="text"  id="max' . $id .  '" value="" class=" radius ' . $class_name . '" placeholder="Max" style="' . $style_name . '" '.$required.'  />'
+                    . '<span class="rangeSpan">---</span><input type="text"  id="min' . $id . $search_type . $type . '" value="" class="' . $class_name . '" placeholder="Min" style="' . $style_name . '" '.$required.'  />'
+                    . '<div class="clear"></div>';
+            break;
+        case "checkbox":
+            if (count($options) > 0) {
+                
+                foreach ($options as $opt) {
+                    $each = explode("::", $opt);
+                    $check = '';
+                    if($value== $each[0])
+                        $check = 'checked="checked"';
+                    $result .= '<input type="checkbox"  id="' . $id .  '" '.$check.' value="' . $each[0] . '" class=" radius ' . $id . ' ' . $class_name . '"  style="' . $style_name . '" />' . $each[1];
+                }
+            } else{
+                $check = '';
+                    if($value)
+                        $check = 'checked="checked"';
+                $result .= '<input type="checkbox"  id="' . $id .  '" '.$check.' class=" radius ' . $class_name . '"  style="' . $style_name . '" '.$required.'  />' ;
+            }
+            break;
+        case "radio":
+            if ( count($options) > 0) {
+               
+                foreach ($options as $opt) {
+                    $each = explode("::", $opt);
+                    $check = '';
+                    if($value== $each[0])
+                        $check = 'checked="checked"';
+                    $result .= '<input type="radio"  id="' . $id . '"  '.$check.' value="' . $each[0] . '" class=" radius ' . $id . ' ' . $class_name . '"  style="' . $style_name . '" />' . $each[1];
+                }
+            } else{
+                $check = '';
+                    if($value)
+                        $check = 'checked="checked"';
+                $result .= '<input type="radio"  id="' . $id .  '" '.$check.' class=" radius ' . $class_name . '"  style="' . $style_name . '" '.$required.' />';
+            }
+            break;
+    }
+    
+    if($attribute != "salutation"){
+        $result.='<span class="label error alert radius" style="display:none">Required</span>';
+         if($attribute == "email")
+        $result .= '<span id="correctEmail" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>';
+        $result .= '</label>';
+        $result .= '</div></div>';
+    }else $result .= '</span>';
+    
+    }
+   return $result;
+}

@@ -57,7 +57,11 @@ function wpmem_a_build_captcha_options() {
 							<table class="form-table">
 							<?php // if reCAPTCHA is enabled...
 							if ( $wpmem->captcha == 1 ) {
-								$show_update_button = true; ?>
+								$show_update_button = true; 
+								$private_key   = ( isset( $wpmem_captcha['recaptcha'] ) ) ? $wpmem_captcha['recaptcha']['private'] : '';
+								$public_key    = ( isset( $wpmem_captcha['recaptcha'] ) ) ? $wpmem_captcha['recaptcha']['public']  : '';
+								$captcha_theme = ( isset( $wpmem_captcha['recaptcha'] ) ) ? $wpmem_captcha['recaptcha']['theme']   : '';
+								?>
 								<tr>
 									<td colspan="2">
 										<p><?php _e( 'reCAPTCHA is a free, accessible CAPTCHA service that helps to digitize books while blocking spam on your blog.', 'wp-members' ); ?></p>
@@ -69,20 +73,35 @@ function wpmem_a_build_captcha_options() {
 									<th scope="row"><?php _e( 'reCAPTCHA Keys', 'wp-members' ); ?></th>
 									<td>
 										<?php printf( __( 'reCAPTCHA requires an API key, consisting of a "public" and a "private" key. You can sign up for a %s free reCAPTCHA key%s', 'wp-members' ), "<a href=\"https://www.google.com/recaptcha/admin#whyrecaptcha\" target=\"_blank\">", '</a>' ); ?>.<br />
-										<?php _e( 'Public Key', 'wp-members' ); ?>:&nbsp;&nbsp;<input type="text" name="wpmem_captcha_publickey" size="50" value="<?php echo $wpmem_captcha['recaptcha']['public']; ?>" /><br />
-										<?php _e( 'Private Key', 'wp-members' ); ?>:&nbsp;<input type="text" name="wpmem_captcha_privatekey" size="50" value="<?php echo $wpmem_captcha['recaptcha']['private']; ?>" />
+										<?php _e( 'Public Key', 'wp-members' ); ?>:&nbsp;&nbsp;<input type="text" name="wpmem_captcha_publickey" size="50" value="<?php echo $public_key; ?>" /><br />
+										<?php _e( 'Private Key', 'wp-members' ); ?>:&nbsp;<input type="text" name="wpmem_captcha_privatekey" size="50" value="<?php echo $private_key; ?>" />
 									 </td>
 								</tr>
 								<tr valign="top">
 									<th scope="row"><?php _e( 'Choose Theme', 'wp-members' ); ?></th>
 									<td>
 										<select name="wpmem_captcha_theme"><?php
-											echo wpmem_create_formfield( __( 'Red', 'wp-members' ), 'option', 'red', $wpmem_captcha['recaptcha']['theme'] ); 
-											echo wpmem_create_formfield( __( 'White', 'wp-members' ), 'option', 'white', $wpmem_captcha['recaptcha']['theme'] );
-											echo wpmem_create_formfield( __( 'Black Glass', 'wp-members' ), 'option', 'blackglass', $wpmem_captcha['recaptcha']['theme'] ); 
-											echo wpmem_create_formfield( __( 'Clean', 'wp-members' ), 'option', 'clean', $wpmem_captcha['recaptcha']['theme'] ); ?>
+											echo wpmem_create_formfield( __( 'Red', 'wp-members' ), 'option', 'red', $captcha_theme ); 
+											echo wpmem_create_formfield( __( 'White', 'wp-members' ), 'option', 'white', $captcha_theme );
+											echo wpmem_create_formfield( __( 'Black Glass', 'wp-members' ), 'option', 'blackglass', $captcha_theme ); 
+											echo wpmem_create_formfield( __( 'Clean', 'wp-members' ), 'option', 'clean', $captcha_theme ); ?>
 										</select>
 									</td>
+								</tr>
+							<?php 
+							// if reCAPTCHA v2 is enabled...	
+							} elseif ( $wpmem->captcha == 3 ) {
+								$show_update_button = true; 
+								$private_key = ( isset( $wpmem_captcha['recaptcha'] ) ) ? $wpmem_captcha['recaptcha']['private'] : '';
+								$public_key  = ( isset( $wpmem_captcha['recaptcha'] ) ) ? $wpmem_captcha['recaptcha']['public']  : '';
+								?>
+								<tr valign="top">
+									<th scope="row"><?php _e( 'reCAPTCHA Keys', 'wp-members' ); ?></th>
+									<td>
+										<?php printf( __( 'reCAPTCHA requires an API key, consisting of a "site" and a "secret" key. You can sign up for a %s free reCAPTCHA key%s', 'wp-members' ), "<a href=\"https://www.google.com/recaptcha/admin#whyrecaptcha\" target=\"_blank\">", '</a>' ); ?>.<br />
+										<?php _e( 'Site Key', 'wp-members' ); ?>:&nbsp;&nbsp;<input type="text" name="wpmem_captcha_publickey" size="50" value="<?php echo $public_key; ?>" /><br />
+										<?php _e( 'Secret Key', 'wp-members' ); ?>:&nbsp;<input type="text" name="wpmem_captcha_privatekey" size="50" value="<?php echo $private_key; ?>" />
+									 </td>
 								</tr>
 							<?php 
 							// If Really Simple CAPTCHA is enabled.
@@ -101,27 +120,27 @@ function wpmem_a_build_captcha_options() {
 									'img_type'     => 'png',
 								);
 
-								$args = ( is_array( $wpmem_captcha['really_simple'] ) ) ? $wpmem_captcha['really_simple'] : array();
+								$args = ( isset( $wpmem_captcha['really_simple'] ) && is_array( $wpmem_captcha['really_simple'] ) ) ? $wpmem_captcha['really_simple'] : array();
 
-								extract( wp_parse_args( $args, $defaults ) );
+								$args = wp_parse_args( $args, $defaults );
 
 								// Explode colors.
-								$font_color = explode( ',', $font_color );
-								$bg_color   = explode( ',', $bg_color   );
+								$font_color = explode( ',', $args['font_color'] );
+								$bg_color   = explode( ',', $args['bg_color']   );
 
 								$show_update_button = true;
 								if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) ) { ?>
 									<tr>
 										<th scope="row"><?php _e( 'Characters for image', 'wp-members' ); ?></th>
-										<td><input name="characters" type="text" size="34" value="<?php echo $characters; ?>" /></td>
+										<td><input name="characters" type="text" size="34" value="<?php echo $args['characters']; ?>" /></td>
 									</tr>
 									<tr>
 										<th scope="row"><?php _e( 'Number of characters', 'wp-members' ); ?></th>
-										<td><input name="num_char" type="text" size="2" value="<?php echo $num_char; ?>" /></td>
+										<td><input name="num_char" type="text" size="2" value="<?php echo $args['num_char']; ?>" /></td>
 									</tr>
 									<tr>
 										<th scope="row"><?php _e( 'Image dimensions', 'wp-members' ); ?></th>
-										<td><?php _e( 'Width' ); ?> <input name="dim_w" type="text" size="2" value="<?php echo $dim_w; ?>" /> <?php _e( 'Height' ); ?> <input name="dim_h" type="text" size="2" value="<?php echo $dim_h; ?>" /></td>
+										<td><?php _e( 'Width' ); ?> <input name="dim_w" type="text" size="2" value="<?php echo $args['dim_w']; ?>" /> <?php _e( 'Height' ); ?> <input name="dim_h" type="text" size="2" value="<?php echo $args['dim_h']; ?>" /></td>
 									</tr>
 									<tr>
 										<th scope="row"><?php _e( 'Font color of characters', 'wp-members' ); ?></th>
@@ -133,18 +152,18 @@ function wpmem_a_build_captcha_options() {
 									</tr>
 									<tr>
 										<th scope="row"><?php _e( 'Font size', 'wp-members' ); ?></th>
-										<td><input name="font_size" type="text" value="<?php echo $font_size; ?>" /></td>
+										<td><input name="font_size" type="text" value="<?php echo $args['font_size']; ?>" /></td>
 									</tr>
 									<tr>
 										<th scope="row"><?php _e( 'Width between characters', 'wp-members' ); ?></th>
-										<td><input name="kerning" type="text" value="<?php echo $kerning; ?>" /></td>
+										<td><input name="kerning" type="text" value="<?php echo $args['kerning']; ?>" /></td>
 									</tr>
 									<tr>
 										<th scope="row"><?php _e( 'Image type', 'wp-members' ); ?></th>
 										<td><select name="img_type">
-											<option<?php echo ( $img_type == 'png' ) ? ' selected' : ''; ?>>png</option>
-											<option<?php echo ( $img_type == 'gif' ) ? ' selected' : ''; ?>>gif</option>
-											<option<?php echo ( $img_type == 'jpg' ) ? ' selected' : ''; ?>>jpg</option>
+											<option<?php echo ( $args['img_type'] == 'png' ) ? ' selected' : ''; ?>>png</option>
+											<option<?php echo ( $args['img_type'] == 'gif' ) ? ' selected' : ''; ?>>gif</option>
+											<option<?php echo ( $args['img_type'] == 'jpg' ) ? ' selected' : ''; ?>>jpg</option>
 											</select>
 										</td>
 									</tr><?php
@@ -160,13 +179,25 @@ function wpmem_a_build_captcha_options() {
 									</tr><?php
 								}
 							} // End if RSC is selected.
-								if ( $show_update_button ) { ?>
+							if ( $show_update_button ) { 
+							
+								switch ( $wpmem->captcha ) {
+									case 1: 
+										$captcha_type = 'recaptcha';
+										break;
+									case 2:
+										$captcha_type = 'really_simple';
+										break;
+									case 3:
+										$captcha_type = 'recaptcha2';
+										break;
+								} ?>
 								<tr valign="top">
 									<th scope="row">&nbsp;</th>
 									<td>
-										<input type="hidden" name="wpmem_recaptcha_type" value="<?php echo ( $wpmem->captcha == 1 ) ? 'recaptcha' : 'really_simple'; ?>" />
+										<input type="hidden" name="wpmem_recaptcha_type" value="<?php echo $captcha_type ?>" />
 										<input type="hidden" name="wpmem_admin_a" value="update_captcha" />
-										<input type="submit" name="save"  class="button-primary" value="<?php _e( 'Update CAPTCHA Settings', 'wp-members' ); ?> &raquo;" />
+										<?php submit_button( __( 'Update CAPTCHA Settings', 'wp-members' ) ); ?>
 									</td>
 								</tr>
 							<?php } ?>
@@ -197,7 +228,7 @@ function wpmem_update_captcha() {
 	$update_type  = $_POST['wpmem_recaptcha_type'];
 	$new_settings = array();
 
-	if ( $update_type == 'recaptcha' ) {
+	if ( $update_type == 'recaptcha' || $update_type == 'recaptcha2' ) {
 		if ( array_key_exists( 'really_simple', $settings ) ) {
 			// Updating recaptcha but need to maintain really_simple.
 			$new_settings['really_simple'] = $settings['really_simple'];
@@ -205,8 +236,10 @@ function wpmem_update_captcha() {
 		$new_settings['recaptcha'] = array(
 			'public'  => $_POST['wpmem_captcha_publickey'],
 			'private' => $_POST['wpmem_captcha_privatekey'],
-			'theme'   => $_POST['wpmem_captcha_theme'],
 		);
+		if ( $update_type == 'recaptcha' && isset( $_POST['wpmem_captcha_theme'] ) ) {
+			$new_settings['recaptcha']['theme'] = $_POST['wpmem_captcha_theme'];
+		}
 	}
 
 	if ( $update_type == 'really_simple' ) {

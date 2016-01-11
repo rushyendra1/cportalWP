@@ -162,6 +162,7 @@ function wpmem_a_build_options() {
 								<select name="wpmem_settings_captcha">
 									<option value="0"<?php echo ( $wpmem->captcha == 0 ) ? ' selected ' : ''; ?>><?php _e( 'None', 'wp-members' ); ?></option>
 									<option value="1"<?php echo ( $wpmem->captcha == 1 ) ? ' selected ' : ''; ?>>reCAPTCHA</option>
+									<option value="3"<?php echo ( $wpmem->captcha == 3 ) ? ' selected ' : ''; ?>>reCAPTCHA v2</option>
 									<option value="2"<?php echo ( $wpmem->captcha == 2 ) ? ' selected ' : ''; ?>>Really Simple CAPTCHA</option>
 								</select>
 							  </li>
@@ -219,7 +220,7 @@ function wpmem_a_build_options() {
 							  </div>
 								<br /></br />
 								<input type="hidden" name="wpmem_admin_a" value="update_settings">
-								<input type="submit" name="UpdateSettings"  class="button-primary" value="<?php _e( 'Update Settings', 'wp-members' ); ?> &raquo;" /> 
+								<?php submit_button( __( 'Update Settings', 'wp-members' ) ); ?>
 							</ul>
 						</form>
 					</div><!-- .inside -->
@@ -401,7 +402,7 @@ function wpmem_admin_page_list( $val, $show_custom_url = true ) {
 
 	foreach ( $pages as $page ) {
 		$selected = ( get_page_link( $page->ID ) == $val ) ? true : $selected;
-		$option   = '<option value="' . get_page_link( $page->ID ) . '"' . wpmem_selected( get_page_link( $page->ID ), $val, 'select' ) . '>';
+		$option   = '<option value="' . $page->ID . '"' . wpmem_selected( get_page_link( $page->ID ), $val, 'select' ) . '>';
 		$option  .= $page->post_title;
 		$option  .= '</option>';
 		echo $option;

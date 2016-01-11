@@ -44,10 +44,10 @@ get_header(); ?>
             //if(isset($_SESSION['user'])){
             if(is_user_logged_in()){
             ?>
-              <a href="<?php get_site_url() ?>/cportal/profile"  class="button radius submit link">My Account</a> <br>
+              <a href="<?php echo get_site_url() ?>/profile"  class="button radius submit link">My Account</a> <br>
             <a href="#"  class="button radius submit link logouts">Logout</a>
             <?php }else{ ?>
-          <a href="<?php get_site_url() ?>/cportal/login"  class="button radius submit link">Login</a> <br>
+          <a href="<?php echo get_site_url() ?>/cportal/login"  class="button radius submit link">Login</a> <br>
             <!--<a href="register.php"  class="button radius submit link">Register</a>-->
             <?php } ?>
           </div>

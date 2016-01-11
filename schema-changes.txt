@@ -1,9 +1,38 @@
-CREATE TABLE  `wp_3uvwes_settings` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`min_pass_len` INT( 5 ) NOT NULL ,
-`max_pass_len` INT( 5 ) NOT NULL ,
-`max_login_attempts` INT( 5 ) NOT NULL ,
-`allow_edit` TINYINT( 1 ) NOT NULL
-) ;
-INSERT INTO `dev1`.`wp_3uvwes_settings` (`id`, `min_pass_len`, `max_pass_len`, `max_login_attempts`, `allow_edit`) VALUES (NULL, '5', '22', '3', '0');
 alter table wp_3uvwes_users add is_deactive boolean;
+
+/** Settings **/
+CREATE TABLE IF NOT EXISTS `wp_3uvwes_settings` (
+`id` int(11) NOT NULL,
+  `min_pass_len` int(5) NOT NULL,
+  `max_pass_len` int(5) NOT NULL,
+  `max_login_attempts` int(5) NOT NULL,
+  `allow_edit` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wp_3uvwes_settings`
+--
+
+INSERT INTO `wp_3uvwes_settings` (`id`, `min_pass_len`, `max_pass_len`, `max_login_attempts`, `allow_edit`) VALUES
+(1, 5, 22, 3, 0);
+
+//user settings
+create table wp_3uvwes_user_settings(
+id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ attribute varchar(255),
+ form_element varchar(255),
+ options varchar(255), 
+ searchable tinyint(1), 
+ placeholder varchar(255),
+ order_by int(11),
+ class_name varchar(255),
+ style_name varchar(255), 
+is_required int(11), 
+title_placeholder varchar(255),
+ is_visible_reg tinyint(1),
+ is_visible_user tinyint(1));
+
+
+//insert user_settings
+insert into wp_3uvwes_user_settings(attribute, form_element, options, searchable, placeholder, order_by, class_name,style_name, is_required, title_placeholder, is_visible_reg, is_visible_user) values('first name', 'text', '' , 1, 'First Name', 2,'','' ,1, 'Enter Your First Name', 1,1),
+('address', 'text', ' ', 1, ' ', 8, ' ',' ',0, ' ', 1,1), ('message', 'textarea', ' ', 1, 'Message', 9,'medium',  '',0, 'Leave Your Message Here', 1,1),('mobile', 'text', '', 1, 'Mobile', 7,'', '',0, 'Enter Your Mobile Number', 1,1),('alternate email', 'text', '', 1, 'Alternate Email', 5,'', '',0, 'Enter Your Alternate E-mail', 1,1),('last name', 'text', '', 1, 'Last Name', 3,'', '', 1,'Enter Your Last Name', 1,1),('phone', 'text', ' ', 1, 'Phone', 6,'', '',1, 'Enter Your Phone', 1,1);

@@ -8,6 +8,7 @@ $(document).foundation({
 		
 	}
 });
+//$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());

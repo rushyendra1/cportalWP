@@ -3,3 +3,7 @@
 .loginDiv input{
     height: 30px;
 }
+.dispRow{
+    margin-left: 20px !important;
+    margin-right: 10px !important;
+}

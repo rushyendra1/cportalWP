@@ -1,25 +1,11 @@
 <?php
 /**
- * Twenty Fourteen functions and definitions
+ * Portal functions and definitions
  *
  * Set up the theme and provides some helper functions, which are used in the
  * theme as custom template tags. Others are attached to action and filter
  * hooks in WordPress to change core functionality.
- *
- * When using a child theme you can override certain functions (those wrapped
- * in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before
- * the parent theme's file, so the child theme functions would be used.
- *
- * @link http://codex.wordpress.org/Theme_Development
- * @link http://codex.wordpress.org/Child_Themes
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are
- * instead attached to a filter or action hook.
- *
- * For more information on hooks, actions, and filters,
- * @link http://codex.wordpress.org/Plugin_API
- *
+ * 
  * @package WordPress
  * @subpackage Portal
  * @since Portal 1.0
@@ -61,7 +47,7 @@ if ( version_compare( $GLOBALS['wp_version'], '3.6', '<' ) ) {
 
 if ( ! function_exists( 'twentyfourteen_setup' ) ) :
 /**
- * Twenty Fourteen setup.
+ * Portal setup.
  *
  * Set up theme defaults and registers support for various WordPress features.
  *
@@ -585,9 +571,9 @@ if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow
  */
 add_action('after_setup_theme', 'remove_admin_bar');
 function remove_admin_bar() {
-	if (!current_user_can('administrator') && !is_admin()) {
+	//if (!current_user_can('administrator') && !is_admin()) {
 	  	show_admin_bar(false);
-	}
+	//}
 }
 
 /*
@@ -1615,12 +1601,12 @@ function add_action_in_user()
     if(!current_user_can('activate_plugins'))
 		return;
     ?>
-		<script type="text/javascript">
+	<!-- just comment	<script type="text/javascript">
 			jQuery(document).ready(function($) { 
 				$('<option>').val('deactivate_user').text('Deactivate').appendTo("select[name='action']"); 
 				$('<option>').val('activate_user').text('Activate').appendTo("select[name='action']"); 
 			});
-		</script>
+		</script>-->
 <?php
 }
 add_action('admin_footer-users.php', 'add_action_in_user');
@@ -1928,4 +1914,28 @@ function add_slashes($given_phone)
     }
     
     return $result;
+}
+/**
+ * if given string is null then tha value is empty
+ * @name check_nulls
+ * @param string $given_str
+ * @return string
+ */
+function check_nulls($given_str)
+{
+    $given_str = trim($given_str);
+if($given_str == "null" || $given_str == null) $given_str = '';
+    return $given_str;
+}
+//remove the menus
+add_action( 'admin_menu', 'remove_menus' );
+function remove_menus()
+{
+    remove_submenu_page( 'users.php','user-new.php' );   
+    remove_submenu_page('users.php','profile.php');
+}
+add_action( 'admin_enqueue_scripts', 'call_js_admin' );
+function call_js_admin()
+{
+ wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal-admin.js", array(), NULL,false);   
 }

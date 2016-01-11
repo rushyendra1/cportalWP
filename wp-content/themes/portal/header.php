@@ -37,14 +37,6 @@ if($pages == "login" && is_user_logged_in()){
 <link rel="apple-touch-icon" sizes="180x180" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone6-retina.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Creative Brief">
-<!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Montserrat:400,700" />-->
-<!--<link rel="stylesheet" href="<?php  echo get_template_directory_uri(); ?>/css/google-api.css" />-->
-<!--<link href='<?php  echo get_template_directory_uri(); ?>/css/jquery-ui.css' rel='stylesheet' type='text/css'>-->
-<!--<link rel="stylesheet" href="<?php  echo get_template_directory_uri(); ?>/css/site.css" />-->
-<!--<link rel="stylesheet" href="<?php  echo get_template_directory_uri(); ?>/css/foundation.css" />-->
-<!--<link rel="stylesheet" href="<?php  echo get_template_directory_uri(); ?>/css/foundation-icons.css" />-->
-<!--<link rel="stylesheet" href="<?php  echo get_template_directory_uri(); ?>/css/layout.css" >--?
-<!--<link rel="stylesheet" href="<?php  echo get_template_directory_uri(); ?>/css/foundation-changes.css" />-->
 <?php wp_head(); ?>
 </head>
 <body>

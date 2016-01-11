@@ -29,30 +29,30 @@ if(is_array($result) && count($result)>0)
     foreach($result as $each)
     {
         if($each->meta_key == "first_name")
-           $first_name = $each->meta_value;
+           $first_name = check_nulls($each->meta_value);
         if($each->meta_key == "last_name")
-            $last_name = $each->meta_value;
+            $last_name = check_nulls($each->meta_value);
         if($each->meta_key == "salutation")
-            $salutation = $each->meta_value;
-        $email = $each->user_email;
+            $salutation = check_nulls($each->meta_value);
+        $email = check_nulls($each->user_email);
         if($each->meta_key == "alt_email")
-            $alt_email = $each->meta_value;
+            $alt_email = check_nulls($each->meta_value);
         if($each->meta_key == "phone")
-            $phone = $each->meta_value;
+            $phone = check_nulls($each->meta_value);
         if($each->meta_key == "mobile")
-            $mobile = $each->meta_value;
+            $mobile = check_nulls($each->meta_value);
         if($each->meta_key == "city")
-            $city = $each->meta_value;
+            $city = check_nulls($each->meta_value);
         if($each->meta_key == "state")
-            $state = $each->meta_value;
+            $state = check_nulls($each->meta_value);
         if($each->meta_key == "country")
-            $country = $each->meta_value;
+            $country = check_nulls($each->meta_value);
         if($each->meta_key == "zip")
-            $zip = $each->meta_value;
+            $zip = check_nulls($each->meta_value);
         if($each->meta_key == "addr1")
-            $street = $each->meta_value;
+            $street = check_nulls($each->meta_value);
         if($each->meta_key == "description")
-            $message = $each->meta_value;
+            $message = check_nulls($each->meta_value);
         
     }
 }

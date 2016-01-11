@@ -7,73 +7,130 @@
  * @since Portal 1.0
  */
 redirect_to_login();
-/*if(!is_user_logged_in()){
-    wp_redirect(get_site_url()."/login");
-    exit;
-}*/
 get_header();
-/*if(!is_user_logged_in()){
-    wp_redirect(get_site_url()."/login");
-    exit;
-}*/
+$title = " My Account Details";
+global $user_ID;
+global $wpdb;
+global $table_prefix;
+//Get the Current profile details
+ $prof_str = "SELECT u.ID,u.user_email, m.meta_value, m.meta_key"
+        . " from ".$table_prefix."users u"
+        . " left join ".$table_prefix."usermeta m on m.user_id=u.ID"
+        . " where u.ID = ".$user_ID;
+
+$result = $wpdb->get_results($prof_str);
+$first_name = $phone_edit = $mobile_edit = $last_name = $salutation = $email = 
+        $alt_email = $phone = $mobile = $city = $state = $country = $zip = 
+        $message = $street =  "";
+        
+if(is_array($result) && count($result)>0)
+{
+    
+    foreach($result as $each)
+    {
+        if($each->meta_key == "first_name")
+           $first_name = check_nulls($each->meta_value);
+        if($each->meta_key == "last_name")
+            $last_name = check_nulls($each->meta_value);
+        if($each->meta_key == "salutation")
+            $salutation = check_nulls($each->meta_value);
+        $email = check_nulls($each->user_email);
+        if($each->meta_key == "alt_email")
+            $alt_email = check_nulls($each->meta_value);
+        if($each->meta_key == "phone")
+            $phone = check_nulls($each->meta_value);
+        if($each->meta_key == "mobile")
+            $mobile = check_nulls($each->meta_value);
+        if($each->meta_key == "city")
+            $city = check_nulls($each->meta_value);
+        if($each->meta_key == "state")
+            $state = check_nulls($each->meta_value);
+        if($each->meta_key == "country")
+            $country = check_nulls($each->meta_value);
+        if($each->meta_key == "zip")
+            $zip = check_nulls($each->meta_value);
+        if($each->meta_key == "addr1")
+            $street = check_nulls($each->meta_value);
+        if($each->meta_key == "description")
+            $message = check_nulls($each->meta_value);
+        
+    }
+}
+
+/*** Edit the operations **/
+$settings_str = "SELECT allow_edit, min_pass_len, max_pass_len"
+        . " FROM ".$table_prefix."settings";
+$set_results = $wpdb->get_row($settings_str);
+$is_edit =  (isset($set_results->allow_edit))?$set_results->allow_edit: 0;
 ?>
- 
+
 <div id="main-content" class="main-content">
-    <!--
+
 	<div class="row-fluid data-content-outer" >
-	<b>profile page</b>
-	</div>
-    <div class="display-data" title="Profile">
-    <div class="row-fluid data-content-outer"><input type="text">First Name:</div>
-    <div class="row-fluid data-content-outer">Last Name:</div>
-    <div class="row-fluid data-content-outer">Email:</div>
-    <div class="row-fluid data-content-outer">Contact No:</div>
-    <div class="row-fluid data-content-outer">H.No:</div>
-    <div class="row-fluid data-content-outer">Street:</div>
-    <div class="row-fluid data-content-outer">City:</div>
-    <div class="row-fluid data-content-outer">State:</div>
-    <div class="row-fluid data-content-outer">Country:</div>
-    <div class="row-fluid data-content-outer">Pincode:</div>
-        </div>-->
-   
-     <div id="section_1">
-           <div class="row statusAccount" >
+		<div id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
+
+<div class=" contentSub sidebarCell">
+            <!-- Sidebar Started -->
+              <?php //echo portal_sidebar();
+              ?>
+            <!-- Sidebar ended -->
+
+</div>
+<div class="bodyCell contentSub" >
+<!-- Start page content -->
+<a name="skiplink">
+    <!--<img width="1" height="1" title="Content Starts Here" class="skiplink skipLinkTargetInner zen-skipLinkTarget" alt="Content Starts Here" src="/s.gif">-->
+</a>
+
+<input type="hidden" id="msg" value="<?php echo $msg ?>" >
+  <div class="row toggle-full-width">
+    <div class="large-12 columns">
+      <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
+      <h4><?php echo $title; ?></h4>
+      
+      <hr>
+      <div id="section_1">
+        <div class="row statusAccount" >
               <div class="links-pad">
+                  <?php if($is_edit){ ?>
               <a  class="edit" >Edit My Details</a> &nbsp; &nbsp;
-              <a href="change-pwd.php"  >Change My  Password</a> &nbsp; &nbsp;
-              <a   class="accountChange" data-type="2" >Delete My  Account</a> &nbsp; &nbsp;
+                <?php } ?>
+              <a href="<?php echo get_site_url() ?>/change-password"  >Change My  Password</a> &nbsp; &nbsp;
+             
               
               </div>
           </div>
-          <div class="clear"></div>
-          
-          <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >
-          
-          <?php
-          $current_user = wp_get_current_user();
-          echo "<pre>";
-          var_dump( $current_user);
-           echo "</pre>";
-         
-          
-           while($result = @pg_fetch_assoc($query))
-          {
-               $value = '';
-               $edit_value = '';
-               if($result['attribute'] != "address"){
-               switch($result['attribute']){
+           <div class="clear"></div>
+          <input type="hidden" id="id" value="<?php echo $user_ID; ?>" >
+        <div class="row">
+         <?php
+         $sql = " SELECT  id,attribute,form_element, options, searchable,placeholder,
+                           class_name,style_name, is_required,title_placeholder
+                   FROM  ".$table_prefix."user_settings
+		   WHERE searchable = 1  and is_visible_user=1
+                   ORDER BY order_by asc";
+         $set_result = $wpdb->get_results($sql);
+         if(is_array($set_result) && count($set_result)>0)
+         {
+             $i=0;
+            foreach($set_result as $each_set)
+            {
+              if($each_set->attribute != "address"){  
+             switch($each_set->attribute){
+
                    case "salutation":
-                       $value = ucfirst($salutation);
+                       $value = $salutation;
                        $edit_value = $salutation;
                        break;
                    case "first name":
-                       $value = ucfirst($salutation)." " .ucfirst($first_name);
+                       
+                       $value = $first_name;
                        $edit_value = $first_name;
                        break;
                     case "last name":
-                       $value = ucfirst($last_name);
-                        $salutation = $salutation;
-                       $edit_value = $last_name;
+                         $value = $last_name;
+                         $edit_value = $last_name;
                        break;
                    case "email":
                        $value = $email;
@@ -97,18 +154,17 @@ get_header();
                        break;
                }
                
-              echo display_contact( $result['attribute'],  $value); 
-              echo generate_input($result['form_element'], $result['options'], $result['attribute'], $result['searchable'],  $result['placeholder'],  $result['class_name'], $result['style_name'], $i, $result['is_required'],$result['title_placeholder'],$edit_value, "edit",$salutation);
-              if($i==1){
-                  ?>
-          <div class="row dispRow">
+               echo display_contact( $each_set->attribute,  $value); 
+              echo generate_input($each_set->form_element, $each_set->options, $each_set->attribute, $each_set->searchable,  $each_set->placeholder,  $each_set->class_name, $each_set->style_name, $i, $each_set->is_required,$each->title_placeholder,$edit_value, "edit",$salutation);
+              if($i==1){?>
+           <div class="row dispRow">
           <div class="medium-6 columns">
             <label class="dispRowStrong">
                 
                 <strong  class="radius" > E-mail</strong>
               
             </label>
-                <span>: <?php echo $email; ?> <a href="change-email.php" style="margin-left:10px">Change</a> </span>
+                <span>: <?php echo $email; ?> <!--<a href="change-email.php" style="margin-left:10px">Change</a>--> </span>
           </div> </div>
               <div class="row editRow" style="display:none">
           <div class="medium-6 columns">
@@ -121,13 +177,13 @@ get_header();
             </label>
           </div>
           </div>
-          <?php
-              }
-               }else{
-                   $required= '';
+                  <?php }
+                  $i++;
+              }else{
+                  $required= '';
                   $required_msg = '';
                   $astrik = '';
-                  if($result['is_required']){
+                  if($each_set->is_required){
                       $required= 'data-required="required"';
                       $required_msg = 'This field is Required.';
                       $astrik = '*';
@@ -238,180 +294,29 @@ get_header();
             </label>
           </div>
           </div>
-              <?php }
-              $i++;
-           }
-          ?>
-          
-           <!--<div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
-            <label for="firstname" >
-              
-                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your First Name.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
-                    First Name*</strong>
-                <select id="salutation" name="salutation">
-                    <option value="Mr." <?php if($salutation == "Mr."){ echo 'selected="selected"';} ?>>Mr.</option>
-                    <option value="Ms." <?php if($salutation == "Ms."){ echo 'selected="selected"';} ?>>Ms.</option>
-                    <option value="Mrs." <?php if($salutation == "Mrs."){ echo 'selected="selected"';} ?>>Mrs.</option>
-                    
-                </select>
-                <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<?php echo $first_name ?>" class="radius" required>
-               <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-        
-          
-          <div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
-            <label for="lastname">
-                
-                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Last Name.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
-                    Last Name*</strong>
-                <input type="text"  value="<?php echo $last_name; ?>" id="lastname" name="lastname" placeholder="Last Name" class="radius" required>
-              <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-           
-           <div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
-            <label for="email">
-                
-                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                    E-mail*</strong>
-                <input type="email" disabled="disabled" value="<?php echo $email; ?>" id="email" name="email" placeholder="E-mail" class="radius" required>
-              <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-           <div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
-            <label for="altEmail">
-               
-                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Alternate E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                Alternate E-mail</strong>
-                <input type="email"  value="<?php echo $alt_email; ?>" id="altEmail" name="altEmail" placeholder="Email address" class="radius">
-               <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-           
-          
-      
-          
-          <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
-            <label for="phone">
-               
-                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Phone.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
-                    Phone*</strong>
-                <input type="text" value="<?php echo $phone_edit; ?>" id="phone" name="phone" placeholder="Phone" class="radius" required>
-               <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-          
-        
-          
-          <div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
-            <label for="mobile">
-                
-                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Mobile.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                     Mobile</strong>
-                <input type="text" value="<?php echo $mobile_edit ?>" id="mobile" name="mobile" placeholder="Mobile" class="radius">
-              <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
+            <?php
+              }
+              } //for loop closed
+         } //if loop closed
          
-          
-           <div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
-            <label for="city" class="dispRowStrong">
-               
-                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your City.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                     City</strong>
-                <input type="text"  value="<?php echo $city ?>" id="city" name="city" placeholder="City" class="radius">
-               <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-          
-          
-          <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
-            <label for="state">
-                
-                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your State.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                     State</strong>
-                <input type="text" value="<?php echo $state ?>" id="state" name="state" placeholder="State" class="radius">
-              <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-        
-          
-          <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
-            <label for="country">
-                
-                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Country.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                     Country</strong>
-                <input type="text" value="<?php echo $country ?>" id="country" name="country" placeholder="Country" class="radius">
-              <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-          
-          
-          
-          <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
-            <label for="zip">
-                
-                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Zipcode.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                     Zip Code</strong>
-                <input type="text" value="<?php echo $zip ?>" id="zip" name="zip" placeholder="Zipcode" class="radius">
-              <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>
-           
-          
-          <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
-            <label for="message">
-               
-                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Leave Your Message.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
-                     Message</strong>
-                <textarea id="message" name="message" placeholder="Message" class="radius medium"><?php echo $message ?></textarea>
-               <span class="label error alert  radius" style="display:none">Required</span>
-            </label>
-          </div>
-          </div>-->
-           
-          
-          <div class="clear" style="height:15px"></div>
-          
-          <div class="row editRow" style="display:none">
-          <div class="columns small-12"> 
-            
-            <a  id="mysubmit" class="button radius submit link">Submit</a> <br>
-          </div>
+         ?>
         </div>
-     
-      </div>
+     </div>
+    </div>
+  </div>
     
-</div><!-- #main-content --> 
+<!-- Body events -->
+
+<!-- End page content -->
+</div>
+        <!-- Account Information end here -->
+				
+
+			</div><!-- #content -->
+		</div><!-- #primary -->
+	</div>
+	
+</div><!-- #main-content -->
 
 <?php
 get_footer();

@@ -38,7 +38,7 @@ get_header(); ?>
         Login</h4>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
-      <div id="section_1">
+      <div id="section_1" class="loginDiv">
            <div class="row">
           <div class="medium-6 columns">
             <label for="username">
@@ -64,8 +64,8 @@ get_header(); ?>
           </div>
           <div class="row">
               <div class="links-pad">
-              <a href="forgot.php"  >Forgot Password</a> &nbsp; &nbsp;
-               <a href="register.php"  >Register</a>
+              <a href="<?php echo get_site_url() ?>/forgot"  >Forgot Password</a> &nbsp; &nbsp;
+              <!-- <a href="register.php"  >Register</a>-->
               </div>
           </div>
           <div class="clear" style="height:15px"></div>

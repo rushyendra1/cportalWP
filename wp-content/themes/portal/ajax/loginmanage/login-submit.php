@@ -13,18 +13,15 @@ if(!isset($wpdb))
     include_once('../../../../../wp-includes/class-phpass.php');
 }
 
-
-
 $result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts"
                             . " FROM ".$table_prefix."settings"
                            . " WHERE id=1");
-//var_dump($result_query);
-//exit;
+
+
 
 if(isset($result->max_login_attempts))
 
-  $max_login_attempts = $resul->max_login_attempts ;
-
+ $max_login_attempts = (int)$result->max_login_attempts ;
 $max_login_attempts +=1;
 
 if(!isset($_SESSION['forgot-times']))
@@ -35,7 +32,8 @@ if(!isset($_SESSION['forgot-times']))
 }
 if($_SESSION['forgot-times'] >=$max_login_attempts)
 {
-    echo "If you forgot your password reset by click on <a href='forgot.php' class='forgot-link'>Forgot Password</a> link.";
+    echo "If you forgot your password reset by click on"
+    . " <a href='".get_site_url()."/forgot' class='forgot-link'>Forgot Password</a> link.";
     exit;
 }
  $user = (isset($_POST['username']))?$_POST['username']: "";
@@ -90,7 +88,7 @@ if($result>=0)
     {
         echo $response; exit;
     }
-        
+    unset($_SESSION['forgot-times']);      
         $credentials = array( 'user_login' =>  $user,
             'user_password' => $pass,
             'remember' => true );

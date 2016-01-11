@@ -1,25 +1,11 @@
 <?php
 /**
- * Twenty Fourteen functions and definitions
+ * Portal functions and definitions
  *
  * Set up the theme and provides some helper functions, which are used in the
  * theme as custom template tags. Others are attached to action and filter
  * hooks in WordPress to change core functionality.
- *
- * When using a child theme you can override certain functions (those wrapped
- * in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before
- * the parent theme's file, so the child theme functions would be used.
- *
- * @link http://codex.wordpress.org/Theme_Development
- * @link http://codex.wordpress.org/Child_Themes
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are
- * instead attached to a filter or action hook.
- *
- * For more information on hooks, actions, and filters,
- * @link http://codex.wordpress.org/Plugin_API
- *
+ * 
  * @package WordPress
  * @subpackage Portal
  * @since Portal 1.0
@@ -32,6 +18,7 @@ define("REDIRECT_URI",get_option("wc_sf_client_redirect_uri"));
 define ("PUBLIC_URL",get_option("wc_sf_public_site_url"));
 define("REFRESH_TOKEN",get_option("wc_sf_refresh_token"));
 define("INSTANCE_URL",get_option("wc_sf_instance_url"));
+
  /*$current_user = wp_get_current_user();
  $user_id = $current_user->ID;
  $username = $current_user->user_login;
@@ -60,7 +47,7 @@ if ( version_compare( $GLOBALS['wp_version'], '3.6', '<' ) ) {
 
 if ( ! function_exists( 'twentyfourteen_setup' ) ) :
 /**
- * Twenty Fourteen setup.
+ * Portal setup.
  *
  * Set up theme defaults and registers support for various WordPress features.
  *
@@ -268,26 +255,27 @@ function twentyfourteen_scripts() {
 	// wp_enqueue_style( 'wc-muli', "//fonts.googleapis.com/css?family=Muli", array(), null );
 
 	// Add Genericons font, used in the main stylesheet.
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.2' );
+	//wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.2' );
 
 	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'twentyfourteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfourteen-style', 'genericons' ), '20131205' );
-	wp_style_add_data( 'twentyfourteen-ie', 'conditional', 'lt IE 9' );
+	//wp_enqueue_style( 'twentyfourteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfourteen-style', 'genericons' ), '20131205' );
+	//wp_style_add_data( 'twentyfourteen-ie', 'conditional', 'lt IE 9' );
 	
 	
 	
-	wp_enqueue_style( 'wc-jquery-ui', get_template_directory_uri() . '/css/jquery-ui-1.9.2.custom.min.css', array(), '20140215' );
-	wp_enqueue_style( 'wc-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'wc-jquery-ui' ), '20140215' );
-	wp_enqueue_style( 'wc-bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.min.css', array( 'wc-bootstrap' ), '20140215' );		
+	//wp_enqueue_style( 'wc-jquery-ui', get_template_directory_uri() . '/css/jquery-ui-1.9.2.custom.min.css', array(), '20140215' );
+        //wp_enqueue_style( 'wc-jquery-ui', get_template_directory_uri() . '/css/jquery-ui-1.9.2.custom.min.css', array(), '20140215' );
+	//wp_enqueue_style( 'wc-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'wc-jquery-ui' ), '20140215' );
+	//wp_enqueue_style( 'wc-bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.min.css', array( 'wc-bootstrap' ), '20140215' );		
 	
 	
 	// Load our main stylesheet.
-	wp_enqueue_style( 'twentyfourteen-style', get_stylesheet_uri(), array( 'wc-bootstrap-responsive' ) );
+	//wp_enqueue_style( 'twentyfourteen-style', get_stylesheet_uri(), array( 'wc-bootstrap-responsive' ) );
 	
 	
-	wp_enqueue_script( 'wc-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.4.min.js', array( 'jquery' ), '20140513' );
+	//wp_enqueue_script( 'wc-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.4.min.js', array( 'jquery' ), '20140513' );
 
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20141105', true );
+	//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20141105', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -315,7 +303,7 @@ function twentyfourteen_scripts() {
 
 	wp_enqueue_script( 'wc-jquery-cookie', get_template_directory_uri() . '/js/jquery.cookie.js', array( 'jquery' ), '20150624' );
 
-	wp_enqueue_script( 'wc-custom', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '20140109', true );
+	//wp_enqueue_script( 'wc-custom', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '20140109', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
@@ -583,9 +571,9 @@ if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow
  */
 add_action('after_setup_theme', 'remove_admin_bar');
 function remove_admin_bar() {
-	if (!current_user_can('administrator') && !is_admin()) {
+	//if (!current_user_can('administrator') && !is_admin()) {
 	  	show_admin_bar(false);
-	}
+	//}
 }
 
 /*
@@ -787,35 +775,20 @@ function get_data_rec_pages($response,$start,$length)
  */
 function call_js_css_files()
 {
-    //wp_enqueue_style("jquery-ui", get_template_directory_uri()."/css/jquery-ui-min.css", array(), NULL,false);
-    //wp_enqueue_style("jquery-tool", get_template_directory_uri()."/css/jquery-tool.css", array(), NULL,false);
-    
-    //wp_enqueue_style("jquery.mobile.datepicker", get_template_directory_uri()."/css/jquery.mobile.datepicker.css", array(), NULL,false);
-    //wp_enqueue_style("jquery.mobile.datepicker.theme", get_template_directory_uri()."/css/jquery.mobile.datepicker.theme.css", array(), NULL,false);
- 
-    //wp_enqueue_style("jquery.selectBox", get_template_directory_uri()."/css/jquery.selectBox.css", array(), NULL,false);
-    
-   // wp_enqueue_style("style-name-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
-   // wp_enqueue_style("style-name-wc-res", get_template_directory_uri()."/css/wc-extended-res.css", array(), NULL,false);
-    //wp_enqueue_style("style-table-res", get_template_directory_uri()."/css/table-res.css", array(), NULL,false);
-    //wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/wc-extended.js", array(), NULL,true);
-    
-    
-   // wp_enqueue_script("datepicker", get_template_directory_uri()."/js/datepicker.js", array(), NULL,false);
-    //wp_enqueue_script("jquery.selectBox-js", get_template_directory_uri()."/js/jquery.selectBox.js", array(), NULL,false);
-    
-    //wp_enqueue_script("jquery-mobile-git", get_template_directory_uri()."/js/jquery-mobile-git.js", array(), NULL,false);
-    //wp_enqueue_script("jquery.mobile.datepicker", get_template_directory_uri()."/js/jquery.mobile.datepicker.js", array(), NULL,false);
-     /*$path =$_SERVER['REQUEST_URI'];
-     $path = str_replace("/project/hmw_c/", "",$path);
-     $path = str_replace("/", "",$path);
-     $path_replace  = explode("?", $path);
-     $path = $path_replace[0];*/
      $path = get_current_path();
-     if($path == "view-contact" || $path == "view-account"){
-        wp_enqueue_script("script-map-name", "https://maps.google.com/maps/api/js?sensor=false", array(), NULL,false);
-        wp_enqueue_script("script-info-name", "https://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js", array(), NULL,false);
-     }
+    wp_enqueue_style("style-google-api", get_template_directory_uri()."/css/google-api.css", array(), NULL,false);      
+    wp_enqueue_style("style-jquery-ui", get_template_directory_uri()."/css/jquery-ui.css", array(), NULL,false);      
+    wp_enqueue_style("style-site", get_template_directory_uri()."/css/site.css", array(), NULL,false);      
+    wp_enqueue_style("style-foundataion", get_template_directory_uri()."/css/foundation.css", array(), NULL,false);      
+    wp_enqueue_style("style-foundataion-icons", get_template_directory_uri()."/css/foundation-icons.css", array(), NULL,false);      
+    wp_enqueue_style("style-layout", get_template_directory_uri()."/css/layout.css", array(), NULL,false);      
+    wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
+    wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
+    
+    wp_enqueue_script("script-jquery", get_template_directory_uri()."/js/jquery-ui.js", array(), NULL,false);
+    wp_enqueue_script("script-foundation", get_template_directory_uri()."/js/foundation.min.js", array(), NULL,false);
+    wp_enqueue_script("script-moderan", get_template_directory_uri()."/js/vendor/modernizr.js", array(), NULL,false);
+    wp_enqueue_script("script-foundation-tooltip", get_template_directory_uri()."/js/foundation/foundation.tooltip.js", array(), NULL,false);
     wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal.js", array(), NULL,false);
     
     
@@ -1665,12 +1638,12 @@ function add_action_in_user()
     if(!current_user_can('activate_plugins'))
 		return;
     ?>
-		<script type="text/javascript">
+	<!-- just comment	<script type="text/javascript">
 			jQuery(document).ready(function($) { 
 				$('<option>').val('deactivate_user').text('Deactivate').appendTo("select[name='action']"); 
 				$('<option>').val('activate_user').text('Activate').appendTo("select[name='action']"); 
 			});
-		</script>
+		</script>-->
 <?php
 }
 add_action('admin_footer-users.php', 'add_action_in_user');
@@ -1759,3 +1732,247 @@ function show_user_id_column_content($value, $column_name, $user_id)
     return $value; 
 }
 add_action('manage_users_custom_column',  'show_user_id_column_content', 10, 3);
+
+/**
+ * Generate the Element
+ * @param string $element
+ * @param string $options
+ * @param string $attribute
+ * @param int $is_searchable
+ * @param string $place_holder
+ * @param string $class_name
+ * @param string $style_name
+ * @param int $i
+ * @param int $is_required
+ * @param string $tool_tip
+ * @param string $value
+ * @param string $type
+ * @return string
+ */
+function generate_input($element, $options, $attribute, $is_searchable,  $place_holder,  $class_name, $style_name, $i,$is_required,$tool_tip,$value="",$type= "",$salutation= '') {
+    $result = "";
+    $attribute = $label = strtolower($attribute);
+     $id = preg_replace("/ /", "", $attribute);
+    $options = explode("\n", $options);
+    $tool_tip = ucwords($tool_tip);
+    $edit_class = '';
+    $style = '';
+    $disabled = '';
+    if($type == "edit"){
+        $edit_class = 'editRow';
+        $style = 'style="display:none"';
+        if($attribute== "email")
+            $disabled = 'disabled="disabled"';
+    }
+    if($attribute != "salutation")
+    $result = '<div class="row '.$edit_class.'" '.$style.'><div class="medium-6 columns">';
+    if($attribute != "address"){
+        if($attribute != "salutation")
+            $result .= '<label for="'.$id.'">';
+        $astrik = $req_stmt =  '';
+        $required =  'data-required=""';
+        if($is_required){
+            $astrik = '*';
+            $required =  'data-required="required"';
+            $req_stmt = 'This field is required.';
+        }
+        if($attribute != "salutation")
+        $result.= '  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="'.$tool_tip.'&lt;br&gt;&lt;small&gt;&lt;em&gt;'.$req_stmt.'&lt;/em&gt;&lt;/small&gt;"> 
+                   '.ucwords($label).$astrik.'</strong>';
+        if($attribute == "salutation")
+            $result .= '<span style="display:none" id="salSpan">';
+        
+    switch ($element) {
+         case "file":
+           $result .='<input type="file"  id="' . $id . '" value="" class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.' />';
+            break;
+        case "text":
+         if($attribute == "first name"){
+             $result .= '<select id="salutation" type="dropdown" class="radius " style="" data-required="">';
+             $sel = "";
+             if($salutation == "Mr.")
+                 $sel = 'selected="selected"';
+             $result.='<option value="Mr."'.$sel.'>Mr.</option>';
+             $sel = "";
+             if($salutation == "Ms.")
+                 $sel = 'selected="selected"';
+             $result .= '<option '.$sel.' value="Ms.">Ms.</option>';
+             $sel = "";
+             if($salutation == "Mrs.")
+                 $sel = 'selected="selected"';
+             $result.='<option value="Mrs." '.$sel.'>Mrs</option></select>';
+         }
+            $result .='<input type="text"  id="' . $id . '"  class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.' value="'.$value.'" '.$disabled.'  />';
+            break;
+        case "password":
+           
+            $result .='<input type="password"  id="' . $id . '" value="" class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.'  />';
+            break;
+        case "textarea":
+          
+            $result .= '<textarea  id="' . $id .  '"  class="radius ' . $class_name . '" placeholder="' . $place_holder . '" style="' . $style_name . '" '.$required.' '.$disabled.' >'.$value.'</textarea>';
+            break;
+        case "dropdown":
+           
+            $result .= '<select  id="' . $id .  '" type="dropdown"  class="radius ' . $class_name . '"  style="' . $style_name . '" '.$required.'>';
+            if ($place_holder != "")
+                $result .= '<option value="" >' . $place_holder . '</option>';
+            if (count($options) > 0) {
+
+                foreach ($options as $opt) {
+                    $each = explode("::", $opt);
+                     if (count($each) > 0) {
+                       
+                        if (isset($each[0]) && isset($each[1])){
+                            $val_opt = $each[1];
+                            $sel = '';
+                            if($value == $val_opt)
+                                $sel = 'selected="selected"';
+                            $result .= '<option value="' . $each[0] . '" '.$sel.' >' . $val_opt . '</option>';
+                        }
+                    } else{
+                        $sel = '';
+                            if($value == $opt)
+                                $sel = 'selected="selected"';
+                        $result .= '<option value="' . $opt . '" '.$sel.' >' . $opt . '</option>';
+                    }
+                }
+            }
+            $result.='</select>';
+            break;
+        case "range":
+           
+            $result .= '<input type="text"  id="max' . $id .  '" value="" class=" radius ' . $class_name . '" placeholder="Max" style="' . $style_name . '" '.$required.'  />'
+                    . '<span class="rangeSpan">---</span><input type="text"  id="min' . $id . $search_type . $type . '" value="" class="' . $class_name . '" placeholder="Min" style="' . $style_name . '" '.$required.'  />'
+                    . '<div class="clear"></div>';
+            break;
+        case "checkbox":
+            if (count($options) > 0) {
+                
+                foreach ($options as $opt) {
+                    $each = explode("::", $opt);
+                    $check = '';
+                    if($value== $each[0])
+                        $check = 'checked="checked"';
+                    $result .= '<input type="checkbox"  id="' . $id .  '" '.$check.' value="' . $each[0] . '" class=" radius ' . $id . ' ' . $class_name . '"  style="' . $style_name . '" />' . $each[1];
+                }
+            } else{
+                $check = '';
+                    if($value)
+                        $check = 'checked="checked"';
+                $result .= '<input type="checkbox"  id="' . $id .  '" '.$check.' class=" radius ' . $class_name . '"  style="' . $style_name . '" '.$required.'  />' ;
+            }
+            break;
+        case "radio":
+            if ( count($options) > 0) {
+               
+                foreach ($options as $opt) {
+                    $each = explode("::", $opt);
+                    $check = '';
+                    if($value== $each[0])
+                        $check = 'checked="checked"';
+                    $result .= '<input type="radio"  id="' . $id . '"  '.$check.' value="' . $each[0] . '" class=" radius ' . $id . ' ' . $class_name . '"  style="' . $style_name . '" />' . $each[1];
+                }
+            } else{
+                $check = '';
+                    if($value)
+                        $check = 'checked="checked"';
+                $result .= '<input type="radio"  id="' . $id .  '" '.$check.' class=" radius ' . $class_name . '"  style="' . $style_name . '" '.$required.' />';
+            }
+            break;
+    }
+    
+    if($attribute != "salutation"){
+        $result.='<span class="label error alert radius" style="display:none">Required</span>';
+         if($attribute == "email")
+        $result .= '<span id="correctEmail" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>';
+        $result .= '</label>';
+        $result .= '</div></div>';
+    }else $result .= '</span>';
+    
+    }
+   return $result;
+}
+/**
+ * Display Register Value
+ * @param string $attribute
+ * @param string $value
+ * @return string
+ */
+function display_contact( $attribute, $value="") {
+    $result_info = "";
+     $id = preg_replace("/ /", "", $attribute);
+    if($attribute != "address"){
+        $display = 'style="display:none;"';
+         $value = ': &nbsp;'.$value;
+        if($attribute != "salutation"){
+           
+            $display = '';
+        $result_info .= '<div class="row dispRow"><div class="medium-6 columns">';
+        $result_info .= '<label class="dispRowStrong"><strong  class="radius" >'.ucwords($attribute).'</strong></label>';
+       
+        $result_info .= ' <span id="'.$id.'Disp" '.$display.'>'.$value.'</span>';
+         if($attribute == "email")
+            $result_info .= '<a href="change-email.php" style="  margin-left: 10px;">Change</a>';
+        }
+        if($attribute != "salutation")
+        $result_info .= '</div></div>';
+    }
+    return $result_info;
+}
+/**
+ * Display the Add slashes to given string
+ * @name add_slashes
+ * @param string $given_phone
+ * @return string
+ */
+function add_slashes($given_phone)
+{
+    $len = strlen($given_phone);
+    $result = "";
+    $status = preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $given_phone);
+    if($given_phone != "" && !$status)
+    {
+         
+         
+        $phone_array = str_split($given_phone,3);
+		 $i=0;
+		 $count_p = count($phone_array);
+		$comma = '-';
+		foreach($phone_array as $each)
+		{
+			if($each != ""){
+			if( $i ==2)
+				$comma = '';
+			$result .= $each.$comma;
+			}
+			$i++;
+		}	
+    }
+    
+    return $result;
+}
+/**
+ * if given string is null then tha value is empty
+ * @name check_nulls
+ * @param string $given_str
+ * @return string
+ */
+function check_nulls($given_str)
+{
+    $given_str = trim($given_str);
+if($given_str == "null" || $given_str == null) $given_str = '';
+    return $given_str;
+}
+//remove the menus
+add_action( 'admin_menu', 'remove_menus' );
+function remove_menus()
+{
+    remove_submenu_page( 'users.php','user-new.php' );   
+    remove_submenu_page('users.php','profile.php');
+}
+add_action( 'admin_enqueue_scripts', 'call_js_admin' );
+function call_js_admin()
+{
+ wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal-admin.js", array(), NULL,false);   
+}

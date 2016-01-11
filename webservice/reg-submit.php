@@ -1,24 +1,33 @@
 <?php
 $user = array();
+global $wpdb;
+global $table_prefix;
+if(!isset($wpdb))
+{
+    include_once('../wp-config.php');
+    include_once('../wp-load.php');
+    include_once('../wp-includes/wp-db.php');
+}
 try{
     
-$first_name = (isset($_POST['first_name']))?$_POST['first_name']: "";
-$last_name = (isset($_POST['last_name']))?$_POST['last_name']: "";
-$salutation = (isset($_POST['salutation']))?$_POST['salutation']: "";
+$first_name = (isset($_POST['first_name']))?check_null(trim($_POST['first_name'])): "";
+
+$last_name = (isset($_POST['last_name']))?check_null(trim($_POST['last_name'])): "";
+$salutation = (isset($_POST['salutation']))?check_null(trim($_POST['salutation'])): "";
 //$user['company'] = (isset($_POST['company']))?$_POST['company']: "";
 
-$phone = (isset($_POST['phone']))?$_POST['phone']: "";
-$mobile = (isset($_POST['mobile']))?$_POST['mobile']: "";
-$email = (isset($_POST['email']))?$_POST['email']: "";
-$alt_email = (isset($_POST['alt_email']))?$_POST['alt_email']: "";
+$phone = (isset($_POST['phone']))?check_null(trim($_POST['phone'])): "";
+$mobile = (isset($_POST['mobile']))?check_null(trim($_POST['mobile'])): "";
+$email = (isset($_POST['email']))?check_null(trim($_POST['email'])): "";
+$alt_email = (isset($_POST['alt_email']))?check_null(trim($_POST['alt_email'])): "";
  
-$street = (isset($_POST['street']))?$_POST['street']: "";
-$city = (isset($_POST['city']))?$_POST['city']: "";
-$state = (isset($_POST['state']))?$_POST['state']: "";
-$country = (isset($_POST['country']))?$_POST['country']: "";
-$zip = (isset($_POST['zipcode']))?$_POST['zipcode']: "";
+$street = (isset($_POST['street']))?check_null(trim($_POST['street'])): "";
+$city = (isset($_POST['city']))?check_null(trim($_POST['city'])): "";
+$state = (isset($_POST['state']))?check_null(trim($_POST['state'])): "";
+$country = (isset($_POST['country']))?check_null(trim($_POST['country'])): "";
+$zip = (isset($_POST['zipcode']))?check_null(trim($_POST['zipcode'])): "";
  
-$message = (isset($_POST['message']))?$_POST['message']: "";
+$message = (isset($_POST['message']))?check_null(trim($_POST['message'])): "";
  //$user['password'] = (isset($_POST['password']))?md5($_POST['password']): "";
 //$user['allow_login'] = 1;
 //$user['allow_admin'] = 0;
@@ -29,14 +38,7 @@ if($email != "" && !preg_match('/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-
      echo json_encode(array("errorCode" => "Failure", "message" => "Please enter valid email address"));
       exit;
 }
-global $wpdb;
-global $table_prefix;
-if(!isset($wpdb))
-{
-    include_once('../wp-config.php');
-    include_once('../wp-load.php');
-    include_once('../wp-includes/wp-db.php');
-}
+
 $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if(!is_object($con))
 {
@@ -213,7 +215,7 @@ $res = mysqli_query($con,$insert_city);
     
 }
 //state 
-$insert_state = "INSERT INTO ".$table_prefix."usermeta(meta_key, meta_value,user_id) values('thestate','". $state."','".$user_id."')";
+$insert_state = "INSERT INTO ".$table_prefix."usermeta(meta_key, meta_value,user_id) values('state','". $state."','".$user_id."')";
 $res = mysqli_query($con,$insert_state);
  	if(!$res){
     echo json_encode(array("errorCode" => "Failure", "message" => "Insertion Query Failure"));
@@ -230,7 +232,7 @@ $res = mysqli_query($con,$insert_country);
 }
 //user_id 
 $insert_user_id = "INSERT INTO ".$table_prefix."usermeta(meta_key, meta_value,user_id) values('user_id','". $id."','".$user_id."')";
-$res = mysqli_query($con,$insert_country);
+$res = mysqli_query($con,$insert_user_id);
  	if(!$res){
     echo json_encode(array("errorCode" => "Failure", "message" => "Insertion Query Failure"));
     exit;
@@ -310,6 +312,11 @@ function generate_strong_password($length = 9, $add_dashes = false, $available_s
     }
     $dash_str .= $password;
     return $dash_str;
+}
+function check_null($given_str)
+{
+    if($given_str == "null") $given_str = '';
+    return $given_str;
 }
 
 

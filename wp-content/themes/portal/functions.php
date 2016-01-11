@@ -1870,3 +1870,62 @@ function generate_input($element, $options, $attribute, $is_searchable,  $place_
     }
    return $result;
 }
+/**
+ * Display Register Value
+ * @param string $attribute
+ * @param string $value
+ * @return string
+ */
+function display_contact( $attribute, $value="") {
+    $result_info = "";
+     $id = preg_replace("/ /", "", $attribute);
+    if($attribute != "address"){
+        $display = 'style="display:none;"';
+         $value = ': &nbsp;'.$value;
+        if($attribute != "salutation"){
+           
+            $display = '';
+        $result_info .= '<div class="row dispRow"><div class="medium-6 columns">';
+        $result_info .= '<label class="dispRowStrong"><strong  class="radius" >'.ucwords($attribute).'</strong></label>';
+       
+        $result_info .= ' <span id="'.$id.'Disp" '.$display.'>'.$value.'</span>';
+         if($attribute == "email")
+            $result_info .= '<a href="change-email.php" style="  margin-left: 10px;">Change</a>';
+        }
+        if($attribute != "salutation")
+        $result_info .= '</div></div>';
+    }
+    return $result_info;
+}
+/**
+ * Display the Add slashes to given string
+ * @name add_slashes
+ * @param string $given_phone
+ * @return string
+ */
+function add_slashes($given_phone)
+{
+    $len = strlen($given_phone);
+    $result = "";
+    $status = preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $given_phone);
+    if($given_phone != "" && !$status)
+    {
+         
+         
+        $phone_array = str_split($given_phone,3);
+		 $i=0;
+		 $count_p = count($phone_array);
+		$comma = '-';
+		foreach($phone_array as $each)
+		{
+			if($each != ""){
+			if( $i ==2)
+				$comma = '';
+			$result .= $each.$comma;
+			}
+			$i++;
+		}	
+    }
+    
+    return $result;
+}

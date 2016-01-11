@@ -1937,5 +1937,29 @@ function remove_menus()
 add_action( 'admin_enqueue_scripts', 'call_js_admin' );
 function call_js_admin()
 {
+wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
  wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal-admin.js", array(), NULL,false);   
+}
+
+/**
+ * Get the offset
+ * @name paginate_support
+ * @param int $offset
+ * @param int $per_page
+ * @return int
+ */
+function paginate_support($offset, $per_page) {
+    $offset_limit = $from = $offset;
+    $offset_end = $to = $per_page;
+    if ($offset !== 1 && $offset !== 0) {
+        $offset_end = ($offset) * $per_page;
+        $offset_limit = $offset_end - $per_page;
+        $from = $offset_limit + 1;
+        $to = $offset_end - 1;
+    }
+    $offset_start = $offset_limit;
+    if ($offset == 1)
+        $offset_start = 0;
+
+    return $offset_start;
 }

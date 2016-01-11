@@ -1,17 +1,17 @@
 <?php
-
 add_action('admin_menu', 'setup_theme_admin_menus');
-
 function setup_theme_admin_menus() {  
     
 	if (!current_user_can('manage_options')) {  
 		wp_die('You do not have sufficient permissions to access this page.');  
 	} 
 		
-	add_menu_page('Theme Settings', 'WC Settings', 'manage_options', 'wc_settings', 'theme_wc_settings');  
+	add_menu_page('Theme Settings', 'Portal Settings', 'manage_options', 'wc_settings', 'theme_wc_settings');  
           
     add_submenu_page('wc_settings',   
         'Salesforce Configurations', 'Salesforce Configurations', 'manage_options', 'wc_sf_settings', 'theme_wc_sf_settings');
+    add_submenu_page('wc_settings',   
+        'User Settings', 'User Settings', 'manage_options', 'wc_user_settings', 'user_settings_fun');
 }  
 
 function theme_wc_settings() { 
@@ -39,7 +39,7 @@ function theme_wc_settings() {
 ?>
 
     <div class="wrap">  
-        <?php screen_icon('themes'); ?> <h2>Waste Collection Settings</h2>  
+        <?php screen_icon('themes'); ?> <h2>Portal Settings</h2>  
     
         <form method="POST" action="">  
 			<input type="hidden" name="update_settings" value="Y" />
@@ -229,5 +229,16 @@ function theme_wc_sf_settings() {
 <?php 
 }
 
-  
+/*** User settings 
+ * @name user_settings_fun
+ */  
+function user_settings_fun()
+  {
+    ?>
+<input type="hidden" id="page" value="wc_user_settings">
+<input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
+<div class="box span12 content-disp">
+    
+</div>
+  <?php }
 ?>

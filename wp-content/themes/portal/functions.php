@@ -1542,6 +1542,23 @@ if( count($result)>0)
 return array("min_pass_len" => $min_pass_len, "max_pass_len" => $max_pass_len);
 
 }
+function changePwdSubmit() {
+
+      	global $wpdb;
+		global $table_prefix;
+
+		//$wp_ad_counter_table = $wpdb->prefix . "ad_counter";
+
+		$submit = $_POST['submit'];
+      	if( isset($submit) ) {
+      		$results = $wpdb->update('users', array( 'user_pass' => $password),"WHERE ID =".$_REQUEST["$id"]);
+      		echo 'Password Updated';
+      	}
+        else {
+            echo 'Password doesnot match ';
+        }
+      }
+      
 function login_check($status =0)
 {
     if(!$status){

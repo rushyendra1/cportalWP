@@ -6,9 +6,10 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
-@session_start();
+
 global $wpdb;
 global $table_prefix;
+<<<<<<< HEAD
 global $submit;
 if(!isset($wpdb))
 {
@@ -17,6 +18,10 @@ if(!isset($wpdb))
     include_once('../../../../../wp-includes/wp-db.php');
     include_once('../../../../../wp-includes/class-phpass.php');
 }
+=======
+redirect_to_login();
+get_header();
+>>>>>>> 2f811fc88ca322fb10dc48c288a163da38273400
 /*$status = (isset($_GET['s']))?$_GET['s']: 0;
 $is_admin = (isset($_GET['a']))?$_GET['a']: 0;
 $is_new = (isset($_GET['n']))?$_GET['n']: 0;
@@ -121,5 +126,5 @@ if( count($result)>0)
     </div>
   </div>
 
-<?php include('footer.php');?>
+<?php  get_footer();
 

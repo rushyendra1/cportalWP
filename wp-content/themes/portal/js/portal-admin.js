@@ -6,7 +6,8 @@ $(document).ready(function(){
    $("#submit").remove();
    $("#wp-admin-bar-edit-profile").remove();
    $(".page-title-action").remove();
-   $(".add-new-h2").remove();
+   
+   //$(".add-new-h2").remove();
    var page = $.trim($("#page").val());
    if(page == "wc_user_settings")
     userSettingsDispCall();

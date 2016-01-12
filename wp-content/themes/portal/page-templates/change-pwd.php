@@ -9,19 +9,20 @@
 
 global $wpdb;
 global $table_prefix;
-<<<<<<< HEAD
-global $submit;
+
+//global $submit;
 if(!isset($wpdb))
 {
     include_once('../../../../../wp-config.php');
     include_once('../../../../../wp-load.php');
     include_once('../../../../../wp-includes/wp-db.php');
-    include_once('../../../../../wp-includes/class-phpass.php');
+     include_once('../../../../../wp-includes/class-phpass.php');   
+     include_once('..//functions.php');
 }
-=======
+
 redirect_to_login();
 get_header();
->>>>>>> 2f811fc88ca322fb10dc48c288a163da38273400
+
 /*$status = (isset($_GET['s']))?$_GET['s']: 0;
 $is_admin = (isset($_GET['a']))?$_GET['a']: 0;
 $is_new = (isset($_GET['n']))?$_GET['n']: 0;
@@ -43,14 +44,7 @@ $title = "Change My Password";
 }else{
    login_check(1);
 }*/
-if(!isset($wpdb))
-{
-    include_once('../../../../../wp-config.php');
-    include_once('../../../../../wp-load.php');
-    include_once('../../../../../wp-includes/wp-db.php');
-    include_once('../../../../../wp-includes/class-phpass.php');
-    include_once('..//functions.php');
-}
+
  if(isset($_REQUEST['changePwdSubmit']))
     {
         $result = $wpdb->update('users', array( 'user_pass' => $password),"WHERE ID =".$_REQUEST["$id"]);

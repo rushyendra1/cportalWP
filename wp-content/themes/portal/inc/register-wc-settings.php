@@ -235,7 +235,7 @@ function theme_wc_sf_settings() {
 function user_settings_fun()
   {
     ?>
-<input type="hidden" id="page" value="wc_user_settings">
+<input type="hidden" id="pages" value="wc_user_settings">
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
 <div class="box span12 content-disp">
     

@@ -10,11 +10,9 @@ ob_start();
  * @subpackage Portal
  * @since Portal 1.0
  */
-/*$pages = $_SERVER['REQUEST_URI'];
-$pages = str_replace("/project/customePortal/cportalWp/", "",$pages); 
-$pages = str_replace("/", "",$pages);
 
-
+$pages = get_current_files();
+/*
 if($pages == "login" && is_user_logged_in()){
     
         wp_redirect(get_site_url());
@@ -45,6 +43,7 @@ if($pages == "login" && is_user_logged_in()){
 <a href="<?php echo get_site_url() ?>" id="homeSite" >Home</a>
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
+             <input type="hidden" value="<?php echo $pages; ?>" id="path" >
 <div>
      <?php
    

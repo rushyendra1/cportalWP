@@ -1,14 +1,24 @@
 $ = jQuery.noConflict();
 $(document).ready(function(){
-   $(".column-username a").removeAttr("href");
-   $(".row-actions").html("");
-   $("#bulk-action-selector-top option[value=delete]").html("");
-   $("#submit").remove();
-   $("#wp-admin-bar-edit-profile").remove();
-//   $(".page-title-action").remove();
+    
+    var page = $.trim($("#page").val());
+    
+    if(page == "users.php")
+    {
+        $(".column-username a").removeAttr("href");
+        $(".row-actions").html("");
+        $("#bulk-action-selector-top option[value=delete]").html("");
+        $("#wp-admin-bar-edit-profile").remove();
+       $(".page-title-action").remove();
+       $(".add-new-h2").remove();
+        $("#submit").remove();
+
+    }
    
-   //$(".add-new-h2").remove();
-   var page = $.trim($("#page").val());
+   
+  
+   
+   var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")
     userSettingsDispCall();
 });

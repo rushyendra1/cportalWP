@@ -434,8 +434,10 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                   value = res[i][fields];  
            
                 responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
-                responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+               // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+                
             }//for closed
+            responseHtml +='<td class=" dataCell  " scope="row"><a>View</a> &nbsp; <a>Edit</a></td>';
             responseHtml +='</tr>';
         }
     }else{

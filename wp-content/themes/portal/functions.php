@@ -1575,7 +1575,6 @@ function login_check($status =0)
     }
     }
 }
-
 function get_home_page()
 {
     $result = '<div id="primary" class="content-area">

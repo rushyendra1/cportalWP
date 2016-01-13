@@ -775,7 +775,7 @@ function get_data_rec_pages($response,$start,$length)
  */
 function call_js_css_files()
 {
-     $path = get_current_path();
+    $path = get_current_files(); 
     wp_enqueue_style("style-google-api", get_template_directory_uri()."/css/google-api.css", array(), NULL,false);      
     wp_enqueue_style("style-jquery-ui", get_template_directory_uri()."/css/jquery-ui.css", array(), NULL,false);      
     wp_enqueue_style("style-site", get_template_directory_uri()."/css/site.css", array(), NULL,false);      
@@ -783,7 +783,10 @@ function call_js_css_files()
     wp_enqueue_style("style-foundataion-icons", get_template_directory_uri()."/css/foundation-icons.css", array(), NULL,false);      
     wp_enqueue_style("style-layout", get_template_directory_uri()."/css/layout.css", array(), NULL,false);      
     wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
-    wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
+    if($path == "object-list")
+    wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
+    else
+        wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
     
     wp_enqueue_script("script-jquery", get_template_directory_uri()."/js/jquery-ui.js", array(), NULL,false);
     wp_enqueue_script("script-foundation", get_template_directory_uri()."/js/foundation.min.js", array(), NULL,false);
@@ -1990,8 +1993,14 @@ function call_js_admin()
 {
 wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
  wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal-admin.js", array(), NULL,false);   
+ 
 }
-
+function add_admin_head()
+{
+    $page = get_current_files();
+    echo '<input type="hidden" id="page" value="'.$page.'">';
+}
+add_action( 'admin_head', 'add_admin_head' );
 
 /**
  * Get the offset
@@ -2014,4 +2023,17 @@ function paginate_support($offset, $per_page) {
         $offset_start = 0;
 
     return $offset_start;
+}
+function get_current_files()
+{
+    $pages = $_SERVER['REQUEST_URI'];
+$paths = parse_url($pages);
+if(isset($paths['path']))
+    $path_url  = $paths['path'];
+
+$path_url = explode("/",$path_url);
+$page_cnt = count($path_url);
+if(isset($path_url[$page_cnt-2]))
+    $pages = $path_url[$page_cnt-2];
+return $pages;
 }

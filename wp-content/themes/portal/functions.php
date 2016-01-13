@@ -1909,6 +1909,7 @@ function generate_input($element, $options, $attribute, $is_searchable,  $place_
     }
    return $result;
 }
+
 /**
  * Display Register Value
  * @param string $attribute
@@ -2000,6 +2001,7 @@ function add_admin_head()
     echo '<input type="hidden" id="page" value="'.$page.'">';
 }
 add_action( 'admin_head', 'add_admin_head' );
+
 
 /**
  * Get the offset

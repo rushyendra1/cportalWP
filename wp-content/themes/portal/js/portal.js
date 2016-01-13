@@ -100,7 +100,7 @@ $(".logouts").on("click",function(e){
         window.location.href= site;
           }); 
 });
-});
+
 
 
 /** Check the new password and old Password is same or not in set password page **/ 
@@ -193,6 +193,7 @@ $(".logouts").on("click",function(e){
     });
      /** Change Password **/
      $("#changePwdSubmit").on("click",function(e){
+         
         e.stopImmediatePropagation();
         var className = "ajaxCall";
         if($(this).hasClass(className))
@@ -206,11 +207,13 @@ $(".logouts").on("click",function(e){
         var old = $.trim($("#oldPwd").val());
         var newp = $.trim($("#newPwd").val());
         var status = $.trim($("#status").val());
+       
         //var title = "Request Message";
         var error = []; 
         error = pwdCheckError(status,error,"#oldPwd");
         error = newPwdCheckError(status,error,"#newPwd",old);
         error = confirmCheckError(error,"#confirmPwd",newp);
+        
           if(error.indexOf("o") != -1)
             {
                  hideEnd(this);
@@ -235,11 +238,13 @@ $(".logouts").on("click",function(e){
         var isAdmin = parseInt($.trim($("#isAdmin").val()));
          $(".correctPassword").show();
          var that = this;
-         $.post( "php/change-pwd-submit.php", {id:$.trim($("#userId").val()),
+         alert(that);
+         $.post( root+"/ajax/loginmanage/change-pwd.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
             //data = $.trim(data);
             var msg = data.msg;
+            
             var role = data.role;
              if (data.error == 1)
             {
@@ -260,6 +265,8 @@ $(".logouts").on("click",function(e){
             }
         },"json");
      });
+});
+
 /**
  * Show the Loader
  * @name showLoader
@@ -941,8 +948,6 @@ function displayObjects()
        var field = $.trim($(this).data("field"));
       getObjectTemplate(view,this,classView,length,page,type,field,orderBy,alphaType);
    });
-
-
 function changePwd()
 {
     var oldPwd = document.getElementById("oldPwd").value;

@@ -56,8 +56,7 @@ $(document).foundation({
       $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
           password:pass},function(data){
           data = $.trim(data);
-          console.log(data);
-          return false;
+         
         if(data != "")
         {
             

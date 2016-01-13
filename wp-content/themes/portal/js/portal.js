@@ -662,7 +662,7 @@ function changePwd()
       var that = document.getElementById("changePwdSubmit");
        var confirmPwd = document.getElementById("confirmPwd").value;
        
-        $.post(root+"/ajax/loginmanage/change-pwd.php", {oldPwd:oldPwd},function(data){
+        $.post(root+"/ajax/loginmanage/change-pwd.php", {old_pwd:oldPwd,new_pwd:newPwd,confirm_pwd:confirmPwd},function(data){
              if(data!= "")
           {
               showLabelFocus(that,data);

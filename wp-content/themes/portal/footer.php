@@ -14,12 +14,12 @@
 
 		<div class="clearfix"></div>
 
-		<footer name="footer-main">
-			<div class="row-fluid footer-wrapper-width">
+		<footer name="footer-main" >
+			<div class="row-fluid footer-wrapper-width" align="center">
 				<div class="footer-content">
 				
-					<div class="span1 footer-logo-content">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"> 
+					<div class="span1 footer-logo-content" >
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" > 
 							<img src="<?php echo get_template_directory_uri() ?>/images/CustomerPortal.jpg" width="114" height="40" class="footer-logo" />
 						</a>
 					</div>

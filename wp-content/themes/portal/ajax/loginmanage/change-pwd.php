@@ -1,5 +1,6 @@
 <?php
-$old_pwd = (isset($_POST['old_pwd']))?$_POST['old_pwd']: "";
+echo $old_pwd = (isset($_POST['old_pwd']))?$_POST['old_pwd']: "";
+$status = (isset($_POST['status']))?$_POST['status']: 0;
 $new_pwd = (isset($_POST['new_pwd']))?$_POST['new_pwd']: "";
 
 global $table_prefix;
@@ -22,13 +23,13 @@ $id = $user_ID;
                         
         //check the given password and database password
 	
-				if(wp_check_password( $old_pwd, $result->user_pass,$id))
-     
+				if(wp_check_password( $old_pwd, $result->user_pass, $id))
 				{
 					 wp_set_password($new_pwd ,$id);
-                                         wp_set_password($confirm_pwd,$id);
 					 
 				}else{
-					echo "Sorry. password is does not match. Please try another password.";
-					}
+					echo "Sorry. password is does not match. Please try 
+another password.";
+					}     			
+
 ?>

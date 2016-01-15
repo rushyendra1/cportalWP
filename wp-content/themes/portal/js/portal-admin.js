@@ -14,10 +14,7 @@ $(document).ready(function(){
         $("#submit").remove();
 
     }
-   
-   
-  
-   
+
    var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")
     userSettingsDispCall();

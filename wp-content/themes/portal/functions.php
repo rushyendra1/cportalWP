@@ -1345,6 +1345,76 @@ function get_container_img($container)
     return $img_file;
 }
 /**
+ * Sending the mail
+ * @name mail_sends
+ * @param string $from
+ * @param string $from_name
+ * @param string $to
+ * @param string $to_name
+ * @param string $subject
+ * @param string $message
+ */
+function mail_sends($from,$from_name,$to,$to_name,$subject,$message)
+{
+   // ini_set('display_errors', '1');
+    //global $path;
+    
+ //  include_once  PATH_INIT.'/PHPMailer-master/PHPMailerAutoload.php';
+     
+     $filename = dirname(__FILE__)."/PHPMailer-master".DIRECTORY_SEPARATOR.'PHPMailerAutoload.php';
+      $filename = str_replace("/app/php/", "",$filename); 
+     include_once $filename;
+ 
+    $mail = new PHPMailer;
+    
+//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+$mail->isSMTP();
+global $smtp_host;
+global $smtp_auth;
+global $smtp_user;
+global $smtp_pass;
+global $smtp_port;
+/*$smtp_host = "smtp.gmail.com";
+$smtp_port = 587;
+$smtp_auth = TRUE;
+$smtp_user = "rushyendra@dhruvsoft.com";
+$smtp_user_name = "Rushyendra";
+$smtp_pass = "rushyendra123";*/
+
+// Set mailer to use SMTP
+$mail->Host = $smtp_host;  // Specify main and backup SMTP servers
+$mail->SMTPAuth = $smtp_auth;                               // Enable SMTP authentication
+$mail->Username = $smtp_user;                 // SMTP username
+$mail->Password = $smtp_pass;                           // SMTP password
+//$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = $smtp_port;                                    // TCP port to connect to
+//$mail->Port = 465;                                    // TCP port to connect to
+
+$mail->From = $from;
+$mail->FromName = $from_name;
+$mail->addAddress($to, $to_name);     // Add a recipient
+//$mail->addAddress('ellen@example.com');               // Name is optional
+$mail->addReplyTo($from, 'Information');
+//$mail->addCC('cc@example.com');
+//$mail->addBCC('bcc@example.com');
+
+//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = $subject;
+$mail->Body    = $message;
+
+//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+if(!$mail->send()) {
+    return  'Message could not be sent.';
+   // echo 'Mailer Error: ' . $mail->ErrorInfo;
+} /*else {
+    echo 'Message has been sent';
+}*/
+}
+/**
  * Get the Account Logo
  * @name get_account_logo
  * @param string $logo_url
@@ -1577,6 +1647,23 @@ function login_check($status =0)
         exit;
     }
     }
+}
+function login_check_admin($status =0)
+{
+    if(!$status){
+    if( isset($_SESSION["admin"]) && count($_SESSION["admin"])>0)
+    {
+        ob_start();
+        header("Location: index.php");
+    }
+    
+    }elseif(!isset($_SESSION["admin"]) || !count($_SESSION["admin"])){
+        ob_start();
+        header("Location: login.php");
+    }
+    
+    //ob_end_clean();
+    
 }
 function get_home_page()
 {

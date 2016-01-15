@@ -142,7 +142,7 @@ $(".logouts").on("click",function(e){
           return false;
         }
       var that = this;
-      $.post("ajax/loginmanage/change-pwd.php",{old_pwd:pwd,id: $.trim($("#id").val())},function(data){
+      $.post(root+"/ajax/loginmanage/change-pwd.php",{old_pwd:old,id: $.trim($("#id").val())},function(data){
           if(data!= "")
           {
               showLabelFocus(that,data);
@@ -177,7 +177,7 @@ $(".logouts").on("click",function(e){
           return false;
         }
       var that = this;
-      $.post("ajax/loginmanage/change-pwd.php",{old_pwd:pwd,id: $.trim($("#id").val()),status:1},function(data){
+      $.post(root +"/ajax/loginmanage/change-pwd.php",{old_pwd:pwd,id: $.trim($("#id").val()),status:1},function(data){
           if(data!= "")
           {
               showLabelFocus(that,data);
@@ -235,10 +235,11 @@ $(".logouts").on("click",function(e){
                 $("#confirmPwd").focus();
                 return false;
             }
+            console.log(error);
         var isAdmin = parseInt($.trim($("#isAdmin").val()));
          $(".correctPassword").show();
          var that = this;
-         alert(that);
+         
          $.post( root+"/ajax/loginmanage/change-pwd.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
@@ -265,6 +266,69 @@ $(".logouts").on("click",function(e){
             }
         },"json");
      });
+     
+     /** Forgot password **/
+    $("#forogotSubmit").on("click",function(e)
+    {
+      e.stopImmediatePropagation();
+       var className = "ajaxCall";
+        if($(this).hasClass(className))
+        {
+            return false;
+        }
+        $(this).addClass(className);
+      showLoader();
+      $(this).attr("disabled");
+      $(".errorInput").removeClass("errorInput");
+     // var title = "Request Message";
+      var username = $.trim($("#username").val());
+      if(username == "")
+      {
+          var msg = "Please enter Username/E-mail.";
+         // alertData(title,msg);
+          showLabelFocus("#username",msg);
+          $(this).removeClass(className);
+          $(this).removeAttr("disabled");
+          hideLoader();
+          $("#username").focus();
+          return false;
+        }else if(!emailValid(username))
+        {
+            var msg = "Please enter valid E-mail";
+           //alertData(title,msg);
+          
+            showLabelFocus("#username",msg);
+           $(this).removeAttr("disabled");
+           $(this).removeClass(className);
+            hideLoader();
+            $("#username").focus();
+            return false;
+        }else
+            hideData("#username");
+        var that = this;
+         $.post(root+"/ajax/loginmanage/forgot-password.php", {username:username},function(data){
+          data = $.trim(data);
+        if(data != "")
+        {
+            //alertData(title,data);
+            hideLoader();
+             showLabelFocus("#username",data);
+           $(that).removeAttr("disabled");
+           $(that).removeClass(className);
+            //$("#correctEmail").hide();
+             $("#correctEmail").css("display", "none");
+            hideLoader();
+            $("#username").focus();
+            return false;
+        }
+         // $("#correctEmail").show();
+           $("#correctEmail").css("display", "block");
+           $(that).removeClass(className);
+        //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
+        window.location.href='index.php';
+      });
+    });
+    
 });
 
 /**

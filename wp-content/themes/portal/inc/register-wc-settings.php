@@ -6,14 +6,20 @@ function setup_theme_admin_menus() {
 		wp_die('You do not have sufficient permissions to access this page.');  
 	} 
 		
-	add_menu_page('Theme Settings', 'Portal Settings', 'manage_options', 'wc_settings', 'theme_wc_settings');  
+	//add_menu_page('Theme Settings', 'Portal Settings', 'manage_options', 'wc_settings', 'theme_wc_settings');  
+        add_menu_page('Theme Settings', 'Portal Settings', 'manage_options', 'general_settings', 'general_settings_fun');  
           
-    add_submenu_page('wc_settings',   
+    add_submenu_page('general_settings',   
         'Salesforce Configurations', 'Salesforce Configurations', 'manage_options', 'wc_sf_settings', 'theme_wc_sf_settings');
-    add_submenu_page('wc_settings',   
+    //add_submenu_page('general_settings',   
+      //  'General Settings', 'General Settings', 'manage_options', 'wc_sf_settings', 'general_settings_fun');
+    add_submenu_page('general_settings',   
         'User Settings', 'User Settings', 'manage_options', 'wc_user_settings', 'user_settings_fun');
 }  
-
+function general_settings_fun()
+{
+    echo "dfdfd";
+}
 function theme_wc_settings() { 
 
   

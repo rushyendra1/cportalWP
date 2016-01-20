@@ -2,7 +2,6 @@ $ = jQuery.noConflict();
 $(document).ready(function(){
     
     var page = $.trim($("#page").val());
-    
     if(page == "users.php")
     {
         $(".column-username a").removeAttr("href");

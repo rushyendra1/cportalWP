@@ -2074,8 +2074,13 @@ function remove_menus()
 {
     remove_submenu_page( 'users.php','user-new.php' );   
     remove_submenu_page('users.php','profile.php');
+    add_menu_page("Email Template List", "Email Template","manage_options", "email_template", "email_template_list", get_template_directory_uri()."/images/comment-grey-bubble.png" );
 }
 add_action( 'admin_enqueue_scripts', 'call_js_admin' );
+function email_template_list()
+{
+    echo "E-mail template list";
+}
 function call_js_admin()
 {
 wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
@@ -2084,7 +2089,7 @@ wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.c
 }
 function add_admin_head()
 {
-    $page = get_current_files();
+    $page = get_current_files(1);
     echo '<input type="hidden" id="page" value="'.$page.'">';
 }
 add_action( 'admin_head', 'add_admin_head' );
@@ -2112,7 +2117,13 @@ function paginate_support($offset, $per_page) {
 
     return $offset_start;
 }
-function get_current_files()
+/**
+ * Get the current file
+ * @name get_current_files
+ * @param integer $is_admin
+ * @return type
+ */
+function get_current_files($is_admin = 0)
 {
     $pages = $_SERVER['REQUEST_URI'];
 $paths = parse_url($pages);
@@ -2121,7 +2132,14 @@ if(isset($paths['path']))
 
 $path_url = explode("/",$path_url);
 $page_cnt = count($path_url);
-if(isset($path_url[$page_cnt-2]))
+
+    
+if(isset($path_url[$page_cnt-1]))
+    $pages = $path_url[$page_cnt-1];
+if($pages == "")
+{
+    if(isset($path_url[$page_cnt-2]))
     $pages = $path_url[$page_cnt-2];
+}
 return $pages;
 }

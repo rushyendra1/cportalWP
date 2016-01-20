@@ -2,7 +2,6 @@ $ = jQuery.noConflict();
 $(document).ready(function(){
     
     var page = $.trim($("#page").val());
-    
     if(page == "users.php")
     {
         $(".column-username a").removeAttr("href");
@@ -540,3 +539,353 @@ option value and option label are separated by :: suppose option value and label
        
     return data;
 }
+/**
+ * User Check Errors
+ * @name userSettingsCheckErrors
+ * @returns {void}
+ */
+function userSettingsCheckErrors()
+{
+    /** check the required fields above the element type**/
+    $("#elementType").on("focus",function(e){
+        e.stopImmediatePropagation();
+        var error = [];
+         error = firstNameError("#name", error);
+           errorFocus(error);
+        
+    });
+    /** Check the required field above the elements **/
+    $("#options,#placeholder,#className,#styleName,#isVisible,#isRequired").on("focus",function(e){
+        e.stopImmediatePropagation();
+        var error = [];
+         error = firstNameError("#name", error);
+         error = roleValidation("#elementType", error);
+           errorFocus(error);
+        
+    });
+    /** Is Required Click Then visible, visible on registration , visible on users **/
+     var status = $("#isVisible").is(":checked");
+         var regStatus = $("#isVisibleReg").is(":checked");
+         var userStatus =   $("#isVisibleUser").is(":checked");
+    $("#isRequired").on("click",function(e){
+       
+       if($(this).is(":checked")) 
+       {
+           
+           $("#isVisible").attr("checked","checked");
+           $("#isVisibleReg").attr("checked","checked");
+           $("#isVisibleUser").attr("checked","checked");
+       }else {
+           if(!status)
+                $("#isVisible").removeAttr("checked");
+            if(!regStatus)
+                $("#isVisibleReg").removeAttr("checked");
+            if(!userStatus)
+                $("#isVisibleUser").removeAttr("checked");
+       }
+    });
+    /** Save the user setting attributes **/
+    $("#saveUserSettingSubmit").on("click",function(e){
+       e.stopImmediatePropagation();
+       $(this).attr("disabled", "disabled");
+        showLoader();
+         var root = $.trim($("#rootTheme").val());
+        var attribute = $.trim($("#name").val());
+        var elementType = $.trim($("#elementType").val());
+        var placeholder = $.trim($("#placeholder").val());
+        var options = $.trim($("#options").val());
+        var isSearch = getCheckedValues("#isVisible");
+        var isRequired = getCheckedValues("#isRequired");
+        var isVisibleReg = getCheckedValues("#isVisibleReg");
+        var isVisibleUser = getCheckedValues("#isVisibleUser");
+       
+        var className = $.trim($("#className").val());
+        var styleName = $.trim($("#styleName").val());
+       
+          var error = [];
+         error = firstNameError("#name", error);
+         error = roleValidation("#elementType", error);
+          error = requiredValidation( error);
+         var status = errorFocus(error);
+      
+        if(!status)
+        {
+           
+            $(this).removeAttr("disabled");
+            hideLoader();
+            return false;
+        }
+       $.post(root+"/ajax/settings/save-user-settings.php", {
+        name:attribute, element_type: elementType,options:options,title_place_holder:$.trim($("#title_placeholder").val()),
+        is_search:isSearch,id: $("#id").val(), place_holder:placeholder, 
+        class_name:className,style_name:styleName,is_required:isRequired,
+        is_visible_user: isVisibleUser, is_visible_reg:isVisibleReg},function(data)
+	{
+            alertData("Request Message", "Your Settings has been updated successfully.");
+            userSettingsDispCall()
+            hideLoader();
+            //window.location.href = "user-settings.php";
+             return false;
+        });
+    });
+}
+/**
+ * @name getCheckedValues
+ * @param {object} ele
+ * @returns {Number}
+ */
+function getCheckedValues(ele)
+{
+    var isCheck = 0;
+        if($(ele).is(":checked"))
+            isCheck =1;
+        return isCheck
+}
+/**
+     * Display the first name errors
+     * @name firstNameError
+     * @param {object} ele
+     * @param {array} error
+     
+     * @returns {array}
+     */
+    function firstNameError(ele, error)
+    {
+        var name = $.trim($(ele).val());
+        var isRequired = $.trim($(ele).data("required"));
+        var errorMsg = "Firstname";
+        var errorType = "f";
+        if(ele == "#name"){
+            errorMsg = "Name";
+            errorType = "nm";
+        }
+        if (isRequired== "required" && name == "")
+        {
+            var msg = "Please enter your "+errorMsg+".";
+            //error  += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg, 1);
+            //$(ele).focus();
+        } else if (isRequired== "required" && name.length < 2)
+        {
+            var msg = "Minimum "+errorMsg+" character length should be 2.";
+            //error  += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg, 1);
+            // $(ele).focus();
+        } else {
+            hideData(ele);
+            /* if($(nextEle).val() == "")
+             $(nextEle).focus();*/
+        }
+        return error;
+    }
+    /**
+     * Hide the element 
+     * @name hideData 
+     * @param {object} ele
+     * @returns {void} */
+    function hideData(ele)
+    {
+        var id = $(ele).next().next();
+        if ($(ele).next().hasClass("help-block"))
+            id = $(ele).next();
+        id.hide();
+        $(ele).removeClass("errorInput");
+    }
+    /**
+     * Get the Role validation
+     * @name roleValidation
+     * @param {object} ele
+     * @param {array} error
+     * @returns {void}
+     */
+    function roleValidation(ele,error)
+{
+     var role = $.trim($(ele).val());
+     var eleMsg = "et";
+     var msgTxt = "Element Type";
+     if(ele == "#role"){
+          eleMsg = "r";
+          msgTxt = "Role";
+      }
+      else if(ele == "#username"){
+          eleMsg = "um";
+          msgTxt = "Salesforce Username";
+      }
+      else if(ele == "#password"){
+          eleMsg = "pd";
+          msgTxt = "Salesforce Password";
+      }
+      else if(ele == "#token"){
+          eleMsg = "tok";
+          msgTxt = "Salesforce Token";
+      }
+     if ( role == "")
+        {
+            var msg = "Please select "+msgTxt+".";
+            error.push(eleMsg);
+            showLabelFocus(ele, msg);
+            //$(ele).focus();
+        }  else {
+            hideData(ele);
+            /* if($(nextEle).val() == "")
+             $(nextEle).focus();*/
+        }
+        return error;
+}
+/**
+ * Check the error
+ * @name isCheck
+ * @param {object} ele
+ * @param {int} status
+ * @param {string} msg
+ * @param {string} emsg
+ * @param {array} error
+ * @returns {array}
+ */
+function isCheck(ele,status,msg,emsg,error)
+{
+     if ( status && !$(ele).is(":checked"))
+        {
+            error.push(emsg);
+            showLabelFocus(ele, msg);
+        }
+        else 
+            hideData(ele);
+        return error;
+        
+}
+/**
+ * Check the validation in user settings
+ * @name requiredValidation
+ * @param {array} error
+ * @returns {array}
+ */
+function requiredValidation(error)
+{
+    var status = $("#isRequired").is(":checked");
+    error = isCheck("#isVisibleUser",status,"Please check the visible on user.","visUser",error);
+    error = isCheck("#isVisibleReg",status,"Please check the visible on register.","visReg",error);
+    error = isCheck("#isVisible",status,"Please check the visible.","vis",error);
+    return error;
+}
+/**
+     * Focus to error element.
+     * @name errorFocus
+     * @param {objecte} error
+     * @returns {Boolean}
+     */
+    function errorFocus(error)
+    {
+        var ele = "";
+        if(typeof error == "undefined" )
+            return true;
+        if (error.indexOf("f") != -1)
+            ele = "#firstname";
+        else if (error.indexOf("l") != -1)
+            ele = "#lastname";
+        else if (error.indexOf("e") != -1)
+            ele = "#email";
+        else if (error.indexOf("ae") != -1)
+            ele = "#alternateemail";
+        else if (error.indexOf("pr") != -1)
+            ele = "#password";
+         else if (error.indexOf("pcr") != -1)
+            ele = "#confirmpassword";
+        else if(error.indexOf("city") != -1)
+            ele = "#city";
+        else if(error.indexOf("state") != -1)
+            ele = "#state";
+        else if(error.indexOf("country") != -1)
+            ele = "#country";
+        else if(error.indexOf("zip") != -1)
+             ele = "#zip";
+        else if(error.indexOf("mge") != -1)
+             ele = "#message";
+        else if (error.indexOf("ppr") != -1)
+            ele = "#phone";
+        else if (error.indexOf("pmr") != -1)
+            ele = "#mobile";
+        else if (error.indexOf("r") != -1)
+            ele = "#role";
+        else if (error.indexOf("mip") != -1)
+            ele = "#minPassLen";
+        else if (error.indexOf("map") != -1)
+            ele = "#maxPassLen";
+        else if (error.indexOf("mal") != -1)
+            ele = "#maxLoginAttempts";
+        else if(error.indexOf("con") != -1)
+            ele = "#contentEmail";
+         else if(error.indexOf("sub") != -1)
+            ele = "#subject";
+        else if(error.indexOf("nm") != -1)
+            ele = "#name";
+        else if (error.indexOf("et") != -1)
+            ele = "#elementType";
+        else if (error.indexOf("vis") != -1)
+            ele = "#isVisible";
+          else if (error.indexOf("visUser") != -1)
+            ele = "#isVisibleUser";
+          else if (error.indexOf("visReg") != -1)
+            ele = "#isVisibleReg";
+          else if (error.indexOf("nemail") != -1)
+            ele = "#newEmail";
+         else if (error.indexOf("um") != -1)
+            ele = "#username";
+        else if (error.indexOf("pd") != -1)
+            ele = "#password";
+        else if (error.indexOf("tok") != -1)
+            ele = "#token";
+        
+         if (ele != "#email" && $.trim($(ele).val()) != "")
+            $("#correctEmail").css("display", "block");
+        if (ele != "") {
+            //$("#password").val("");
+            //$("#confirmpassword").val("");
+           // hideData("#password");
+            //hideData("#confirmpassword");
+           // $(".passStrengthify").css("display", "none");
+            $(ele).focus();
+            return false;
+        }
+        return true;
+    }
+    /*
+     * Display the error messages
+     * @name showMag
+     * @param (string) title
+     * @param (string) statusContent
+     * @param (string) type
+     * @return (mixed)
+     */
+    function alertData(title, statusContent)
+    {
+
+        if (typeof (statusContent) != 'undefined' && statusContent != "") {
+
+            $("#popupDisp").find("h3").html(title);
+            $("#popupDisp").find("div.modal-body").html(statusContent);
+            $(".btn-setting").trigger("click");
+            /* var opt = {
+             modal: true,
+             close: function ()
+             {
+             
+             if ($('.shareListingEmail').html() != "") {
+             
+             $('.shareListingEmail').dialog("open");
+             }
+             
+             },
+             width: "auto"
+             };
+             try{
+             $("#dialogParent").remove();
+             }catch(e){}
+             $("#popup").append('<div id="dialogParent"><div id="dialog" title="' + title + '">' +
+             statusContent + '</div></div>');
+             $("#dialog").dialog(opt);
+             // hideLoader();*/
+        }
+    }

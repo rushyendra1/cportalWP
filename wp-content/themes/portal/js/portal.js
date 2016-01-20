@@ -2,12 +2,15 @@ var geocoder;
   var files = "";
   var attachWindow ;
 $ = jQuery.noConflict();
-$(document).ready(function(){
-$(document).foundation({
+try{
+/*$(document).foundation({
 	abide:{
 		
 	}
-});
+});*/
+}catch(e){}
+$(document).ready(function(){
+
 //$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());

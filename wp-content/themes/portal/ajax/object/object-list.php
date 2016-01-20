@@ -82,8 +82,8 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
    //  var_dump($result_1);
      $result = get_data_rec_pages($result_1,0,1,'');*/
      
-     if(!$is_more && $result != null) 
-        $result = get_data_rec_pages($result,0,50,'');
+   //  if(!$is_more && $result != null) 
+     //   $result = get_data_rec_pages($result,0,50,'');
      
       $start_pos = $end_pos = 0;
      if(isset($response->StartPos))

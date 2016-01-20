@@ -85,14 +85,14 @@ $type = (isset($_GET['id']))?trim($_GET['id']):"";
                                         </tbody>
                                     </table>
                                     <div class="clearfix"></div>
-                                    <div class="fewerMore">
+                                    <!--<div class="fewerMore">
                                         Show me <a class="fewerObject activeCont" data-type="0">fewer
                                             <img width="17" height="15" align="texttop" title="Show Fewer" alt="Show Fewer" src="<?php echo get_template_directory_uri() ?>/images/extended/accounts_show_fewer_arrow.gif"></a> 
                                         /  
                                         <a class="moreObject" data-type="1">
                                             <img width="17" height="15" align="texttop" title="Show More" alt="Show More" src="<?php echo get_template_directory_uri() ?>/images/extended/accounts_show_more_arrow.gif">more</a>
                                         records per list page
-                                    </div>
+                                    </div>-->
                                 </div>
 
                             </div>

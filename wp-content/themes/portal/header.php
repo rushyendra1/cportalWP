@@ -80,7 +80,7 @@ function Openeditcourse(a)
     <a href="index.php">Customer Portal</a>
 </h1>
 <ul>
-    <li ><a href="<?php echo get_site_url() ?>/portal/Index">Home</a></li>
+    <li ><a href="">Home</a></li>
 <li><a href="<?php echo get_site_url() ?>/portal/login"><span>Login</span></a></li>
 <li><a href="<?php echo get_site_url() ?>/portal/contact"><span>Contact-us</span></a></li>
 </ul>

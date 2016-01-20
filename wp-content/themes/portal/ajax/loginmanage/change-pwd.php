@@ -1,5 +1,5 @@
 <?php
-echo $old_pwd = (isset($_POST['old_pwd']))?$_POST['old_pwd']: "";
+$old_pwd = (isset($_POST['old_pwd']))?$_POST['old_pwd']: "";
 $status = (isset($_POST['status']))?$_POST['status']: 0;
 $new_pwd = (isset($_POST['new_pwd']))?$_POST['new_pwd']: "";
 
@@ -15,19 +15,19 @@ if(!isset($wpdb))
 }
 //$id = (isset($_POST['id']))?$_POST['id']: "";
 global $user_ID;
-echo $id = $user_ID;
- $user = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
+ $id = $user_ID;
+ $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
 				FROM ".$table_prefix."users
 				WHERE ID='".$id."'");
- var_dump($result);
+ 
 			//echo wp_check_password( $old_pwd, $result->user_pass,$id);	
                         
         //check the given password and database password
 	
-				if($user && wp_check_password( $pass, $user->data->user_pass, $user->ID))
+				if(wp_check_password( $old_pwd, $result->user_pass, $id))
 				{
 					 wp_set_password($new_pwd ,$id);
-					 
+					// $wpdb->update('users',$user_pass ,array("id"=> $id));
 				}else{
 					echo "Sorry. password is does not match. Please try another password.";
 					}     			

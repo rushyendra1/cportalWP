@@ -104,10 +104,44 @@ $(".logouts").on("click",function(e){
           }); 
 });
 
-
+ /** Check the above  new password element validations **/
+    $("#newPwd").on("focus",function(){
+        var status = $.trim($("#status").val());
+       var error =  pwdCheckError(status,[],"#oldPwd");
+       if(error.indexOf("o") != -1)
+       {
+           $(".passStrengthify").css("display", "none");
+           hideLoader();
+           $("#oldPwd").focus();
+           return false;
+       }
+    });
+    /** Confirm password above element validations **/
+    $("#confirmPwd").on("focus",function(){
+        
+        var status = $.trim($("#status").val());
+        var old = $.trim($("#oldPwd").val());
+        var error = [];
+        error = pwdCheckError(status,error,"#oldPwd");
+        error = newPwdCheckError(status,error,"#newPwd",old);
+            if(error.indexOf("o") != -1)
+            {
+                hideLoader();
+                $(".correctPassword").hide();
+                $("#oldPwd").focus();
+                return false;
+            }
+            else if(error.indexOf("n") != -1)
+            {
+                hideLoader();
+                 $(".correctPassword").hide();
+                $("#newPwd").focus();
+                return false;
+            }
+         });
 
 /** Check the new password and old Password is same or not in set password page **/ 
- $("#newPwd").on("blur",function(e){
+  $("#newPwd").on("blur",function(e){
        
        e.stopImmediatePropagation();
      // showLoader(); 
@@ -122,7 +156,7 @@ $(".logouts").on("click",function(e){
           //hideLoader();
           return false;
       } */
-      $(this).removeClass("errorInput");
+     $(this).removeClass("errorInput");
       $(this).next().hide();
       
       var error = [];
@@ -145,7 +179,7 @@ $(".logouts").on("click",function(e){
           return false;
         }
       var that = this;
-      $.post(root+"/ajax/loginmanage/old-pwd-check.php",{old_pwd:old,id: $.trim($("#id").val())},function(data){
+      /*$.post(root+"/ajax/loginmanage/change-pwd.php",{old_pwd:oldPwd,id: $.trim($("#id").val())},function(data){
           if(data!= "")
           {
               showLabelFocus(that,data);
@@ -157,8 +191,8 @@ $(".logouts").on("click",function(e){
           }
         //  hideLoader();
       });
-   
-    });
+   */
+    }); 
  /** Check the Old Password is existed or not in change password **/
  
  $("#oldPwd").on("blur",function(e){
@@ -243,7 +277,7 @@ $(".logouts").on("click",function(e){
          $(".correctPassword").show();
          var that = this;
          
-         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
+         $.post( root+"/ajax/loginmanage/change-pwd.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
             //data = $.trim(data);
@@ -442,7 +476,7 @@ function pwdCheckError(status,error,ele)
  * @param {string} old
  * @returns {array}
  */
-function newPwdCheckError(status,error,ele,old)
+function newPwdCheckError(status,error,ele,oldPwd)
 {
     var newp = $.trim($(ele).val());
     var minPassLen = $.trim($("#minPassLen").val());
@@ -471,10 +505,11 @@ function newPwdCheckError(status,error,ele,old)
             $(ele).val("");
             showLabelFocus(ele,msg);
             //$(ele).focus();
-        }else if(status == "0" && old == newp)
+        }else if( oldPwd == newp)
         {
              var msg = "Old Password and New Password should not be same.";
             //error +=msg+"<br/>";
+            
             error.push("n");
             $(ele).val("");
             showLabelFocus(ele,msg);

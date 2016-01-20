@@ -24,17 +24,12 @@ if(!$status){
                              FROM ".$table_prefix."cusers
                              WHERE id='".$id."' ".$pwd_cond);
 
- if( $result && count($result)>0){
+ if( is_array($result) && count($result)>0){
          insert_history("password",md5($old_pwd),md5($new_pwd),$id);
-      
+      $update_array = array("password" => md5($new_pwd));
          
         $wpdb->update('users',$user_pass ,array("id"=> $id));
-        
-       
-        
-        
-        
-          
+      
 }else{
     if($pwd_cond == "")
         //echo "Username/E-mail does not exists.";

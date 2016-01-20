@@ -282,8 +282,13 @@ $(".logouts").on("click",function(e){
      status:status,type:"site"}, function (data) {
             //data = $.trim(data);
             var msg = data.msg;
-            
+                         var site = $.trim($("#siteTheme").val()); 
             var role = data.role;
+            if(typeof(data) == null )
+            {
+                window.location.href = site+"/profile";
+                return false;
+            }
              if (data.error == 1)
             {
                 $(that).removeClass(className);
@@ -295,11 +300,10 @@ $(".logouts").on("click",function(e){
             } else {
                 $(".correctPassword").show();
                 $(that).removeClass(className);
-              var file = "user-details.php";
-                if(isAdmin && role == "admin")
-                   file= "admin/index.php";
+              
+             
                
-                window.location.href = file;
+                window.location.href = site+"/profile";
             }
         },"json");
      });

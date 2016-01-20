@@ -7,29 +7,3 @@
     margin-left: 20px !important;
     margin-right: 10px !important;
 }
-/*** Object List **/
-.activeCont{
-    text-decoration: underline;
-}
-.addColorSpan{
-    background-color: #cdcdcd;
-}
-.sortAsc {
-    background-image: url("../images/extended/sort_asc_arrow.gif");
-    background-position: 0 0;
-    height: 14px;
-    vertical-align: text-top;
-    width: 21px;
-    display:none;
-}
-
-.sortDesc {
-    background-image: url("../images/extended/sort_desc_arrow.gif");
-    background-position: 0 0;
-    height: 14px;
-    vertical-align: text-top;
-    width: 21px;
-}
-.activeAlpha{
-    background-color: #c73;
-}

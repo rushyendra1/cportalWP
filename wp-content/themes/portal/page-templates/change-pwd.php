@@ -104,7 +104,7 @@ if( count($result)>0)
                 
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Confirm New Password.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
                  Confirm New Password*</strong>
-                <input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirm New Password" class="radius" maxlength="<?php echo $max_pass_len ?>" >
+                <input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirm New Password" class="radius"  maxlength="<?php echo $max_pass_len ?>" >
               <span class="label error alert radius" style="display:none">Required</span>
               <span class="correctPassword" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>
             </label>
@@ -113,7 +113,7 @@ if( count($result)>0)
           <div class="clear" style="height:15px"></div>
           <div class="row">
           <div class="columns small-12"> 
-            <button  id="changePwdSubmit" name="changePwdSubmit" class="button radius submit link">Submit</button> <br>
+            <button  id="changePwdSubmit" name="changePwdSubmit" class="button radius submit link"  >Submit</button> <br>
           </div>
         </div>
       </div>
@@ -121,4 +121,5 @@ if( count($result)>0)
   </div>
 
 <?php  get_footer();
+
 

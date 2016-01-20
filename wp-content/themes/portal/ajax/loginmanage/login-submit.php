@@ -1,10 +1,10 @@
 <?php
 session_start();
+
 /** Load the configuration files **/
 global $wpdb;
 global $table_prefix;
 $max_login_attempts = 0;
-
 if(!isset($wpdb))
 {
     include_once('../../../../../wp-config.php');
@@ -146,4 +146,5 @@ $pass = (isset($_POST['password']))?$_POST['password']: "";
 {
     echo "Internal server error";
 }
+
 ?>

@@ -11,12 +11,10 @@ $(document).ready(function(){
         $("#wp-admin-bar-edit-profile").remove();
        $(".page-title-action").remove();
        $(".add-new-h2").remove();
+        $("#submit").remove();
 
     }
-   
-   
-   $("#submit").remove();
-   
+
    var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")
     userSettingsDispCall();

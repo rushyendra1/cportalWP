@@ -39,12 +39,36 @@ if($pages == "login" && is_user_logged_in()){
 </head>
 <body>
 <!--<a id="toggle_full_width" href="#" class="button tiny fixed hide-for-medium-down"><i class="fi-arrows-out"></i>&nbsp;&nbsp;Toggle Wide Screen</a>-->
+    
+    <ul class="tabs_login">
+		<li class="active_login"><a href="#home">Home</a></li>
+		<li><a href="#Login">Login</a></li>
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+    
+    
+			
+	
+
+   
+    
+    
+    
+    
 <p class="hide-for-medium-down">&nbsp;</p>
-<a href="<?php echo get_site_url() ?>" id="homeSite" >Home</a>
+
+<a href="<?php echo get_site_url() ?>" id="home" >Home</a>
+
+<a href="<?php echo get_site_url() ?>" id="homeSite" >Login</a>
+
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
              <input type="hidden" value="<?php echo $pages; ?>" id="path" >
-<div>
+             <div id="home">
+                 <p>hi this is swaroop </p>
+                 </div>
+            
+<div id="Login">
      <?php
    
          // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 

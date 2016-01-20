@@ -27,6 +27,7 @@ $id = $user_ID;
 				if(!$user_status )
 				{
 					echo "Sorry. password is does not match. Please try another password.";
-					}     			
+                                }    
+                                                               
 
 ?>

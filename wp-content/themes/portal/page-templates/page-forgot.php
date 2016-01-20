@@ -8,7 +8,7 @@ if(!isset($wpdb))
     include_once('../../../../../wp-load.php');
     include_once('../../../../../wp-includes/wp-db.php');
      include_once('../../../../../wp-includes/class-phpass.php');   
-     include_once('..//functions.php');
+     include_once('../../functions.php');
 }
 get_header();
 

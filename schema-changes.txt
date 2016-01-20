@@ -36,3 +36,58 @@ title_placeholder varchar(255),
 //insert user_settings
 insert into wp_3uvwes_user_settings(attribute, form_element, options, searchable, placeholder, order_by, class_name,style_name, is_required, title_placeholder, is_visible_reg, is_visible_user) values('first name', 'text', '' , 1, 'First Name', 2,'','' ,1, 'Enter Your First Name', 1,1),
 ('address', 'text', ' ', 1, ' ', 8, ' ',' ',0, ' ', 1,1), ('message', 'textarea', ' ', 1, 'Message', 9,'medium',  '',0, 'Leave Your Message Here', 1,1),('mobile', 'text', '', 1, 'Mobile', 7,'', '',0, 'Enter Your Mobile Number', 1,1),('alternate email', 'text', '', 1, 'Alternate Email', 5,'', '',0, 'Enter Your Alternate E-mail', 1,1),('last name', 'text', '', 1, 'Last Name', 3,'', '', 1,'Enter Your Last Name', 1,1),('phone', 'text', ' ', 1, 'Phone', 6,'', '',1, 'Enter Your Phone', 1,1);
+
+
+//create email template
+
+
+create table wp_3uvwes_email_template(id INTEGER(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                            name varchar(255), content text, subject varchar(255));
+
+//insert email template
+insert into wp_3uvwes_email_template(name,content, subject)values('register activation email','Hello !!userName!!,
+Thank you for registering into the site.For active your account, Please click below link:
+<a href="!!link!!">!!link!!</a>
+Thanks and Regards
+Dhruvsoft Team','Thank you for registering into the site.'),('change primary email', 'Hello !!userName!!,
+Your primary E-mail has been changed. Further you can login into site using this e-mail
+!!email!!
+Thanks and Regards,
+Dhruvsoft Team.','Your Primary E-mail has been changed.'),('change password email', 'Hello !!userName!!,
+Your Password has been changed successfully.
+Username: !!uname!!
+Password: !!pwd!!
+Thanks and Regards,
+Dhruvsoft Team.', 'Your password has been changed successfully.'),('forgot email','Hello !!userName!!,
+Set the Password here: 
+<a href="!!link!!">!!link!!</a>
+Thanks and Regards
+Dhruvsoft Team.','Reset Your Password Details.'),('activation email','Hello !!userName!!,
+For active your account, Please click below link:
+<a href="!!link!!">!!link!!</a>
+Thanks and Regards,
+Dhruvsoft Team.','Your activation Account.'),('changed account to active state','Hello !!userName!!,
+Your Account has been changed to active state.
+Thanks and Regards,
+Dhruvsoft Team.','Your Account has been changed to active state.'),('changed account to inactive state','Hello !!userName!!,
+
+Your Account has been changed to inactive state.
+
+Thanks and Regards,
+
+Dhruvsoft Team.','Your Account has been changed to inactive state.'),('change role email','Hello !!userName!!,
+
+Your Role has been changed  into !!role!! role.
+Thanks and Regards,
+Dhruvsoft Team.','Your Role has been changed.'),('new user added by admin users','Hello !!userName!!,
+
+For activation your account . click  !!link!!
+Thanks and Regards,
+Dhruvsoft Team.','Your  account Activation'),('Authentication','Hello !!Name!!,
+Thank you for registering For Customer Portal.
+Login URL:
+!!URL!!
+UserName:
+!!UserName!!
+Password: !!PassWord!!',
+'Your Authentication Details.')

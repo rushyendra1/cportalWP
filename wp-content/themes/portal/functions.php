@@ -2074,8 +2074,13 @@ function remove_menus()
 {
     remove_submenu_page( 'users.php','user-new.php' );   
     remove_submenu_page('users.php','profile.php');
+    add_menu_page("Email Template List", "Email Template","manage_options", "email_template", "email_template_list", get_template_directory_uri()."/images/comment-grey-bubble.png" );
 }
 add_action( 'admin_enqueue_scripts', 'call_js_admin' );
+function email_template_list()
+{
+    echo "E-mail template list";
+}
 function call_js_admin()
 {
 wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    

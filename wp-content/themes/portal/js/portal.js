@@ -142,7 +142,7 @@ $(".logouts").on("click",function(e){
           return false;
         }
       var that = this;
-      $.post(root+"/ajax/loginmanage/change-pwd.php",{old_pwd:old,id: $.trim($("#id").val())},function(data){
+      $.post(root+"/ajax/loginmanage/old-pwd-check.php",{old_pwd:old,id: $.trim($("#id").val())},function(data){
           if(data!= "")
           {
               showLabelFocus(that,data);
@@ -177,7 +177,7 @@ $(".logouts").on("click",function(e){
           return false;
         }
       var that = this;
-      $.post(root +"/ajax/loginmanage/change-pwd.php",{old_pwd:pwd,id: $.trim($("#id").val()),status:1},function(data){
+      $.post(root +"/ajax/loginmanage/old-pwd-check.php",{old_pwd:pwd,id: $.trim($("#id").val()),status:1},function(data){
           if(data!= "")
           {
               showLabelFocus(that,data);
@@ -240,7 +240,7 @@ $(".logouts").on("click",function(e){
          $(".correctPassword").show();
          var that = this;
          
-         $.post( root+"/ajax/loginmanage/change-pwd.php", {id:$.trim($("#userId").val()),
+         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
             //data = $.trim(data);

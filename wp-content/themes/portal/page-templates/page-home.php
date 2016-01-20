@@ -9,19 +9,6 @@
 redirect_to_login();
 get_header(); ?>
 
-<div id="main-content" class="main-content">
-
-	<div class="row-fluid data-content-outer" >
-		<div id="primary" class="content-area">
-			<div id="content" class="site-content" role="main">
-
-<div class=" contentSub sidebarCell">
-            <!-- Sidebar Started -->
-              <?php //echo portal_sidebar();
-              ?>
-            <!-- Sidebar ended -->
-
-</div>
 <div class="bodyCell contentSub" >
 <!-- Start page content -->
 <a name="skiplink">

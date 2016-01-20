@@ -15,21 +15,21 @@ if(!isset($wpdb))
 }
 //$id = (isset($_POST['id']))?$_POST['id']: "";
 global $user_ID;
-$id = $user_ID;
- $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
+echo $id = $user_ID;
+ $user = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
 				FROM ".$table_prefix."users
 				WHERE ID='".$id."'");
+ var_dump($result);
 			//echo wp_check_password( $old_pwd, $result->user_pass,$id);	
                         
         //check the given password and database password
 	
-				if(wp_check_password( $old_pwd, $result->user_pass, $id))
+				if($user && wp_check_password( $pass, $user->data->user_pass, $user->ID))
 				{
 					 wp_set_password($new_pwd ,$id);
 					 
 				}else{
-					echo "Sorry. password is does not match. Please try 
-another password.";
+					echo "Sorry. password is does not match. Please try another password.";
 					}     			
 
 ?>

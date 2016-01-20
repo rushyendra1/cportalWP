@@ -11,7 +11,7 @@ ob_start();
  * @since Portal 1.0
  */
 
-$pages = get_current_files();
+//$pages = get_current_files();
 /*
 if($pages == "login" && is_user_logged_in()){
     
@@ -40,46 +40,76 @@ if($pages == "login" && is_user_logged_in()){
 <body>
 <!--<a id="toggle_full_width" href="#" class="button tiny fixed hide-for-medium-down"><i class="fi-arrows-out"></i>&nbsp;&nbsp;Toggle Wide Screen</a>-->
     
-    <ul class="tabs_login">
-		<li class="active_login"><a href="#home">Home</a></li>
-		<li><a href="#Login">Login</a></li>
-		<li><a href="#contact">Contact</a></li>
-	</ul>
-    
-    
-			
-	
+    <!doctype html>
 
-   
-    
-    
-    
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Customer Portal</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="styles/print/main.css" rel="stylesheet" type="text/css" media="print">
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if IE 6]>
+<script src="js/belatedPNG.js"></script>
+<script>
+	DD_belatedPNG.fix('*');
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+
+function Openeditcourse(a)
+{
+	var links = "courseinsert.php?slid=" + a + "&view=course";
+  var ReturnedValue = showModalDialog(links,"Passed String","dialogWidth:450px; dialogHeight:400px; status:no; center:yes");
+	//alert("Modal Dialog returned '" + ReturnValued + "'");
+}
+
+</script>
+</head>
+
+<body>
+<div id="wrap">
+
+<section id="top">
+<nav id="mainnav">
+<h1 id="sitename" class="logotext">
+    <a href="index.php">Customer Portal</a>
+</h1>
+<ul>
+    <li ><a href="<?php echo get_site_url() ?>/portal/Index">Home</a></li>
+<li><a href="<?php echo get_site_url() ?>/portal/login"><span>Login</span></a></li>
+<li><a href="<?php echo get_site_url() ?>/portal/contact"><span>Contact-us</span></a></li>
+</ul>
+</nav>
+</section>
     
 <p class="hide-for-medium-down">&nbsp;</p>
 
-<a href="<?php echo get_site_url() ?>" id="home" >Home</a>
+<!--<a href="<?php echo get_site_url() ?>" id="home" >Home</a>
 
-<a href="<?php echo get_site_url() ?>" id="homeSite" >Login</a>
+<a href="<?php echo get_site_url() ?>" id="homeSite" >Login</a> -->
 
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
              <input type="hidden" value="<?php echo $pages; ?>" id="path" >
              <div id="home">
-                 <p>hi this is swaroop </p>
+                
                  </div>
-            
 <div id="Login">
      <?php
-   
          // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
      if(is_user_logged_in()){
-         $result = wp_get_current_user();
          
+         $result = wp_get_current_user();    
          if(isset($result->user_nicename))
          $name = $result->user_nicename;
          if($name == "")
              $name = $result->user_login;
-         
+        
      ?>
           <div class="headerDiv">
               Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>

@@ -13,7 +13,7 @@ $id = (isset($_POST['id']))?$_POST['id']: 0;
   $user_settings_array = $wpdb->get_row(" SELECT id,attribute,form_element,
       title_placeholder,searchable,options,order_by,placeholder,
       class_name,style_name,is_required,is_visible_reg,is_visible_user
-                                    FROM  user_settings  
+                                    FROM  ".$table_prefix."user_settings  
                                     WHERE id ='".$id."'
                                      ORDER BY id asc"
                         );

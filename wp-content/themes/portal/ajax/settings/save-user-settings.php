@@ -1,9 +1,12 @@
 <?php
-include_once("../../common.php");
-global $root;
-include_once $root.'/config.php'; 
-include_once $root.'/init.php';
-global $db;
+global $wpdb;
+global $table_prefix;
+if(!isset($wpdb))
+{
+    include_once('../../../../../wp-config.php');
+    include_once('../../../../../wp-load.php');
+    include_once('../../../../../wp-includes/wp-db.php');
+}
 $name = (isset($_POST['name']))?$_POST['name']: "";
 $element_type = (isset($_POST['element_type']))?$_POST['element_type']: "";
 $place_holder = (isset($_POST['place_holder']))?$_POST['place_holder']: "";
@@ -34,20 +37,20 @@ $insert_data = array("attribute" => $name,
                      );
 if($id){
    
-	@pg_update($db,"user_settings", $insert_data, array("id" => $id));
+	$wpdb->update($table_prefix."user_settings", $insert_data, array("id" => $id));
         
 }else{
     
-  $max_info_q = @pg_query($db,"SELECT max(order_by) as max_order "
-          . " FROM user_settings"); 
+  $max_info = $wpdb->get_row("SELECT max(order_by) as max_order "
+          . " FROM ".$table_prefix."user_settings"); 
   
-  $max_info = @pg_fetch_assoc($max_info_q);
+  
   $max = 0;
-  if($max_info['max_order'] != NULL)
-    $max = $max_info['max_order'];
+  if(isset($max_info->max_order) && $max_info->max_order != NULL)
+    $max = $max_info->max_order;
   $max+=1;
   $insert_data['order_by'] = $max;
-@pg_insert($db,"user_settings", $insert_data);
+$wpdb->insert($table_prefix."user_settings", $insert_data);
 //$id = pg_last_oid($res);
 }
 //echo $id;

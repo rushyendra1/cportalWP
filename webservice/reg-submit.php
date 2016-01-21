@@ -104,7 +104,7 @@ $user_id = mysqli_insert_id($con);
   $headers  = 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   $headers  .= 'From: '.$admin_email."\r\n";
-  @mail($email, $subject, $msg,$headers);
+  @mail($email, $subject, nl2br($msg),$headers);
  //Set the password
  wp_set_password($password,$user_id);
  $site = get_site_url();

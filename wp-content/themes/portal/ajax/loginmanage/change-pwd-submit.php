@@ -59,6 +59,6 @@ global $user_ID;
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   $headers  .= 'From: '.$admin_email."\r\n";
   
-mail($user_email,$subject,$message,$headers);
+mail($user_email,$subject,nl2br($message),$headers);
    	
 ?>

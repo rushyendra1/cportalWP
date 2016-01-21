@@ -2078,8 +2078,13 @@ function remove_menus()
 }
 add_action( 'admin_enqueue_scripts', 'call_js_admin' );
 function email_template_list()
-{
-    echo "E-mail template list";
+{?>
+        <input type="hidden" id="pages" value="email_template">
+<input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
+<div class="box span12 content-disp">
+    
+</div>
+<?php    
 }
 function call_js_admin()
 {

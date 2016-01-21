@@ -17,7 +17,24 @@ $(document).ready(function(){
    var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")
     userSettingsDispCall();
+   if(page == "email_template")
+    emailTemplateDispCall();
 });
+/**List the email Template
+ * @name emailTemplateDispCall
+ * @returns {void}
+ */
+function emailTemplateDispCall()
+{
+     document.title = "Emal Template List";
+        var root = $.trim($("#rootTheme").val());
+        $.post(root+"/ajax/email-template/email-template-list-disp.php",{},function(data){
+               $(".content-disp").html(data);
+               addShowSelect();
+                callTemplate(1, "emails","call");
+            
+             });
+}
 /**
      * User Settings Display
      * @name userSettingsDispCall
@@ -889,3 +906,299 @@ function requiredValidation(error)
              // hideLoader();*/
         }
     }
+    /**
+ * Display the data Template
+ * @name displayDataTemplate
+ * @param {int} length
+ * @param {int} page
+ * @param {object} res
+ * @returns {void}
+ */
+function displayDataTemplate(length, page, res)
+{
+    var tableData = "";
+    var pageData = "";
+    var len = res.data.length;
+    var userData = res.data;
+    console.log(userData);
+    if (len) {
+        for (var i = 0; i < len; i++)
+        {
+            var id = userData[i].id;
+            var action = '<a class="btn btn-info editEmail" data-id="'+ id +'"  data-rel="tooltip" data-original-title="Edit E-mail Template"><i class="halflings-icon white edit"></i></a>';
+            action += '<a class="btn btn-danger accountChange"  data-id="' + id + '"><i class="halflings-icon white trash"></i></a>';
+            tableData += "<tr><td><input type='checkbox' class='checkData' value='" + id + "'></td>\n\
+                             <td>" + userData[i].name + "</td>\n\\n\
+                            <td>" + userData[i].subject + "</td>\n\
+                              <td>" + nl2br(userData[i].content) + "</td>\n\
+                               <td>" + action + "</td></tr>";
+        }
+    } else
+        tableData += '<tr><td colspan="8" class="center">No data found.</td></tr>';
+
+    pageData += pagination(length, page, res.recordsTotal, len, "displayEmails");
+
+    pageData += '</div>';
+    $("div.paginationDiv").html(pageData);
+    $("#emailTemplateBody").html(tableData);
+    //callToolTip();
+    emailTemplateChanges();
+    showPopUp();
+    hideLoader();
+}
+/**
+ * get the tooltip values
+ * @name callToolTip
+ * @returns {void}
+ */
+function callToolTip()
+{
+    $('[rel="tooltip"],[data-rel="tooltip"]').tooltip({"placement":"bottom",delay: { show: 400, hide: 200 }});
+}
+/**
+ * Changes the account status
+ * @name emailTemplateChanges
+ * @returns {void}
+ */
+function  emailTemplateChanges()
+{
+    /** Per Page Display **/
+      $("#perPageItem").on("change",function(e){
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+        {
+            return false;
+        }
+        $(this).addClass(className);
+       callTemplate(1, "emails","call","",className, this);
+       
+    });
+    /** show the sort Order for users **/
+    $(".sortOrder").on("click",function(e){
+       e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+        {
+            return false;
+        }
+        $(this).addClass(className);
+       var ele = $(this).find("span.sorting-indicator");
+       var val = ele.html();
+       $(".sorting-indicator").val("^");
+       $(".sorting-indicator").hide();
+       $(ele).show();
+       var sortBy = "";
+       if(val == "^"){
+           val = "v"
+           sortBy = "desc";
+       }
+       else{
+           val = "^";
+           sortBy = "asc";
+       }
+       $(ele).html(val);
+       var fieldVal = $(this).data("type");
+       
+     var search = $.trim($("#searchItem").val());
+     var length =10;
+     var page =1;
+     var that = this;
+       $.post("ajax/email-template/email-template-list.php",{sort:fieldVal, sort_by:sortBy,search:search,
+       page: page, length: length},function(res){
+                  displayDataTemplate(length, page, res);
+                   $(that).removeClass(className);
+       },'json');
+       
+    });
+    /** Get the Add Email Template List **/
+   $(".addClass").on("click",function(e){
+       
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+            return false;
+        $(this).addClass(className);
+        showLoader();
+        var data = emailForm("Add");
+        var title = "Add E-mail Template";
+         $("#titleBred").html(title);
+          document.title = title;
+        $(".content-disp").html(data);
+        $(this).removeClass(className);
+        firstNameFocus("#name");
+        emailCheckErrors();
+        hideLoader();
+   });
+    /** Edit E-mail Template **/
+    $(".editEmail").on("click",function(e){
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+            return false;
+        $(this).addClass(className);
+        showLoader();
+        var id = $(this).data("id");
+        var that = this;
+       $.post("ajax/email-template/view-email-template.php",{id:id},function(res){
+           var data = emailForm("Edit");
+           var title = "Edit E-mail Template";
+           $("#titleBred").html(title);
+           document.title = title;
+           $(".content-disp").html(data);
+           var emailInfo = res.data;
+           $("#name").val(emailInfo.name);
+           $("#name").attr("disabled","disabled");
+           $("#subject").val(emailInfo.subject);
+           $("#contentEmail").val(emailInfo.content);
+           $("#id").val(base64_encode(emailInfo.id));
+           firstNameFocus("#name");
+           emailCheckErrors();
+           $(that).removeClass(className);
+           hideLoader();
+        },"json");
+        //hideLoader();
+    }); 
+    //check the check boxex
+    checkAll();
+   
+   
+    /** status Changes **/
+    $(".accountChange").on("click", function (e) {
+        e.stopImmediatePropagation();
+         var that = this;
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+            return false;
+        $(this).addClass(className);
+        if (!confirm("Are you sure want to delete Email Template?"))
+        {
+             $(that).removeClass(className);
+            return false;
+        }
+        $(this).attr("disabled");
+        showLoader();
+        var idArray = $.trim($(this).data("id"));
+        var id = [idArray];
+        $.post("ajax/email-template/delete-email-template.php", {id: id}, function (data) {
+           // window.location.href = "email-template.php";
+            $(that).removeClass(className);
+            emailTempDispCall();
+            hideLoader();
+            return false;
+        });
+    });
+    //delete the selected users
+    $(".deleteAllEmailClass").on("click", function (e)
+    {
+        e.stopImmediatePropagation();
+        var that = this;
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+            return false;
+        $(this).addClass(className);
+        var title = "Request Message";
+        var delId = [];
+        $(".checkData").each(function ()
+        {
+            if ($(this).is(":checked"))
+                delId.push($(this).val());
+        });
+        if (!delId.length)
+        {
+            alertData(title, "Please select atleast one of the E-mail Template");
+            $(that).removeClass(className);
+            return false;
+        }
+      
+            var r = confirm("Are sure want to delete the E-mail Template?");
+            if (r == false) {
+                //hideLoader();
+                $(that).removeClass(className);
+                return false;
+            }
+       
+        showLoader();
+        var id = delId;
+        $.post("ajax/email-template/delete-email-template.php", {"id": id}, function (data) {
+            var msg = data.msg;
+            if (data.error==0)
+            {
+                 alertData(title,msg);
+                 $(that).removeClass(className);
+                 emailTempDispCall();
+                 hideLoader();
+                 return false;
+                //window.location.href = "email-template.php";
+            }else{
+                alertData(title,msg);
+                $(that).removeClass(className);
+                 hideLoader();
+                 return false;
+            }
+        },"json");
+    });
+    
+    /** Search the email template by name **/
+    $(".searchEmails").on("click", function (e) {
+        e.stopImmediatePropagation();
+         var className = "ajaxCall";
+        if($(this).hasClass(className))
+            return false;
+        $(this).addClass(className);
+        showLoader();
+        /*$(this).attr("disabled");
+        var search = $.trim($("#searchItem").val());
+        if (search == "")
+        {
+            alertData("Request Message", "Please enter the search item.")
+            $(this).removeAttr("disabled");
+            hideLoader();
+            $("#searchItem").focus();
+            return false;
+        }*/
+         callTemplate(1, "emails", "search",$.trim($("#searchItem").val()),className,this);
+        //classEmailSearch(1, 10, search);
+    });
+    /** email pagination **/
+     $(".displayEmails").on("click", function (e) {
+        e.stopImmediatePropagation();
+            var className = "ajaxCall";
+        if($(this).hasClass(className))
+            return false;
+        $(this).addClass(className);
+        showLoader();
+        callTemplate($(this).data("paged"), "emails", "page",$.trim($("#searchItem").val()),className,this);
+        showPopUp();
+        $("#checkBoxId").removeAttr("checked");
+        hideLoader();
+        return false;
+    });
+    
+    }
+/**
+ * Check/uncheck the checkboxes
+ * @name checkAll
+ * @returns {void}
+ */
+function checkAll(ele)
+{
+      /** check All **/
+      if(typeof(ele) == "undefined")
+          ele = "#checkBoxId";
+      else {
+          var obj =  $("#userTab li.active a").attr("href");
+          ele = obj + "  " + ele; 
+      }
+      
+         
+      $(ele).on("click", function(e)
+  {
+      e.stopImmediatePropagation();
+	  if($(this).is(":checked"))
+	   $(".checkData").attr("checked", "checked");
+	   else
+	   $(".checkData").removeAttr("checked");
+	
+  });
+}

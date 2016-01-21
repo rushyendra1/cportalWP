@@ -6,12 +6,12 @@
  * 
  * This file is part of the WP-Members plugin by Chad Butler
  * You can find out more about this plugin at http://rocketgeek.com
- * Copyright (c) 2006-2015  Chad Butler
+ * Copyright (c) 2006-2016  Chad Butler
  * WP-Members(tm) is a trademark of butlerblog.com
  *
  * @package WP-Members
  * @author Chad Butler
- * @copyright 2006-2015
+ * @copyright 2006-2016
  *
  * Functions included:
  * - wpmem_a_do_field_reorder
@@ -270,11 +270,12 @@ function wpmem_admin_action( $action ) {
 	switch ( $action ) {
 
 	case 'update_settings':
+	case 'update_cpts':
 		/**
 		 * Load Options tab functions.
 		 */
 		include_once( WPMEM_PATH . 'admin/tab-options.php' );
-		$did_update = wpmem_update_options();
+		$did_update = ( 'update_cpts' == $action ) ? wpmem_update_cpts() : wpmem_update_options();
 		break;
 
 	case 'update_fields':

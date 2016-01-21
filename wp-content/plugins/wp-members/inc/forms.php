@@ -6,13 +6,13 @@
  * 
  * This file is part of the WP-Members plugin by Chad Butler
  * You can find out more about this plugin at http://rocketgeek.com
- * Copyright (c) 2006-2015 Chad Butler
+ * Copyright (c) 2006-2016 Chad Butler
  * WP-Members(tm) is a trademark of butlerblog.com
  *
- * @package WordPress
- * @subpackage WP-Members
+ * @package WP-Members
+ * @subpackage WP-Members Form Building Functions
  * @author Chad Butler
- * @copyright 2006-2015
+ * @copyright 2006-2016
  *
  * Functions Included:
  * - wpmem_inc_login
@@ -22,6 +22,7 @@
  * - wpmem_inc_registration
  * - wpmem_inc_recaptcha
  * - wpmem_inc_attribution
+ * - wpmem_build_rs_captcha
  */
 
 
@@ -412,7 +413,7 @@ function wpmem_login_form( $page, $arr ) {
 	if ( ( $wpmem->user_pages['profile'] != null || $page == 'members' ) && $arr['action'] == 'login' ) { 
 		
 		/**
-		 * Filter the forgot password link.
+		 * Filters the forgot password link.
 		 *
 		 * @since 2.8.0
 		 *
@@ -420,14 +421,23 @@ function wpmem_login_form( $page, $arr ) {
 	 	 */
 		$link = apply_filters( 'wpmem_forgot_link', wpmem_chk_qstr( $wpmem->user_pages['profile'] ) . 'a=pwdreset' );	
 		$str  = __( 'Forgot password?', 'wp-members' ) . '&nbsp;<a href="' . $link . '">' . __( 'Click here to reset', 'wp-members' ) . '</a>';
-		$form = $form . $args['link_before'] . apply_filters( 'wpmem_forgot_link_str', $str ) . $args['link_after'] . $args['n'];
+		/**
+		 * Filters the forgot password HTML.
+		 *
+		 * @since 2.9.0
+		 * @since 3.0.9 Added $link parameter.
+		 *
+		 * @param string $str  The forgot password link HTML.
+		 * @param string $link The forgot password link.
+		 */
+		$form = $form . $args['link_before'] . apply_filters( 'wpmem_forgot_link_str', $str, $link ) . $args['link_after'] . $args['n'];
 		
 	}
 	
 	if ( ( $wpmem->user_pages['register'] != null ) && $arr['action'] == 'login' ) { 
 
 		/**
-		 * Filter the link to the registration page.
+		 * Filters the link to the registration page.
 		 *
 		 * @since 2.8.0
 		 *
@@ -435,9 +445,41 @@ function wpmem_login_form( $page, $arr ) {
 	 	 */
 		$link = apply_filters( 'wpmem_reg_link', $wpmem->user_pages['register'] );
 		$str  = __( 'New User?', 'wp-members' ) . '&nbsp;<a href="' . $link . '">' . __( 'Click here to register', 'wp-members' ) . '</a>';
-		$form = $form . $args['link_before'] . apply_filters( 'wpmem_reg_link_str', $str ) . $args['link_after'] . $args['n'];
+		/**
+		 * Filters the register link HTML.
+		 *
+		 * @since 2.9.0
+		 * @since 3.0.9 Added $link parameter.
+		 *
+		 * @param string $str  The register link HTML.
+		 * @param string $link The register link.
+		 */
+		$form = $form . $args['link_before'] . apply_filters( 'wpmem_reg_link_str', $str, $link ) . $args['link_after'] . $args['n'];
 		
-	}			
+	}
+	
+	if ( ( $wpmem->user_pages['profile'] != null || $page == 'members' ) && $arr['action'] == 'pwdreset' ) {
+		
+		/**
+		 * Filters the forgot username link.
+		 *
+		 * @since 3.0.9
+		 *
+		 * @param string The forgot username link.
+		 */
+		$link = apply_filters( 'wpmem_username_link',  wpmem_chk_qstr( $wpmem->user_pages['profile'] ) . 'a=getusername' );	
+		$str  = __( 'Forgot username?', 'wp-members' ) . '&nbsp;<a href="' . $link . '">' . __( 'Click here', 'wp-members' ) . '</a>';
+		/**
+		 * Filters the forgot username link HTML.
+		 *
+		 * @since 3.0.9
+		 *
+		 * @param string $str  The forgot username link HTML.
+		 * @param string $link The forgot username link.
+		 */
+		$form = $form . $args['link_before'] . apply_filters( 'wpmem_username_link_str', $str, $link ) . $args['link_after'] . $args['n'];
+		
+	}
 	
 	// Apply the heading.
 	$form = $args['heading_before'] . $arr['heading'] . $args['heading_after'] . $args['n'] . $form;
@@ -587,9 +629,10 @@ function wpmem_inc_registration( $toggle = 'new', $heading = '', $redirect_to = 
 	// Add the username row to the array.
 	$rows['username'] = array( 
 		'order'        => 0,
-		'meta'         => 'username', 
-		'type'         => 'text', 
-		'value'        => $val,  
+		'meta'         => 'username',
+		'type'         => 'text',
+		'value'        => $val,
+		'label_text'   => __( 'Choose a Username', 'wp-members' ),
 		'row_before'   => $args['row_before'],
 		'label'        => $label,
 		'field_before' => $field_before,
@@ -740,9 +783,10 @@ function wpmem_inc_registration( $toggle = 'new', $heading = '', $redirect_to = 
 		if ( $field[4] == 'y' ) {
 			$rows[$field[2]] = array(
 				'order'        => $field[0],
-				'meta'         => $field[2], 
-				'type'         => $field[3], 
-				'value'        => $val,  
+				'meta'         => $field[2],
+				'type'         => $field[3],
+				'value'        => $val,
+				'label_text'   => __( $field[1], 'wp-members' ),
 				'row_before'   => $args['row_before'],
 				'label'        => $label,
 				'field_before' => $field_before,
@@ -760,7 +804,8 @@ function wpmem_inc_registration( $toggle = 'new', $heading = '', $redirect_to = 
 			'order'        => '',
 			'meta'         => '', 
 			'type'         => 'text', 
-			'value'        => '',  
+			'value'        => '',
+			'label_text'   => $row['label_text'],
 			'row_before'   => $args['row_before'],
 			'label'        => $row['label'],
 			'field_before' => ( $args['wrap_inputs'] ) ? '<div class="div_text">' : '',
@@ -779,7 +824,21 @@ function wpmem_inc_registration( $toggle = 'new', $heading = '', $redirect_to = 
 	 *
 	 * @since 2.9.0
 	 *
-	 * @param array  $rows    An array containing the form rows. 
+	 * @param array  $rows    {
+	 *     An array containing the form rows. 
+	 *
+	 *     @type string order        Field display order.
+	 *     @type string meta         Field meta tag (not used for display).
+	 *     @type string type         Input field type (not used for display).
+	 *     @type string value        Input field value (not used for display).
+	 *     @type string label_text   Raw text for the label (not used for display).
+	 *     @type string row_before   Opening wrapper tag around the row.
+	 *     @type string label        Label tag.
+	 *     @type string field_before Opening wrapper tag before the input tag.
+	 *     @type string field        The field input tag.
+	 *     @type string field_after  Closing wrapper tag around the input tag.
+	 *     @type string row_after    Closing wrapper tag around the row.
+	 * }
 	 * @param string $toggle  Toggle new registration or profile update. new|edit.
  	 */
 	$rows = apply_filters( 'wpmem_register_form_rows', $rows, $toggle );
@@ -908,7 +967,21 @@ function wpmem_inc_registration( $toggle = 'new', $heading = '', $redirect_to = 
 	 *
 	 * @param string $form   The HTML of the final generated form.
 	 * @param string $toggle Toggle new registration or profile update. new|edit.
-	 * @param array  $rows   The rows array
+	 * @param array  $rows   {
+	 *     An array containing the form rows. 
+	 *
+	 *     @type string order        Field display order.
+	 *     @type string meta         Field meta tag (not used for display).
+	 *     @type string type         Input field type (not used for display).
+	 *     @type string value        Input field value (not used for display).
+	 *     @type string label_text   Raw text for the label (not used for display).
+	 *     @type string row_before   Opening wrapper tag around the row.
+	 *     @type string label        Label tag.
+	 *     @type string field_before Opening wrapper tag before the input tag.
+	 *     @type string field        The field input tag.
+	 *     @type string field_after  Closing wrapper tag around the input tag.
+	 *     @type string row_after    Closing wrapper tag around the row.
+	 * }
 	 * @param string $hidden The HTML string of hidden fields
  	 */
 	$form = apply_filters( 'wpmem_register_form', $form, $toggle, $rows, $hidden );
@@ -939,12 +1012,13 @@ if ( ! function_exists( 'wpmem_inc_recaptcha' ) ):
  * @since  2.6.0
  *
  * @param  array  $arr
- * @return string $str
+ * @return string $str HTML for reCAPTCHA display.
  */
 function wpmem_inc_recaptcha( $arr ) {
 
 	// Determine if reCAPTCHA should be another language.
 	$allowed_langs = array( 'nl', 'fr', 'de', 'pt', 'ru', 'es', 'tr' );
+	/** This filter is documented in wp-includes/l10n.php */
 	$locale = apply_filters( 'plugin_locale', get_locale(), 'wp-members' );
 	$compare_lang  = strtolower( substr( $locale, -2 ) );
 	$use_the_lang  = ( in_array( $compare_lang, $allowed_langs ) ) ? $compare_lang : false;
@@ -1010,7 +1084,13 @@ function wpmem_inc_attribution() {
  *
  * @since 2.9.5
  *
- * @return array Form elements for Really Simple CAPTCHA.
+ * @return array {
+ *     HTML Form elements for Really Simple CAPTCHA.
+ *
+ *     @type string label_text The raw text used for the label.
+ *     @type string label      The HTML for the label.
+ *     @type string field      The input tag and the CAPTCHA image.
+ * }
  */
 function wpmem_build_rs_captcha() {
 
@@ -1066,8 +1146,9 @@ function wpmem_build_rs_captcha() {
 		$pre   = $wpmem_captcha_prefix;
 
 		return array( 
-			'label' => '<label class="text" for="captcha">' . __( 'Input the code:', 'wp-members' ) . '</label>',
-			'field' => '<input id="captcha_code" name="captcha_code" size="'.$size.'" type="text" />
+			'label_text' => __( 'Input the code:', 'wp-members' ),
+			'label'      => '<label class="text" for="captcha">' . __( 'Input the code:', 'wp-members' ) . '</label>',
+			'field'      => '<input id="captcha_code" name="captcha_code" size="'.$size.'" type="text" />
 					<input id="captcha_prefix" name="captcha_prefix" type="hidden" value="' . $pre . '" />
 					<img src="'.$src.'" alt="captcha" width="'.$img_w.'" height="'.$img_h.'" />'
 		);

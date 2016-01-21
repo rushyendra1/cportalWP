@@ -31,13 +31,12 @@ class WP_Members {
 		$settings = apply_filters( 'wpmem_settings', get_option( 'wpmembers_settings' ) );
 
 		// Validate that v3 settings are loaded.
-		if ( ! isset( $settings['version'] ) ) {
-			// If settings were not properly built during plugin upgrade.
+		if ( ! isset( $settings['version'] ) || $settings['version'] != WPMEM_VERSION ) {
 			/**
 			 * Load installation routine.
 			 */
 			require_once( WPMEM_PATH . 'wp-members-install.php' );
-			// Update settings for 3.x
+			// Update settings.
 			$settings = apply_filters( 'wpmem_settings', wpmem_update_settings() );
 		}
 		
@@ -266,58 +265,62 @@ class WP_Members {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @global object $post The WordPress Post object.
-	 *
-	 * @return bool $block true|false
+	 * @global object $post  The WordPress Post object.
+	 * @return bool   $block true|false
 	 */
 	function is_blocked() {
 	
 		global $post;
+		
+		if ( $post ) {
 
-		// Backward compatibility for old block/unblock meta.
-		$meta = get_post_meta( $post->ID, '_wpmem_block', true );
-		if ( ! $meta ) {
-			// Check for old meta.
-			$old_block   = get_post_meta( $post->ID, 'block',   true );
-			$old_unblock = get_post_meta( $post->ID, 'unblock', true );
-			$meta = ( $old_block ) ? 1 : ( ( $old_unblock ) ? 0 : $meta );
-		}
-
-		// Setup defaults.
-		$defaults = array(
-			'post_id'    => $post->ID,
-			'post_type'  => $post->post_type,
-			'block'      => ( isset( $this->block[ $post->post_type ] ) && $this->block[ $post->post_type ] == 1 ) ? true : false,
-			'block_meta' => $meta, // @todo get_post_meta( $post->ID, '_wpmem_block', true ),
-			'block_type' => ( $post->post_type == 'post' ) ? $this->block['post'] : ( ( $post->post_type == 'page' ) ? $this->block['page'] : 0 ),
-		);
-
-		/**
-		 * Filter the block arguments.
-		 *
-		 * @since 2.9.8
-		 *
-		 * @param array $args     Null.
-		 * @param array $defaults Although you are not filtering the defaults, knowing what they are can assist developing more powerful functions.
-		 */
-		$args = apply_filters( 'wpmem_block_args', '', $defaults );
-
-		// Merge $args with defaults.
-		$args = ( wp_parse_args( $args, $defaults ) );
-
-		if ( is_single() || is_page() ) {
-			switch( $args['block_type'] ) {
-				case 1: // If content is blocked by default.
-					$args['block'] = ( $args['block_meta'] == '0' ) ? false : $args['block'];
-					break;
-				case 0 : // If content is unblocked by default.
-					$args['block'] = ( $args['block_meta'] == '1' ) ? true : $args['block'];
-					break;
+			// Backward compatibility for old block/unblock meta.
+			$meta = get_post_meta( $post->ID, '_wpmem_block', true );
+			if ( ! $meta ) {
+				// Check for old meta.
+				$old_block   = get_post_meta( $post->ID, 'block',   true );
+				$old_unblock = get_post_meta( $post->ID, 'unblock', true );
+				$meta = ( $old_block ) ? 1 : ( ( $old_unblock ) ? 0 : $meta );
 			}
+	
+			// Setup defaults.
+			$defaults = array(
+				'post_id'    => $post->ID,
+				'post_type'  => $post->post_type,
+				'block'      => ( isset( $this->block[ $post->post_type ] ) && $this->block[ $post->post_type ] == 1 ) ? true : false,
+				'block_meta' => $meta, // @todo get_post_meta( $post->ID, '_wpmem_block', true ),
+				'block_type' => ( isset( $this->block[ $post->post_type ] ) ) ? $this->block[ $post->post_type ] : 0,
+			);
+	
+			/**
+			 * Filter the block arguments.
+			 *
+			 * @since 2.9.8
+			 *
+			 * @param array $args     Null.
+			 * @param array $defaults Although you are not filtering the defaults, knowing what they are can assist developing more powerful functions.
+			 */
+			$args = apply_filters( 'wpmem_block_args', '', $defaults );
+	
+			// Merge $args with defaults.
+			$args = ( wp_parse_args( $args, $defaults ) );
+	
+			if ( is_single() || is_page() ) {
+				switch( $args['block_type'] ) {
+					case 1: // If content is blocked by default.
+						$args['block'] = ( $args['block_meta'] == '0' ) ? false : $args['block'];
+						break;
+					case 0 : // If content is unblocked by default.
+						$args['block'] = ( $args['block_meta'] == '1' ) ? true : $args['block'];
+						break;
+				}
+
+			} else {
+				$args['block'] = false;
+			}
+
 		} else {
-
-			$args['block'] = false;
-
+			$args = array( 'block' => false );
 		}
 
 		/**
@@ -395,7 +398,7 @@ class WP_Members {
 							// Shuts down excerpts on multipage posts if not on first page.
 							$content = '';
 
-					} elseif ( $this->show_excerpt[ $post->post_type ] == 1 ) {
+					} elseif ( isset( $this->show_excerpt[ $post->post_type ] ) && $this->show_excerpt[ $post->post_type ] == 1 ) {
 
 						if ( ! stristr( $content, '<span id="more' ) ) {
 							$content = wpmem_do_excerpt( $content );
@@ -411,9 +414,9 @@ class WP_Members {
 
 					}
 
-					$content = ( $this->show_login[ $post->post_type ] == 1 ) ? $content . wpmem_inc_login() : $content . wpmem_inc_login( 'page', '', 'hide' );
+					$content = ( isset( $this->show_login[ $post->post_type ] ) && $this->show_login[ $post->post_type ] == 1 ) ? $content . wpmem_inc_login() : $content . wpmem_inc_login( 'page', '', 'hide' );
 
-					$content = ( $this->show_reg[ $post->post_type ] == 1 ) ? $content . wpmem_inc_registration() : $content;
+					$content = ( isset( $this->show_reg[ $post->post_type ] ) && $this->show_reg[ $post->post_type ] == 1 ) ? $content . wpmem_inc_registration() : $content;
 				}
 
 			// Protects comments if expiration module is used and user is expired.

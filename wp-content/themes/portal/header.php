@@ -117,4 +117,11 @@ function Openeditcourse(a)
           </div>
           <?php } ?>
 </div>
-            
+             <?php
+             
+             $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
+             unset($_SESSION['msg']);
+             ?>
+             <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+             
+             

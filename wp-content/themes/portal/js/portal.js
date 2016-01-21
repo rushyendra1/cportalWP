@@ -16,7 +16,9 @@ $(document).ready(function(){
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    
+   var msg = $("#msg").val();
+   if(msg != "")
+       alertData("Message",msg);
     if(path == "object-list")
     {
        
@@ -179,20 +181,7 @@ $(".logouts").on("click",function(e){
          //  hideLoader();
           return false;
         }
-      var that = this;
-      /*$.post(root+"/ajax/loginmanage/change-pwd.php",{old_pwd:oldPwd,id: $.trim($("#id").val())},function(data){
-          if(data!= "")
-          {
-              showLabelFocus(that,data);
-              $(that).val("");
-               //$(this).removeAttr("disabled");
-              $(that).focus();
-              hideLoader();
-              return false;
-          }
-        //  hideLoader();
-      });
-   */
+
     }); 
  /** Check the Old Password is existed or not in change password **/
  
@@ -231,7 +220,7 @@ $(".logouts").on("click",function(e){
     });
      /** Change Password **/
      $("#changePwdSubmit").on("click",function(e){
-         
+         var site = $.trim($("#siteTheme").val());
         e.stopImmediatePropagation();
         var className = "ajaxCall";
         if($(this).hasClass(className))
@@ -278,10 +267,10 @@ $(".logouts").on("click",function(e){
          $(".correctPassword").show();
          var that = this;
          
-         $.post( root+"/ajax/loginmanage/change-pwd.php", {id:$.trim($("#userId").val()),
+         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
-      if(data == "" )
+      if(data == null )
             {
                 window.location.href = site+'/profile';
                
@@ -289,11 +278,7 @@ $(".logouts").on("click",function(e){
             } 
             //data = $.trim(data);
           // var msg = data.msg;
-        
-       
-       
-                   
-                         var site = $.trim($("#siteTheme").val());
+                         
                       
             var role = data.role;
           
@@ -1064,43 +1049,6 @@ function displayObjects()
        var field = $.trim($(this).data("field"));
       getObjectTemplate(view,this,classView,length,page,type,field,orderBy,alphaType);
    });
-function changePwd()
-{
-    var oldPwd = document.getElementById("oldPwd").value;
-     var root = document.getElementById("rootTheme").value;
-      var newPwd = document.getElementById("newPwd").value;
-      var that = document.getElementById("changePwdSubmit");
-       var confirmPwd = document.getElementById("confirmPwd").value;
-       
-        $.post(root+"/ajax/loginmanage/change-pwd.php", {old_pwd:oldPwd,new_pwd:newPwd,confirm_pwd:confirmPwd},function(data){
-             if(data!= "")
-          {
-              showLabelFocus(that,data);
-              $(that).val("");
-               //$(this).removeAttr("disabled");
-              $(that).focus();
-            //  hideLoader();
-              return false;
-          }
-    }); 
-    /*
-
-      	global $wpdb;
-		global $table_prefix;
-
-		//$wp_ad_counter_table = $wpdb->prefix . "ad_counter";
-
-		$submit = $_POST['submit'];
-      	if( isset($submit) ) {
-      		$results = $wpdb->update('users', array( 'user_pass' => $password),"WHERE ID =".$_REQUEST["$id"]);
-      		echo 'Password Updated';
-      	}
-        else {
-            echo 'Password doesnot match ';
-        }
-        */
-}
-
 
 }
 /**

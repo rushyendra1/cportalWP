@@ -80,7 +80,16 @@ $user_id = mysqli_insert_id($con);
  
  $password = generate_strong_password();
  $blog_title = get_option("blogname");
-  $msg = "<h3>Your Authentication Details</h3><table cellspacing='0' cellpadding='0'>"
+ $email_info = $wpdb->get_row("SELECT subject,content "
+                             . " FROM ".$table_prefix."email_template"
+                             . " WHERE name='authentication'");
+ $subject = $email_info->subject;
+ $msg  = $email_info->content;
+ $url = get_site_url();
+ $msg = str_replace("!!URL!!",$url, $msg );
+ $msg = str_replace("!!UserName!!",$uname, $msg );
+ $msg = str_replace("!!PassWord!!",$password, $msg );
+  /*$msg = "<h3>Your Authentication Details</h3><table cellspacing='0' cellpadding='0'>"
           . "<tr><td colspan='2'>Thank you for registering for " .$blog_title."</td></tr>"
          . "<tr><td style='width:150px'>Access Url:</td>"
          . "<td><a href='".get_site_url()."'>".get_site_url()."</a></td></tr>"
@@ -88,13 +97,14 @@ $user_id = mysqli_insert_id($con);
          . "<td>".$uname."</td></tr>"
          . "<tr><td style='width:150px'>Password:</td>"
          . "<td>".$password."</td></tr>"
-         . "</table>";
+         . "</table>";*/
+ 
  $admin_email = get_option('admin_email');
  //Send the password to respect email
   $headers  = 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   $headers  .= 'From: '.$admin_email."\r\n";
-  @mail($email, "Your Authentication Details", $msg,$headers);
+  @mail($email, $subject, $msg,$headers);
  //Set the password
  wp_set_password($password,$user_id);
  $site = get_site_url();
@@ -265,7 +275,10 @@ $res = mysqli_query($con,$insert_act_id);
     
 }
 
-echo json_encode(array("errorCode" => "Success","message" =>"", "userID" => $user_id,
+echo json_encode(array(
+    "errorCode" => "Success",
+    "message" =>"", 
+    "userID" => $user_id,
      "createdDateTime" => date("c", time())));
 exit;
 //echo $user_id; 

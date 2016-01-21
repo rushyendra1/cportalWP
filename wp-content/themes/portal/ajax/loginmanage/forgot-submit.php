@@ -41,14 +41,14 @@ if(is_array($user_info) && count($user_info)>0)
     {
         echo "Your account is Deactive Please check you mail.";
         $rand_no = generate_strong_password();
-        @pg_update($db, "contacts", array("activation_rand" => $rand_no), array("id" => $user_info['id']));
+        $wpdb->update( "user", array("activation_rand" => $rand_no), array("id" => $user_info['id']));
        
         $link = SITE_URL.'active-account.php?id='.base64_encode($rand_no);
          /** Get the Email **/
-        $email_query = @pg_query($db,"SELECT subject,content "
-        . " FROM email_template"
+        $email_info = $wpdb->get_row("SELECT subject,content "
+        . " FROM ".$table_prefix." email_template"
         . " WHERE name='activation email'");
-        $email_info = pg_fetch_assoc($email_query);
+        
         
         $subject = $email_info['subject'];
         $message  = $email_info['content'];
@@ -78,10 +78,10 @@ if(is_array($user_info) && count($user_info)>0)
     $link = SITE_URL.'change-pwd.php?s=1&id='.  base64_encode($rand_no).$admin_str;
    
      /** Get the Email **/
-        $email_query = @pg_query($db,"SELECT subject,content "
-        . " FROM email_template"
+        $email_info = $wpdb->get_row("SELECT subject,content "
+        . " FROM ".$table_prefix."email_template"
         . " WHERE name='forgot email'");
-        $email_info = @pg_fetch_assoc($email_query);
+       
         $subject = $email_info['subject'];
         $message  = $email_info['content'];
         $message = str_replace("!!userName!!", $name,$message);

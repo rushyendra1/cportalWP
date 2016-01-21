@@ -280,15 +280,22 @@ $(".logouts").on("click",function(e){
          $.post( root+"/ajax/loginmanage/change-pwd.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
-            //data = $.trim(data);
-            var msg = data.msg;
-                         var site = $.trim($("#siteTheme").val()); 
-            var role = data.role;
-            if(typeof(data) == null )
+      if(data == "" )
             {
-                window.location.href = site+"/profile";
+                window.location.href = site+'/profile';
+               
                 return false;
-            }
+            } 
+            //data = $.trim(data);
+          // var msg = data.msg;
+        
+       
+       
+                   
+                         var site = $.trim($("#siteTheme").val());
+                      
+            var role = data.role;
+          
              if (data.error == 1)
             {
                 $(that).removeClass(className);
@@ -303,7 +310,7 @@ $(".logouts").on("click",function(e){
               
              
                
-                window.location.href = site+"/profile";
+                window.location.href = site+'/profile';
             }
         },"json");
      });
@@ -458,7 +465,7 @@ function  checkUserName(ele,error,errorMsg)
 function pwdCheckError(status,error,ele)
 {
     var old = $.trim($(ele).val());
-    if (status == "0" && old == "" ) {
+    if ( old == "" ) {
             var msg = "Please enter your Old Password.";
               showLabelFocus(ele,msg);
               $(ele).val("");

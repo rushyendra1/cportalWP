@@ -16,7 +16,7 @@ if(!isset($wpdb))
 //$id = (isset($_POST['id']))?$_POST['id']: "";
 global $user_ID;
  $id = $user_ID;
- $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
+ $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename,user_email 
 				FROM ".$table_prefix."users
 				WHERE ID='".$id."'");
  
@@ -30,6 +30,27 @@ global $user_ID;
 					// $wpdb->update('users',$user_pass ,array("id"=> $id));
 				}else{
 					echo "Sorry. password is does not match. Please try another password.";
-					}     			
-
+					}     	
+                                        
+                                        session_start();
+                                        $email_info = $wpdb->get_row("SELECT subject,content "
+                                         . " FROM ".$table_prefix."email_template"
+                                         . " WHERE name='change password email'");
+                              
+            
+        $subject = $email_info->subject;
+        $message  = $email_info->content;
+        $message = str_replace("!!userName!!",$user_nicename,$message);
+        $message = str_replace("!!uname!!",$result->user_email,$message);
+        $message = str_replace("!!pwd!!", $new_pwd,$message);
+	
+       // if($type != "")  
+        //$_SESSION['msg'] = $subject;
+       
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+  $headers  .= 'From: '.$admin_email."\r\n";
+  
+mail($user_email,$subject,$message,$headers);
+   	
 ?>

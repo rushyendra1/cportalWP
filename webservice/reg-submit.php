@@ -66,8 +66,9 @@ if(is_array($user_exist_results) && count($user_exist_results)>0)
 
 $uname = $email;
 $nice_name = $first_name." " .$last_name;
-  $sql = 'INSERT INTO '.$table_prefix.'users(user_nicename,user_login,user_email)
- values("'.$nice_name.'","'. $uname.'","'.$email.'")';
+
+   $sql = 'INSERT INTO '.$table_prefix.'users(user_nicename,user_login,user_email,is_deactive)
+ values("'.$nice_name.'","'. $uname.'","'.$email.'",0)';
 $res = mysqli_query($con,$sql);
 
 if(!$res){

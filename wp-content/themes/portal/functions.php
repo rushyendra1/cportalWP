@@ -1723,7 +1723,15 @@ function get_home_page()
 }
 
 /**** Descativation Process ***/
-//check the desctivation in login
+
+/**
+ * check the desctivation in login
+ * @name check_deactivation_fun
+ * @param object $user
+ * @param string $username
+ * @param string $password
+ * @return object
+ */
 function check_deactivation_fun($user, $username,$password)
 {
     if(is_wp_error($user))

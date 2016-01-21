@@ -45,15 +45,7 @@ create table wp_3uvwes_email_template(id INTEGER(11) NOT NULL PRIMARY KEY AUTO_I
                             name varchar(255), content text, subject varchar(255));
 
 //insert email template
-insert into wp_3uvwes_email_template(name,content, subject)values('register activation email','Hello !!userName!!,
-Thank you for registering into the site.For active your account, Please click below link:
-<a href="!!link!!">!!link!!</a>
-Thanks and Regards
-Dhruvsoft Team','Thank you for registering into the site.'),('change primary email', 'Hello !!userName!!,
-Your primary E-mail has been changed. Further you can login into site using this e-mail
-!!email!!
-Thanks and Regards,
-Dhruvsoft Team.','Your Primary E-mail has been changed.'),('change password email', 'Hello !!userName!!,
+insert into wp_3uvwes_email_template(name,content, subject)values('change password email', 'Hello !!userName!!,
 Your Password has been changed successfully.
 Username: !!uname!!
 Password: !!pwd!!
@@ -62,11 +54,7 @@ Dhruvsoft Team.', 'Your password has been changed successfully.'),('forgot email
 Set the Password here: 
 <a href="!!link!!">!!link!!</a>
 Thanks and Regards
-Dhruvsoft Team.','Reset Your Password Details.'),('activation email','Hello !!userName!!,
-For active your account, Please click below link:
-<a href="!!link!!">!!link!!</a>
-Thanks and Regards,
-Dhruvsoft Team.','Your activation Account.'),('changed account to active state','Hello !!userName!!,
+Dhruvsoft Team.','Reset Your Password Details.'),,('changed account to active state','Hello !!userName!!,
 Your Account has been changed to active state.
 Thanks and Regards,
 Dhruvsoft Team.','Your Account has been changed to active state.'),('changed account to inactive state','Hello !!userName!!,
@@ -75,19 +63,9 @@ Your Account has been changed to inactive state.
 
 Thanks and Regards,
 
-Dhruvsoft Team.','Your Account has been changed to inactive state.'),('change role email','Hello !!userName!!,
-
-Your Role has been changed  into !!role!! role.
-Thanks and Regards,
-Dhruvsoft Team.','Your Role has been changed.'),('new user added by admin users','Hello !!userName!!,
-
-For activation your account . click  !!link!!
-Thanks and Regards,
-Dhruvsoft Team.','Your  account Activation'),('Authentication','Hello !!Name!!,
+Dhruvsoft Team.','Your Account has been changed to inactive state.'),('Authentication','Hello !!Name!!,
 Thank you for registering For Customer Portal.
-Login URL:
-!!URL!!
-UserName:
-!!UserName!!
-Password: !!PassWord!!',
+Login URL: !!URL!!
+UserName:  !!UserName!!
+Password:  !!PassWord!!',
 'Your Authentication Details.')

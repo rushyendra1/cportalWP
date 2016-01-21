@@ -1,33 +1,74 @@
-<?php include("header.php");
+<?php
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme and one
+ * of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query,
+ * e.g., it puts together the home page when no home.php file exists.
+ *
+ * @link http://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WordPress
+ * @subpackage Portal
+ * @since Portal 1.0
+ */
+
+get_header();
 
 ?>
-<section id="page"><font color="#FFFFFF"></font>
-<header id="pageheader" class="homeheader">
-<h1 class="sitedescription"><h2>&nbsp;</h2></h1>
-</header>
+
+<div class="row-fluid data-content-outer">
+    <div class="post-cont">
+
+	<?php
+		if ( is_front_page() && twentyfourteen_has_featured_posts() ) {
+			// Include the featured content template.
+			get_template_part( 'featured-content' );
+		}
+	?>
+
+	<div class="span9 left-col-wrapper">
+
+		<?php
+			if ( have_posts() ) :
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+
+					/*
+					 * Include the post format-specific template for the content. If you want to
+					 * use this in a child theme, then include a file called called content-___.php
+					 * (where ___ is the post format) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
+
+					echo "<hr />";
+
+				endwhile;
+				// Previous/next post navigation.
+				twentyfourteen_paging_nav();
+
+			else :
+				// If no content, include the "No posts found" template.
+				get_template_part( 'content', 'none' );
+
+			endif;
+		?>
+
+	</div>
+
+	<div class="span3 right-col-wrapper">
+		<div class="rightBarCont">								
+			<?php
+				get_sidebar( 'content' );
+				get_sidebar();
+			?>					
+		</div>				
+	</div>
 
 
-<article class="post">
-<header class="postheader">
-<h1><a href="#">Student Information System</a></h1><h3>&nbsp;</h3>
-<h3><i>St. Philomena College, Philonagar, Darbe, Puttur.</i></h3>
-<a href="#"></a></p>
-</header>
-<p><b>Student Information Systems are the primary systems for operating  colleges. The Student Information System is a student-level data collection  system that allows the Department to collect and analyze more accurate and  comprehensive information. Student information systems provide capabilities for  entering student records, tracking student attendance, and managing many other  student-related data needs in a college or university.</b></p>
-</article>
-<article class="post">
-<header class="postheader">
-<h1>Student Information System Supports:</h1><p class="postinfo">&nbsp;</p>
-</header>
-<p><b>•	Handling inquiries from prospective students.</b></p>
-<p><b>•	Handling the Student details.  </b></p>
-<p><b>•	Maintaining the Student Marks Details.  </b></p>
-<p><b>•	Handling Student Attendance Records.  </b></p>
-<p><b>•	Maintaining records of absences and attendance.  </b></p>
-<p><b>•	Maintaining records of Internal marks.</b></p>
-</article>
-<div class="clear"></div>
-<div class="clear"></div>
-</section>
+	</div>
 </div>
-<?php include("footer.php"); ?>
+
+<?php
+get_footer();

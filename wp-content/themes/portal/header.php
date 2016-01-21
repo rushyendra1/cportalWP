@@ -11,9 +11,9 @@ ob_start();
  * @since Portal 1.0
  */
 
-//$pages = get_current_files();
-/*
-if($pages == "login" && is_user_logged_in()){
+$pages = get_current_files();
+
+/*if($pages == "login" && is_user_logged_in()){
     
         wp_redirect(get_site_url());
         exit;

@@ -18,7 +18,7 @@
 /** The name of the database for WordPress */
 //define('DB_NAME', 'cportal');
 
-define('DB_NAME', 'dev1');
+define('DB_NAME', 'dev2');
 
 /** MySQL database username */
 define('DB_USER', 'root');

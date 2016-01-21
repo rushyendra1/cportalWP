@@ -8,8 +8,8 @@ $(document).ready(function(){
         $(".row-actions").html("");
         $("#bulk-action-selector-top option[value=delete]").html("");
         $("#wp-admin-bar-edit-profile").remove();
-       $(".page-title-action").remove();
-       $(".add-new-h2").remove();
+        $(".page-title-action").remove();
+        $(".add-new-h2").remove();
         $("#submit").remove();
 
     }
@@ -17,6 +17,7 @@ $(document).ready(function(){
    var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")
     userSettingsDispCall();
+
    if(page == "email_template")
     emailTemplateDispCall();
 });
@@ -35,6 +36,9 @@ function emailTemplateDispCall()
             
              });
 }
+
+ 
+
 /**
      * User Settings Display
      * @name userSettingsDispCall

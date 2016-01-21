@@ -47,8 +47,8 @@ if($pages == "login" && is_user_logged_in()){
 <meta charset="UTF-8" />
 <title>Customer Portal</title>
 
-<link href="style.css" rel="stylesheet" type="text/css">
-<link href="styles/print/main.css" rel="stylesheet" type="text/css" media="print">
+<!--<link href="style.css" rel="stylesheet" type="text/css">
+<link href="styles/print/main.css" rel="stylesheet" type="text/css" media="print">-->
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->

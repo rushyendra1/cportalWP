@@ -16,6 +16,7 @@ $(document).ready(function(){
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    alert(path);
     if(path == "object-list")
     {
        

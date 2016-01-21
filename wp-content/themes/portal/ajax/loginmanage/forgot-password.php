@@ -15,21 +15,23 @@ if(!isset($wpdb))
 }
 //$id = (isset($_POST['id']))?$_POST['id']: "";
 global $user_ID;
-$id = $user_ID;
+global $user_email;
+$email = $user_email;
  $result = $wpdb->get_row( "SELECT ID,user_nicename,user_email
 				FROM ".$table_prefix."users
-				WHERE ID='".$id."'");
+				WHERE user_email='".$email."'");
 			//echo wp_check_password( $old_pwd, $result->user_pass,$id);	
                         
         //check the given password and database password
 	
-                                   if(!$result)
-
+                             if($result)
 				{
-					 echo "email exists try to change password";
 					 
+					echo "email exists try to change password";
 				}else{
 					echo "Sorry. password is does not match. Please try another password.";
-					}     			
+					}
+
+				    			
 
 ?>

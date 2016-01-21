@@ -106,7 +106,45 @@ $(".logouts").on("click",function(e){
         window.location.href= site;
           }); 
 });
-
+/** E-mail is already Existed in registration **/
+   $("#email").on("blur",function(e){
+       e.stopImmediatePropagation();
+      showLoader();
+      var email  =  $.trim($(this).val());
+      $(this).removeClass("errorInput");
+      $(this).next().hide();
+      if(email == "")
+      {
+          hideLoader();
+          return false;
+      }
+      var error = [];
+      var that = this;
+      error = checkUserName(this,error,"Please enter your e-mail.");
+      var status = errorFocus(error);
+      if(!status)
+      {
+          $(this).removeAttr("disabled");
+          hideLoader();
+          return false;
+      }
+          $.post("php/check-email-val.php",{email:email},function(data){
+              if(data != "")
+              {
+                   showLabelFocus(that,data);
+                    $("#correctEmail").css("display", "none");
+               //$(this).removeAttr("disabled");
+                    hideLoader();
+                $(that).focus();
+                return false;
+              }
+             // $("#correctEmail").show();
+              $("#correctEmail").css("display", "block");
+              
+          });
+     
+      hideLoader();
+   });
  /** Check the above  new password element validations **/
     $("#newPwd").on("focus",function(){
         var status = $.trim($("#status").val());

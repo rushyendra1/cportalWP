@@ -1,9 +1,13 @@
 <?php
 //session_start();
-include_once("../../common.php");
-global $root;
-include_once $root.'/config.php'; 
-include_once $root.'/init.php';
+global $wpdb;
+global $table_prefix;
+if(!isset($wpdb))
+{
+    include_once('../../../../../wp-config.php');
+    include_once('../../../../../wp-load.php');
+    include_once('../../../../../wp-includes/wp-db.php');
+}
  $id = ($_POST['id'])?$_POST['id']: array();
  
  /*if(!is_array($id))
@@ -12,10 +16,10 @@ include_once $root.'/init.php';
  
  if(is_array($ids_array) && count($ids_array)>0){
  foreach($ids_array as $each){
-     $id = base64_decode($each);
+     $id = $each;
      $email = array("id" =>$id);
    
-         $q = @pg_delete($db, "email_template",  $email);
+         $q = $wpdb->delete($table_prefix."email_template",  $email);
       
  }
  }

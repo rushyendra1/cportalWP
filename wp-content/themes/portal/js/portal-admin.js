@@ -924,7 +924,6 @@ function displayDataTemplate(length, page, res)
     var pageData = "";
     var len = res.data.length;
     var userData = res.data;
-    console.log(userData);
     if (len) {
         for (var i = 0; i < len; i++)
         {
@@ -966,6 +965,7 @@ function callToolTip()
  */
 function  emailTemplateChanges()
 {
+    var root = $.trim($("#rootTheme").val());
     /** Per Page Display **/
       $("#perPageItem").on("change",function(e){
         e.stopImmediatePropagation();
@@ -1044,7 +1044,7 @@ function  emailTemplateChanges()
         showLoader();
         var id = $(this).data("id");
         var that = this;
-       $.post("ajax/email-template/view-email-template.php",{id:id},function(res){
+       $.post(root+"/ajax/email-template/view-email-template.php",{id:id},function(res){
            var data = emailForm("Edit");
            var title = "Edit E-mail Template";
            $("#titleBred").html(title);
@@ -1055,7 +1055,7 @@ function  emailTemplateChanges()
            $("#name").attr("disabled","disabled");
            $("#subject").val(emailInfo.subject);
            $("#contentEmail").val(emailInfo.content);
-           $("#id").val(base64_encode(emailInfo.id));
+           $("#id").val(emailInfo.id);
            firstNameFocus("#name");
            emailCheckErrors();
            $(that).removeClass(className);
@@ -1084,10 +1084,10 @@ function  emailTemplateChanges()
         showLoader();
         var idArray = $.trim($(this).data("id"));
         var id = [idArray];
-        $.post("ajax/email-template/delete-email-template.php", {id: id}, function (data) {
+        $.post(root+"/ajax/email-template/delete-email-template.php", {id: id}, function (data) {
            // window.location.href = "email-template.php";
             $(that).removeClass(className);
-            emailTempDispCall();
+            emailTemplateDispCall();
             hideLoader();
             return false;
         });
@@ -1124,13 +1124,13 @@ function  emailTemplateChanges()
        
         showLoader();
         var id = delId;
-        $.post("ajax/email-template/delete-email-template.php", {"id": id}, function (data) {
+        $.post(root+"/ajax/email-template/delete-email-template.php", {"id": id}, function (data) {
             var msg = data.msg;
             if (data.error==0)
             {
                  alertData(title,msg);
                  $(that).removeClass(className);
-                 emailTempDispCall();
+                 emailTemplateDispCall();
                  hideLoader();
                  return false;
                 //window.location.href = "email-template.php";
@@ -1206,3 +1206,177 @@ function checkAll(ele)
 	
   });
 }
+/**
+     * @name emailForm
+     * @param string type
+     * @returns {String}
+     */
+    function emailForm(type)
+    {
+        var data = "";
+         data += '<div class="box-header" data-original-title>\n\
+                      <h2><i class="halflings-icon envelope"></i><span class="break"></span>'+type+' Email Template</h2>';
+        data += '<div class="box-icon"><small><em>* = Required</em></small></div>';
+                 data += '</div>\n\ <div class="box-content addEmailDisp" >';
+            data +='<div class="control-group ">\n\
+        <label  class="control-label viewEmailDisp">Name*</label>';
+       data +='<div class="controls viewControls">';
+       data+='<input type="text" id="name" placeholder="Enter Name"  data-required="required">\n\
+             <p class="help-block errorTag" style="display:none"></p></div></div>';
+        
+            data +='<div class="control-group ">\n\
+        <label  class="control-label viewEmailDisp">Subject*</label>';
+       data +='<div class="controls viewControls">';
+         data+='<input type="text" id="subject" placeholder="Enter Subject" data-required="required" >\n\
+             <p class="help-block errorTag" style="display:none"></p></div></div>';
+            
+             data +='<div class="control-group ">\n\
+        <label " class="control-label viewEmailDisp">Content *</label>\n\
+       <div class="controls viewControls"><textarea id="contentEmail" placeholder="Enter Content" data-required="required"></textarea>\n\
+ <p class="help-block errorTag" style="display:none"></p></div></div><input type="hidden" id="id" >';
+            
+            
+       data += ' <div class="form-actions"><button  id="saveEmailSubmit" class="btn btn-primary">Submit</button></div></div>';
+       emailCheckErrors();
+       return data;
+    }
+     /**
+     * Check the email Errors
+     * @name emailCheckErrors
+     * @returns {void}
+     */
+    function emailCheckErrors()
+{
+    var root = $.trim($("#rootTheme").val());
+      /** Check the above content element validations **/
+        $("#subject").on("focus", function () {
+            var error = [];
+            //hideData("#firstname");
+            error = firstNameError("#name", error);
+            errorFocus(error);
+
+        });
+        /** Check the Required fileds above the contant **/
+        $("#contentEmail").on("focus", function () {
+            var error = [];
+            //hideData("#firstname");
+            error = firstNameError("#name", error);
+            error = LastNameError("#subject",error);
+            errorFocus(error);
+
+        });
+        /** Submit the data **/
+       $("#saveEmailSubmit").on("click",function(e){
+        e.stopImmediatePropagation();
+        showLoader();
+         $(this).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var name = $.trim($("#name").val());
+        var content = $.trim($("#contentEmail").val());
+        var subject = $.trim($("#subject").val());
+      
+        var error = [];
+        error = firstNameError("#name",error);
+        error = LastNameError("#subject",error);
+        error = LastNameError("#contentEmail",error);
+      
+        var status = errorFocus(error);
+      
+        if(!status)
+        {
+           
+            $(this).removeAttr("disabled");
+            hideLoader();
+            return false;
+        }
+        var that = this;
+        var title = "Request Message";
+        $.post(root+"/ajax/email-template/save-email-template.php", {name:name,content:content, 
+                             id:$.trim($("#id").val()), subject:subject},function(data){
+                             var msg = data.msg;
+                if(data.error ==1)
+                {
+                    alertData(title,msg);
+                    $(that).removeAttr("disabled");
+                    hideLoader();
+                    return false;
+                }else{
+                    alertData(title,msg);
+                    emailTemplateDispCall();
+                    hideLoader();
+                    return false;
+                }             
+           // window.location.href= "email-template.php";
+            hideLoader();
+        },'json');
+        
+    });
+}
+/**
+ * Focus to first name
+ * @name firstNameFocus
+ * @returns {void}
+ */
+function firstNameFocus(ele)
+{
+      $(ele).focus();
+}
+/**
+     * Focus to the element
+     * @name showLabelFocus
+     * @param {type} ele
+     * @param {type} msg
+     * @returns {void}
+     */
+    function showLabelFocus(ele, msg)
+    {
+        var id = $(ele).next().next();
+        if ($(ele).next().hasClass("help-block"))
+                  id = $(ele).next();
+        id.show();
+        id.html(msg);
+        $(ele).addClass("errorInput");
+    }
+ /**
+     * Display the Last name errors
+     * @name LastNameError
+     * @param {object} ele
+     * @param {array} error
+     * @returns {array}
+     */
+    function LastNameError(ele, error)
+    {
+        var lastName = $.trim($(ele).val());
+         var isRequired = $.trim($(ele).data("required"));
+        var errorType = "l";
+        var errorMsg = "Lastname";
+        if(ele == "#contentEmail"){
+            errorType = "con";
+            errorMsg = "Content";
+        }
+         if(ele == "#subject"){
+            errorType = "sub";
+            errorMsg = "Subject";
+        }
+        if (isRequired == "required" && lastName == "")
+        {
+            var msg = "Please enter your "+errorMsg+".";
+            //error += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg);
+            //$(ele).focus();
+
+        } else if (isRequired == "required" && lastName.length < 2) {
+            var msg = "Minimum "+errorMsg+" character length should be 2.";
+            //error += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg);
+            //$(ele).focus();
+        } else {
+            hideData(ele);
+            /* if($(nextEle).val() == "")
+             $(nextEle).focus();*/
+        }
+        return error;
+    }
+    

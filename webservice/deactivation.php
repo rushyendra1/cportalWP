@@ -43,11 +43,10 @@ if(!is_array($user_exist_results) || (is_array($user_exist_results) && count($us
    exit;
 
 }
-$to = $user_exist_results->user_email;
-$name = $user_exist_results->user_nicename;
+$to = $user_exist_results[0]->user_email;
+$name = $user_exist_results[0]->user_nicename;
 }
-echo $to;
-echo $name;
+
 $admin_email = get_option('admin_email');
     $headers = "MIME:Version 1.0 \r\n";
     $headers .= "Content-Type:text/html;charset=Iso-8859-1\r\n";
@@ -60,7 +59,7 @@ $email_info = $wpdb->get_row("SELECT subject,content "
                              . " WHERE name='delete account'");
  $subject = $email_info->subject;
  $msg  = $email_info->content;
- str_replace("!!userName!!", $name,$msg);
+ $msg = str_replace("!!userName!!", $name,$msg);
 }
 else if($type == "deactivate")
 {
@@ -70,7 +69,7 @@ else if($type == "deactivate")
     
     $subject = $email_info->subject;
     $msg  = $email_info->content;
-    str_replace("!!userName!!", $name,$msg);
+    $msg = str_replace("!!userName!!", $name,$msg);
     
     
     $wpdb->update($table_prefix."users", array("is_deactive" =>1),array("ID" =>$user_id));
@@ -82,12 +81,12 @@ else if($type == "deactivate")
     
     $subject = $email_info->subject;
     $msg  = $email_info->content;
-    str_replace("!!userName!!", $name,$msg);
+    $msg = str_replace("!!userName!!", $name,$msg);
     
     
     $wpdb->update($table_prefix."users", array("is_deactive" =>0),array("ID" =>$user_id));
 }
-@mail($to, $subject,$msg, $headers);
+@mail($to, $subject,nl2br($msg), $headers);
  echo json_encode(array("errorCode" => "Success", "message" => ""));
    exit;
 ?>

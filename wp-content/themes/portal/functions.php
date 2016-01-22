@@ -2104,6 +2104,7 @@ function add_admin_head()
 {
     $page = get_current_files(1);
     echo '<input type="hidden" id="page" value="'.$page.'">';
+    echo '<script type="text/javascript" src="'.get_template_directory_uri().'/js/admin-site.js"></script>';
 }
 add_action( 'admin_head', 'add_admin_head' );
 
@@ -2156,3 +2157,22 @@ if($pages == "")
 }
 return $pages;
 }
+function add_footer_data()
+{?>
+<a href="#" class="btn btn-info btn-setting" style="display:none">Click for dialog</a>
+     <div class="modal hide fade" id="popupDisp">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Settings</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<!--<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>-->
+		</div>
+	</div>
+
+<?php }
+add_action("admin_footer", "add_footer_data");

@@ -20,6 +20,41 @@ $(document).ready(function(){
 
    if(page == "email_template")
     emailTemplateDispCall();
+   $("#saveSettings").on("click",function(e){
+               e.stopImmediatePropagation();
+               var root = $.trim($("#rootTheme").val());
+               showLoader();
+               var minPassLen = $.trim($("#minPassLen").val());
+               var maxPassLen = $.trim($("#maxPassLen").val());
+               var maxLoginAttempts = $.trim($("#maxLoginAttempts").val());
+               var isallowEdit = 0;
+                       
+               if($("#allowEdit").is(":checked")) 
+                isallowEdit =1;
+               
+               var error = [];
+                error = checkSetError("#minPassLen",error);
+                error = checkSetError("#maxPassLen",error);
+                error = checkSetError("#maxLoginAttempts",error);
+                var status = errorFocus(error) ;
+                if(!status)
+                {
+                       $(this).removeAttr("disabled");
+                       hideLoader();
+                        return false;
+                }
+                var that = this;
+               $.post(root+"/ajax/settings/save-settings.php",{min_pass_len:minPassLen,max_pass_len:maxPassLen,
+               max_login_attempts:maxLoginAttempts,is_edit:isallowEdit},function(data){
+                   var msg = data.msg;
+                         alertData("Request Message",msg);
+                       $(that).removeAttr("disabled")
+                       hideLoader();
+                       return false;
+                   
+                  // window.location.href= 'settings.php';
+               },"json");
+            });
 }); 
 /**List the email Template
  * @name emailTemplateDispCall
@@ -885,8 +920,10 @@ function requiredValidation(error)
 
         if (typeof (statusContent) != 'undefined' && statusContent != "") {
 
+
             $("#popupDisp").find("h3").html(title);
             $("#popupDisp").find("div.modal-body").html(statusContent);
+            showPopUp();
             $(".btn-setting").trigger("click");
             /* var opt = {
              modal: true,
@@ -1379,4 +1416,70 @@ function firstNameFocus(ele)
         }
         return error;
     }
-    
+    /**
+     * Display the  errors
+     * @name checkSetError
+     * @param {object} ele
+     * @param {array} error
+    * @returns {array}
+     */
+    function checkSetError(ele, error)
+    {
+        var name = $.trim($(ele).val());
+        var errorMsg = "Firstname";
+        var errorType = "f";
+        if(ele == "#minPassLen"){
+            errorMsg = "Minimum Password Length";
+            errorType = "mip";
+        }
+        if(ele == "#maxPassLen"){
+            errorMsg = "Maximum Password Length";
+            errorType = "map";
+        }
+        if(ele == "#maxLoginAttempts"){
+            errorMsg = "Maximum Login Attempts";
+            errorType = "mal";
+        }
+        var min = parseInt($.trim($("#minPassLen").val()));
+        if (name == "")
+        {
+            var msg = "It should not be an empty.";
+            //error  += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg, 1);
+            //$(ele).focus();
+        } else if (!numberValid(name))
+        {
+            var msg = "Please Enter Valid Number.";
+            //error  += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg, 1);
+            // $(ele).focus();
+        }else if(ele == "#minPassLen" && (name<2 || name >6 )  ) {
+             var msg = "It Should Accepts (2-6).";
+            //error  += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg, 1);
+        }
+        else if(ele == "#maxPassLen" && min >= parseInt(name)  ) {
+             var msg = "Maximum Passsword Length should be greater than Minimum Password Length.";
+            //error  += msg+"<br/>";
+            error.push(errorType);
+            showLabelFocus(ele, msg, 1);
+        }else {
+            hideData(ele);
+            /* if($(nextEle).val() == "")
+             $(nextEle).focus();*/
+        }
+        return error;
+    }
+     /**
+     * Validate the Number
+     * @name numberValid
+     * @param {string} no
+     * @returns (boolean}
+     */
+    function numberValid(no)
+    {
+        return /^[0-9]+$/.test(no);
+    }

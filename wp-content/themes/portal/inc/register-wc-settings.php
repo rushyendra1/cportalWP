@@ -17,8 +17,80 @@ function setup_theme_admin_menus() {
         'User Settings', 'User Settings', 'manage_options', 'wc_user_settings', 'user_settings_fun');
 }  
 function general_settings_fun()
+{ 
+    global $wpdb;
+    global $table_prefix;
+    $result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts,allow_edit"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+$min_pass_len =$max_pass_len = $max_login_attempts = $allow_edit =  0;
+
+if(isset($result) && count($result)>0)
 {
-    echo "dfdfd";
+    $min_pass_len = $result->min_pass_len;
+    $max_pass_len = $result->max_pass_len;
+    $max_login_attempts = $result->max_login_attempts;
+    $allow_edit = $result->allow_edit;
+}
+    ?>
+    <input type="hidden" id="pages" value="general_settings">
+    <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
+    <div class="box span12 content-disp">
+        <div data-original-title="" class="box-header">
+        <h2><i class="halflings-icon wrench"></i>
+            <span class="break"></span>Portal Settings
+        </h2>
+         </div>
+        <div class="box-content">
+            
+    <div class="row-fluid ">		
+        <div class="box span12 content-disp">
+            <div class="box-header" data-original-title>
+                <h2><i class="halflings-icon user"></i><span class="break"></span><?php echo $title; ?></h2>
+                <div class="box-icon">
+                     <small><em>* = Required</em></small>
+                </div>
+            </div>
+         
+            <div class="box-content" > <!-- Box Content Started -->
+                <div class="control-group ">
+                    <label  class="control-label viewUserDisp">Minimum Password Length* </label>
+                    <div class="controls viewSettingControls">
+                        <input type="text" id="minPassLen"  placeholder="Minimum Password Length" value="<?php echo $min_pass_len ?>" >
+                        <p class="help-block errorTag" style="display:none"></p>
+                    </div>
+                </div>
+                
+                <div class="control-group ">
+                    <label  class="control-label viewUserDisp">Maximum Password Length* </label>
+                    <div class="controls viewSettingControls">
+                        <input type="text" id="maxPassLen"  placeholder="Maximum Password Length" value="<?php echo $max_pass_len ?>" >
+                        <p class="help-block errorTag" style="display:none"></p>
+                    </div>
+                </div>
+                   <div class="control-group ">
+                    <label  class="control-label viewUserDisp">Maximum Login Attempts Allowed* </label>
+                    <div class="controls viewSettingControls">
+                        <input type="text" id="maxLoginAttempts" placeholder="Maximum Login Attempts Allowed" value="<?php echo $max_login_attempts ?>" >
+                        <p class="help-block errorTag" style="display:none"></p>
+                     </div>
+                </div>
+                <div class="control-group ">
+                    <label  class="control-label viewUserDisp">Allow Edit User Profile</label>
+                    <div class="controls viewSalesControls"> 
+                        <input type="checkbox" id="allowEdit" <?php if($allow_edit) echo 'checked="checked"'; ?>>
+                        <p class="help-block errorTag" style="display:none"></p>
+                    </div>
+                </div>
+                
+                <div class="form-actions"><button  id="saveSettings" class="btn btn-primary">Submit</button></div>
+                    </div> <!-- Box Content Closed-->
+            </div>
+        </div>
+    <!-- /span -->
+        </div>
+    </div>
+<?php
 }
 function theme_wc_settings() { 
 

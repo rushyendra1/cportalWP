@@ -1,10 +1,12 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 22 Jan, 2016, 2:47:43 PM
-    Author     : admin
-*/
+.viewSettingControls input{
+    height:25px;
+}
+.addEmailDisp input{
+    height:25px;
+    width:500px;
+}
+.addEmailDisp textarea{
+  height: 350px;
+    width: 500px;
+}
 

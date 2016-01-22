@@ -7,7 +7,7 @@ function setup_theme_admin_menus() {
 	} 
 		
 	//add_menu_page('Theme Settings', 'Portal Settings', 'manage_options', 'wc_settings', 'theme_wc_settings');  
-        add_menu_page('Theme Settings', 'Portal Settings', 'manage_options', 'general_settings', 'general_settings_fun');  
+        add_menu_page('Portal Settings', 'Portal Settings', 'manage_options', 'general_settings', 'general_settings_fun');  
           
     add_submenu_page('general_settings',   
         'Salesforce Configurations', 'Salesforce Configurations', 'manage_options', 'wc_sf_settings', 'theme_wc_sf_settings');

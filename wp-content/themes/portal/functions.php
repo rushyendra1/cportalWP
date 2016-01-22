@@ -2096,7 +2096,9 @@ function email_template_list()
 }
 function call_js_admin()
 {
-wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
+ wp_enqueue_style("style-portal-admins", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
+ wp_enqueue_style("style-portal-admin", get_template_directory_uri()."/css/portal-admin.css", array(), NULL,false);    
+ wp_enqueue_script("script-admin-site", get_template_directory_uri()."/js/admin-site.js", array(), NULL,false);   
  wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal-admin.js", array(), NULL,false);   
  
 }
@@ -2104,7 +2106,8 @@ function add_admin_head()
 {
     $page = get_current_files(1);
     echo '<input type="hidden" id="page" value="'.$page.'">';
-    echo '<script type="text/javascript" src="'.get_template_directory_uri().'/js/admin-site.js"></script>';
+   // echo '<link type="text/css" href="'.get_template_directory_uri().'/css/portal-admin.css"></link>';
+ //   echo '<script type="text/javascript" src="'.get_template_directory_uri().'/js/admin-site.js"></script>';
 }
 add_action( 'admin_head', 'add_admin_head' );
 

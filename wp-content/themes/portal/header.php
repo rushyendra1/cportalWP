@@ -85,15 +85,7 @@ function Openeditcourse(a)
 <li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
 <?php } if(is_user_logged_in()){
     /*** Connects to salesforce **/
-    global $tab_url;
-    list($access_token,$instance_url) = get_connection_sales();
-    $url = $instance_url.$tab_url;
-   $json_response = connects_salesforce($url,array(),FALSE,$access_token,"get"); 
-    $response = str_replace("\"[","",$json_response);
-    $response = str_replace("]\"","",$response);
-    $response = str_replace("\"","",$response);
-    $response = stripslashes($response);
-   $response_array = explode(",",$response);
+ $response_array = get_tabs_from_sales();
    if(count($response_array)>0)
    { 
        foreach($response_array as $each_tab)

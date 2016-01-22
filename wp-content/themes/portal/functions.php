@@ -2181,3 +2181,16 @@ function add_footer_data()
 
 <?php }
 add_action("admin_footer", "add_footer_data");
+function get_tabs_from_sales()
+{
+       global $tab_url;
+    list($access_token,$instance_url) = get_connection_sales();
+    $url = $instance_url.$tab_url;
+   $json_response = connects_salesforce($url,array(),FALSE,$access_token,"get"); 
+    $response = str_replace("\"[","",$json_response);
+    $response = str_replace("]\"","",$response);
+    $response = str_replace("\"","",$response);
+    $response = stripslashes($response);
+   $response_array = explode(",",$response);
+   return $response_array;
+}

@@ -227,7 +227,7 @@ function theme_wc_sf_settings() {
     
         <form method="POST" action="">  
             <input type="hidden" name="update_settings" value="Y" />
-            <table class="form-table">  
+            <table class="form-table salesforceSettings">  
                 <tr valign="top">  
                     <th scope="row">  
                         <label for="wc_sf_client_id">  
@@ -288,20 +288,18 @@ function theme_wc_sf_settings() {
                         <input type="text" id="wc_sf_refresh_token" name="wc_sf_refresh_token" value="<?php echo $wc_sf_refresh_token;?>" class="regular-text" /> 
                     </td>  
                 </tr>  
-                <tr valign="top">  
+                 <tr valign="top">  
                     <th scope="row">  
-                        <label for="wc_sf_public_site_url">  
-                            Public Site URL
+                        <label for="wc_sf_refresh_token">  
+                          &nbsp;
                         </label>   
                     </th>
                     <td>  
-                        <input type="text" id="wc_sf_public_site_url" name="wc_sf_public_site_url" value="<?php echo $wc_sf_public_site_url;?>" class="regular-text" /> 
+                        <input type="submit" value="Save" class="button-primary"/>  
                     </td>  
-                </tr>                
+                </tr>        
             </table>  
-            <p>  
-                <input type="submit" value="Save" class="button-primary"/>  
-            </p> 
+            
         </form>  
     </div>  
 <?php 

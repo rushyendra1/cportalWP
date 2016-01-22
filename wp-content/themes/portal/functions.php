@@ -785,7 +785,7 @@ function call_js_css_files()
     wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
     if($path == "object-list")
     wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
-    else
+    //else
         wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
     
     wp_enqueue_script("script-jquerys", get_template_directory_uri()."/js/jquery-ui.js", array(), NULL,false);

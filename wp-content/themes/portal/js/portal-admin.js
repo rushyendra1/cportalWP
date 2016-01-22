@@ -195,7 +195,7 @@ function displayDataSettings(length, page, res)
     pageData += '</div>';
     $("div.paginationDiv").html(pageData);
     $("#userSettingsBody").html(tableData);
-    //callToolTip();
+    callToolTip();
     userSettingChanges();
     showPopUp();
     hideLoader();
@@ -966,7 +966,7 @@ function displayDataTemplate(length, page, res)
         {
             var id = userData[i].id;
             var action = '<a class="btn btn-info editEmail" data-id="'+ id +'"  data-rel="tooltip" data-original-title="Edit E-mail Template"><i class="halflings-icon white edit"></i></a>';
-            action += '<a class="btn btn-danger accountChange"  data-id="' + id + '"><i class="halflings-icon white trash"></i></a>';
+            action += '<a class="btn btn-danger accountChange" data-original-title="Delete E-mail Template" data-rel="tooltip" data-id="' + id + '"><i class="halflings-icon white trash"></i></a>';
             tableData += "<tr><td><input type='checkbox' class='checkData' value='" + id + "'></td>\n\
                              <td>" + userData[i].name + "</td>\n\\n\
                             <td>" + userData[i].subject + "</td>\n\
@@ -981,7 +981,7 @@ function displayDataTemplate(length, page, res)
     pageData += '</div>';
     $("div.paginationDiv").html(pageData);
     $("#emailTemplateBody").html(tableData);
-    //callToolTip();
+    callToolTip();
     emailTemplateChanges();
     showPopUp();
     hideLoader();

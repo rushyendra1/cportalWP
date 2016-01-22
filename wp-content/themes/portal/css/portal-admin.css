@@ -1,8 +1,8 @@
 .viewSettingControls input{
-    height:25px;
+    height:30px;
 }
 .addEmailDisp input{
-    height:25px;
+    height:30px;
     width:500px;
 }
 .addEmailDisp textarea{
@@ -63,4 +63,14 @@
     margin-bottom: 5px;
     margin-right: 5px;
     margin-top: 5px;
+}
+.salesforceSettings input{
+    height:30px;
+    width:550px;
+}
+.button-primary{
+    width:auto !important;
+}
+.errorTag{
+    color:#ff0000;
 }

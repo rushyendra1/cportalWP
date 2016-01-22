@@ -26,7 +26,9 @@ define("INSTANCE_URL",get_option("wc_sf_instance_url"));
  */
     
 $sales_url = "/services/apexrest/CustomerPortal/";
+$sales = $sales_url."/RegisterDetails";
 $login_time_url = $sales_url."LoginLogoutDetails";
+$tab_url = $sales."?method=GetTabDetails";
 /**
  * Set up the content width value based on the theme's design.
  *

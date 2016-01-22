@@ -77,12 +77,33 @@ function Openeditcourse(a)
 <section id="top">
 <nav id="mainnav">
 <h1 id="sitename" class="logotext">
-    <a href="index.php">Customer Portal</a>
+    <a href="<?php echo get_site_url() ?>">Customer Portal</a>
 </h1>
 <ul>
-    <li ><a href="">Home</a></li>
-<li><a href="<?php echo get_site_url() ?>/portal/login"><span>Login</span></a></li>
-<li><a href="<?php echo get_site_url() ?>/portal/contact"><span>Contact-us</span></a></li>
+    <li ><a href="<?php echo get_site_url() ?>">Home</a></li>
+    <?php if(!is_user_logged_in()) { ?>
+<li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
+<?php } if(is_user_logged_in()){
+    /*** Connects to salesforce **/
+    global $tab_url;
+    list($access_token,$instance_url) = get_connection_sales();
+    $url = $instance_url.$tab_url;
+   $json_response = connects_salesforce($url,array(),FALSE,$access_token,"get"); 
+    $response = str_replace("\"[","",$json_response);
+    $response = str_replace("]\"","",$response);
+    $response = str_replace("\"","",$response);
+    $response = stripslashes($response);
+   $response_array = explode(",",$response);
+   if(count($response_array)>0)
+   { 
+       foreach($response_array as $each_tab)
+       {
+       ?>
+<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"><span><?php echo $each_tab; ?></span></a></li>
+    <?php    
+   } //for loop
+   } //if of response array
+} // is user logged in  ?>
 </ul>
 </nav>
 </section>

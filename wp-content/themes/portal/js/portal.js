@@ -342,6 +342,7 @@ $(".logouts").on("click",function(e){
      /** Forgot password **/
     $("#forogotSubmit").on("click",function(e)
     {
+        var site = $.trim($("#siteTheme").val());
       e.stopImmediatePropagation();
        var className = "ajaxCall";
         if($(this).hasClass(className))
@@ -378,9 +379,11 @@ $(".logouts").on("click",function(e){
         }else
             hideData("#username");
         var that = this;
-         $.post(root+"/ajax/loginmanage/forgot-password.php", {username:username},function(data){
+         $.post(root+"/ajax/loginmanage/forgot-pwd-submit.php", {username:username},function(data){
           data = $.trim(data);
-        if(data != "")
+       
+             if(data != "")
+        
         {
             //alertData(title,data);
             hideLoader();
@@ -397,9 +400,85 @@ $(".logouts").on("click",function(e){
            $("#correctEmail").css("display", "block");
            $(that).removeClass(className);
         //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
-        window.location.href='index.php';
+        window.location.href=site+'/login';
       });
     });
+    
+    
+    /** set Password **/
+     $("#setpassword").on("click",function(e){
+         var site = $.trim($("#siteTheme").val());
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+        {
+            return false;
+        }
+        $(this).addClass(className);
+        showLoader();
+        $(this).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var newp = $.trim($("#newPwd").val());
+        var conp = $.trim($("#confirmPwd").val());
+      //  var status = $.trim($("#status").val());
+       var status=1;
+        //var title = "Request Message";
+        var error = []; 
+        
+        error = newPwdCheckError(status,error,"#newPwd");
+        error = confirmCheckError(error,"#confirmPwd",newp);
+           if(error.indexOf("n") != -1)
+            {
+                 hideEnd(this);
+                 $(this).removeClass(className);
+                $("#newPwd").focus();
+                return false;
+            }
+            else if(error.indexOf("c") != -1)
+            {
+                 hideEnd(this);
+                 $(this).removeClass(className);
+                $("#confirmPwd").focus();
+                return false;
+            }
+            console.log(error);
+        var isAdmin = parseInt($.trim($("#isAdmin").val()));
+         $(".correctPassword").show();
+         var that = this;
+         
+         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
+         new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+     status:status,rand :$("#rand").val() }, function (data) {
+      if(data == null )
+            {
+                window.location.href = site+'/login';
+               
+                return false;
+            } 
+            //data = $.trim(data);
+          // var msg = data.msg;
+                         
+                      
+            var role = data.role;
+          
+             if (data.error == 1)
+            {
+                $(that).removeClass(className);
+                $("#newPassword").focus();
+                 $(".correctPassword").hide();
+               // alertData(title,data);
+                hideLoader();
+                return false;
+            } else {
+                $(".correctPassword").show();
+                $(that).removeClass(className);
+              
+             
+               
+                window.location.href = site+'/login';
+            }
+        },"json");
+     });
     
 });
 

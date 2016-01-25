@@ -91,3 +91,7 @@ UserName:
 !!UserName!!
 Password: !!PassWord!!',
 'Your Authentication Details.')
+
+
+/* added a row forgotpwd_activation_code in users
+ALTER TABLE `wp_3uvwes_users` ADD `forgotpwd_activation_code` VARCHAR(255) NOT NULL AFTER `user_activation_key`;

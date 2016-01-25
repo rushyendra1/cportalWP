@@ -31,7 +31,27 @@ get_header(); ?>
             //if(isset($_SESSION['user'])){
             if(is_user_logged_in()){
             ?>
-              <a href="<?php echo get_site_url() ?>/profile"  class="button radius submit link">My Account</a> <br>
+              <a href="<?php echo get_site_url() ?>/profile"  class="button radius submit link">My Account</a>
+              <?php 
+              $response_array = get_tabs_from_sales();
+              
+               if(count($response_array)>0)
+                { 
+                   //$i=1;
+                    foreach($response_array as $each_tab)
+                    {
+                       /* if($i == 3)
+                        {
+                            echo "<br>";
+                            $i =0;
+                        }
+                        $i++;*/
+                        ?>
+                     <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
+                   <?php }
+                }
+              ?>
+              
             <a href="#"  class="button radius submit link logouts">Logout</a>
             <?php }else{ ?>
           <a href="<?php echo get_site_url() ?>/cportal/login"  class="button radius submit link">Login</a> <br>

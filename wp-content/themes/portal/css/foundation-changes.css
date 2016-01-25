@@ -232,13 +232,7 @@ html body ul.tabs_login li.active_login a { font-weight: bold; }
 html, body {height:100%;}
 body {background: url(images/cportal/bodybg.jpg) repeat; font-family:"Helvetica Neue", Helvetica, Verdana, sans-serif; color:#3b2f27; position:relative;}
 h1 {font-size:3.2em; font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;}
-#sitename {font-weight:bold; color:#124d2c; text-shadow:#f5d18b 1px 1px 1px;  float:left; padding:9px 0 0 40px;}
-#sitename a {color:#124d2c; text-decoration:none;}
-#sitename.logotext a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
-#sitename.logotext a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
-#sitename a:hover {color:#052714;}
 
-#sitename.logo a {display:block; background:url(images/cportal/memoirelogo.png) no-repeat; height:34px; width:217px;text-indent:-4000px; overflow:hidden;}
 a {color:#0d4022; text-decoration:none;}
 a:hover { text-decoration:underline;}
 #wrap {width:840px; margin:auto; background:url(images/cportal/wrapbg.png) center top no-repeat; padding-top:80px; min-height:100%;}
@@ -286,14 +280,6 @@ a.pre-link {background:url(images/cportal/prebtn.jpg) no-repeat; float:left;}
 #sidebar li {display:block; height:25px;}
 #sidebar li a {display:block; color:#2d241e; line-height:24px; height:24px; background:url(images/cportal/li1.png) left center no-repeat; padding:0 10px 0 15px;}
 #sidebar li a:hover {color:#500e07; text-decoration:none!important; background:url(images/cportal/li2.png) left center no-repeat;}
-#mainnav ul {height:35px; float:right; padding-top:13px; padding-right:40px;}
-#mainnav li {display:inline; font:bold 1.2em "Helvetica Neue", Helvetica, Verdana, sans-serif; text-transform:uppercase;}
-#mainnav li a {display:block; float:left; height:31px; padding-right:20px; color:#fbdca6!important; text-shadow:#4a2f13 1px 1px 1px; background:url(images/cportal/menur2.png) right top no-repeat; margin:0 5px;}
-#mainnav li a span {display:block; float:left; background:url(images/menul2.png) left top no-repeat; padding:4px 0 0 20px; height:27px;}
-#mainnav li a:hover {color:#000!important; text-decoration:none!important; background:url(images/cportal/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
-#mainnav li a:hover span {background:url(images/cportal/menul1.png) left top no-repeat;}
-#mainnav li.active a {color:#621907!important; background:url(images/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
-#mainnav li.active a span {background:url(images/cportal/menul1.png) left top no-repeat;}
 
 .sitedescription {color:#9edab8; font:normal 1.6em 'FertigoProRegular', Arial, sans-serif!important; color:#9edab8!important; text-shadow:#08421f 1px 1px 1px!important;}
 .homeheader .sitedescription {padding:120px 280px 0 20px;}

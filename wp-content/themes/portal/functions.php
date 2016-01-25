@@ -26,7 +26,9 @@ define("INSTANCE_URL",get_option("wc_sf_instance_url"));
  */
     
 $sales_url = "/services/apexrest/CustomerPortal/";
+$sales = $sales_url."/RegisterDetails";
 $login_time_url = $sales_url."LoginLogoutDetails";
+$tab_url = $sales."?method=GetTabDetails";
 /**
  * Set up the content width value based on the theme's design.
  *
@@ -785,7 +787,7 @@ function call_js_css_files()
     wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
     if($path == "object-list")
     wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
-    else
+    //else
         wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
     
     wp_enqueue_script("script-jquerys", get_template_directory_uri()."/js/jquery-ui.js", array(), NULL,false);
@@ -1770,7 +1772,15 @@ function get_home_page()
 }
 
 /**** Descativation Process ***/
-//check the desctivation in login
+
+/**
+ * check the desctivation in login
+ * @name check_deactivation_fun
+ * @param object $user
+ * @param string $username
+ * @param string $password
+ * @return object
+ */
 function check_deactivation_fun($user, $username,$password)
 {
     if(is_wp_error($user))
@@ -2135,7 +2145,9 @@ function email_template_list()
 }
 function call_js_admin()
 {
-wp_enqueue_style("style-portal", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
+ wp_enqueue_style("style-portal-admins", get_template_directory_uri()."/css/admin-site.css", array(), NULL,false);    
+ wp_enqueue_style("style-portal-admin", get_template_directory_uri()."/css/portal-admin.css", array(), NULL,false);    
+ wp_enqueue_script("script-admin-site", get_template_directory_uri()."/js/admin-site.js", array(), NULL,false);   
  wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal-admin.js", array(), NULL,false);   
  
 }
@@ -2143,6 +2155,8 @@ function add_admin_head()
 {
     $page = get_current_files(1);
     echo '<input type="hidden" id="page" value="'.$page.'">';
+   // echo '<link type="text/css" href="'.get_template_directory_uri().'/css/portal-admin.css"></link>';
+ //   echo '<script type="text/javascript" src="'.get_template_directory_uri().'/js/admin-site.js"></script>';
 }
 add_action( 'admin_head', 'add_admin_head' );
 
@@ -2194,4 +2208,36 @@ if($pages == "")
     $pages = $path_url[$page_cnt-2];
 }
 return $pages;
+}
+function add_footer_data()
+{?>
+<a href="#" class="btn btn-info btn-setting" style="display:none">Click for dialog</a>
+     <div class="modal hide fade" id="popupDisp">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Settings</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<!--<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>-->
+		</div>
+	</div>
+
+<?php }
+add_action("admin_footer", "add_footer_data");
+function get_tabs_from_sales()
+{
+       global $tab_url;
+    list($access_token,$instance_url) = get_connection_sales();
+    $url = $instance_url.$tab_url;
+   $json_response = connects_salesforce($url,array(),FALSE,$access_token,"get"); 
+    $response = str_replace("\"[","",$json_response);
+    $response = str_replace("]\"","",$response);
+    $response = str_replace("\"","",$response);
+    $response = stripslashes($response);
+   $response_array = explode(",",$response);
+   return $response_array;
 }

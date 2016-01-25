@@ -61,15 +61,23 @@ if ($is_fun) {
     $_SESSION['msg'] = 'Your Password is Changed Successfully';
       $admin_email = get_option("admin_email");
     unset($_SESSION['forgot-times']);
+<<<<<<< HEAD
     if(!$status)
     {
+=======
+
+>>>>>>> 194ef040711bc45109668a7e35614e5da18974b6
     $credentials = array('user_login' => $result->user_login,
         'user_password' => $new_pwd,
         'remember' => true);
     $user = wp_signon($credentials, false);
 //         do_action('wp_login', $user->user_login, $user);
     wp_set_current_user($user->ID);
+<<<<<<< HEAD
     }
+=======
+    
+>>>>>>> 194ef040711bc45109668a7e35614e5da18974b6
     $email_info = $wpdb->get_row("SELECT subject,content "
             . " FROM " . $table_prefix . "email_template"
             . " WHERE name='change password email'");

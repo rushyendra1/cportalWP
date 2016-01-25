@@ -33,7 +33,11 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                     
                                       $admin_email = get_option("admin_email");
                                        $rand = wp_generate_strong_password(8);
+<<<<<<< HEAD
                                     $update_array = array("forgotpwd_activation_code" => $rand,"user_pass"=> "");
+=======
+                                    $update_array = array("forgotpwd_activation_code" => $rand, "is_deactive" => 0);
+>>>>>>> 194ef040711bc45109668a7e35614e5da18974b6
                                     $wpdb->update( $table_prefix."users", $update_array, array("ID" => $result->ID));
                                     
                                   $link = get_site_url().'/set-password?id='.base64_encode($rand);

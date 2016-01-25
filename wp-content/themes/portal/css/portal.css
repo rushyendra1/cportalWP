@@ -7,6 +7,11 @@
     margin-left: 20px !important;
     margin-right: 10px !important;
 }
+/**** Buttons in Home page **/
+button, .button {
+    padding:0.9rem 0.5rem 0.9625rem;
+}
+/*** **/
 /*** Menus **/
 #mainnav ul {height:35px; float:right; padding-top:13px; padding-right:40px;}
 #mainnav li {display:inline; font:bold 1.2em "Helvetica Neue", Helvetica, Verdana, sans-serif; text-transform:uppercase;}

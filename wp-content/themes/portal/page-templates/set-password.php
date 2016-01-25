@@ -21,7 +21,7 @@ global $table_prefix;
 } 
 //redirect_to_login(); 
 get_header(); 
-$rand=(isset($_GET['id']))? base64_decode($_GET['id']):"";
+$rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
 
 /*$status = (isset($_GET['s']))?$_GET['s']: 0;
 $is_admin = (isset($_GET['a']))?$_GET['a']: 0;

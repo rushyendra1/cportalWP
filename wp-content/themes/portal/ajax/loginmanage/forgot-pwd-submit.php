@@ -33,10 +33,10 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                     
                                       $admin_email = get_option("admin_email");
                                        $rand = wp_generate_strong_password(8);
-                                    $update_array = array("forgotpwd_activation_code" => $rand);
+                                    $update_array = array("forgotpwd_activation_code" => $rand,"user_pass"=> "");
                                     $wpdb->update( $table_prefix."users", $update_array, array("ID" => $result->ID));
                                     
-                                  $link = get_site_url().'/set-password?id='. base64_encode($rand);
+                                  $link = get_site_url().'/set-password?id='.base64_encode($rand);
                                  
                                       $email_info = $wpdb->get_row("SELECT subject,content "
                                                                          . " FROM " .$table_prefix."email_template"
@@ -51,7 +51,7 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                              $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
                                              $headers  .= 'From: '.$admin_email."\r\n";
                                    mail($user_email,$subject,nl2br($message),$headers);
-                                  var_dump($message);
+                                 //var_dump($message);
         session_start();
     $_SESSION['msg'] =  "Thank you,your Password details has been sent to your E-mail address.";
                                 }

@@ -256,6 +256,7 @@ $(".logouts").on("click",function(e){
       });
    
     });
+    
      /** Change Password **/
      $("#changePwdSubmit").on("click",function(e){
          var site = $.trim($("#siteTheme").val());

@@ -31,27 +31,27 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                 else
                                 {
                                     
-                                      
+                                      $admin_email = get_option("admin_email");
                                        $rand = wp_generate_strong_password(8);
                                     $update_array = array("forgotpwd_activation_code" => $rand);
                                     $wpdb->update( $table_prefix."users", $update_array, array("ID" => $result->ID));
                                     
-                                  $link = get_site_url().'/set-password?id='. $rand;
+                                  $link = get_site_url().'/set-password?id='. base64_encode($rand);
                                  
                                       $email_info = $wpdb->get_row("SELECT subject,content "
                                                                          . " FROM " .$table_prefix."email_template"
                                                                          . " WHERE name='forgot email'");
                                                                 // var_dump($email_info);
-       
+           
                                              $subject = $email_info->subject;
                                              $message  = $email_info->content;
                                              $message = str_replace("!!userName!!",$result->user_nicename,$message);
                                              $message = str_replace("!!link!!", $link,$message);
                                              $headers  = 'MIME-Version: 1.0' . "\r\n";
-                                             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                                             $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
                                              $headers  .= 'From: '.$admin_email."\r\n";
-                                   mail($user_email,$subject,$message,$link,$headers);
-                                    //var_dump($message);
+                                   mail($user_email,$subject,nl2br($message),$headers);
+                                  var_dump($message);
         session_start();
     $_SESSION['msg'] =  "Thank you,your Password details has been sent to your E-mail address.";
                                 }

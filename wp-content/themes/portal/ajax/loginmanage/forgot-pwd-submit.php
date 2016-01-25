@@ -26,12 +26,12 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
 {
      if($result->is_deactive==1)
 				{
-                                       echo "You are in inactive state, please contact with admin";
+                                       echo "You are in inactive state, please contact with admin"; exit;
 				}
                                 else
                                 {
                                     
-                                      echo "you are active";  
+                                      
                                        $rand = wp_generate_strong_password(8);
                                     $update_array = array("forgotpwd_activation_code" => $rand);
                                     $wpdb->update( $table_prefix."users", $update_array, array("ID" => $result->ID));
@@ -51,7 +51,7 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                              $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                                              $headers  .= 'From: '.$admin_email."\r\n";
                                    mail($user_email,$subject,$message,$link,$headers);
-                                    var_dump($message);
+                                    //var_dump($message);
         session_start();
     $_SESSION['msg'] =  "Thank you,your Password details has been sent to your E-mail address.";
                                 }

@@ -66,6 +66,7 @@ if( count($result)>0)
 <input type="hidden" id="page" value="<?php echo $title ?>">
 <input type="hidden" id="minPassLen" value="<?php echo $min_pass_len ?>">
 <input type="hidden" id="maxPassLen" value="<?php echo $max_pass_len ?>">
+<input type="hidden" id="status" value="0">
   <div class="row toggle-full-width">
     <div class="large-12 columns">
       <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >

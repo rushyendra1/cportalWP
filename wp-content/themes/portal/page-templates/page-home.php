@@ -37,15 +37,15 @@ get_header(); ?>
               
                if(count($response_array)>0)
                 { 
-                   $i=1;
+                   //$i=1;
                     foreach($response_array as $each_tab)
                     {
-                        if($i == 3)
+                       /* if($i == 3)
                         {
                             echo "<br>";
                             $i =0;
                         }
-                        $i++;
+                        $i++;*/
                         ?>
                      <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
                    <?php }

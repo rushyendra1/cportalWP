@@ -3,11 +3,11 @@ var geocoder;
   var attachWindow ;
 $ = jQuery.noConflict();
 try{
-/*$(document).foundation({
+$(document).foundation({
 	abide:{
 		
 	}
-});*/
+});
 }catch(e){}
 $(document).ready(function(){
 

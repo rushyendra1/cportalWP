@@ -771,7 +771,9 @@ div.attachEle p{
     margin-bottom: 10px;
 }
 .contentSub{
-    display:table-cell;
+   // display:table-cell;
+     margin-left: 330px;
+    width: 71%;
 }
 /*** Portal Home ***/
 .homeTag{
@@ -1120,9 +1122,9 @@ margin-left: 5px;
 .alphaDiv{
     margin-top:10px;
 }
-.paginationRight{
+/*.paginationRight{
     margin-top:20px;
-}
+}*/
 .copyAddress{
     float:right;
     margin-top:-50px;

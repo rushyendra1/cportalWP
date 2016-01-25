@@ -771,7 +771,9 @@ div.attachEle p{
     margin-bottom: 10px;
 }
 .contentSub{
-    display:table-cell;
+   // display:table-cell;
+     margin-left: 330px;
+    width: 71%;
 }
 /*** Portal Home ***/
 .homeTag{

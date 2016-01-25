@@ -60,12 +60,14 @@ if ($is_fun) {
     session_start();
     $_SESSION['msg'] = 'Your Password is Changed Successfully';
     unset($_SESSION['forgot-times']);
+
     $credentials = array('user_login' => $result->user_login,
         'user_password' => $new_pwd,
         'remember' => true);
     $user = wp_signon($credentials, false);
 //         do_action('wp_login', $user->user_login, $user);
     wp_set_current_user($user->ID);
+    
     $email_info = $wpdb->get_row("SELECT subject,content "
             . " FROM " . $table_prefix . "email_template"
             . " WHERE name='change password email'");

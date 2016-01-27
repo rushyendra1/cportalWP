@@ -81,8 +81,8 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
     </div>
     <div class="pbBody">
                <div class="pbSubsection">
-                   <div class="contactDets">
-                       <div class="contactDetsDet">
+                   <div class="objectDets">
+                       <div class="objectDetsDet">
                            <?php
                              $item_cnt = count($result);
                             $rep_cnt = ceil($item_cnt/2);
@@ -98,11 +98,11 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
                                    }
                                    $i++;
                                ?>
-                           <div class="eachContactDetsDet">
+                           <div class="eachObjectDetsDet">
                             <div class="labelColItem"><label > <?php echo $key; ?> </label>
                             </div>
-                        <div class="oddDivContact">
-                            <span class="contactSpan"><?php echo $val; ?></span>
+                        <div class="oddDivObject">
+                            <span class="objectSpan"><?php echo $val; ?></span>
                         </div>
                         </div>
                                <?php 

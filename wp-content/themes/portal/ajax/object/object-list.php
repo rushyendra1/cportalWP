@@ -3,6 +3,8 @@
     include_once('../../../../../wp-config.php');
     include_once('../../functions.php');
     $type = (isset($_POST['object_type']))?trim($_POST['object_type']): "";
+    $object_id = (isset($_POST['object_id']))?trim($_POST['object_id']): "";
+    
     
 $view = (isset($_POST['view']))?trim($_POST['view']): "";
 $pageNum = (isset($_POST['PageNum']))?trim($_POST['PageNum']):0;

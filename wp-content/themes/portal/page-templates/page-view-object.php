@@ -29,6 +29,7 @@ echo place_message();
 <a name="skiplink" id="skiplink">&nbsp;</a>
 <?php
 $object_type = (isset($_GET['type']))?$_GET['type']:"";
+$object_id = (isset($_GET['id']))?$_GET['id']:"";
  /*** Connect the salesforce ***/
  list($access_token,$instance_url) = get_connection_sales();
  global $contact_details_url;
@@ -68,6 +69,7 @@ $object_type = (isset($_GET['type']))?$_GET['type']:"";
     
 &nbsp;
 <div>
+    <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >
     <div class="pbHeader">
         <div class="pbTitle titleWidth">
             <h2 class="mainTitle"> <?php echo $object_type; ?> Detail</h2>
@@ -137,6 +139,8 @@ $object_type = (isset($_GET['type']))?$_GET['type']:"";
 <div class="listRelatedObject Custom28Block">
     <?php
     if(count($related_types_array)>0){
+        $relateds_types = implode(",",$related_types_array);
+        echo '<input type="hidden" id="relatedTypes" value="'.$relateds_types.'" >';
         foreach($related_types_array as $each){
     ?>
     <div class="bPageBlock">
@@ -149,18 +153,17 @@ $object_type = (isset($_GET['type']))?$_GET['type']:"";
         </div>-->
        
         </div>
-        <!-- Just comment <div  class="pbBody">
+         <div  class="pbBody">
             
-          <table cellspacing="0" cellpadding="0" border="0" class="list contact-case-list">
-                <thead class="headerCase">
+          <table cellspacing="0" cellpadding="0" border="0" class="list object-<?php echo $each; ?>-list">
+                <thead class="headerObject<?php echo $each; ?>">
                     
                 </thead>
-                <tbody class="case-list-res">
+                <tbody class="Object<?php echo $each; ?>Res">
                 </tbody>
             </table>
-            <div class="showMoreDivCase"></div>
-        </div> -->
-        
+            <div class="showMoreDivObject<?php echo $each; ?>"></div>
+        </div>         
      
 
             

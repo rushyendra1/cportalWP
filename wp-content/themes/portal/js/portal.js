@@ -27,6 +27,19 @@ $(document).ready(function(){
             
         });*/
     }
+    if(path == "view-object")
+    {
+        var relatedTypes = $.trim($("#relatedTypes").val());
+        var relatedTypesArray = relatedTypes.split(",");
+        var relatedObjlen = relatedTypesArray.length;
+        if(relatedObjlen >0)
+        {
+            for(var i =0; i<relatedObjlen; i++)
+            {
+                getObjectTemplateByObject('','',0,'all',0,"CreatedDate","desc",relatedTypesArray[i]);
+            }
+        }
+    }
     /** Login Functionality **/
    $("#submit").on("click",function(e){
        /** Stop the immediate propagation **/
@@ -1351,4 +1364,359 @@ function getPageNo(ele)
         page +=1;
     return page;
 }
+/**
+ * Display the contacts for account
+ * @name getContactTemplateByAccount
+ * @param {object} that
+ * @param {string} classView
+ * @param (int) offset
+ * @param (int) page
+ * @param (string) alpaType
+ * @param {int} pagePart
+ * @param {string} field
+ * @param {string} sortType
+ * @returns {void}
+ */
+function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectType)
+{
+    showLoader();
+    if(typeof(page) == "undefined")
+        page = 0;
+    if(typeof(pagePart) == "undefined")
+        pagePart = 0;
+     var root = $.trim($("#rootTheme").val()); 
+     var siteUrl = $.trim($("#siteTheme").val()); 
+     var parentObjectId = $.trim($("#objectId").val());
+    
+     var accountName = $.trim($(".new-contact-act-btn").data("name"));
+     var perPageCnt = 15;
+    $.post(root+"/ajax/object/object-list.php",{object_id:parentObjectId,
+        object_type:objectType,per_page_cnt:perPageCnt,
+        PageNumShow:page,PageNum:pagePart,alpha_type:alphaType,
+        field:field, sort_type:sortType},function(data){
+         var status = getConnectionError(data,that,classView);
+        if(!status){
+            displayContacts();
+          showMoreContact();
+            return false;
+        }
+            var  res = data;
+           var result = res.objectList;
+           var fieldsArray = data.fields;
+           var fieldsLen = fieldsArray.length;
+           var totalRecords = 0;
+           if(typeof(res.NumberofRec) != "undefined")
+            totalRecords = res.NumberofRec;
+        
+            var msg = "Request Message";
+            var len = showMoreCnt = 0;
+            
+    try {
+        len = res.pageRecords;
+       
+        if (typeof (res.error) != "undefined")
+        {
+            itemAlertData(msg, data.message);
+            return false;
+            hideLoader();
+        }
+    } catch (e) {
 
+    }
+    var responseHtml = '';
+    var errorResult = res.response;
+                        
+                        
+    if(typeof(errorResult)!= "undefined" && typeof(errorResult.status)!="undefined" && errorResult.status== "Failure")
+       responseHtml +='<tr><td class="error" colspan="5">'+errorResult.message+'</td></tr>';
+    else if(len>0){
+        var headerHtml = '';
+        if(fieldsLen>0){
+            headerHtml = '<tr class="headerRow">';
+            for(var i=0; i<fieldsLen; i++)
+            {
+                var sortTitle = "Sorted Ascending";
+                var sortC = "sort ascending";
+                var orderType = "asc";
+                var sortClass = "sortAsc";
+                var activeClass = "";
+                var arg = fieldsArray[i];
+                
+                if(field == arg)
+                {
+                     activeClass = "activeSort";
+                     if(sortType== "desc"){
+                        sortTitle = "Sorted Descending";
+                        orderType = "desc";
+                        sortClass = "sortDesc";
+                        sortC = "sort descending";
+                     }
+                }
+                headerHtml +='<th  scope="col">\n\
+                        <a title="'+arg+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+arg+'\n\
+                        <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
+                        </a></th>';
+            } //for loop closed
+            headerHtml +='<th  scope="col">Action</th>';
+            headerHtml += '</tr>';
+        } //if closed
+        
+        $(".headerObject"+objectType).html(headerHtml);
+    
+         for (var i = 0; i < len; i++)
+        {
+            
+             var name = id= titleP =email= phone= "";
+             responseHtml +='<tr  class="dataRow even first">';
+            var id = '';
+            id= 123;
+            for(var j=0;j<fieldsLen;j++)
+            {
+                var value =  fields =  "";
+                fields = fieldsArray[j];
+            //  if (res[i] != null && typeof (res[i].fields) != "undefined")   
+             if (result[i] != null && typeof (result[i][fields]) != "undefined")
+                //value = res[i].fields;
+                  value = result[i][fields];  
+           
+                responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+               // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+                
+            }//for closed
+            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'">View</a> &nbsp; <a>Edit</a></td>';
+            responseHtml +='</tr>';
+
+            showMoreCnt = i+1;
+            
+        }
+    }
+    else
+        responseHtml +='<tr><td class="error" colspan="5">No Records To Display</td></tr>';
+    var totalPageCount = totalPageCnt(totalRecords,perPageCnt);
+    page = parseInt(page)+1;
+   /* var showMore = '';
+    if(page<totalPageCount && totalRecords > perPageCnt)
+     showMore = '<span class="showMoreContactAct" data-cnt="'+showMoreCnt+'" data-page="'+page+'" data-pagepart="'+pagePart+'"  >Show '+perPageCnt+' more</span>&nbsp;&nbsp;';
+            */
+    
+/*  var responseShowList = '<div >'+showMore+'\n\
+<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'">Go to List( '+totalRecords+' )</a></span></div>';
+  */          
+             var responseShowList = '<div >\n\
+<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'">Go to List( '+totalRecords+' )</a></span></div>';
+        if(typeof(totalRecords) != "undefined" && totalRecords >0)
+   $(".showMoreDivObject"+objectType).html(responseShowList);
+    $(".Object"+objectType+"Res").html(responseHtml);
+    $(that).removeClass(classView);
+    displayContacts();
+    showMoreContact();
+    hideLoader();
+      },'json');
+}
+/**
+ * Perform the Contact functionalities
+ * @name displayContacts
+ * @returns {void}
+ */
+function displayContacts()
+{
+   
+   /** Highlight the rows **/
+   $(".dataRow").on("mouseover",function(e){
+      e.stopImmediatePropagation();
+      $(this).addClass("addColorSpan");
+   });
+   /** Unhighlight the rows **/
+    $(".dataRow").on("mouseout",function(e){
+      e.stopImmediatePropagation();
+      $(this).removeClass("addColorSpan");
+   });
+   /** View Type **/
+   $("#contactViewType").on("change",function(e){
+      e.stopImmediatePropagation();
+      var classView = "ajaxCall";
+      if($(this).hasClass(classView))
+      {
+          return false;
+      }
+      $(this).addClass(classView);
+      showLoader();
+      var view = $.trim($(this).val());
+       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
+       var type = $(".activeCont").data("type");
+       var ele = $(".activeSort").parent();
+       var field = $.trim(ele.data("field"));
+       var orderType = $.trim(ele.data("type"));
+      getContactTemplate(view,this,classView,100,0,type,field,orderType,alphaType)
+   });
+   
+   /*** Contact Pagination***/
+   $(".displayContacts").on("click",function(e){
+       e.stopImmediatePropagation();
+      var classView = "ajaxCall";
+      if($(this).hasClass(classView))
+      {
+          return false;
+      }
+      $(this).addClass(classView);
+      showLoader();
+      var page = $.trim($(this).data("paged"));
+      var length = 100;
+      var view = $.trim($("#contactViewType").val());
+      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
+      var type = $(".activeCont").data("type");
+      var ele = $(".activeSort").parent();
+       var field = $.trim(ele.data("field"));
+       var orderType = $.trim(ele.data("type"));
+      getContactTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
+   });
+   /*** Click on the More Button **/
+   $(".moreContact").on("click",function(e){
+        e.stopImmediatePropagation();
+      var classView = "ajaxCall";
+      if($(this).hasClass(classView))
+      {
+          return false;
+      }
+      $(this).addClass(classView);
+      showLoader();
+      $(this).addClass("activeMore");
+      var page = getPageNo("displayContacts");
+      var length = 100;
+      var view = $.trim($("#contactViewType").val());
+      $(this).addClass("activeCont");
+      $(".fewerContact").removeClass("activeCont");
+      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
+      var ele = $(".activeSort").parent();
+       var field = $.trim(ele.data("field"));
+       var orderType = $.trim(ele.data("type"));
+      getContactTemplate(view,this,classView,length,page,1,field,orderType,alphaType);
+   });
+   /*** Fewer functionalities ***/
+    $(".fewerContact").on("click",function(e){
+        e.stopImmediatePropagation();
+      var classView = "ajaxCall";
+      if($(this).hasClass(classView))
+      {
+          return false;
+      }
+      $(this).addClass(classView);
+      $(this).addClass("activeFewer");
+      showLoader();
+      var page = getPageNo("displayContacts");
+      var length = 100;
+      var view = $.trim($("#contactViewType").val());
+      $(this).addClass("activeCont");
+      $(".moreContact").removeClass("activeCont");
+      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
+      var ele = $(".activeSort").parent();
+       var field = $.trim(ele.data("field"));
+       var orderType = $.trim(ele.data("type"));
+      getContactTemplate(view,this,classView,length,page,0,field,orderType,alphaType);
+   });
+   /*** Alpha paginations***/
+   $(".alphaContact").on("click",function(e){
+         e.stopImmediatePropagation();
+      var classView = "ajaxCall";
+      if($(this).hasClass(classView))
+      {
+          return false;
+      }
+      $(this).addClass(classView);
+      showLoader();
+      var page = getPageNo("displayContacts");  
+      var length = 100;
+      var view = $.trim($("#contactViewType").val());
+      var alphaType = $.trim($(this).data('alphatype'));
+      $(".listItem").removeClass("activeAlpha");
+      $(".listItem[data-alphatype="+alphaType+"]").addClass("activeAlpha");
+       var type = $(".activeCont").data("type");
+       var ele = $(".activeSort").parent();
+       var field = $.trim(ele.data("field"));
+       var orderType = $.trim(ele.data("type"));
+      getContactTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
+   });
+   
+   /*** Sort the functionality**/
+   $(".sortClass").on("click", function(e){
+          e.stopImmediatePropagation();
+      var classView = "ajaxCall";
+      if($(this).hasClass(classView))
+      {
+          return false;
+      }
+      $(this).addClass(classView);
+      showLoader();
+      var orderType = $.trim($(this).data("type"));
+     
+      var orderBy = "asc";
+      if(orderType == "asc")
+          orderBy = "desc";
+      var page = getPageNo("displayContacts");  
+      var length = 100;
+      var view = $.trim($("#contactViewType").val());
+      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
+       var type = $(".activeCont").data("type");
+       var field = $.trim($(this).data("field"));
+       getContactTemplate(view,this,classView,length,page,type,field,orderBy,alphaType);
+       });
+}
+/**
+ * Show more functionalities
+ * @name showMoreContact
+ * @returns {void}
+ */
+function showMoreContact()
+{
+    /** Show more in contacts in view account **/
+    $(".showMoreContactAct").on("click",function(e){
+       e.stopImmediatePropagation();
+        var classView = "ajaxCall";
+        if($(this).hasClass(classView))
+        return false;
+        $(this).addClass(classView);
+        var offset = $.trim($(this).data("cnt"));
+        var page = $.trim($(this).data("page"));
+        var pagePart = $.trim($(this).data("pagepart"));
+        if(typeof(page) == "undefined")
+              page =0;
+          if(typeof(pagePart) == "undefined")
+              pagePart =0;
+        getContactTemplateByAccount(this,classView,page,'all',pagePart,"CreatedDate","desc");
+        
+    });
+    /**show more in cases in view account **/
+    $(".showMoreCaseAct").on("click",function(e){
+       e.stopImmediatePropagation();
+        var classView = "ajaxCall";
+        if($(this).hasClass(classView))
+        return false;
+        $(this).addClass(classView);
+        var offset = $.trim($(this).data("cnt"));
+        var page = $.trim($(this).data("page"));
+        var pagePart = $.trim($(this).data("pagepart"));
+        if(typeof(page) == "undefined")
+              page =0;
+          if(typeof(pagePart) == "undefined")
+              pagePart =0;
+        getCaseTemplateByAccount(this,classView,page,'all', pagePart,"CreatedDate","desc");
+        
+    });
+    /**show more in cases in view account **/
+    $(".showMoreCaseHistoryAct").on("click",function(e){
+       e.stopImmediatePropagation();
+        var classView = "ajaxCall";
+        if($(this).hasClass(classView))
+        return false;
+        $(this).addClass(classView);
+        //var offset = $.trim($(this).data("cnt"));
+        var page = $.trim($(this).data("page"));
+        var pagePart = $.trim($(this).data("pagepart"));
+        if(typeof(page) == "undefined")
+              page =0;
+          if(typeof(pagePart) == "undefined")
+              pagePart =0;
+        getCaseHistory(this,classView,page);
+        
+    });
+}

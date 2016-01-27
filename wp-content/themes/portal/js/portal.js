@@ -22,7 +22,7 @@ $(document).ready(function(){
     if(path == "object-list")
     {
        
-         getObjectTemplate('2','','',1,0,0,'Name','asc','all');
+         getObjectTemplate('2','','',100,0,0,'Name','asc','all');
         /*$.post(root+"/ajax/object/object-list.php",{type:type},function(e){
             
         });*/

@@ -46,9 +46,10 @@ get_header(); ?>
                             $i =0;
                         }
                         $i++;*/
+                        if($each_tab != ""){
                         ?>
                      <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
-                   <?php }
+                        <?php } }
                 }
               ?>
               

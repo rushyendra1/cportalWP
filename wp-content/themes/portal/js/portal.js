@@ -158,8 +158,8 @@ $(".logouts").on("click",function(e){
        }
     });
     /** Confirm password above element validations **/
-    $("#confirmPwd").on("focus",function(){
-        
+    $("#confirmPwd").on("focus",function(e){
+        e.stopImmediatePropagation();
         var status = $.trim($("#status").val());
         var old = $.trim($("#oldPwd").val());
         var error = [];
@@ -421,6 +421,7 @@ $(".logouts").on("click",function(e){
         $(".errorInput").removeClass("errorInput");
         var newp = $.trim($("#newPwd").val());
         var conp = $.trim($("#confirmPwd").val());
+        var oldPwd = $.trim($("#oldPwd").val());
       //  var status = $.trim($("#status").val());
        var status=1;
         //var title = "Request Message";
@@ -479,6 +480,7 @@ $(".logouts").on("click",function(e){
                 window.location.href = site+'/login';
             }
         },"json");
+        
      });
     
 });
@@ -593,6 +595,7 @@ function pwdCheckError(status,error,ele)
  */
 function newPwdCheckError(status,error,ele,oldPwd)
 {
+     var root = $.trim($("#rootTheme").val());
     var newp = $.trim($(ele).val());
     var minPassLen = $.trim($("#minPassLen").val());
     if (newp == "") {
@@ -620,7 +623,7 @@ function newPwdCheckError(status,error,ele,oldPwd)
             $(ele).val("");
             showLabelFocus(ele,msg);
             //$(ele).focus();
-        }else if( oldPwd == newp)
+        }else if(status ==0 &&  oldPwd == newp)
         {
              var msg = "Old Password and New Password should not be same.";
             //error +=msg+"<br/>";
@@ -629,6 +632,20 @@ function newPwdCheckError(status,error,ele,oldPwd)
             $(ele).val("");
             showLabelFocus(ele,msg);
            // $(ele).focus();
+        }else if(status ==1 )
+        {
+            var rand = $.trim($("#rand").val());
+             $.post(root +"/ajax/loginmanage/new-pwd-check.php",{new_pwd:newp,randno:rand},function(data){ 
+                if(data != "")
+                {
+                     error.push("n");
+                     $(ele).val("");
+                   showLabelFocus(ele,data);
+                }else 
+                     hideData(ele);
+                 return error;
+                });                  
+             
         }else{
             hideData(ele);
            /* if($(nextEle).val() == "")

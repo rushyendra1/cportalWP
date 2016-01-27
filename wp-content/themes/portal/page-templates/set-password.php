@@ -22,6 +22,13 @@ global $table_prefix;
 //redirect_to_login(); 
 get_header(); 
 $rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
+$user_info = $wpdb->get_row("SELECT ID 
+            FROM ".$table_prefix."users
+         WHERE forgotpwd_activation_code='".$id."'");
+if(count($user_info)>0)
+{
+    echo "Your Session is Expired";exit;
+}
 
 /*$status = (isset($_GET['s']))?$_GET['s']: 0;
 $is_admin = (isset($_GET['a']))?$_GET['a']: 0;
@@ -60,6 +67,7 @@ $user_id = $user_ID; */
 ?>
 <input type="hidden" id="rand" value="<?php echo $rand?>">
  <input type="hidden" id="page" value="<?php echo $title ?>">
+  <input type="hidden" id="status" value="1">
 <input type="hidden" id="minPassLen" value="<?php echo $min_pass_len ?>">
 <input type="hidden" id="maxPassLen" value="<?php echo $max_pass_len ?>">
   <div class="row toggle-full-width">
@@ -71,6 +79,7 @@ $user_id = $user_ID; */
       <hr>
       <input type="hidden" id="status" value="<?php echo $status ?>" > 
       <div id="section_1">
+                   
           <div class="row">
           <div class="medium-6 columns">
               <label for="newPwd">

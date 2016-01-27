@@ -973,9 +973,11 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
         for (var i = 0; i < len; i++)
         {
             responseHtml +='<tr  class="dataRow even first">';
+            var id = '';
+            id= 123;
             for(var j=0;j<fieldsLen;j++)
             {
-                var value = id= fields =  "";
+                var value =  fields =  "";
                 fields = fieldsArray[j];
             //  if (res[i] != null && typeof (res[i].fields) != "undefined")   
              if (res[i] != null && typeof (res[i][fields]) != "undefined")
@@ -986,7 +988,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 
             }//for closed
-            responseHtml +='<td class=" dataCell  " scope="row"><a>View</a> &nbsp; <a>Edit</a></td>';
+            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'">View</a> &nbsp; <a>Edit</a></td>';
             responseHtml +='</tr>';
         }
     }else{

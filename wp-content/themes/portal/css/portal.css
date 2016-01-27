@@ -56,7 +56,7 @@ top:250px;position:fixed;left:500px
  }
  .bodyPage{
         position: relative;
-
+        margin-top: 15px;
  }
  #sidebarCell{
      vertical-align: top;

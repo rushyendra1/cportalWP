@@ -42,12 +42,14 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
  //}
  $result = json_decode($json_response); 
  $result = json_decode($result); 
- 
-   /* $result = array(
-        array("first_name" => "xxx", "last_name" => "xy" ),
-        array("first_name" => "xxxy", "last_name" => "yxy" ),
-        array("first_name" => "xyxy", "last_name" => "xxy" )
-        );*/
+ if(isset($response[0]->errorCode))
+ {
+        //var_dump($response);
+        $admin_email = get_option("admin_email");
+        mail($admin_email,$response[0]->errorCode, $response[0]->message );
+        echo  "Something event wrong. Please contact your system Administrator.";
+        exit;
+    }
      
      
      if($result == null)

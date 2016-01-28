@@ -37,8 +37,10 @@ get_header(); ?>
               
                if(count($response_array)>0)
                 { 
-                   //$i=1;
-                    foreach($response_array as $each_tab)
+                  $tab_array = $response_array['TabList'];
+                  $api_array = $response_array['ApiList'];
+                  $i =0;
+                    foreach($tab_array as $each_tab)
                     {
                        /* if($i == 3)
                         {
@@ -48,8 +50,10 @@ get_header(); ?>
                         $i++;*/
                         if($each_tab != ""){
                         ?>
-                     <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
-                        <?php } }
+                     <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
+                        <?php }
+                        $i++;
+                        }
                 }
               ?>
               

@@ -62,14 +62,16 @@ if(count($result) == 0)
             exit;
         }
         
-        $login_array = array("Type" => "login","userId" => $result->ID,
+        $login_array = array( "method" => "LoginDetails",
+            "Type" => "login","userId" => $result->ID,
                 "inOutDate" => date("Y-m-d\TH:i:s",time() ));
-     
+    
         /** Integrate the salesforce **/
         list($access_token,$instance_url) = get_connection_sales();
         global $login_time_url;
         $url = $instance_url.$login_time_url;
-        $json_response = post_request($url, $access_token, json_encode($login_array),$method);
+        $json_response = post_request($url, $access_token, json_encode($login_array),"POST");
+        
         $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))
     $json_response = $response_array[1];

@@ -26,42 +26,28 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
     if($field != "" && $sort_type != "")
         $get_param .= '&sorting='.$field."+".$sort_type;
     $get_param .= '&type='.$alpha_type;
-     $method_url = "";
-    if($view ==1)
-    {  
-        global $account_active_accounts_url;
-        $method_url = $account_active_accounts_url;
-    }
-    else if($view ==2)
-    {  
-        global $account_list_url;
-        $method_url = $account_list_url;
-    }
+   
     
-    /* just comment $url = $instance_url.$method_url.$get_param;
-    $json_response = connects_salesforce($url,array(),FALSE,$access_token,"get");
-    if(is_array($json_response))
-    {
-        echo json_encode($json_response); exit;
-    }
-    $response = json_decode($json_response);
-     if(is_array($response))
-    {
-        echo json_encode($response); exit;
-    }
-    $response = json_decode($response);
-      if($response->response)
-    {
-        echo json_encode($response); exit;
-    }
-    if(isset($response->Accountinfo))
-    $result = $response->Accountinfo;
-     else $result = $response;*/
-    $result = array(
+    /** Integrate the salesforce **/
+        list($access_token,$instance_url) = get_connection_sales();
+        global $login_time_url;
+        $url = $instance_url.$login_time_url;
+        $object_array = array("method" => "getObjectDetails",
+                                "Type" =>$type );
+        
+        $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
+        $response_array = explode("chunked",$json_response);
+    if(isset($response_array[1]))
+    $json_response = $response_array[1];
+ //}
+ $result = json_decode($json_response); 
+ $result = json_decode($result); 
+ 
+   /* $result = array(
         array("first_name" => "xxx", "last_name" => "xy" ),
         array("first_name" => "xxxy", "last_name" => "yxy" ),
         array("first_name" => "xyxy", "last_name" => "xxy" )
-        );
+        );*/
      
      
      if($result == null)
@@ -93,8 +79,15 @@ $start_pos = $response->StartPos;
      if(isset($response->EndPos))
 $end_pos = $response->EndPos;
      $params_array = array();
-     if(isset($result[0]))
-    $params_array = array_keys($result[0]);     
+     if(isset($result[0])){
+         $fields =(array) $result[0];
+        $params_array = array_keys($fields); 
+        $key = array_search('attributes', $params_array);
+        unset($params_array[$key]);
+        $key = array_search('Id', $params_array);
+        unset($params_array[$key]);
+        $params_array = array_values($params_array);
+     }
        echo json_encode(array("objectList" => $result,
      "NumberofRec" =>  $total_recs,
      "pageRecords" => count($result),

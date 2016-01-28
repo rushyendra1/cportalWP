@@ -1004,7 +1004,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
         {
             responseHtml +='<tr  class="dataRow even first">';
             var id = '';
-            id= 123;
+             if (res[i] != null && typeof (res[i]['Id']) != "undefined")
+                id= res[i]['Id'];
             for(var j=0;j<fieldsLen;j++)
             {
                 var value =  fields =  "";

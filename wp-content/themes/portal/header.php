@@ -71,15 +71,21 @@ function Openeditcourse(a)
 </script>
 </head>
 
-<body>
+<body style="background: url(images/image.jpg);">
+    
 <div id="wrap">
 
 <section id="top">
-<nav id="mainnav">
-<h1 id="sitename" class="logotext">
+    
+<h1 id="sitename" class="logotext" >
     <a href="<?php echo get_site_url() ?>">Customer Portal</a>
-</h1>
-<ul>
+</h1> 
+</section>
+   <br>
+   <br>
+   <br>
+      <div id="mainnav" >
+      <ul >
     <li ><a href="<?php echo get_site_url() ?>">Home</a></li>
     <?php if(!is_user_logged_in()) { ?>
 <li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
@@ -96,10 +102,27 @@ function Openeditcourse(a)
    } //for loop
    } //if of response array
 } // is user logged in  ?>
+<!--<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li> --> 
 </ul>
-</nav>
-</section>
-    
+   
+</div>  
+
+
+    </div>
+    </body>
 <p class="hide-for-medium-down">&nbsp;</p>
 
 <!--<a href="<?php echo get_site_url() ?>" id="home" >Home</a>

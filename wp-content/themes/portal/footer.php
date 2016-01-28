@@ -9,14 +9,13 @@
  * @since Portal 1.0
  */
 ?>
-
 		</div><!-- #main -->
 
 		<div class="clearfix"></div>
 
 		<footer name="footer-main" >
-			<div class="row-fluid footer-wrapper-width" align="center">
-				<div class="footer-content">
+			<div id="footer" class="row-fluid footer-wrapper-width" align="center" style="position: absolute;bottom: 10px; >
+				<div class="footer-content"  >
 				
 					<div class="span1 footer-logo-content" >
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" > 

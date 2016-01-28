@@ -13,19 +13,56 @@ button, .button {
 }
 /*** **/
 /*** Menus **/
-#mainnav ul {height:35px; float:right; padding-top:13px; padding-right:40px;}
+/*#mainnav ul {height:35px; float:left; padding-top:50; padding-right:40px;}
+#mainnav ul li {display:inline;float: left; font:bold 1.2em "Helvetica Neue", Helvetica, Verdana, sans-serif; text-transform:uppercase; }
+#mainnav li a {display:block; float:left; height:31px;padding-left: 0px;  color:#fbdca6!important; text-shadow:#4a2f13 1px 1px 1px; background:url(images/cportal/menur2.png) right top no-repeat; margin:0 5px;direction: ltr;}
+#mainnav li a span {display:block; float:left; background:url(images/menul2.png) left top no-repeat; padding:4px 0 0 20px; height:27px;}
+#mainnav li a:hover {color:#000!important; text-decoration:none!important; background:url(images/cportal/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
+#mainnav li a:hover span {background:url(images/cportal/menul1.png) left top no-repeat;}
+#mainnav li.active a {color:#621907!important; background:url(images/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
+#mainnav li.active a span {background:url(images/cportal/menul1.png) left top no-repeat;} */
+/* #mainnav ul {height:35px; float:left; padding-top:50; padding-right:40px;}
+#mainnav ul li {display:inline;float: left; font:bold 1.2em "Helvetica Neue", Helvetica, Verdana, sans-serif; text-transform:uppercase; }
+#mainnav li a {display:block; float:left; height:31px;padding-left: 0px;  color:#fbdca6!important; text-shadow:#4a2f13 1px 1px 1px; background:url(images/cportal/menur2.png) right top no-repeat; margin:0 5px;direction: ltr;}
+#mainnav li a span {display:block; float:left; background:url(images/menul2.png) left top no-repeat; padding:4px 0 0 20px; height:27px;}
+#mainnav li a:hover {color:#000!important; text-decoration:none!important; background:url(images/cportal/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
+#mainnav li a:hover span {background:url(images/cportal/menul1.png) left top no-repeat;}
+#mainnav li.active a {color:#621907!important; background:url(images/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
+#mainnav li.active a span {background:url(images/cportal/menul1.png) left top no-repeat;} */
+#mainnav ul {height:35px; float:left; padding-top:50; padding-right:40px;}
 #mainnav li {display:inline; font:bold 1.2em "Helvetica Neue", Helvetica, Verdana, sans-serif; text-transform:uppercase;}
 #mainnav li a {display:block; float:left; height:31px; padding-right:20px; color:#fbdca6!important; text-shadow:#4a2f13 1px 1px 1px; background:url(images/cportal/menur2.png) right top no-repeat; margin:0 5px;}
 #mainnav li a span {display:block; float:left; background:url(images/menul2.png) left top no-repeat; padding:4px 0 0 20px; height:27px;}
 #mainnav li a:hover {color:#000!important; text-decoration:none!important; background:url(images/cportal/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
 #mainnav li a:hover span {background:url(images/cportal/menul1.png) left top no-repeat;}
 #mainnav li.active a {color:#621907!important; background:url(images/menur1.png) right top no-repeat; text-shadow:#fff 1px 1px 1px;}
-#mainnav li.active a span {background:url(images/cportal/menul1.png) left top no-repeat;}
+#mainnav li.active a span {background:url(images/cportal/menul1.png) left top no-repeat;} 
 
-#sitename {font-weight:bold; color:#124d2c; text-shadow:#f5d18b 1px 1px 1px;  float:left; padding:9px 0 0 40px;}
-#sitename a {color:#124d2c; text-decoration:none;}
+#sitename {font-weight:bold;  color:#124d2c; text-shadow:#f5d18b 1px 1px 1px;   padding:0% 0% 0% 30%; }
+#sitename a {color:#124d2c;text-align: center; text-decoration:none; width: 0% 0% 0% 30%}
 #sitename.logotext a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
 #sitename.logotext a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #sitename a:hover {color:#052714;}
 
-#sitename.logo a {display:block; background:url(images/cportal/memoirelogo.png) no-repeat; height:34px; width:217px;text-indent:-4000px; overflow:hidden;}
+#sitename.logo a {display:block; background:url(images\cportal\header.jpg) no-repeat; height:34px; width:217px;text-indent:-4000px; overflow:hidden;}
+
+/* Header Part */
+#wrap {
+    height:15%;
+    width:100%;
+ text-align: center;
+    
+}
+
+#sitename {
+    width: 0% 0% 0% 30%;
+}
+#head {
+    text-align: center;
+    width: 0% 0% 0% 30%;
+}
+#footer {
+  width: 100%;
+  background-color: skyblue;
+    
+}

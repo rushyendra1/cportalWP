@@ -21,23 +21,19 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
 				WHERE user_email='".$user_email."'");
 			//echo wp_check_password( $old_pwd, $result->user_pass,$id);	
                       //check the given password and database password
-                      
  if(count($result)>0)
 {
      if($result->is_deactive==1)
 				{
                                        echo "You are in inactive state, please contact with admin"; exit;
 				}
-                                else
+                                else 
                                 {
-                                    
                                       $admin_email = get_option("admin_email");
                                        $rand = wp_generate_strong_password(8);
 
-                                    $update_array = array("forgotpwd_activation_code" => $rand,"user_pass"=> "");
-
-                                    $update_array = array("forgotpwd_activation_code" => $rand, "is_deactive" => 0);
-
+                                    $update_array = array("forgotpwd_activation_code" => $rand,"user_pass"=> "","is_deactive" => 0);
+                              //      $update_array = array("forgotpwd_activation_code" => $rand, "is_deactive" => 0);
                                     $wpdb->update( $table_prefix."users", $update_array, array("ID" => $result->ID));
                                     
                                   $link = get_site_url().'/set-password?id='.base64_encode($rand);
@@ -59,7 +55,6 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
         session_start();
     $_SESSION['msg'] =  "Thank you,your Password details has been sent to your E-mail address.";
                                 }
-                                
 }else {
      echo "Email does not match kindly re-enter correctly"; 
 }

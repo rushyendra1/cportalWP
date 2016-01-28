@@ -24,12 +24,16 @@ get_header();
 $rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
 $user_info = $wpdb->get_row("SELECT ID 
             FROM ".$table_prefix."users
-         WHERE forgotpwd_activation_code='".$id."'");
-if(count($user_info)>0)
-{
-    echo "Your Session is Expired";exit;
-}
+         WHERE forgotpwd_activation_code='".$rand."'");
 
+if(count($user_info)==0)
+{
+    
+   echo "Your Session is Expired";
+    
+  
+    exit;
+}
 /*$status = (isset($_GET['s']))?$_GET['s']: 0;
 $is_admin = (isset($_GET['a']))?$_GET['a']: 0;
 $is_new = (isset($_GET['n']))?$_GET['n']: 0;

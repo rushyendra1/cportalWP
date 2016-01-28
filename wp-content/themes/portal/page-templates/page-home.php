@@ -31,7 +31,7 @@ get_header(); ?>
             //if(isset($_SESSION['user'])){
             if(is_user_logged_in()){
             ?>
-              <a href="<?php echo get_site_url() ?>/profile"  class="button radius submit link">My Account</a>
+              <a href="<?php echo get_site_url() ?>/profile"  class="button radius submit link">My Profile</a>
               <?php 
               $response_array = get_tabs_from_sales();
               
@@ -46,9 +46,10 @@ get_header(); ?>
                             $i =0;
                         }
                         $i++;*/
+                        if($each_tab != ""){
                         ?>
                      <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
-                   <?php }
+                        <?php } }
                 }
               ?>
               

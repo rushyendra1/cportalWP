@@ -10,7 +10,7 @@ redirect_to_login();
 get_header();
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
 ?>
-
+<input type="hidden" id="object" value="<?php echo $type; ?>" >
 <div id="main-content" class="main-content">
     <div class="row-fluid data-content-outer" >
         <div id="primary" class="content-area">

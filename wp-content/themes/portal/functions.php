@@ -785,8 +785,8 @@ function call_js_css_files()
     wp_enqueue_style("style-foundataion-icons", get_template_directory_uri()."/css/foundation-icons.css", array(), NULL,false);      
     wp_enqueue_style("style-layout", get_template_directory_uri()."/css/layout.css", array(), NULL,false);      
     wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
-    if($path == "object-list")
-    wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
+    //if($path == "object-list" || $path == "view-object")
+    //wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
     //else
         wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
     

@@ -185,6 +185,7 @@ top:250px;position:fixed;left:500px
 }
 .error{
      color:red !important;
+     background-color: #ffffff !important;
 }
 /**** ***/
 /*** Pagination ***/
@@ -521,3 +522,4 @@ text-overflow: ellipsis;
 #sitename a:hover {color:#052714;}
 
 #sitename.logo a {display:block; background:url(images/cportal/memoirelogo.png) no-repeat; height:34px; width:217px;text-indent:-4000px; overflow:hidden;}
+

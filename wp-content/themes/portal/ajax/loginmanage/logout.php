@@ -16,10 +16,13 @@ wp_logout();
         list($access_token,$instance_url) = get_connection_sales();
         global $login_time_url;
         $url = $instance_url.$login_time_url;
-         $logout_array = array("Type" => "logout","userId" => $result->ID,
+         $logout_array = array(
+                "method" => "LoginDetails",
+                 "Type" => "logout",
+                  "userId" => $result->ID,
                 "inOutDate" => date("Y-m-d\TH:i:s",time() ));
         
-        $json_response = post_request($url, $access_token, json_encode($logout_array),$method);
+        $json_response = post_request($url, $access_token, json_encode($logout_array),"POST");
         
         $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))

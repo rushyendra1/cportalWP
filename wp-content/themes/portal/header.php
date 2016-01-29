@@ -102,11 +102,16 @@ function Openeditcourse(a)
  $response_array = get_tabs_from_sales();
    if(count($response_array)>0)
    { 
-       foreach($response_array as $each_tab)
+       //var_dump($response_array);
+       $tab_array = $response_array['TabList'];
+       //var_dump($tab_array);
+       $api_array = $response_array['ApiList'];
+       $i =0;
+       foreach($tab_array as $each_tab)
        {
        ?>
-<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $each_tab ?>"><span><?php echo $each_tab; ?></span></a></li>
-    <?php    
+<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>"><span><?php echo $each_tab; ?></span></a></li>
+    <?php    $i++;
    } //for loop
    } //if of response array
 } // is user logged in  ?>

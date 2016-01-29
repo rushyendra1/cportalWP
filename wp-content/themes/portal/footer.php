@@ -14,7 +14,7 @@
 		<div class="clearfix"></div>
 
 		<footer name="footer-main" >
-			<div id="footer" class="row-fluid footer-wrapper-width" align="center" style="position: absolute;bottom: 10px; >
+			<div id="footer" class="row-fluid footer-wrapper-width" align="center" >
 				<div class="footer-content"  >
 				
 					<div class="span1 footer-logo-content" >

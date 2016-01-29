@@ -72,25 +72,33 @@ function Openeditcourse(a)
 </head>
 
 <body style="background: url(images/image.jpg);">
-    
-<div id="wrap">
+ <div id="wrap">
 
-<section id="top">
+	 		
+	   <div >
+	 		
+               <div id="logo">
+                   <img src="css/images/cportal/logo.png" alt="logo">
+                   </div>
+                                <h1 id="name" class="header">
+					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
+				</h1>
+				
+	 		
+	 		
+	 		
+	 		
+	 	</div>
+
     
-<h1 id="sitename" class="logotext" >
-    <a href="<?php echo get_site_url() ?>">Customer Portal</a>
-</h1> 
-</section>
-   <br>
-   <br>
-   <br>
-      <div id="mainnav" >
+      <div id="nav_area" >
       <ul >
     <li ><a href="<?php echo get_site_url() ?>">Home</a></li>
     <?php if(!is_user_logged_in()) { ?>
 <li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
 <?php } if(is_user_logged_in()){
     /*** Connects to salesforce **/
+   
  $response_array = get_tabs_from_sales();
    if(count($response_array)>0)
    { 
@@ -102,6 +110,7 @@ function Openeditcourse(a)
    } //for loop
    } //if of response array
 } // is user logged in  ?>
+<!--<li ><a href="<?php echo get_site_url() ?>/logout">Logout</a></li> -->
 <!--<li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
@@ -115,14 +124,15 @@ function Openeditcourse(a)
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li> --> 
-</ul>
+<li><a href="#"><span>fghhghfg</span></a></li>  -->
+
+      </ul>
    
-</div>  
+</div> 
 
 
-    </div>
-    </body>
+</div>    
+  
 <p class="hide-for-medium-down">&nbsp;</p>
 
 <!--<a href="<?php echo get_site_url() ?>" id="home" >Home</a>

@@ -50,7 +50,7 @@ get_header(); ?>
                         $i++;*/
                         if($each_tab != ""){
                         ?>
-                     <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
+                     <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>"  class="button radius submit link"><?php echo $each_tab ?></a>   
                         <?php }
                         $i++;
                         }

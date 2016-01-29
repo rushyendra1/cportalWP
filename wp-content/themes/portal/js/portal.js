@@ -1014,7 +1014,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
              if (res[i] != null && typeof (res[i][fields]) != "undefined")
                 //value = res[i].fields;
                   value = res[i][fields];  
-           
+               if(value == "null")
+                   value= "";
                 responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 

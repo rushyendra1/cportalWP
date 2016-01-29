@@ -41,16 +41,20 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
     $json_response = $response_array[1];
  //}
  $result = json_decode($json_response); 
- $result = json_decode($result); 
- if(isset($response[0]->errorCode))
+
+
+ if(isset($result[0]->errorCode))
  {
         //var_dump($response);
         $admin_email = get_option("admin_email");
         mail($admin_email,$response[0]->errorCode, $response[0]->message );
-        echo  "Something event wrong. Please contact your system Administrator.";
+        echo json_encode(array("errorCode" => "Request Message", 
+                "message" => "Something event wrong. Please contact your system Administrator."
+                ));
+        
         exit;
     }
-     
+      $result = json_decode($result); 
      
      if($result == null)
          $result = array();

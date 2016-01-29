@@ -110,7 +110,7 @@ function Openeditcourse(a)
        foreach($tab_array as $each_tab)
        {
        ?>
-<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>"><span><?php echo $each_tab; ?></span></a></li>
+<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>"><span><?php echo $each_tab; ?></span></a></li>
     <?php    $i++;
    } //for loop
    } //if of response array

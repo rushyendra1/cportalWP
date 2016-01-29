@@ -9,6 +9,8 @@
 redirect_to_login();
 get_header();
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
+$obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
+
 ?>
 <input type="hidden" id="object" value="<?php echo $type; ?>" >
 <div id="main-content" class="main-content">
@@ -25,7 +27,7 @@ $type = (isset($_GET['id']))?trim($_GET['id']):"";
                     <!-- Start page content -->
                     <div class="bodyPage">
                         <div class="bPageTitle">
-                            <h1 class="pageType noSecondHeader"><?php echo $type; ?></h1>
+                            <h1 class="pageType noSecondHeader"><?php echo $obj_name; ?></h1>
 
                         </div>
 

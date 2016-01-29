@@ -70,24 +70,16 @@ function Openeditcourse(a)
 
 </script>
 </head>
-
-
  <div id="wrap">
-
-	 		
+	
 	   <div >
-	 		
                <div id="logo">
                   <img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" />
                    </div>
                                 <h1 id="name" class="header">
 					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
 				</h1>
-				
-	 		
-	 		
-	 		
-	 		
+ 		
 	 	</div>
 
     

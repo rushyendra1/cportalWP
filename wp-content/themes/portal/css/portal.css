@@ -2,6 +2,7 @@
 
 .loginDiv input{
     height: 30px;
+    
 }
 .dispRow{
     margin-left: 20px !important;
@@ -527,12 +528,13 @@ position: relative;
 }
 #name a {
     color:#124d2c;
-    text-align: center; 
+    text-align: left; 
     text-decoration:none; 
 }
 #name.header a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
 #name.header a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #name a:hover {color:#052714;}
+        
 
 /*-----------------start nav_area-----------------*/
 
@@ -569,11 +571,21 @@ position: relative;
 	font-family: helvetica;
       
 }
-#nav_area ul li a:hover {
-	background: #FF4000;
-	color: black;
-        
+#nav_area ul li a:hover  {
+	color:#fff;
+	font-weight:bold;
+	background-color: #DC6A50;
+	background-image:linear-gradient(#DC6A50, #D14829);
+	border-top: 1px solid #E17C66;
 }
+
+#nav_area .active
+{
+    color:#fff;
+	background-color: #DC6A50;
+}
+
+
 
  .submenu{
     margin:0;
@@ -591,9 +603,11 @@ position: relative;
 #nav_area ul li:hover .submenu{
     display:block;
 }
+
 #footer {
   width: 100%;
   background-color: skyblue;
+  margin-top: 20px;
   margin-bottom: 0px;
   padding-bottom: 0px;
   
@@ -606,6 +620,7 @@ position: relative;
 .top-bar-section ul li {
     
 }
+<<<<<<< HEAD
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: #99ccff none repeat scroll 0 0;
 }
@@ -615,4 +630,23 @@ position: relative;
 .top-bar-section ul li > a {
     color: green;
 }   
+=======
+
+#login {
+    float: right;
+    
+}
+.headerDiv {
+    
+    padding-top: 0px;
+    margin-top: 0px;
+}
+.headerDiv a {
+    
+    
+    font-size: 20px;
+
+    
+}
+>>>>>>> 4e6807be56e8fc059923ddd9f1b87fc9d3feed36
 

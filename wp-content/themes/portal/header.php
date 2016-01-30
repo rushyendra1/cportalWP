@@ -58,7 +58,7 @@ $pages = get_current_files();
 	DD_belatedPNG.fix('*');
 </script>
 <![endif]-->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function Openeditcourse(a)
@@ -79,8 +79,36 @@ function Openeditcourse(a)
                                 <h1 id="name" class="header">
 					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
 				</h1>
- 		
+               
+               
+               <div id="Login">
+     <?php
+         // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
+     if(is_user_logged_in()){
+         
+         $result = wp_get_current_user();    
+         if(isset($result->user_nicename))
+         $name = $result->user_nicename;
+         if($name == "")
+             $name = $result->user_login;
+        
+     ?>
+          <div class="headerDiv">
+              Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
+               <a   class="logouts logoutHeader logms">LOGOUT</a>
+          </div>
+          <?php } ?>
+</div>
+             <?php
+             
+             $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
+             unset($_SESSION['msg']);
+             ?>
+             <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+               
+                  
 	 	</div>
+
 
     
       <!--<div id="nav_area"> -->
@@ -91,10 +119,25 @@ function Openeditcourse(a)
       </ul>
            <section class="top-bar-section">
                 <ul class="left">
-                     <li  ><a href="<?php echo get_site_url() ?>">Home</a></li>
-    <?php if(!is_user_logged_in()) { ?>
-<li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
-<?php } if(is_user_logged_in()){
+               <?php 
+               $active_class = '';
+           if($pages=="portal" || $pages=="home" )
+           {
+            $active_class = 'active';
+           } ?>
+                     <li ><a href="<?php echo get_site_url() ?>" class="<?php  echo $active_class; ?>" ><?php echo $pages; ?>Home</a></li>
+    <?php if(!is_user_logged_in()) {
+        $active_class = '';
+           if($pages=="login")
+           {
+            $active_class = 'active';
+           }
+        ?>
+<li><a href="<?php echo get_site_url() ?>/login" class="<?php echo $active_class; ?>"><span>Login</span></a></li>
+<?php }  
+
+if(is_user_logged_in()){
+
     /*** Connects to salesforce **/
    
  $response_array = get_tabs_from_sales();
@@ -107,12 +150,20 @@ function Openeditcourse(a)
        $i =0; $j= 0;
        foreach($tab_array as $each_tab)
        {
+           $tabs=$_GET['obj_name'];
+           $active_class = '';
+           if($pages=="object-list" && $each_tab ==$tabs )
+           {
+            $active_class = 'active';
+           }
        ?>
-<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>"><span><?php echo $each_tab; ?></span></a></li>
+<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class  ?>"><span><?php echo $each_tab; ?></span></a></li>
+ 
     <?php  if($j == 15){
         //echo "</ul><ul>"; $j =0;
     }
     $i++; $j++;
+
    } //for loop
    } //if of response array
 } // is user logged in  ?>
@@ -158,29 +209,6 @@ function Openeditcourse(a)
              <div id="home">
                 
                  </div>
-<div id="Login">
-     <?php
-         // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
-     if(is_user_logged_in()){
-         
-         $result = wp_get_current_user();    
-         if(isset($result->user_nicename))
-         $name = $result->user_nicename;
-         if($name == "")
-             $name = $result->user_login;
-        
-     ?>
-          <div class="headerDiv">
-              Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
-               <a   class="logouts logoutHeader logms">LOGOUT</a>
-          </div>
-          <?php } ?>
-</div>
-             <?php
-             
-             $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
-             unset($_SESSION['msg']);
-             ?>
-             <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+
              
              

@@ -1724,3 +1724,21 @@ function showMoreContact()
         
     });
 }
+
+$(function(){
+   $('#nav_area ul li a').click(function(){
+     $('#nav_area ul li a').each(function(a){
+       $( this ).removeClass('selectedclass')
+     });
+     $( this ).addClass('selectedclass');
+   });
+  
+  
+});
+$(function() {
+  $("#nav_area ul li a").click(function() {
+    $("#nav_area ul li a").removeClass("active");
+    $(this).addClass("active");
+  });
+
+});

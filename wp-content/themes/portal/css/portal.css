@@ -616,9 +616,10 @@ position: relative;
 /**menus**/
 .top-bar {               
     background: #99ccff none repeat scroll 0 0;
+     margin-top: 42px;
            }
 .top-bar-section ul li {
-    
+     background: #99ccff none repeat scroll 0 0;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
@@ -630,7 +631,8 @@ position: relative;
 .top-bar-section ul li > a {
     color: green;
 }   
-
+  .top-bar.expanded .title-area {
+      background: #99ccff; }
 
 #login {
     float: right;

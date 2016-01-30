@@ -58,7 +58,7 @@ $pages = get_current_files();
 	DD_belatedPNG.fix('*');
 </script>
 <![endif]-->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function Openeditcourse(a)
@@ -85,10 +85,27 @@ function Openeditcourse(a)
     
       <div id="nav_area" >
       <ul >
-    <li ><a href="<?php echo get_site_url() ?>">Home</a></li>
-    <?php if(!is_user_logged_in()) { ?>
-<li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
-<?php } if(is_user_logged_in()){
+          <?php 
+          $active_class = '';
+           if($pages=="portal" || $pages=="home" )
+           {
+            $active_class = 'active';
+           }
+          ?>
+    <li ><a href="<?php echo get_site_url() ?>" class="<?php  echo $active_class; ?>" ><?php echo $pages; ?>Home</a></li>
+      <?php if(!is_user_logged_in()) { 
+          $active_class = '';
+           if($pages=="login")
+           {
+            $active_class = 'active';
+           }
+          ?>
+   
+    <li><a href="<?php echo get_site_url() ?>/login" class="<?php echo $active_class; ?>"><span>Login</span></a></li>
+    
+<?php }
+
+if(is_user_logged_in()){
     /*** Connects to salesforce **/
    
  $response_array = get_tabs_from_sales();
@@ -101,8 +118,14 @@ function Openeditcourse(a)
        $i =0;
        foreach($tab_array as $each_tab)
        {
+           $tabs=$_GET['obj_name'];
+           $active_class = '';
+           if($pages=="object-list" && $each_tab ==$tabs )
+           {
+            $active_class = 'active';
+           }
        ?>
-<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>"><span><?php echo $each_tab; ?></span></a></li>
+<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class  ?>"><span><?php echo $each_tab; ?></span></a></li>
     <?php    $i++;
    } //for loop
    } //if of response array

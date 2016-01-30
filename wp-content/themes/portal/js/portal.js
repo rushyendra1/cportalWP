@@ -1014,7 +1014,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
              if (res[i] != null && typeof (res[i][fields]) != "undefined")
                 //value = res[i].fields;
                   value = res[i][fields];  
-               if(value == "null")
+               if(value == "null" || value == null)
                    value= "";
                 responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
@@ -1722,3 +1722,21 @@ function showMoreContact()
         
     });
 }
+
+$(function(){
+   $('#nav_area ul li a').click(function(){
+     $('#nav_area ul li a').each(function(a){
+       $( this ).removeClass('selectedclass')
+     });
+     $( this ).addClass('selectedclass');
+   });
+  
+  
+});
+$(function() {
+  $("#nav_area ul li a").click(function() {
+    $("#nav_area ul li a").removeClass("active");
+    $(this).addClass("active");
+  });
+
+});

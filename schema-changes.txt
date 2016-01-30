@@ -73,3 +73,6 @@ Password:  !!PassWord!!',
 
 /* added a row forgotpwd_activation_code in users
 ALTER TABLE `wp_3uvwes_users` ADD `forgotpwd_activation_code` VARCHAR(255) NOT NULL AFTER `user_activation_key`;
+
+/** added 4 rows is_Edit,is_Delete,is_Create,is_View in users
+ALTER TABLE `wp_3uvwes_users` ADD `is_Edit` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_deactive`, ADD `is_Delete` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_Edit`, ADD `is_Create` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_Delete`, ADD `is_View` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_Create`; 

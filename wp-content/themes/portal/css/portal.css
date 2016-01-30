@@ -530,6 +530,7 @@ position: relative;
 #name.header a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
 #name.header a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #name a:hover {color:#052714;}
+        
 
 /*-----------------start nav_area-----------------*/
 
@@ -565,11 +566,19 @@ position: relative;
 	font-family: helvetica;
        
 }
-#nav_area ul li a:hover {
-	background: #FF4000;
-	color: black;
-        
+#nav_area ul li a:hover  {
+	color:#fff;
+	font-weight:bold;
+	background-color: #DC6A50;
+	background-image:linear-gradient(#DC6A50, #D14829);
+	border-top: 1px solid #E17C66;
 }
+#nav_area .active
+{
+    color:#fff;
+	background-color: #DC6A50;
+}
+
 #footer {
   width: 100%;
   background-color: skyblue;

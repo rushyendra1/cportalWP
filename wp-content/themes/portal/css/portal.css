@@ -583,6 +583,7 @@ position: relative;
     display:block;
     padding:0px 10px !important;
     font-size:12px;
+    border-bottom: 1px solid #4f4d49;
 }
 #nav_area ul li:hover .submenu{
     display:block;

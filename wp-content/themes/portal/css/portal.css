@@ -2,6 +2,7 @@
 
 .loginDiv input{
     height: 30px;
+    
 }
 .dispRow{
     margin-left: 20px !important;
@@ -524,7 +525,7 @@ position: relative;
 }
 #name a {
     color:#124d2c;
-    text-align: center; 
+    text-align: left; 
     text-decoration:none; 
 }
 #name.header a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
@@ -574,14 +575,14 @@ position: relative;
 	background-image:linear-gradient(#DC6A50, #D14829);
 	border-top: 1px solid #E17C66;
 }
-<<<<<<< HEAD
+
 #nav_area .active
 {
     color:#fff;
 	background-color: #DC6A50;
 }
 
-=======
+
 
  .submenu{
     margin:0;
@@ -599,10 +600,11 @@ position: relative;
 #nav_area ul li:hover .submenu{
     display:block;
 }
->>>>>>> 7a789c7c07e6cf544f7cb2a73395cf5c09074bbe
+
 #footer {
   width: 100%;
   background-color: skyblue;
+  margin-top: 20px;
   margin-bottom: 0px;
   padding-bottom: 0px;
   
@@ -612,5 +614,20 @@ position: relative;
     margin-top:-50px;
 }
 
+#login {
+    float: right;
+    
+}
+.headerDiv {
+    
+    padding-top: 0px;
+    margin-top: 0px;
+}
+.headerDiv a {
+    
+    
+    font-size: 20px;
 
+    
+}
 

@@ -79,10 +79,35 @@ function Openeditcourse(a)
                                 <h1 id="name" class="header">
 					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
 				</h1>
- 		
+               
+               
+               <div id="Login">
+     <?php
+         // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
+     if(is_user_logged_in()){
+         
+         $result = wp_get_current_user();    
+         if(isset($result->user_nicename))
+         $name = $result->user_nicename;
+         if($name == "")
+             $name = $result->user_login;
+        
+     ?>
+          <div class="headerDiv">
+              Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
+               <a   class="logouts logoutHeader logms">LOGOUT</a>
+          </div>
+          <?php } ?>
+</div>
+             <?php
+             
+             $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
+             unset($_SESSION['msg']);
+             ?>
+             <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+               
+                  
 	 	</div>
-
-    
       <div id="nav_area" class="nav_area" > 
       <ul >
           <?php 
@@ -178,29 +203,6 @@ if(is_user_logged_in()){
              <div id="home">
                 
                  </div>
-<div id="Login">
-     <?php
-         // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
-     if(is_user_logged_in()){
-         
-         $result = wp_get_current_user();    
-         if(isset($result->user_nicename))
-         $name = $result->user_nicename;
-         if($name == "")
-             $name = $result->user_login;
-        
-     ?>
-          <div class="headerDiv">
-              Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
-               <a   class="logouts logoutHeader logms">LOGOUT</a>
-          </div>
-          <?php } ?>
-</div>
-             <?php
-             
-             $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
-             unset($_SESSION['msg']);
-             ?>
-             <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+
              
              

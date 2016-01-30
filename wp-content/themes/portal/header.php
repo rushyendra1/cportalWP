@@ -83,7 +83,7 @@ function Openeditcourse(a)
 	 	</div>
 
     
-      <div id="nav_area" >
+      <div id="nav_area" class="nav_area" > 
       <ul >
           <?php 
           $active_class = '';
@@ -115,7 +115,7 @@ if(is_user_logged_in()){
        $tab_array = $response_array['TabList'];
        //var_dump($tab_array);
        $api_array = $response_array['ApiList'];
-       $i =0;
+       $i =0; $j= 0;
        foreach($tab_array as $each_tab)
        {
            $tabs=$_GET['obj_name'];
@@ -126,29 +126,42 @@ if(is_user_logged_in()){
            }
        ?>
 <li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class  ?>"><span><?php echo $each_tab; ?></span></a></li>
-    <?php    $i++;
+ 
+    <?php  if($j == 15){
+        //echo "</ul><ul>"; $j =0;
+    }
+    $i++; $j++;
+
    } //for loop
    } //if of response array
 } // is user logged in  ?>
 <!--<li ><a href="<?php echo get_site_url() ?>/logout">Logout</a></li> -->
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
+<li><a href="#"><span>fghhghfg</span></a></li>
 <!--<li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>  -->
+<li><a href="#"><span>fghhghfg</span></a></li>-->
+      <!--</ul></div><div id="nav_area" ><ul>-->
+      <li><a href="#" class="moreTabs" ><span>+</span></a>
+          <ul class="submenu">
+                <li><a href="<?php echo get_site_url() ?>"><span>fghhghfg</span></a></li>
+      
+                <li><a href="#"><span>fghhghfg</span></a></li> 
 
-      </ul>
+          </ul>
+      </li>
+      </ul> </div>
+
+     <!-- </ul>
    
-</div> 
+</div> -->
 
 
 </div>    

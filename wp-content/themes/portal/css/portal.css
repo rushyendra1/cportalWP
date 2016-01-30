@@ -488,10 +488,10 @@ text-overflow: ellipsis;
    
 /* Header Part */
 #wrap {
-    height:20%;
+    height:19%;
     width:100%;
  text-align: center;
-background-color: 8A2BE2;
+background-color: white;
 position: relative;
     
 }
@@ -500,7 +500,7 @@ position: relative;
 	height: 100px;
 	margin: 30px;
 	padding:30px;
-        background-color: green;
+        
         position: relative;
 }
 
@@ -512,6 +512,7 @@ position: relative;
 	padding:0px;
 	margin-top: 0px;
 	margin-left: 10px;
+   
 	background-repeat: no-repeat;
 }
 
@@ -534,8 +535,9 @@ position: relative;
 
 #nav_area {
 	width: 100%;
-	height: 50px;
-       margin-top: 20px;
+	height: 49px;
+        margin-top: 42px;
+
     padding-top: 1px;
     text-align: center;
     background-color: lightblue;

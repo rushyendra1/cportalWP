@@ -620,7 +620,7 @@ position: relative;
 .top-bar-section ul li {
     
 }
-<<<<<<< HEAD
+
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: #99ccff none repeat scroll 0 0;
 }
@@ -630,23 +630,12 @@ position: relative;
 .top-bar-section ul li > a {
     color: green;
 }   
-=======
+
 
 #login {
     float: right;
     
 }
-.headerDiv {
-    
-    padding-top: 0px;
-    margin-top: 0px;
-}
-.headerDiv a {
-    
-    
-    font-size: 20px;
+
 
     
-}
->>>>>>> 4e6807be56e8fc059923ddd9f1b87fc9d3feed36
-

@@ -83,9 +83,15 @@ function Openeditcourse(a)
 	 	</div>
 
     
-      <div id="nav_area" class="nav_area" > 
-      <ul >
-    <li ><a href="<?php echo get_site_url() ?>">Home</a></li>
+      <!--<div id="nav_area"> -->
+      <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+    <li  class="name"> <a href="#">&nbsp;</a></li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+           <section class="top-bar-section">
+                <ul class="left">
+                     <li  ><a href="<?php echo get_site_url() ?>">Home</a></li>
     <?php if(!is_user_logged_in()) { ?>
 <li><a href="<?php echo get_site_url() ?>/login"><span>Login</span></a></li>
 <?php } if(is_user_logged_in()){
@@ -104,7 +110,7 @@ function Openeditcourse(a)
        ?>
 <li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>"><span><?php echo $each_tab; ?></span></a></li>
     <?php  if($j == 15){
-        echo "</ul><ul>"; $j =0;
+        //echo "</ul><ul>"; $j =0;
     }
     $i++; $j++;
    } //for loop
@@ -124,20 +130,19 @@ function Openeditcourse(a)
 <li><a href="#"><span>fghhghfg</span></a></li>
 <li><a href="#"><span>fghhghfg</span></a></li>-->
       <!--</ul></div><div id="nav_area" ><ul>-->
-      <li><a href="#" class="moreTabs" ><span>+</span></a>
-          <ul class="submenu">
+      <li class="has-dropdown"><a href="#" > +</a>
+          <ul class="submenu dropdown">
                 <li><a href="<?php echo get_site_url() ?>"><span>fghhghfg</span></a></li>
       
                 <li><a href="#"><span>fghhghfg</span></a></li> 
 
           </ul>
       </li>
-      </ul> </div>
+      </ul> <!--</div>-->
+           </section>
+      </nav>
 
-     <!-- </ul>
-   
-</div> -->
-
+     
 
 </div>    
   

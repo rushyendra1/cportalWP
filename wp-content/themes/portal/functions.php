@@ -781,7 +781,7 @@ function call_js_css_files()
     $path = get_current_files(); 
     wp_enqueue_style("style-google-api", get_template_directory_uri()."/css/google-api.css", array(), NULL,false);      
     wp_enqueue_style("style-jquery-ui", get_template_directory_uri()."/css/jquery-ui.css", array(), NULL,false);      
-    wp_enqueue_style("style-site", get_template_directory_uri()."/css/site.css", array(), NULL,false);      
+    //wp_enqueue_style("style-site", get_template_directory_uri()."/css/site.css", array(), NULL,false);      
     wp_enqueue_style("style-foundataion", get_template_directory_uri()."/css/foundation.css", array(), NULL,false);      
     wp_enqueue_style("style-foundataion-icons", get_template_directory_uri()."/css/foundation-icons.css", array(), NULL,false);      
     wp_enqueue_style("style-layout", get_template_directory_uri()."/css/layout.css", array(), NULL,false);      

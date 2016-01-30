@@ -131,6 +131,9 @@ top:250px;position:fixed;left:500px
     margin-left: 15px;
     margin-top: 10px;
 }
+.list tr:nth-child(even){
+    background-color:#f2f2f2;
+}
 .fewerMore{
     margin-left: 15px;
     margin-top:5px;
@@ -596,9 +599,20 @@ position: relative;
   
 
 }
-.navMenu{
-    margin-top:-50px;
+/**menus**/
+.top-bar {               
+    background: #99ccff none repeat scroll 0 0;
+           }
+.top-bar-section ul li {
+    
 }
-
-
+.top-bar-section li:not(.has-form) a:not(.button) {
+    background: #99ccff none repeat scroll 0 0;
+}
+.top-bar-section li:not(.has-form) a:hover:not(.button) {
+    background: #c73  none repeat scroll 0 0;
+}
+.top-bar-section ul li > a {
+    color: green;
+}   
 

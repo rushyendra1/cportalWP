@@ -40,6 +40,8 @@ $(document).ready(function(){
             }
         }
     }
+    /*** more tabs ***/
+    
     /** Login Functionality **/
    $("#submit").on("click",function(e){
        /** Stop the immediate propagation **/
@@ -1002,7 +1004,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     }else if(len>0){
         for (var i = 0; i < len; i++)
         {
-            responseHtml +='<tr  class="dataRow even first">';
+            responseHtml +='<tr  class="dataRow">';
             var id = '';
              if (res[i] != null && typeof (res[i]['Id']) != "undefined")
                 id= res[i]['Id'];

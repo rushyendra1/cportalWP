@@ -160,8 +160,8 @@ select {
 
 .column,
 .columns {
-  padding-left: 0.9375rem;
-  padding-right: 0.9375rem;
+  padding-left: 0.8375rem;
+  padding-right: 0.8375rem;
   width: 100%;
   float: left; }
 
@@ -1159,7 +1159,7 @@ button, .button {
   padding-right: 2rem;
   padding-bottom: 1.0625rem;
   padding-left: 2rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: #008CBA;
   border-color: #007095;
   color: #FFFFFF;

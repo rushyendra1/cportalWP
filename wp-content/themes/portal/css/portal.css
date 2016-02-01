@@ -579,10 +579,10 @@ position: relative;
 	border-top: 1px solid #E17C66;
 }
 
-#nav_area .active
+ .active
 {
     color:#fff;
-	background-color: #DC6A50;
+	background-color: #DC6A50 !important;
 }
 
 
@@ -616,7 +616,7 @@ position: relative;
 /**menus**/
 .top-bar {               
     background: #99ccff none repeat scroll 0 0;
-     margin-top: 42px;
+    // margin-top: 42px;
            }
 .top-bar-section ul li {
      background: #99ccff none repeat scroll 0 0;
@@ -638,6 +638,9 @@ position: relative;
     float: right;
     
 }
-
+.nameDisp{
+    width:100%;
+   // margin:0;
+}
 
     

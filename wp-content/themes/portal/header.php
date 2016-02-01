@@ -93,10 +93,10 @@ function Openeditcourse(a)
              $name = $result->user_login;
         
      ?>
-          <!--<div class="headerDiv">
+          <div class="row nameDisp">
               Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                <a   class="logouts logoutHeader logms">LOGOUT</a>
-          </div>-->
+          </div>
           <?php } ?>
 </div>
              <?php
@@ -121,7 +121,7 @@ function Openeditcourse(a)
                 <ul class="left">
                <?php 
                $active_class = '';
-           if($pages=="portal" || $pages=="home" )
+           if($pages=="" || $pages=="home" )
            {
             $active_class = 'active';
            } ?>
@@ -141,54 +141,55 @@ if(is_user_logged_in()){
     /*** Connects to salesforce **/
    
  $response_array = get_tabs_from_sales();
+ 
    if(count($response_array)>0)
    { 
-       //var_dump($response_array);
+       
        $tab_array = $response_array['TabList'];
-       //var_dump($tab_array);
+       //$tab_array = array("link1", "link2","link3","link4","link5");
+       
        $api_array = $response_array['ApiList'];
+       //$api_array = array("link1", "link2","link3","link4","link5");
        $i =0; $j= 0;
-       foreach($tab_array as $each_tab)
+       for($i=0; $i<=14; $i++)
+       //foreach($tab_array as $each_tab)
        {
            $tabs=$_GET['obj_name'];
            $active_class = '';
+           $each_tab = $tab_array[$i];
            if($pages=="object-list" && $each_tab ==$tabs )
            {
             $active_class = 'active';
            }
+           if($j <14){
        ?>
-<li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class  ?>"><span><?php echo $each_tab; ?></span></a></li>
+     <li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class  ?>"><span><?php echo $each_tab; ?></span></a></li>
+           <?php } if($j==14 && count($tab_array)>=14){   ?>
+     <li class="has-dropdown"><a href="#" > +</a><ul class="dropdown">
+          <?php for($k = $j; $k<count($tab_array); $k++)
+          {  $each_tab = $tab_array[$k];
+              ?>
+              <li>
+                  <a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$k] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class  ?>">
+                      <span><?php echo $each_tab; ?></span>
+                  </a></li>
+           <?php } ?>
+         </ul>
+                </li>
+              <?php }  ?>
+
  
-    <?php  if($j == 15){
-        //echo "</ul><ul>"; $j =0;
-    }
-    $i++; $j++;
+    
+       <?php 
+       //echo "</ul><ul>"; $j =0;
+    
+    //$i++; 
+    $j++;
 
    } //for loop
    } //if of response array
 } // is user logged in  ?>
 <!--<li ><a href="<?php echo get_site_url() ?>/logout">Logout</a></li> -->
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<!--<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>
-<li><a href="#"><span>fghhghfg</span></a></li>-->
-      <!--</ul></div><div id="nav_area" ><ul>-->
-      <li class="has-dropdown"><a href="#" > +</a>
-          <ul class="submenu dropdown">
-                <li><a href="<?php echo get_site_url() ?>"><span>fghhghfg</span></a></li>
-      
-                <li><a href="#"><span>fghhghfg</span></a></li> 
-
-          </ul>
-      </li>
       </ul> <!--</div>-->
            </section>
       </nav>

@@ -2199,15 +2199,16 @@ if(isset($paths['path']))
 
 $path_url = explode("/",$path_url);
 $page_cnt = count($path_url);
-
-    
-if(isset($path_url[$page_cnt-1]))
+ $id =2;
+     if(isset($path_url[$id]))    
+     $pages = $path_url[$id];
+/*if(isset($path_url[$page_cnt-1]))
     $pages = $path_url[$page_cnt-1];
 if($pages == "")
 {
     if(isset($path_url[$page_cnt-2]))
     $pages = $path_url[$page_cnt-2];
-}
+}*/
 return $pages;
 }
 function add_footer_data()

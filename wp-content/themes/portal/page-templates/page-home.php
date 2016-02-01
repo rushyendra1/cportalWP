@@ -9,7 +9,7 @@
 redirect_to_login();
 get_header(); ?>
 
-<div class="bodyCell contentSub" >
+<div class="bodyCell contentSub row-fluid" >
 <!-- Start page content -->
 <a name="skiplink">
     <!--<img width="1" height="1" title="Content Starts Here" class="skiplink skipLinkTargetInner zen-skipLinkTarget" alt="Content Starts Here" src="/s.gif">-->
@@ -19,8 +19,7 @@ get_header(); ?>
   <div class="row toggle-full-width">
     <div class="large-12 columns">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h4><br>
-       Customer Portal</h4>
+      <h4>Customer Portal</h4>
       
       <hr>
       <div id="section_1">

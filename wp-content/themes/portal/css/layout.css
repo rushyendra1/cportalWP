@@ -67,3 +67,6 @@ a.toggle-fields{margin-top: -47px; margin-bottom:0;}
 .half-bottom { margin-bottom: 0.5rem !important; }
 .remove-top { margin-top: 0 !important; }
 .remove-bottom { margin-bottom: 0 !important; }
+.loginDiv.radius {
+    radius:4px;
+}

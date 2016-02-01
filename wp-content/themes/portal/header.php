@@ -93,10 +93,10 @@ function Openeditcourse(a)
              $name = $result->user_login;
         
      ?>
-          <!--<div class="headerDiv">
+          <div class="row nameDisp">
               Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                <a   class="logouts logoutHeader logms">LOGOUT</a>
-          </div>-->
+          </div>
           <?php } ?>
 </div>
              <?php
@@ -125,7 +125,7 @@ function Openeditcourse(a)
            {
             $active_class = 'active';
            } ?>
-                     <li ><a href="<?php echo get_site_url() ?>" class="<?php  echo $active_class; ?>" > <?php echo $pages; ?>Home</a></li>
+                     <li ><a href="<?php echo get_site_url() ?>" class="<?php  echo $active_class; ?>" >Home</a></li>
     <?php if(!is_user_logged_in()) {
         $active_class = '';
            if($pages=="login")

@@ -42,6 +42,9 @@ if(isset($result->data->is_Edit))
                     <div class="bodyPage">
                         <div class="bPageTitle">
                             <h1 class="pageType noSecondHeader"><?php echo $obj_name; ?></h1>
+                            <?php if($is_create) { ?>
+                            <input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">
+                            <?php } ?>
 
                         </div>
 

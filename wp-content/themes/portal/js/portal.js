@@ -19,8 +19,7 @@ $(document).ready(function(){
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
-   alert(path);
-    if(path == "object-list")
+   if(path == "object-list")
     {
        
          getObjectTemplate('2','','',100,0,0,'Name','asc','all');
@@ -937,8 +936,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     var root = $.trim($("#rootTheme").val()); 
     var site = $.trim($("#siteTheme").val());
      var objectType = $.trim($("#object").val());
-     var isEdit = $.trim($("#isEdit").val());
-     var isCreate = $.trim($("#isCreate").val());
+     var isEdit = parseInt($.trim($("#isEdit").val()));
+     var isCreate = parseInt($.trim($("#isCreate").val()));
     $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,is_more:isMore,
     field:field,sort_type:sortType, alpha_type:alphaType,object_type:objectType},
         function(data){
@@ -1025,6 +1024,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                 
             }//for closed
             var editLink = '';
+         
             if(isEdit)
                 editLink = ' &nbsp; <a>Edit</a>';
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'">View</a>'+editLink+'</td>';

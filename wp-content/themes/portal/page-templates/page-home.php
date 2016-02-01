@@ -20,12 +20,14 @@ get_header(); ?>
     <div class="large-12 columns">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
       <h4>Customer Portal</h4>
-      
-      <hr>
+      <br>
       <div id="section_1">
          
-        <div class="row">
+          <div class="row">
+              
           <div class="columns small-12"> 
+      
+          
             <?php
             //if(isset($_SESSION['user'])){
             if(is_user_logged_in()){
@@ -65,7 +67,8 @@ get_header(); ?>
         </div>
      </div>
     </div>
-  </div>
+</div>
+  
     
 <!-- Body events -->
 

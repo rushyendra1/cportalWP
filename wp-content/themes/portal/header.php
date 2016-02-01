@@ -68,7 +68,7 @@ $pages = get_current_files();
                                 <h1 id="name" class="header">
 					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
 				</h1>
-               
+               </div> 
                
                <div id="Login">
      <?php
@@ -94,9 +94,9 @@ $pages = get_current_files();
              unset($_SESSION['msg']);
              ?>
              <input type="hidden" id="msg" value="<?php echo $msg ?>" >
-               
+              
                   
-	 	</div>
+	 	
 
 
     

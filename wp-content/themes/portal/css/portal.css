@@ -91,7 +91,7 @@ top:250px;position:fixed;left:500px
      background: #fff none repeat scroll 0 0;
      padding: 20px;
      vertical-align: top;
-       font-size: 100%;
+       font-size: 80%;
     line-height: 20px;
     margin: 0;
 
@@ -492,23 +492,19 @@ text-overflow: ellipsis;
    
 /* Header Part */
 #wrap {
-    height:19%;
+    height:17%;
     width:100%;
- text-align: center;
+ text-align: right;
 background-color: white;
 position: relative;
-    
 }
 #header {
 	width: 100%;
 	height: 100px;
 	margin: 30px;
 	padding:30px;
-        
         position: relative;
 }
-
-
 #logo {
 	height: 60px;
 	width: 200px;
@@ -519,11 +515,11 @@ position: relative;
    
 	background-repeat: no-repeat;
 }
-
 #name{
     color:#124d2c;
     font-weight:bold;
     font: bold;
+    height:80px;
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
 }
@@ -536,28 +532,22 @@ position: relative;
 #name.header a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #name a:hover {color:#052714;}
         
-
 /*-----------------start nav_area-----------------*/
-
 #nav_area {
 	width: 100%;
 	height: 49px;
         margin-top: 42px;
-
     padding-top: 1px;
-    text-align: center;
+    text-align: right;
     background-color: lightblue;
     position: relative;
-    
 }
-
 #nav_area ul {
 	float: left;
         text-align: center;
         align-items: center;
          position:relative;  
 }
-
 #nav_area ul li {
 	list-style: none;
 	float: left;	
@@ -617,7 +607,7 @@ position: relative;
 /**menus**/
 .top-bar {               
     background: #99ccff none repeat scroll 0 0;
-    // margin-top: 42px;
+
            }
 .top-bar-section ul li {
      background: #99ccff none repeat scroll 0 0;
@@ -636,12 +626,12 @@ position: relative;
       background: #99ccff; }
 
 #login {
-    float: right;
-    
+    float: right;  
+    text-align: right;
 }
 .nameDisp{
     width:100%;
-   // margin:0;
+   
 }
 
     

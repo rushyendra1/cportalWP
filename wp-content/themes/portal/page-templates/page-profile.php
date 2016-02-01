@@ -89,7 +89,7 @@ $is_edit =  (isset($set_results->allow_edit))?$set_results->allow_edit: 0;
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
       <h4><?php echo $title; ?></h4>
       
-      <hr>
+     
       <div id="section_1">
         <div class="row statusAccount" >
               <div class="links-pad">

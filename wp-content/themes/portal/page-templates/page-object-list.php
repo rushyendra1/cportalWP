@@ -10,8 +10,22 @@ redirect_to_login();
 get_header();
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
 $obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
-
+global $user_ID;
+$result = get_userdata($user_ID);
+$is_edit = $is_create= $is_delete = $is_view =   0;
+if(isset($result->data->is_Edit))
+     $is_edit = $result->data->is_Edit; 
+     if(isset($result->data->is_Create))
+     $is_create = $result->data->is_Create; 
+     if(isset($result->data->is_Delete))
+     $is_delete = $result->data->is_Delete; 
+     if(isset($result->data->is_View))
+     $is_view = $result->data->is_View; 
 ?>
+<input type="hidden" id="isEdit" value="<?php echo $is_edit; ?>" >
+<input type="hidden" id="isView" value="<?php echo $is_view; ?>" >
+<input type="hidden" id="isCreate" value="<?php echo $is_create; ?>" >
+<input type="hidden" id="isDelete" value="<?php echo $is_delete; ?>" >
 <input type="hidden" id="object" value="<?php echo $type; ?>" >
 <div id="main-content" class="main-content">
     <div class="row-fluid data-content-outer" >

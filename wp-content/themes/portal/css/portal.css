@@ -492,7 +492,7 @@ text-overflow: ellipsis;
    
 /* Header Part */
 #wrap {
-    height:19%;
+    height:17%;
     width:100%;
  text-align: right;
 background-color: white;
@@ -500,14 +500,11 @@ position: relative;
 }
 #header {
 	width: 100%;
-	height: 250px;
-	margin: 50px;
+	height: 100px;
+	margin: 30px;
 	padding:30px;
-        
         position: relative;
 }
-
-
 #logo {
 	height: 60px;
 	width: 200px;
@@ -518,11 +515,11 @@ position: relative;
    
 	background-repeat: no-repeat;
 }
-
 #name{
     color:#124d2c;
     font-weight:bold;
     font: bold;
+    height:80px;
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
 }
@@ -535,27 +532,22 @@ position: relative;
 #name.header a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #name a:hover {color:#052714;}
         
-
 /*-----------------start nav_area-----------------*/
-
 #nav_area {
 	width: 100%;
-	height: 52px;
+	height: 49px;
         margin-top: 42px;
     padding-top: 1px;
-    text-align: center;
+    text-align: right;
     background-color: lightblue;
     position: relative;
-    
 }
-
 #nav_area ul {
 	float: left;
         text-align: center;
         align-items: center;
          position:relative;  
 }
-
 #nav_area ul li {
 	list-style: none;
 	float: left;	

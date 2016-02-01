@@ -2,17 +2,14 @@ var geocoder;
   var files = "";
   var attachWindow ;
 $ = jQuery.noConflict();
-try{
-$(document).foundation({
-//	abide:{
-		
-//	},
-        //'reveal': "open"
-});
-
-}catch(e){}
 //$('#myModal').foundation('reveal', 'open');
 $(document).ready(function(){
+    $(document).foundation({
+	abide:{
+		
+	},
+        //'reveal': "open"
+});
 //$('#myModal').foundation('reveal', 'open');
 //$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());

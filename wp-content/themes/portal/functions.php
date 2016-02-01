@@ -791,10 +791,11 @@ function call_js_css_files()
     //else
         wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
         wp_enqueue_style("style-portal-res", get_template_directory_uri()."/css/portal-res.css", array(), NULL,false);
-    
+    wp_enqueue_script("script-ss-jquerys", get_template_directory_uri()."/js/vendor/jquery.js", array(), NULL,false);
     wp_enqueue_script("script-s-jquerys", get_template_directory_uri()."/js/jquery-ui.js", array(), NULL,false);
     wp_enqueue_script("script-foundations", get_template_directory_uri()."/js/foundation.min.js", array(), NULL,false);
     wp_enqueue_script("script-moderans", get_template_directory_uri()."/js/vendor/modernizr.js", array(), NULL,false);
+    wp_enqueue_script("script-foundations-topbar", get_template_directory_uri()."/js/foundation/foundation.topbar.js", array(), NULL,false);
     wp_enqueue_script("script-foundations-tooltip", get_template_directory_uri()."/js/foundation/foundation.tooltip.js", array(), NULL,false);
     
     wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal.js", array(), NULL,false);

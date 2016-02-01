@@ -24,7 +24,7 @@ $pages = get_current_files();
 <html class="no-js" lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo $title; ?> </title>
 
 <link rel="icon" href="<?php  echo get_template_directory_uri(); ?>/img/favicon.ico" />
@@ -59,7 +59,7 @@ $pages = get_current_files();
 </script>
 <![endif]-->
 </head>
- <div id="wrap" class="row-fluid" >
+ <div id="wrapHome"  >
 	
 	   <div >
                <div id="logo">
@@ -98,13 +98,13 @@ $pages = get_current_files();
                   
 	 	
 
-
     
       <!--<div id="nav_area"> -->
       <nav class="top-bar" data-topbar>
       <ul class="title-area">
     <li  class="name"> <a href="#">&nbsp;</a></li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    
       </ul>
            <section class="top-bar-section">
                 <ul class="left">
@@ -170,17 +170,14 @@ if(is_user_logged_in()){
  
     
        <?php 
-       //echo "</ul><ul>"; $j =0;
-    
-    //$i++; 
-    $j++;
+        $j++;
 
    } //for loop
    } //if of response array
 } // is user logged in  ?>
 <!--<li ><a href="<?php echo get_site_url() ?>/logout">Logout</a></li> -->
       </ul> <!--</div>-->
-           </section>
+          </section>
       </nav>
 
      

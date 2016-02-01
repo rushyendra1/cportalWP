@@ -491,7 +491,7 @@ text-overflow: ellipsis;
    }   
    
 /* Header Part */
-#wrap {
+#wrapHome {
     height:17%;
     width:100%;
  text-align: right;

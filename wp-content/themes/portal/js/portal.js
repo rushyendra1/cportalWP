@@ -4,13 +4,16 @@ var geocoder;
 $ = jQuery.noConflict();
 try{
 $(document).foundation({
-	abide:{
+//	abide:{
 		
-	}
+//	},
+        //'reveal': "open"
 });
-}catch(e){}
-$(document).ready(function(){
 
+}catch(e){}
+//$('#myModal').foundation('reveal', 'open');
+$(document).ready(function(){
+//$('#myModal').foundation('reveal', 'open');
 //$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
@@ -899,10 +902,10 @@ function alertData(title, statusContent)
             close: function ()
             {
 
-                if ($('.shareListingEmail').html() != "") {
+               /* if ($('.shareListingEmail').html() != "") {
 
                     $('.shareListingEmail').dialog("open");
-                }
+                }*/
 
             },
            width: "auto"
@@ -912,8 +915,8 @@ function alertData(title, statusContent)
     }catch(e){}
         $("#popup").append('<div id="dialogParent"><div id="dialog" title="' + title + '">' +
                 statusContent + '</div></div>');
-        $("#dialog").dialog(opt);
-       // hideLoader();
+       $("#dialog").dialog(opt);
+        hideLoader();
     }
 }
 /**

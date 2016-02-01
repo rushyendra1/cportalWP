@@ -58,17 +58,6 @@ $pages = get_current_files();
 	DD_belatedPNG.fix('*');
 </script>
 <![endif]-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-
-function Openeditcourse(a)
-{
-	var links = "courseinsert.php?slid=" + a + "&view=course";
-  var ReturnedValue = showModalDialog(links,"Passed String","dialogWidth:450px; dialogHeight:400px; status:no; center:yes");
-	//alert("Modal Dialog returned '" + ReturnValued + "'");
-}
-
-</script>
 </head>
  <div id="wrap" class="row-fluid" >
 	
@@ -211,5 +200,4 @@ if(is_user_logged_in()){
                 
                  </div>-->
 
-             
              

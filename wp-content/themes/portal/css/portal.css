@@ -524,6 +524,7 @@ position: relative;
     font-weight:bold;
     font: bold;
     text-shadow:#f5d18b 1px 1px 1px;
+    background-color: #ffffff;
 }
 #name a {
     color:#124d2c;

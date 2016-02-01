@@ -70,7 +70,7 @@ function Openeditcourse(a)
 
 </script>
 </head>
- <div id="wrap">
+ <div id="wrap" class="row-fluid" >
 	
 	   <div >
                <div id="logo">
@@ -207,9 +207,9 @@ if(is_user_logged_in()){
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
              <input type="hidden" value="<?php echo $pages; ?>" id="path" >
-             <div id="home">
+             <!--<div id="home">
                 
-                 </div>
+                 </div>-->
 
              
              

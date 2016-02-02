@@ -316,7 +316,7 @@ $(".logouts").on("click",function(e){
                 $("#confirmPwd").focus();
                 return false;
             }
-            console.log(error);
+            
         var isAdmin = parseInt($.trim($("#isAdmin").val()));
          $(".correctPassword").show();
          var that = this;
@@ -458,7 +458,7 @@ $(".logouts").on("click",function(e){
                 $("#confirmPwd").focus();
                 return false;
             }
-            console.log(error);
+            
         var isAdmin = parseInt($.trim($("#isAdmin").val()));
          $(".correctPassword").show();
          var that = this;
@@ -950,6 +950,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     try {
         var  res = data.objectList;
         var fieldsArray = data.fields;
+        var apiFields = data.api_fields;
         var result = data.response;
         var totalRecords = data.NumberofRec;
         var msg = "Request Message";
@@ -975,8 +976,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                 var orderType = "asc";
                 var sortClass = "sortAsc";
                 var activeClass = "";
-                var arg = fieldsArray[i];
-                
+                var arg = apiFields[i];
+                var fieldText = fieldsArray[i];
                 if(field == arg)
                 {
                      activeClass = "activeSort";
@@ -988,7 +989,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                      }
                 }
                 headerHtml +='<th  scope="col">\n\
-                        <a title="'+arg+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+arg+'\n\
+                        <a title="'+fieldText+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+fieldText+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
                         </a></th>';
             } //for loop closed
@@ -1012,11 +1013,12 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
             for(var j=0;j<fieldsLen;j++)
             {
                 var value =  fields =  "";
-                fields = fieldsArray[j];
-            //  if (res[i] != null && typeof (res[i].fields) != "undefined")   
+                fields = apiFields[j];
+              
+            //if (res[i] != null && typeof (res[i].fields) != "undefined")   
              if (res[i] != null && typeof (res[i][fields]) != "undefined")
-                //value = res[i].fields;
-                  value = res[i][fields];  
+               //value = res[i].fields;
+               value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
                 responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
@@ -1049,7 +1051,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
         responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "'+fields+'"; font-weight:bold;}';
     }
     k+=1;
-    console.log(k);
+    
     responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);

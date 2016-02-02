@@ -54,22 +54,27 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
         
         exit;
     }
-      $result = json_decode($result); 
-     
+      $response = json_decode($result); 
+      $result =  $response->Data->Data;
      if($result == null)
          $result = array();
      $total_recs = 0;
-     if(isset($response->NumberofRec))
-         $total_recs = $response->NumberofRec;
+     if(isset($response->Count))
+         $total_recs = $response->Count;
      else $total_recs = count($result);
-      
+     $params_array = $fields_array = array();
+     if(isset($response->Fields->Fields))
+         $params_array = $response->Fields->Fields;
+     if(isset($response->ApiFields->ApiFields))
+         $fields_array = $response->ApiFields->ApiFields;
+     
       $start_pos = $end_pos = 0;
      if(isset($response->StartPos))
 $start_pos = $response->StartPos;
      if(isset($response->EndPos))
 $end_pos = $response->EndPos;
-     $params_array = array();
-     if(isset($result[0])){
+     
+     /*if(isset($result[0])){
          $fields =(array) $result[0];
         $params_array = array_keys($fields); 
         $key = array_search('attributes', $params_array);
@@ -77,13 +82,14 @@ $end_pos = $response->EndPos;
         $key = array_search('Id', $params_array);
         unset($params_array[$key]);
         $params_array = array_values($params_array);
-     }
+     }*/
        echo json_encode(array("objectList" => $result,
      "NumberofRec" =>  $total_recs,
      "pageRecords" => count($result),
             "StartPos" =>$start_pos,
         "EndPos" => $end_pos,
-          "fields" => $params_array
+          "fields" => $params_array,
+            "api_fields" => $fields_array
         ));exit;
 
   

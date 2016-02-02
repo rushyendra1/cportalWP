@@ -24,8 +24,10 @@ h1, h2, h3, h4, h5, h6 {
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
             .contentSub{
         display:block;
-         margin-left: 30px;
+         //margin-left: 30px;
+         margin-left: 20px;
          margin-top: 180px;
+         width:90%;
         }
         /* Force table to not be like tables anymore */
 		table, thead, tbody, th, td, tr { 
@@ -50,6 +52,10 @@ h1, h2, h3, h4, h5, h6 {
                         padding-left: 35%; 
                         padding-top: 6px;
 		}
+                table thead tr th, table tfoot tr th, table tfoot tr td, table tbody tr th, table tbody tr td, table tr td 
+                {
+                    display:block;
+                }
 		td.error { 
 			padding-left: 0 !important; 
 		}

@@ -1040,7 +1040,18 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     paginationHtml += paginationWC("",length, page, parseInt(totalRecords), len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
-    
+    responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
+    var k = 0;
+    for(var j=0;j<fieldsLen;j++)
+    {
+         k = j+1;
+         var fields = fieldsArray[j];
+        responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "'+fields+'"; font-weight:bold;}';
+    }
+    k+=1;
+    console.log(k);
+    responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
+     responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
     //$('#objectListTable').stacktable({myClass:'your-class-name'});
      /*if(view ==2){

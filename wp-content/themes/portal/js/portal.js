@@ -1001,7 +1001,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
        
     if(typeof(result)!= "undefined" && typeof(result.status)!="undefined" && result.status== "Failure")
     {
-            responseHtml +='<tr><td class="error" colspan="9">'+result.message+'</td></tr>';
+            responseHtml +='<tr><td class="error noRecordRow" colspan="9">'+result.message+'</td></tr>';
     }else if(len>0){
         for (var i = 0; i < len; i++)
         {
@@ -1031,7 +1031,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
             responseHtml +='</tr>';
         }
     }else{
-         responseHtml +='<tr><td class="error" colspan="9">No Records To Display</td></tr>';
+         responseHtml +='<tr><td class="error noRecordRow" colspan="9">No Records To Display</td></tr>';
     }
     
     /** Pagination Links ***/

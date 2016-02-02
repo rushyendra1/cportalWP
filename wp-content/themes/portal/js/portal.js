@@ -1741,7 +1741,7 @@ function showMoreContact()
         
     });
 }
-
+/*
 $(function(){
    $('#nav_area ul li a').click(function(){
      $('#nav_area ul li a').each(function(a){
@@ -1758,4 +1758,4 @@ $(function() {
     $(this).addClass("active");
   });
 
-});
+});*/

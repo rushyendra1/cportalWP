@@ -62,23 +62,7 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
      if(isset($response->NumberofRec))
          $total_recs = $response->NumberofRec;
      else $total_recs = count($result);
-  /*   $i = 1;
-     $result_1 = $result;
-     if($pageNum >0)
-     {
-         for($j=0;$j<$pageNum;$j++)
-         {
-             unset($result_1[$j]);
-         }
-         $result_1 = array_values($result_1);
-     }
-   //  var_dump($result);
-   //  var_dump($result_1);
-     $result = get_data_rec_pages($result_1,0,1,'');*/
-     
-   //  if(!$is_more && $result != null) 
-     //   $result = get_data_rec_pages($result,0,50,'');
-     
+      
       $start_pos = $end_pos = 0;
      if(isset($response->StartPos))
 $start_pos = $response->StartPos;

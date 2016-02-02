@@ -20,7 +20,7 @@ get_header(); ?>
     <div class="large-12 columns">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
       <h4>Customer Portal</h4>
-      <br>
+     <br>
       <div id="section_1">
          
           <div class="row">

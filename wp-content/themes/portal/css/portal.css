@@ -327,7 +327,8 @@ text-overflow: ellipsis;
     font-size: 14px;
     font-weight: 500;
     line-height: 14px;
-    margin: 0;
+    margin-right:  130px;
+    float:right;
     padding: 8px 10px;
     display: inline;
     font-family: "Verdana","Geneva",sans-serif;
@@ -633,5 +634,10 @@ position: relative;
     width:100%;
    
 }
+.toggle-full-width 
+{
+    box-shadow: 0 0 0px #ddd; 
+}
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.03em; text-transform: uppercase; }
 
     

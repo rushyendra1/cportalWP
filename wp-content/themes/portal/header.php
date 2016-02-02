@@ -102,9 +102,12 @@ $pages = get_current_files();
       <!--<div id="nav_area"> -->
       <nav class="top-bar" data-topbar>
       <ul class="title-area">
+
+   
     <li  class="name"> <a href="#">&nbsp;</a></li>
      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     
+
       </ul>
            <section class="top-bar-section">
                 <ul class="left">

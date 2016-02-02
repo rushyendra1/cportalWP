@@ -75,13 +75,13 @@ if(isset($result) && count($result)>0)
                         <p class="help-block errorTag" style="display:none"></p>
                      </div>
                 </div>
-                <div class="control-group ">
+               <!-- <div class="control-group ">
                     <label  class="control-label viewUserDisp">Allow Edit User Profile</label>
                     <div class="controls viewSalesControls"> 
                         <input type="checkbox" id="allowEdit" <?php if($allow_edit) echo 'checked="checked"'; ?>>
                         <p class="help-block errorTag" style="display:none"></p>
                     </div>
-                </div>
+                </div>-->
                 
                 <div class="form-actions"><button  id="saveSettings" class="btn btn-primary">Submit</button></div>
                     </div> <!-- Box Content Closed-->

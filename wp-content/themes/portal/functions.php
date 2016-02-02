@@ -786,8 +786,7 @@ function call_js_css_files()
     wp_enqueue_style("style-foundataion-icons", get_template_directory_uri()."/css/foundation-icons.css", array(), NULL,false);      
     wp_enqueue_style("style-layout", get_template_directory_uri()."/css/layout.css", array(), NULL,false);      
     wp_enqueue_style("style-fchanges", get_template_directory_uri()."/css/foundation-changes.css", array(), NULL,false);      
-    wp_enqueue_style("style-stackres", get_template_directory_uri()."/css/stacktable.css", array(), NULL,false);      
-    //if($path == "object-list" || $path == "view-object")
+     //if($path == "object-list" || $path == "view-object")
     //wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
     //else
         wp_enqueue_style("style-portal", get_template_directory_uri()."/css/portal.css", array(), NULL,false);
@@ -799,7 +798,6 @@ function call_js_css_files()
     wp_enqueue_script("script-moderans", get_template_directory_uri()."/js/vendor/modernizr.js", array(), NULL,false);
     wp_enqueue_script("script-foundations-topbar", get_template_directory_uri()."/js/foundation/foundation.topbar.js", array(), NULL,false);
     wp_enqueue_script("script-foundations-tooltip", get_template_directory_uri()."/js/foundation/foundation.tooltip.js", array(), NULL,false);
-    wp_enqueue_script("script-st", get_template_directory_uri()."/js/stacktable.js", array(), NULL,false);
     wp_enqueue_script("script-ext-name", get_template_directory_uri()."/js/portal.js", array(), NULL,false);
     
     

@@ -1042,6 +1042,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     $(".paginationLinks").html(paginationHtml);
     
     $(".object-list-res").html(responseHtml);
+    //$('#objectListTable').stacktable({myClass:'your-class-name'});
      /*if(view ==2){
         var ele = $(".account-list-res").parent();
         ele.removeClass("accountListTable")

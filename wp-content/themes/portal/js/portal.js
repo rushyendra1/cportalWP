@@ -314,7 +314,7 @@ $(".logouts").on("click",function(e){
                 $("#confirmPwd").focus();
                 return false;
             }
-            console.log(error);
+            
         var isAdmin = parseInt($.trim($("#isAdmin").val()));
          $(".correctPassword").show();
          var that = this;
@@ -455,7 +455,7 @@ $(".logouts").on("click",function(e){
                 $("#confirmPwd").focus();
                 return false;
             }
-            console.log(error);
+            
         var isAdmin = parseInt($.trim($("#isAdmin").val()));
          $(".correctPassword").show();
          var that = this;
@@ -940,6 +940,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     try {
         var  res = data.objectList;
         var fieldsArray = data.fields;
+        var apiFields = data.api_fields;
         var result = data.response;
         var totalRecords = data.NumberofRec;
         var msg = "Request Message";
@@ -965,8 +966,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                 var orderType = "asc";
                 var sortClass = "sortAsc";
                 var activeClass = "";
-                var arg = fieldsArray[i];
-                
+                var arg = apiFields[i];
+                var fieldText = fieldsArray[i];
                 if(field == arg)
                 {
                      activeClass = "activeSort";
@@ -978,7 +979,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                      }
                 }
                 headerHtml +='<th  scope="col">\n\
-                        <a title="'+arg+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+arg+'\n\
+                        <a title="'+fieldText+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+fieldText+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
                         </a></th>';
             } //for loop closed
@@ -991,7 +992,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
        
     if(typeof(result)!= "undefined" && typeof(result.status)!="undefined" && result.status== "Failure")
     {
-            responseHtml +='<tr><td class="error" colspan="9">'+result.message+'</td></tr>';
+            responseHtml +='<tr><td class="error noRecordRow" colspan="9">'+result.message+'</td></tr>';
     }else if(len>0){
         for (var i = 0; i < len; i++)
         {
@@ -1002,11 +1003,12 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
             for(var j=0;j<fieldsLen;j++)
             {
                 var value =  fields =  "";
-                fields = fieldsArray[j];
-            //  if (res[i] != null && typeof (res[i].fields) != "undefined")   
+                fields = apiFields[j];
+              
+            //if (res[i] != null && typeof (res[i].fields) != "undefined")   
              if (res[i] != null && typeof (res[i][fields]) != "undefined")
-                //value = res[i].fields;
-                  value = res[i][fields];  
+               //value = res[i].fields;
+               value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
                 responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
@@ -1021,7 +1023,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
             responseHtml +='</tr>';
         }
     }else{
-         responseHtml +='<tr><td class="error" colspan="9">No Records To Display</td></tr>';
+         responseHtml +='<tr><td class="error noRecordRow" colspan="9">No Records To Display</td></tr>';
     }
     
     /** Pagination Links ***/
@@ -1030,8 +1032,20 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     paginationHtml += paginationWC("",length, page, parseInt(totalRecords), len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
+    responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
+    var k = 0;
+    for(var j=0;j<fieldsLen;j++)
+    {
+         k = j+1;
+         var fields = fieldsArray[j];
+        responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "'+fields+'"; font-weight:bold;}';
+    }
+    k+=1;
     
+    responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
+     responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
+    //$('#objectListTable').stacktable({myClass:'your-class-name'});
      /*if(view ==2){
         var ele = $(".account-list-res").parent();
         ele.removeClass("accountListTable")
@@ -1719,7 +1733,7 @@ function showMoreContact()
         
     });
 }
-
+/*
 $(function(){
    $('#nav_area ul li a').click(function(){
      $('#nav_area ul li a').each(function(a){
@@ -1736,4 +1750,4 @@ $(function() {
     $(this).addClass("active");
   });
 
-});
+});*/

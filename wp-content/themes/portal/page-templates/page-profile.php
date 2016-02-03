@@ -8,7 +8,7 @@
  */
 redirect_to_login();
 get_header();
-$title = " My Account Details";
+$title = " My Profile";
 global $user_ID;
 global $wpdb;
 global $table_prefix;

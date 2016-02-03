@@ -27,7 +27,54 @@ h1, h2, h3, h4, h5, h6 {
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
             .contentSub{
         display:block;
-         margin-left: 30px;
+         //margin-left: 30px;
+         margin-left: 20px;
          margin-top: 180px;
-    }
+         width:90%;
+        }
+        /* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr { 
+			display: block; 
+		}
+		
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		
+		tr { border: 1px solid #ccc; }
+		
+		td { 
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee; 
+			position: relative;
+			// padding-left: 69.5%; 
+                        padding-left: 35%; 
+                        padding-top: 6px;
+		}
+                table thead tr th, table tfoot tr th, table tfoot tr td, table tbody tr th, table tbody tr td, table tr td 
+                {
+                    display:block;
+                }
+		td.error { 
+			padding-left: 0 !important; 
+		}
+		td:before { 
+			/* Now like a table header */
+			//just comment position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px !important;
+			left: 6px !important;
+			//width: 45%; 
+                        //width: 35%; 
+			padding-right: 10px !important; 
+			//white-space: nowrap !important;
+                       // position:relative !important;
+                        position:unset !important;
+                        //float:left !important;
+                        width:35% !important;
+		}
         }

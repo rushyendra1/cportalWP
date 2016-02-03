@@ -53,18 +53,8 @@ if(isset($result->data->is_Edit))
                         <!-- motif: Account -->
 
 
-                        <!--<div class="filter row-fluid accountListView">
-                            <label  class="viewTypeLabel" >View:</label>
-                            <select title="View:"   id="viewType">
-                                <option value="1">Active Accounts</option>
-                                <option  value="2" selected="selected">All Accounts</option>
-                                <!-- <option value="3">H and M Accounts</option>
-                                 <option value="4">My Accounts</option>
-                                 <option value="5">Recently Viewed Accounts</option>-->
-                           <!-- </select>
 
-
-                        </div>-->
+                        </div>
                         <!-- Paginations Start Here  -->
                         <div class="paginationLinks pageContact"></div>
                         <!-- Pagination End Here -->
@@ -76,9 +66,6 @@ if(isset($result->data->is_Edit))
                                 <?php foreach (range('A', 'Z') as $char) { ?>
                                     <a  class="listItem alphaObject" data-alphatype="<?php echo $char ?>" ><span class="listItemPad"><?php echo $char ?></span></a>
 <?php } ?>
-                                <!--<a  class="listItem alphaObject" data-alphatype="other">
-                                    <span class="listItemPad">Other</span>
-                                </a>-->
                                 <a class="listItem alphaObject activeAlpha" data-alphatype="all" >
                                     <span class="listItemSelected listItemLast">All</span>
                                 </a>
@@ -93,7 +80,7 @@ if(isset($result->data->is_Edit))
                             <div class="accountListDiv">
                                 <!--<div class="pbHeader"></div>-->
                                 <div class="pbBody">
-                                    <table cellspacing="0" cellpadding="0" border="0" class="list accountListTable">
+                                    <table cellspacing="0" cellpadding="0" border="0" class="list objectListTable" id="objectListTable">
                                         <thead class="displayObjectHeader">
 
                                         </thead>

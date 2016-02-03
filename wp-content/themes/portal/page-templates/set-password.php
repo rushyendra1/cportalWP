@@ -6,7 +6,7 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
-
+redirect_to_home();
 global $wpdb;
 global $table_prefix;
 
@@ -21,7 +21,7 @@ global $table_prefix;
 } 
 //redirect_to_login(); 
 //redirect_to_home();
-redirect_to_home();
+
 get_header(); 
 $rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
 $user_info = $wpdb->get_row("SELECT ID 

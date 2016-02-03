@@ -414,7 +414,7 @@ $(".logouts").on("click",function(e){
            $("#correctEmail").css("display", "block");
            $(that).removeClass(className);
         //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
-        redirect_to_home();
+         window.location.href = site+'/login';
       });
     });
     
@@ -483,7 +483,7 @@ $(".logouts").on("click",function(e){
                 $(".correctPassword").show();
                 $(that).removeClass(className);
                // window.location.href = site+'/login';
-               redirect_to_home();
+              window.location.href = site+'/login';
             }
         },"json");
         

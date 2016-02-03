@@ -16,7 +16,7 @@ global $user_ID;
 $user_email = (isset($_POST['username']))?$_POST['username']: "";
 $status = (isset($_POST['status']))?$_POST['status']: 0;
 
- $result = $wpdb->get_row( "SELECT ID,is_deactive,user_email
+ $result = $wpdb->get_row( "SELECT ID,is_deactive,user_email,user_pass
 				FROM ".$table_prefix."users
 				WHERE user_email='".$user_email."'");
 			//echo wp_check_password( $old_pwd, $result->user_pass,$id);	
@@ -31,8 +31,8 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                 {
                                       $admin_email = get_option("admin_email");
                                        $rand = wp_generate_strong_password(8);
-
-                                    $update_array = array("forgotpwd_activation_code" => $rand,"user_pass"=> "","is_deactive" => 0);
+                                       $pass=$result->user_pass;
+                                    $update_array = array("forgotpwd_activation_code" => $rand,"user_pass"=> "","is_deactive" => 0,"user_forgot_pass"=>$pass);
                               //      $update_array = array("forgotpwd_activation_code" => $rand, "is_deactive" => 0);
                                     $wpdb->update( $table_prefix."users", $update_array, array("ID" => $result->ID));
                                     
@@ -51,7 +51,7 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
                                              $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
                                              $headers  .= 'From: '.$admin_email."\r\n";
                                    mail($user_email,$subject,nl2br($message),$headers);
-                                 //var_dump($message);
+                                 var_dump($message);
         session_start();
     $_SESSION['msg'] =  "Thank you,your Password details has been sent to your E-mail address.";
                                 }

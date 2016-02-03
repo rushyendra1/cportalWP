@@ -755,6 +755,17 @@ function redirect_to_login(){
     
 }
 /**
+ * Redirect to home
+ * @name redirect_to_home
+ * @return Void
+ */
+function redirect_to_home() {
+    if(is_user_logged_in()) {
+    header("Location:".get_site_url());
+    exit;    
+    }
+    }
+/**
  * Get the data from limit
  * @name get_data_rec_pages
  * @param array $response

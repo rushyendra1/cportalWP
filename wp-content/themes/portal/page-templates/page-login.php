@@ -8,6 +8,7 @@
  */
 
 //redirect_to_login();
+redirect_to_home();
 get_header(); ?>
 
 <div id="main-content" class="main-content">

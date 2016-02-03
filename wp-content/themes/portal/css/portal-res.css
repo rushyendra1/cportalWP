@@ -5,7 +5,7 @@
 }
 
 #name {
-    height: 150px;
+    height: 120px;
 }
 #logo {
     height: 80px;
@@ -13,6 +13,9 @@
 }
 h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.09em;
+}
+.top-bar.expanded {
+    height: 300px;
 }
 }
 @media only screen and

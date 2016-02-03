@@ -3,7 +3,8 @@
 global $wpdb;
 global  $table_prefix;
 get_header();
-login_check(0);
+//login_check(0);
+redirect_to_home();
 $title = "Forgot Password";
 ?>
   <div class="row toggle-full-width">

@@ -10,15 +10,15 @@ ob_start();
  * @subpackage Portal
  * @since Portal 1.0
  */
-
 $pages = get_current_files();
-
+$blogname=get_option('blogname');
+              $blogdescription=get_option('blogdescription');
+              $blog=$blogname ."|".$blogdescription;
 /*if($pages == "login" && is_user_logged_in()){
     
         wp_redirect(get_site_url());
         exit;
 }*/
-
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -182,9 +182,6 @@ if(is_user_logged_in()){
       </ul> <!--</div>-->
           </section>
       </nav>
-
-     
-
 </div>    
   
 <p class="hide-for-medium-down">&nbsp;</p>
@@ -196,6 +193,8 @@ if(is_user_logged_in()){
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
              <input type="hidden" value="<?php echo $pages; ?>" id="path" >
+             <input type="hidden" value="<?php echo $blogname; ?>" id="blogname">
+            <input type="hidden" value="<?php echo $blogdescription; ?>" id="blogdescription">
              <!--<div id="home">
                 
                  </div>-->

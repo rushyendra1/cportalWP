@@ -20,6 +20,8 @@ global $table_prefix;
      include_once('../functions.php');
 } 
 //redirect_to_login(); 
+//redirect_to_home();
+redirect_to_home();
 get_header(); 
 $rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
 $user_info = $wpdb->get_row("SELECT ID 

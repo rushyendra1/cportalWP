@@ -239,7 +239,6 @@ $(".logouts").on("click",function(e){
  /** Check the Old Password is existed or not in change password **/
  
  $("#oldPwd").on("blur",function(e){
-       
        e.stopImmediatePropagation();
       //showLoader(); 
       var pwd  =  $.trim($(this).val());
@@ -294,7 +293,6 @@ $(".logouts").on("click",function(e){
         error = pwdCheckError(status,error,"#oldPwd");
         error = newPwdCheckError(status,error,"#newPwd",old);
         error = confirmCheckError(error,"#confirmPwd",newp);
-        
           if(error.indexOf("o") != -1)
             {
                  hideEnd(this);
@@ -324,6 +322,7 @@ $(".logouts").on("click",function(e){
          $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
+     
       if(data == null )
             {
                 window.location.href = site+'/profile';
@@ -397,7 +396,6 @@ $(".logouts").on("click",function(e){
         var that = this;
          $.post(root+"/ajax/loginmanage/forgot-pwd-submit.php", {username:username},function(data){
           data = $.trim(data);
-       
              if(data != "")
         
         {
@@ -416,10 +414,9 @@ $(".logouts").on("click",function(e){
            $("#correctEmail").css("display", "block");
            $(that).removeClass(className);
         //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
-        window.location.href=site+'/login';
+        redirect_to_home();
       });
     });
-    
     
     /** set Password **/
      $("#setpassword").on("click",function(e){
@@ -466,14 +463,10 @@ $(".logouts").on("click",function(e){
          $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
          new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,rand :$("#rand").val() }, function (data) {
-      if(data == null )
-            {
-                window.location.href = site+'/login';
-               
-                return false;
-            } 
-            //data = $.trim(data);
-          // var msg = data.msg;
+    
+     
+            data = $.trim(data);
+         var msg = data.msg;
                          
                       
             var role = data.role;
@@ -489,15 +482,12 @@ $(".logouts").on("click",function(e){
             } else {
                 $(".correctPassword").show();
                 $(that).removeClass(className);
-              
-             
-               
-                window.location.href = site+'/login';
+               // window.location.href = site+'/login';
+               redirect_to_home();
             }
         },"json");
         
      });
-    
 });
 
 /**

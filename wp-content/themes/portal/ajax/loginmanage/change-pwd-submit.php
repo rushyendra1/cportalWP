@@ -65,8 +65,6 @@ if ($is_fun) {
     if(!$status)
     {
 
-
-
     $credentials = array('user_login' => $result->user_login,
         'user_password' => $new_pwd,
         'remember' => true);

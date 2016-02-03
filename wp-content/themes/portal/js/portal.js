@@ -1,6 +1,8 @@
 var geocoder;  
   var files = "";
   var attachWindow ;
+  var pageSize = 50;
+//  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
 $(document).ready(function(){
@@ -22,7 +24,7 @@ $(document).ready(function(){
    if(path == "object-list")
     {
        
-         getObjectTemplate('2','','',100,0,0,'Name','asc','all');
+         getObjectTemplate('2','','',pageSize,1,0,'Name','asc','all');
         /*$.post(root+"/ajax/object/object-list.php",{type:type},function(e){
             
         });*/
@@ -41,7 +43,85 @@ $(document).ready(function(){
         }
     }
     /*** more tabs ***/
+    /** Edit User profile page **/
     
+   $(".edit").on("click",function(e)
+   {
+       e.stopImmediatePropagation();
+       $(".dispRow").hide();
+       $(".editRow").show();
+       $(this).hide();
+   });
+   /** Update profile **/
+     $("#mysubmit").on("click",function(e){
+        e.stopImmediatePropagation(); 
+        var className = "ajaxCall";
+        if($(this).hasClass(className))
+        {
+            return false;
+        }
+        $(this).addClass(className);
+        showLoader();
+        $(this).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var name = $.trim($("#firstname").val());
+        var lastName = $.trim($("#lastname").val());
+        var company = $.trim($("#company").val());
+        
+        var phone = $.trim($("#phone").val());
+        var mobile = $.trim($("#mobile").val());
+        var email = $.trim($("#email").val());
+        var altEmail = $.trim($("#alternateemail").val());
+        
+        var street = $.trim($("#street").val());
+        var city = $.trim($("#city").val());
+        var state = $.trim($("#state").val());
+        var country = $.trim($("#country").val());
+        var error = "";
+        var title = "Request Message";
+        var error = [];
+        error = firstNameError("#firstname",error);
+        error =   LastNameError("#lastname",error);
+        error = checkUserName("#email",error, "Please enter your E-mail.");
+        error = checkUserName("#alternateemail",error, "Please enter your Alternate E-mail.");
+        error = phoneValidation("#phone",error);
+        error = phoneValidation("#mobile",error);
+         error = addressValidation("#street",error);
+         error = addressValidation("#city",error);
+        error = addressValidation("#state",error);
+        error = addressValidation("#country",error);
+        error = addressValidation("#zip",error);
+        error = addressValidation("#message",error);
+        var status = errorFocus(error);
+        if(!status)
+        {
+            $(this).removeClass(className);
+            hideLoader();
+            return false;
+        }
+        var that = this;
+        $.post(root+"/ajax/loginmanage/my-update.php",{name:name,last_name:lastName, salutation:$.trim($("#salutation").val()) ,company:company,
+                                phone:phone, mobile:mobile, email:email,alt_email:altEmail,
+                             city:city,zipcode : $.trim($("#zip").val()),state:state,street:street,
+                             id:$.trim($("#id").val()),
+                             country:country, message: $.trim($("#message").val())},function(data){
+                        data = $.trim(data);
+                        if(data != "")
+                        {
+                            alertData(title,data);
+                            $(that).removeClass(className);
+                            hideLoader();
+                            return false;
+                        }else{
+                                    //alertData(title,"Your Details Has Been Updated Successfully.");
+                            $(".edit").show();
+                            $(that).removeClass(className);
+                            hideLoader();
+                             window.location.href=site+"/profile";
+                        }
+                        });
+                 
+     });
     /** Login Functionality **/
    $("#submit").on("click",function(e){
        /** Stop the immediate propagation **/
@@ -293,6 +373,7 @@ $(".logouts").on("click",function(e){
         error = pwdCheckError(status,error,"#oldPwd");
         error = newPwdCheckError(status,error,"#newPwd",old);
         error = confirmCheckError(error,"#confirmPwd",newp);
+        
           if(error.indexOf("o") != -1)
             {
                  hideEnd(this);
@@ -929,7 +1010,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
      var isEdit = parseInt($.trim($("#isEdit").val()));
      var isCreate = parseInt($.trim($("#isCreate").val()));
     $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,is_more:isMore,
-    field:field,sort_type:sortType, alpha_type:alphaType,object_type:objectType},
+    field:field,sort_type:sortType, alpha_type:alphaType,object_type:objectType,length:length},
         function(data){
          var status = getConnectionError(data,that,classView);
         if(!status){
@@ -1077,25 +1158,7 @@ function displayObjects()
       e.stopImmediatePropagation();
       $(this).removeClass("addColorSpan");
    });
-   /** View Type **/
-   $("#viewType").on("change",function(e){
-      e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var view = $.trim($(this).val());
-      var that = this;
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-       var type = $(".activeCont").data("type");
-       var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,that,classView,100,0,type,field,orderType,alphaType);
-   }); 
+   
    /*** Account Pagination***/
    $(".displayObjects").on("click",function(e){
        e.stopImmediatePropagation();
@@ -1108,65 +1171,16 @@ function displayObjects()
       $(this).addClass(classView);
       showLoader();
       var page = $.trim($(this).data("paged"));
-      var length = 1;
+      
       var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
        var type = $(".activeCont").data("type");
        var ele = $(".activeSort").parent();
        var field = $.trim(ele.data("field"));
        var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
+      getObjectTemplate(view,this,classView,pageSize,page,type,field,orderType,alphaType);
    });
    
-   /*** Click on the More Button **/
-   $(".moreObject").on("click",function(e){
-        e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      $(this).addClass("activeMore");
-      
-      var page = getPageNo("displayObjects");  
-      var length = 100;
-      var view = $.trim($("#viewType").val());
-      
-      $(this).addClass("activeCont");
-      $(".fewerObject").removeClass("activeCont");
-      
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,this,classView,length,page,1,field,orderType,alphaType);
-   });
-   /*** Fewer functionalities ***/
-    $(".fewerObject").on("click",function(e){
-        e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      $(this).addClass("activeFewer");
-      showLoader();
-      var page = getPageNo("displayObjects");  
-      var length = 100;
-      var view = $.trim($("#viewType").val());
-      $(this).addClass("activeCont");
-      $(".moreObject").removeClass("activeCont");
-      
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,this,classView,length,page,0,field,orderType,alphaType);
-   });
- 
    /*** Alpha paginations***/
    $(".alphaObject").on("click",function(e){
          e.stopImmediatePropagation();
@@ -1178,7 +1192,7 @@ function displayObjects()
       $(this).addClass(classView);
       showLoader();
       var page = getPageNo("displayObjects");  
-      var length = 100;
+      
       var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(this).data('alphatype'));
       $(".listItem").removeClass("activeAlpha");
@@ -1187,7 +1201,7 @@ function displayObjects()
        var ele = $(".activeSort").parent();
        var field = $.trim(ele.data("field"));
        var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
+      getObjectTemplate(view,this,classView,pageSize,page,type,field,orderType,alphaType);
    });
    /*** Sort the functionality**/
    $(".sortOrders").on("click", function(e){
@@ -1205,12 +1219,11 @@ function displayObjects()
       if(orderType == "asc")
           orderBy = "desc";
       var page = getPageNo("displayObjects");  
-      var length = 100;
       var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
        var type = $(".activeCont").data("type");
        var field = $.trim($(this).data("field"));
-      getObjectTemplate(view,this,classView,length,page,type,field,orderBy,alphaType);
+      getObjectTemplate(view,this,classView,pageSize,page,type,field,orderBy,alphaType);
    });
 
 }
@@ -1318,8 +1331,8 @@ function paginationWC(difClass,perPage, start, total, pageCnt, className,alpha) 
    if(page < totalPages)
    {
        nextPage = page+1;
-       if(nextPage == totalPages)
-           nextPage = "";
+      /* if(nextPage == totalPages)
+           nextPage = "";*/
        prevPage = page -1;
        if(prevPage == -1)
            prevPage = "";
@@ -1332,11 +1345,12 @@ function paginationWC(difClass,perPage, start, total, pageCnt, className,alpha) 
     }
     var pagination = '';
     pagination += '<div class="paginations paginationsRes row-fluid">';
-    if (prevPage !== "")
+    if (prevPage !== "" && prevPage !== 0)
         pagination += '<a  class="' + className + '"  data-alpha="'+alpha+'" data-paged="' + prevPage + '"style="cursor:pointer"  title="Previous">  <i class="icon-left-open" ></i>< Previous Page</a>';
     
       if(nextPage !== "")
            pagination += '<a class=" ' + className + '" data-alpha="'+alpha+'"  data-paged="' + nextPage + '" style="cursor:pointer" title="Next" > Next Page ><i class="icon-right-open"></i></a>';
+       
     pagination += '</div></div>';
     
     return pagination;
@@ -1733,21 +1747,223 @@ function showMoreContact()
         
     });
 }
-/*
-$(function(){
-   $('#nav_area ul li a').click(function(){
-     $('#nav_area ul li a').each(function(a){
-       $( this ).removeClass('selectedclass')
-     });
-     $( this ).addClass('selectedclass');
-   });
+/**
+ * Display the first name errors
+ * @name firstNameError
+ * @param {object} ele
+ * @param {array} error
   
+ * @returns {array}
+ */
+function firstNameError(ele,error)
+{
+    var name = $.trim($(ele).val());
+    var isRequired = $.trim($(ele).data("required"));
   
-});
-$(function() {
-  $("#nav_area ul li a").click(function() {
-    $("#nav_area ul li a").removeClass("active");
-    $(this).addClass("active");
-  });
+    if(isRequired== "required" && name == "" )
+        {
+            var msg = "Please enter your Firstname.";
+            //error  += msg+"<br/>";
+            error.push("f");
+             showLabelFocus(ele,msg,1);
+            //$(ele).focus();
+        }else if(isRequired == "required" && name.length < 2)
+        {
+            var msg = "Minimum Firstname character length should be 2.";
+            //error  += msg+"<br/>";
+            error.push("f");
+             showLabelFocus(ele,msg,1);
+            // $(ele).focus();
+        }else{
+             hideData(ele);
+            /* if($(nextEle).val() == "")
+                $(nextEle).focus();*/
+         }
+         return error;
+}
+/**
+ * Display the Last name errors
+ * @name LastNameError
+ * @param {object} ele
+ * @param {array} error
+ * @returns {array}
+ */
+function LastNameError(ele,error)
+{
+    var lastName = $.trim($(ele).val());
+    var isRequired = $.trim($(ele).data("required"));
+    if( isRequired == "required" && lastName == "")
+        {
+            var msg = "Please enter your Lastname.";
+            //error += msg+"<br/>";
+            error.push("l");
+            showLabelFocus(ele,msg);
+            //$(ele).focus();
 
-});*/
+        }else if(isRequired == "required" && lastName.length<2){
+            var msg = "Minimum Lastname character length should be 2.";
+            //error += msg+"<br/>";
+            error.push("l");
+            showLabelFocus(ele,msg);
+            //$(ele).focus();
+        }else{
+             hideData(ele);
+            /* if($(nextEle).val() == "")
+             $(nextEle).focus();*/
+         }
+         return error;
+}
+/**
+ * Check the all validation for phone
+ * @name phoneValidation
+ * @param {object} ele
+ * @param {array} error
+ * @returns {array}
+ */
+function phoneValidation(ele,error)
+{
+    var phone = $.trim($(ele).val());
+    var isRequired = $.trim($(ele).data("required"));
+    if(isRequired == "undefined")
+        isRequired = "required";
+    var type = "Phone";
+    var emsg = "ppr";
+    if(ele == "#mobile"){
+        type = "Mobile";
+        emsg = "pmr";
+    }
+    if( isRequired == "required" && phone == "" )
+        {
+            var msg = "Please enter your "+type+" number.";
+            //error+=msg+"<br/>";
+            hidePassword();
+            error.push(emsg);
+            showLabelFocus(ele,msg);
+            //$(ele).focus();
+        }
+       else  if(phone != "" && !phoneValid(phone))
+        {  var msg = "Please enter valid "+type+" number.";
+            //error += msg+"<br/>";
+            error.push(emsg);
+            hidePassword();
+            showLabelFocus(ele,msg);
+           // $(ele).focus();
+        }
+        else {
+            hideData(ele);
+           /* if($(nextEle).val() == "")
+                $(nextEle).focus();*/
+        }
+        return error;
+}
+/**
+ * Hide the Password
+ * @name hidePassword
+ * @returns {void}
+ */
+function hidePassword()
+{
+    $("#password").val('');
+    $("#confirmpassword").val('');
+    $("#password").removeClass("errorInput");
+    $("#password").next().hide();
+    $(".passStrengthify").css("display", "none");
+     $("#confirmpassword").removeClass("errorInput");
+    $("#confirmpassword").next().hide();
+}
+/**
+ * Check the Address Validation
+ * @name addressValidation
+ * @param string ele
+ * @param {array} error
+ * @returns {array}
+ */
+function addressValidation(ele,error)
+{
+    var errorMsg = '';
+    var errorTitle = '';
+    if(ele == "#city")
+    {
+        errorMsg = 'city';
+        errorTitle = 'City';
+    }
+    else if(ele == "#state")
+    {
+        errorMsg = 'state';
+        errorTitle = 'State';
+    }
+    else if(ele == "#country")
+    {
+        errorMsg = 'country';
+        errorTitle = 'Country';
+    }
+    else if(ele == "#zip")
+    {
+        errorMsg = 'zip';
+        errorTitle = 'Zipcode';
+    }
+    else if(ele == "#message")
+    {
+        errorMsg = 'mge';
+        errorTitle = 'Message';
+    }
+    var isRequired = $.trim($(ele).data("required"));
+    if(isRequired == "required" && $.trim($(ele).val()) == "")
+    {
+        var msg = "Please enter your "+errorTitle+".";
+            //error+=msg+"<br/>";
+           // hidePassword();
+            error.push(errorMsg);
+            showLabelFocus(ele,msg);
+    }else
+        hideData(ele);
+    return error;
+}
+/**
+ * Focus to error element.
+ * @name errorFocus
+ * @param {objecte} error
+ * @returns {Boolean}
+ */
+function errorFocus(error)
+{
+   // console.log(error);
+    var ele = "";
+     if(error.indexOf("f") != -1)
+        ele = "#firstname";
+     else if(error.indexOf("l") != -1)
+        ele = "#lastname";
+     else if(error.indexOf("e") != -1)
+        ele = "#email";
+     else if(error.indexOf("ae") != -1)
+        ele = "#alternateemail";
+    else if(error.indexOf("pr") != -1)
+        ele = "#password";
+    else if(error.indexOf("pcr") != -1)
+        ele = "#confirmpassword";
+    else if(error.indexOf("city") != -1)
+        ele = "#city";
+    else if(error.indexOf("state") != -1)
+        ele = "#state";
+    else if(error.indexOf("country") != -1)
+        ele = "#country";
+    else if(error.indexOf("zip") != -1)
+        ele = "#zip";
+    else if(error.indexOf("mge") != -1)
+        ele = "#message";
+     else if(error.indexOf("ppr") != -1)
+        ele = "#phone";
+    else if(error.indexOf("pmr") != -1)
+        ele = "#mobile";
+    else if (error.indexOf("nemail") != -1)
+            ele = "#newEmail";
+     if( ele != "#email" &&  $.trim($("#email").val()) != "" )
+              $("#correctEmail").css("display", "block");
+      if(ele != ""){
+          
+          
+      $(ele).focus();
+       return false;
+   }
+   return true;
+}

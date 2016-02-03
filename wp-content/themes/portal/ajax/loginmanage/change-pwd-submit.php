@@ -19,14 +19,15 @@ $id = $user_ID;
 
 $rand = (isset($_POST['rand'])) ? trim($_POST['rand']) : "";
 
-
+$user_email="";
 if ($status == 1) {
 
 
-    $rel = $wpdb->get_row("SELECT ID
+    $rel = $wpdb->get_row("SELECT ID,user_email
                            FROM " . $table_prefix . "users
                            WHERE forgotpwd_activation_code='" . $rand . "'");
     $id = $rel->ID;
+$user_email=$rel->user_email;
 
     //  var_dump($forgotpwd_activation_code);
 }
@@ -56,7 +57,7 @@ if ($status == 1) {
     }
 }
 if ($is_fun) {
-    wp_set_password($new_pwd, $id);
+    wp_set_password($new_pwd,$id);
     session_start();
     $_SESSION['msg'] = 'Your Password is Changed Successfully';
       $admin_email = get_option("admin_email");
@@ -86,7 +87,7 @@ if ($is_fun) {
     $message = str_replace("!!userName!!", $user_nicename, $message);
     $message = str_replace("!!uname!!", $result->user_email, $message);
     $message = str_replace("!!pwd!!", $new_pwd, $message);
-
+    
     // if($type != "")  
     //$_SESSION['msg'] = $subject;
 
@@ -94,7 +95,9 @@ if ($is_fun) {
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= 'From: ' . $admin_email . "\r\n";
 
-
     mail($user_email, $subject, nl2br($message), $headers);
+
+  
+    echo "1";
 }
 ?>

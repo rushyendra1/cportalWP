@@ -323,7 +323,7 @@ $(".logouts").on("click",function(e){
          old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
      
-      if(data == null )
+      if(data == "0" )
             {
                 window.location.href = site+'/profile';
                
@@ -420,6 +420,7 @@ $(".logouts").on("click",function(e){
     
     /** set Password **/
      $("#setpassword").on("click",function(e){
+         
          var site = $.trim($("#siteTheme").val());
         e.stopImmediatePropagation();
         var className = "ajaxCall";
@@ -464,6 +465,11 @@ $(".logouts").on("click",function(e){
          new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,rand :$("#rand").val() }, function (data) {
     
+                if( data=="0"  )
+            {
+                window.location.href = site+'/login';
+                return false;
+            } 
      
             data = $.trim(data);
          var msg = data.msg;
@@ -485,6 +491,7 @@ $(".logouts").on("click",function(e){
                // window.location.href = site+'/login';
               window.location.href = site+'/login';
             }
+            
         },"json");
         
      });

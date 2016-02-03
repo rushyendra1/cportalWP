@@ -12,6 +12,13 @@ $title = " My Profile";
 global $user_ID;
 global $wpdb;
 global $table_prefix;
+global $user_ID;
+$result = get_userdata($user_ID);
+$is_edit  =   0;
+if(isset($result->data->is_Edit))
+     $is_edit = $result->data->is_Edit; 
+     
+
 //Get the Current profile details
  $prof_str = "SELECT u.ID,u.user_email, m.meta_value, m.meta_key"
         . " from ".$table_prefix."users u"
@@ -57,11 +64,6 @@ if(is_array($result) && count($result)>0)
     }
 }
 
-/*** Edit the operations **/
-$settings_str = "SELECT allow_edit, min_pass_len, max_pass_len"
-        . " FROM ".$table_prefix."settings";
-$set_results = $wpdb->get_row($settings_str);
-$is_edit =  (isset($set_results->allow_edit))?$set_results->allow_edit: 0;
 ?>
 
 <div id="main-content" class="main-content">
@@ -300,6 +302,14 @@ $is_edit =  (isset($set_results->allow_edit))?$set_results->allow_edit: 0;
          } //if loop closed
          
          ?>
+        </div>
+           <div class="clear" style="height:15px"></div>
+          
+          <div class="row editRow" style="display:none">
+          <div class="columns small-12"> 
+            
+            <a  id="mysubmit" class="button radius submit link">Submit</a> <br>
+          </div>
         </div>
      </div>
     </div>

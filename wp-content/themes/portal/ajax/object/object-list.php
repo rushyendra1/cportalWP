@@ -7,10 +7,8 @@
     
     
 $view = (isset($_POST['view']))?trim($_POST['view']): "";
-$pageNum = (isset($_POST['PageNum']))?trim($_POST['PageNum']):0;
-
-$is_fewer = (isset($_POST['is_fewer']))?trim($_POST['is_fewer']):1;
-$is_more = (isset($_POST['is_more']))?trim($_POST['is_more']):0;
+$pageNum = (isset($_POST['PageNum']))?trim($_POST['PageNum']):1;
+$page_size = (isset($_POST['length']))?trim($_POST['length']):1;
 
 $field = (isset($_POST['field']))?trim($_POST['field']):"Name";
 $sort_type = (isset($_POST['sort_type']))?trim($_POST['sort_type']):"";
@@ -18,24 +16,29 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
 
     list($access_token,$instance_url) = get_connection_sales();
     
-    $get_param = "";
-    if($pageNum !== "")
-    {
-        $get_param .= "&PageNum=".$pageNum;
-    }
-    if($field != "" && $sort_type != "")
-        $get_param .= '&sorting='.$field."+".$sort_type;
-    $get_param .= '&type='.$alpha_type;
-   
-    
     /** Integrate the salesforce **/
         list($access_token,$instance_url) = get_connection_sales();
         global $login_time_url;
         $url = $instance_url.$login_time_url;
         $object_array = array("method" => "getObjectDetails",
                                 "Type" =>$type );
-        
+        if($pageNum !== "")
+        {
+            $object_array['PageNo'] = $pageNum;
+            $object_array['PageSize'] = $page_size;
+        } 
+        if($field != "" && $sort_type != "")
+        {
+            $object_array['FldName'] = $field;
+            $object_array['Srt'] = strtoupper($sort_type);
+        }
+        if($alpha_type != "")
+        {
+            $object_array['chr'] = strtolower($alpha_type);
+        }
+       //echo json_encode($object_array);
         $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
+        //var_dump($json_response);
         $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))
     $json_response = $response_array[1];
@@ -68,26 +71,13 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
      if(isset($response->ApiFields->ApiFields))
          $fields_array = $response->ApiFields->ApiFields;
      
-      $start_pos = $end_pos = 0;
-     if(isset($response->StartPos))
-$start_pos = $response->StartPos;
-     if(isset($response->EndPos))
-$end_pos = $response->EndPos;
-     
-     /*if(isset($result[0])){
-         $fields =(array) $result[0];
-        $params_array = array_keys($fields); 
-        $key = array_search('attributes', $params_array);
-        unset($params_array[$key]);
-        $key = array_search('Id', $params_array);
-        unset($params_array[$key]);
-        $params_array = array_values($params_array);
-     }*/
+      
+     $page_records = 0;
+     if(isset($result))
+     $page_records = count($result);
        echo json_encode(array("objectList" => $result,
      "NumberofRec" =>  $total_recs,
-     "pageRecords" => count($result),
-            "StartPos" =>$start_pos,
-        "EndPos" => $end_pos,
+     "pageRecords" => $page_records,
           "fields" => $params_array,
             "api_fields" => $fields_array
         ));exit;

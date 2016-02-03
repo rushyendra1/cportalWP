@@ -203,7 +203,9 @@ top:250px;position:fixed;left:500px
         text-decoration: underline;
    }
    .pageContact{
-       margin-top:-40px;
+       float:right;
+        margin-top: 40px;
+       //margin-top:-40px;
    }
   .contact-list-res .dataCell{
        word-wrap: break-word;
@@ -640,15 +642,15 @@ position: relative;
     box-shadow: 0 0 0px #ddd; 
 }
 h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.03em; text-transform: uppercase; }
-<<<<<<< HEAD
+
 .top-bar.expanded {
     height: 300px;
     background: transparent;
 }
-    
-=======
 .noRecordRow{
  text-align: center;
     width: 730px;    
 }
->>>>>>> 92083a8705918223769ccf59eeac2e8852685203
+.activeSort{
+       display:block !important;
+   }

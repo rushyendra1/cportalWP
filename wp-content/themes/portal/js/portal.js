@@ -1,7 +1,7 @@
 var geocoder;  
   var files = "";
   var attachWindow ;
-  var pageSize = 50;
+  var pageSize = 100;
 //  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
@@ -24,7 +24,7 @@ $(document).ready(function(){
    if(path == "object-list")
     {
        
-         getObjectTemplate('2','','',pageSize,1,0,'Name','asc','all');
+         getObjectTemplate('2','','',pageSize,1,0,'','ASC','all');
         /*$.post(root+"/ajax/object/object-list.php",{type:type},function(e){
             
         });*/
@@ -1040,6 +1040,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     var headerHtml = '';
         if(fieldsLen>0){
             headerHtml = '<tr class="headerRow">';
+            
             for(var i=0; i<fieldsLen; i++)
             {
                 var sortTitle = "Sorted Ascending";
@@ -1049,6 +1050,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                 var activeClass = "";
                 var arg = apiFields[i];
                 var fieldText = fieldsArray[i];
+                if(field == "")
+                    field = apiFields[0]; 
                 if(field == arg)
                 {
                      activeClass = "activeSort";
@@ -1113,6 +1116,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     paginationHtml += paginationWC("",length, page, parseInt(totalRecords), len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
+           
     responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
     for(var j=0;j<fieldsLen;j++)
@@ -1174,7 +1178,7 @@ function displayObjects()
       
       var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-       var type = $(".activeCont").data("type");
+      var type = $(".activeCont").data("type");
        var ele = $(".activeSort").parent();
        var field = $.trim(ele.data("field"));
        var orderType = $.trim(ele.data("type"));
@@ -1214,7 +1218,7 @@ function displayObjects()
       $(this).addClass(classView);
       showLoader();
       var orderType = $.trim($(this).data("type"));
-     
+    $(this).find("img").addClass("activeSort"); 
       var orderBy = "asc";
       if(orderType == "asc")
           orderBy = "desc";
@@ -1389,6 +1393,8 @@ function getPageNo(ele)
         page -=1;
       else if(pageType== 1 && page != 0)
         page +=1;
+    if(page ==0)
+        page =1;
     return page;
 }
 /**

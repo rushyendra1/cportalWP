@@ -658,7 +658,7 @@ function redirect_to_login() {
         header("Location:" . get_site_url() . "/login");
         exit;
     }
-<<<<<<< HEAD
+
     
 }
 /**
@@ -672,24 +672,7 @@ function redirect_to_home() {
     exit;    
     }
     }
-/**
- * Get the data from limit
- * @name get_data_rec_pages
- * @param array $response
- * @param int $start
- * @param int $length
- * @return array
- */
-function get_data_rec_pages($response,$start,$length)
-{
-    $result = array();
-    if(is_array($response))
-    $result = array_slice($response,$start,$length);
-    $result = array_values($result);
-    return $result;
-=======
->>>>>>> 92083a8705918223769ccf59eeac2e8852685203
-}
+
 
 /**
  * call the files in loading

@@ -205,7 +205,7 @@ top:250px;position:fixed;left:500px
    .pageContact{
        float:right;
         margin-top: 40px;
-       //margin-top:-40px;
+       
    }
   .contact-list-res .dataCell{
        word-wrap: break-word;
@@ -603,6 +603,7 @@ position: relative;
   width: 100%;
   background-color: skyblue;
   margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
   margin-bottom: 0px;
   padding-bottom: 0px;
   

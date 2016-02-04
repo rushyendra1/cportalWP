@@ -10,6 +10,7 @@ redirect_to_login();
 get_header();
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
 $obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
+$parent_obj = (isset($_GET['parent_obj']))?$_GET['parent_obj']:"";
 global $user_ID;
 $result = get_userdata($user_ID);
 $is_edit = $is_create= $is_delete = $is_view =   0;
@@ -42,6 +43,7 @@ if(isset($result->data->is_Edit))
                     <div class="bodyPage">
                         <div class="bPageTitle">
                             <h1 class="pageType noSecondHeader"><?php echo $obj_name; ?></h1>
+                            <h2><?php echo $parent_obj; ?></h2>
                             <?php if($is_create) { ?>
                             <input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">
                             <?php } ?>

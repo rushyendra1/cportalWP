@@ -30,6 +30,8 @@ echo place_message();
 <?php
 $object_type = (isset($_GET['type']))?$_GET['type']:"";
 $object_id = (isset($_GET['id']))?$_GET['id']:"";
+
+
  /*** Connect the salesforce ***/
  list($access_token,$instance_url) = get_connection_sales();
  global $login_time_url;
@@ -67,6 +69,9 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
      $result = $response->Data->Data; 
       if(isset($result[0]))
       $result = $result[0];
+      $name = '';
+      if(isset($result->Name))
+        $name = $result->Name;
        
 ?>
 <div class="bPageTitle serviceTitle">
@@ -75,6 +80,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
     
 &nbsp;
 <div>
+    <input type="hidden" id="objName" value="<?php echo $name; ?>" >
     <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >
     <div class="pbHeader">
         <div class="pbTitle titleWidth">

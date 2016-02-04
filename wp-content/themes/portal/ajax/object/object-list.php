@@ -4,6 +4,7 @@
     include_once('../../functions.php');
     $type = (isset($_POST['object_type']))?trim($_POST['object_type']): "";
     $object_id = (isset($_POST['object_id']))?trim($_POST['object_id']): "";
+    $parent_obj_type = (isset($_POST['parent_obj_type']))?trim($_POST['parent_obj_type']): "";
     
     
 $view = (isset($_POST['view']))?trim($_POST['view']): "";
@@ -35,6 +36,11 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
         if($alpha_type != "")
         {
             $object_array['chr'] = strtolower($alpha_type);
+        }
+        if($object_id != "")
+        {
+            $object_array['RecordId'] = $object_id;
+            $object_array['RelatedToapi'] = $parent_obj_type;
         }
        //echo json_encode($object_array);
         $json_response = post_request($url, $access_token, json_encode($object_array),"POST");

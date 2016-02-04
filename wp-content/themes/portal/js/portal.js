@@ -1029,7 +1029,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
      var objectType = $.trim($("#object").val());
      var objectName = $.trim($("#objectName").val());
      var parentObjectType = $.trim($("#parentObjType").val());
-     var parentObjId = $.trim($("#parentObj").val());
+     var parentObjId = $.trim($("#parentObjectId").val());
      var isEdit = parseInt($.trim($("#isEdit").val()));
      var isCreate = parseInt($.trim($("#isCreate").val()));
     $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,

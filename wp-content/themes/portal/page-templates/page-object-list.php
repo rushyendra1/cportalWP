@@ -12,6 +12,7 @@ $type = (isset($_GET['id']))?trim($_GET['id']):"";
 $obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
 $parent_obj = (isset($_GET['parent_obj']))?$_GET['parent_obj']:"";
 $parent_obj_type = (isset($_GET['parent_obj_type']))?$_GET['parent_obj_type']:"";
+$parent_obj_id = (isset($_GET['parent_obj_id']))?$_GET['parent_obj_id']:"";
 global $user_ID;
 $result = get_userdata($user_ID);
 $is_edit = $is_create= $is_delete = $is_view =   0;
@@ -30,7 +31,9 @@ if(isset($result->data->is_Edit))
 <input type="hidden" id="isDelete" value="<?php echo $is_delete; ?>" >
 <input type="hidden" id="object" value="<?php echo $type; ?>" >
 <input type="hidden" id="objectName" value="<?php echo $obj_name; ?>" >
-
+<input type="hidden" id="parentObjectId" value="<?php echo $parent_obj_id; ?>" >
+<input type="hidden" id="parentObj" value="<?php echo $parent_obj; ?>" > 
+<input type="hidden" id="parentObjType" value="<?php echo $parent_obj_type; ?>" > 
 <div id="main-content" class="main-content">
     <div class="row-fluid data-content-outer" >
         <div id="primary" class="content-area">
@@ -50,8 +53,7 @@ if(isset($result->data->is_Edit))
 
                          
                             <h2><?php echo $parent_obj; ?></h2>
-                            <input type="hidden" id="parentObj" value="<?php echo $parent_obj; ?>" > 
-                            <input type="hidden" id="parentObjType" value="<?php echo $parent_obj_type; ?>" > 
+                            
 
                             <?php if($is_create) { ?>
                             <input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">

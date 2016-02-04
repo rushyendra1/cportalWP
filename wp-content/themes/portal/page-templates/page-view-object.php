@@ -32,32 +32,41 @@ $object_type = (isset($_GET['type']))?$_GET['type']:"";
 $object_id = (isset($_GET['id']))?$_GET['id']:"";
  /*** Connect the salesforce ***/
  list($access_token,$instance_url) = get_connection_sales();
- global $contact_details_url;
-  $url = $instance_url.$contact_details_url.$contact_id;
+ global $login_time_url;
+  $url = $instance_url.$login_time_url;
  /*** Retrieve contact details **/
  $response = array();
  try{
-  $json_response = connects_salesforce($url,array(),FALSE,$access_token,"get");
+   $object_array = array("method" => "getRecordDetails",
+                                "Type" =>$object_type,
+       "FldName" => $object_id);  
+   $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
+   $response_array = explode("chunked",$json_response);
+    if(isset($response_array[1]))
+    $json_response = $response_array[1];
  }catch(Exception $e){}
   $response = json_decode($json_response);
-  $response = json_decode($response);
+  
+  
+  //var_dump($response);
   //if no data is there 
-   if(isset($response->response->status)){ ?>
+   if(isset($response[0]->errorCode)){ ?>
     <div class="content">
-    <h1 class="pageType"> <?php echo $response->response->message; ?></h1>
+    <h1 class="pageType"> <?php echo $response[0]->message; ?></h1>
     </div>                       
    <?php }else{
-       
-       $result = $response[0];
-       
-       $result = array("Name" => "dffgfg", "Email" => "email@reg.com",
-           "Phone" => "9638527410", "Mobile" => "9638527410",
-           "Type" => "dfdfdfd", "related_types" => "Contact,Cases",
-           "dfdfd" => "dfdfdfd"
-           );
-       $related_types = $result['related_types'];
-       $related_types_array = explode(",", $related_types);
-       unset($result['related_types']);
+       $response = json_decode($response);
+       $related_types_array = $params_array = $fields_array = array();
+       if(isset($response->Fields->Fields))
+         $params_array = $response->Fields->Fields;
+     if(isset($response->ApiFields->ApiFields))
+         $fields_array = $response->ApiFields->ApiFields;
+     if(isset($response->RelatedListApi->RelatedListApi))
+     $related_types_array = $response->RelatedListApi->RelatedListApi;
+      if(isset($response->Data->Data))
+     $result = $response->Data->Data; 
+      if(isset($result[0]))
+      $result = $result[0];
        
 ?>
 <div class="bPageTitle serviceTitle">
@@ -84,25 +93,27 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
                    <div class="objectDets">
                        <div class="objectDetsDet">
                            <?php
-                             $item_cnt = count($result);
+                             $item_cnt = count($params_array);
                             $rep_cnt = ceil($item_cnt/2);
                            if($item_cnt>0)
                            {
-                               $i=0;
-                               foreach($result as $key=>$val){
+                               $i=0; $j =0;
+                               foreach($params_array as $val){
                                    //if($key != "related_types"){
+                                   $key = $fields_array[$j];
                                    if($i == $rep_cnt)
                                    {
                                        $i=0;
-                                       echo '</div><div class="contactDetsDet">';
+                                       echo '</div><div class="objectDetsDet">';
                                    }
                                    $i++;
+                                   $j++;
                                ?>
                            <div class="eachObjectDetsDet">
-                            <div class="labelColItem"><label > <?php echo $key; ?> </label>
+                            <div class="labelColItem"><label > <?php echo $val; ?> </label>
                             </div>
                         <div class="oddDivObject">
-                            <span class="objectSpan"><?php echo $val; ?></span>
+                            <span class="objectSpan"><?php echo $result->$key; ?></span>
                         </div>
                         </div>
                                <?php 

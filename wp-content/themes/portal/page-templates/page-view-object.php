@@ -39,7 +39,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
  try{
    $object_array = array("method" => "getRecordDetails",
                                 "Type" =>$object_type,
-       "FldName" => $object_id);  
+       "RecordId" => $object_id);  
    $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
    $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))

@@ -29,6 +29,8 @@ if(isset($result->data->is_Edit))
 <input type="hidden" id="isCreate" value="<?php echo $is_create; ?>" >
 <input type="hidden" id="isDelete" value="<?php echo $is_delete; ?>" >
 <input type="hidden" id="object" value="<?php echo $type; ?>" >
+<input type="hidden" id="objectName" value="<?php echo $obj_name; ?>" >
+
 <div id="main-content" class="main-content">
     <div class="row-fluid data-content-outer" >
         <div id="primary" class="content-area">

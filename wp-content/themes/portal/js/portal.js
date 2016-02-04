@@ -1027,6 +1027,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     var root = $.trim($("#rootTheme").val()); 
     var site = $.trim($("#siteTheme").val());
      var objectType = $.trim($("#object").val());
+     var objectName = $.trim($("#objectName").val());
      var parentObjectType = $.trim($("#parentObjType").val());
      var parentObjId = $.trim($("#parentObj").val());
      var isEdit = parseInt($.trim($("#isEdit").val()));
@@ -1126,7 +1127,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
          
             if(isEdit)
                 editLink = ' &nbsp; <a>Edit</a>';
-            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'">View</a>'+editLink+'</td>';
+            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'&obj_name='+objectName+'">View</a>'+editLink+'</td>';
             responseHtml +='</tr>';
         }
     }else{

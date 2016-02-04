@@ -1543,7 +1543,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
 <span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'">Go to List( '+totalRecords+' )</a></span></div>';
   */          
              var responseShowList = '<div >\n\
-<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'">Go to List( '+totalRecords+' )</a></span></div>';
+<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'&obj_name='+objectType+'">Go to List( '+totalRecords+' )</a></span></div>';
         if(typeof(totalRecords) != "undefined" && totalRecords >0)
    $(".showMoreDivObject"+objectType).html(responseShowList);
     $(".Object"+objectType+"Res").html(responseHtml);

@@ -70,10 +70,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
        
 ?>
 <div class="bPageTitle serviceTitle">
-  
      <h1><?php echo $object_type; ?></h1>
-     <!--<h2><?php echo $name;?></h2>-->
-    
 </div>
     
 &nbsp;
@@ -97,7 +94,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
                             $rep_cnt = ceil($item_cnt/2);
                            if($item_cnt>0)
                            {
-                               $i=0; $j =0;
+                               $i=0; $j = 0;
                                foreach($params_array as $val){
                                    //if($key != "related_types"){
                                    $key = $fields_array[$j];

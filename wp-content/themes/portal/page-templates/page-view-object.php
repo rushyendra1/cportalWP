@@ -72,6 +72,8 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
       $name = '';
       if(isset($result->Name))
         $name = $result->Name;
+      if($name == "" && isset($result->Id))
+          $name = $result->Id;
        
 ?>
 <div class="bPageTitle serviceTitle">
@@ -82,6 +84,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
 <div>
     <input type="hidden" id="objName" value="<?php echo $name; ?>" >
     <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >
+    <input type="hidden" id="objectType" value="<?php echo $object_type ?>" >
     <div class="pbHeader">
         <div class="pbTitle titleWidth">
             <h2 class="mainTitle"> <?php echo $object_type; ?> Detail</h2>

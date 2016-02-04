@@ -11,6 +11,7 @@ get_header();
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
 $obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
 $parent_obj = (isset($_GET['parent_obj']))?$_GET['parent_obj']:"";
+$parent_obj_type = (isset($_GET['parent_obj_type']))?$_GET['parent_obj_type']:"";
 global $user_ID;
 $result = get_userdata($user_ID);
 $is_edit = $is_create= $is_delete = $is_view =   0;
@@ -44,6 +45,8 @@ if(isset($result->data->is_Edit))
                         <div class="bPageTitle">
                             <h1 class="pageType noSecondHeader"><?php echo $obj_name; ?></h1>
                             <h2><?php echo $parent_obj; ?></h2>
+                            <input type="hidden" id="parentObj" value="<?php echo $parent_obj; ?>" > 
+                            <input type="hidden" id="parentObjType" value="<?php echo $parent_obj_type; ?>" > 
                             <?php if($is_create) { ?>
                             <input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">
                             <?php } ?>

@@ -1014,9 +1014,12 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     var root = $.trim($("#rootTheme").val()); 
     var site = $.trim($("#siteTheme").val());
      var objectType = $.trim($("#object").val());
+     var parentObjectType = $.trim($("#parentObjType").val());
+     var parentObjId = $.trim($("#parentObj").val());
      var isEdit = parseInt($.trim($("#isEdit").val()));
      var isCreate = parseInt($.trim($("#isCreate").val()));
-    $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,is_more:isMore,
+    $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,
+        is_more:isMore,parent_obj_type:parentObjectType,object_id:parentObjId,
     field:field,sort_type:sortType, alpha_type:alphaType,object_type:objectType,length:length},
         function(data){
          var status = getConnectionError(data,that,classView);
@@ -1427,10 +1430,11 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
      var root = $.trim($("#rootTheme").val()); 
      var siteUrl = $.trim($("#siteTheme").val()); 
      var parentObjectId = $.trim($("#objectId").val());
-    
+     var parentObjType = $.trim($("#objectType").val());
      var objName = $.trim($("#objName").val());
      var perPageCnt = 15;
-    $.post(root+"/ajax/object/object-list.php",{object_id:parentObjectId,
+    $.post(root+"/ajax/object/object-list.php",{
+        object_id:parentObjectId,parent_obj_type :parentObjType,
         object_type:objectType,per_page_cnt:perPageCnt,
         PageNumShow:page,PageNum:pagePart,alpha_type:alphaType,
         field:field, sort_type:sortType},function(data){
@@ -1543,7 +1547,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
 <span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'">Go to List( '+totalRecords+' )</a></span></div>';
   */          
              var responseShowList = '<div >\n\
-<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'&obj_name='+objectType+'&parent_obj='+objName+'">Go to List( '+totalRecords+' )</a></span></div>';
+<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'&obj_name='+objectType+'&parent_obj='+objName+'&parent_obj_type='+parentObjType+'">Go to List( '+totalRecords+' )</a></span></div>';
         if(typeof(totalRecords) != "undefined" && totalRecords >0)
    $(".showMoreDivObject"+objectType).html(responseShowList);
     $(".Object"+objectType+"Res").html(responseHtml);

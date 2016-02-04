@@ -38,7 +38,7 @@ $(document).ready(function(){
         {
             for(var i =0; i<relatedObjlen; i++)
             {
-                getObjectTemplateByObject('','',0,'all',0,"CreatedDate","desc",relatedTypesArray[i]);
+                getObjectTemplateByObject('','',1,'all',1,"CreatedDate","desc",relatedTypesArray[i]);
             }
         }
     }
@@ -1435,8 +1435,9 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
      var perPageCnt = 15;
     $.post(root+"/ajax/object/object-list.php",{
         object_id:parentObjectId,parent_obj_type :parentObjType,
-        object_type:objectType,per_page_cnt:perPageCnt,
-        PageNumShow:page,PageNum:pagePart,alpha_type:alphaType,
+        object_type:objectType,length:5,
+        /*per_page_cnt:perPageCnt,PageNumShow:page,*/
+        PageNum:pagePart,alpha_type:alphaType,
         field:field, sort_type:sortType},function(data){
          var status = getConnectionError(data,that,classView);
         if(!status){

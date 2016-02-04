@@ -63,10 +63,12 @@ $(document).ready(function(){
        e.stopImmediatePropagation();
        $(".dispRow").hide();
        $(".editRow").show();
+       $(".headTitle").html("Edit My Details");
        $(this).hide();
    });
    /** Update profile **/
      $("#mysubmit").on("click",function(e){
+           
         e.stopImmediatePropagation(); 
         var className = "ajaxCall";
         if($(this).hasClass(className))

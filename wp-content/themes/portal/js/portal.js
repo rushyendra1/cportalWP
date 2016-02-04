@@ -64,6 +64,14 @@ $(document).ready(function(){
        $(".dispRow").hide();
        $(".editRow").show();
        $(".headTitle").html("Edit My Details");
+       var gettitle = $.trim($(".headTitle").html());
+    if(path =="" && path == "home")
+    {
+        gettitle = '';
+    }
+    if(gettitle != "")
+        blog = gettitle +'|'+blog;
+    document.title = blog;
        $(this).hide();
    });
    /** Update profile **/

@@ -43,7 +43,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
    $object_array = array("method" => "getRecordDetails",
                                 "Type" =>$object_type,
        "RecordId" => $object_id);  
-   echo json_encode($object_array);
+  // echo json_encode($object_array);
    $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
    $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))
@@ -173,6 +173,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
         $i =0 ;
         foreach($related_types_array as $each){
             $rel_name = $related_list_array[$i];
+            $i++;
     ?>
     <div class="bPageBlock">
         <div class="pbHeader">

@@ -34,11 +34,14 @@ $(document).ready(function(){
         var relatedTypes = $.trim($("#relatedTypes").val());
         var relatedTypesArray = relatedTypes.split(",");
         var relatedObjlen = relatedTypesArray.length;
+        
+        var relatedLists = $.trim($("#relatedLists").val());
+        var relatedListsArray = relatedLists.split(",");
         if(relatedObjlen >0)
         {
             for(var i =0; i<relatedObjlen; i++)
             {
-                getObjectTemplateByObject('','',1,'all',1,"CreatedDate","desc",relatedTypesArray[i]);
+                getObjectTemplateByObject('','',1,'all',1,"CreatedDate","desc",relatedTypesArray[i],relatedListsArray[i]);
             }
         }
     }
@@ -1031,8 +1034,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
      var parentObjectType = $.trim($("#parentObjType").val());
      var parentObjId = $.trim($("#parentObjectId").val());
      var isEdit = parseInt($.trim($("#isEdit").val()));
-     var isCreate = parseInt($.trim($("#isCreate").val()));
-    $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,
+      $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,
         is_more:isMore,parent_obj_type:parentObjectType,object_id:parentObjId,
     field:field,sort_type:sortType, alpha_type:alphaType,object_type:objectType,length:length},
         function(data){
@@ -1154,17 +1156,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
-    //$('#objectListTable').stacktable({myClass:'your-class-name'});
-     /*if(view ==2){
-        var ele = $(".account-list-res").parent();
-        ele.removeClass("accountListTable")
-        ele.addClass("allAccountListTable")
-    }else if(view ==1){
-        var ele = $(".account-list-res").parent();
-        ele.removeClass("allAccountListTable")
-        ele.addClass("accountListTable")
-    }*/
-                $(that).removeClass(classView);
+    $(that).removeClass(classView);
    displayObjects();
     hideLoader();
       },'json');
@@ -1434,7 +1426,7 @@ function getPageNo(ele)
  * @param {string} sortType
  * @returns {void}
  */
-function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectType)
+function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectType,currentObjectName)
 {
     showLoader();
     if(typeof(page) == "undefined")
@@ -1446,7 +1438,8 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
      var parentObjectId = $.trim($("#objectId").val());
      var parentObjType = $.trim($("#objectType").val());
      var objName = $.trim($("#objName").val());
-     var perPageCnt = 15;
+     
+     //var perPageCnt = 15;
     $.post(root+"/ajax/object/object-list.php",{
         object_id:parentObjectId,parent_obj_type :parentObjType,
         object_type:objectType,length:5,
@@ -1525,10 +1518,11 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
          for (var i = 0; i < len; i++)
         {
             
-             var name = id= titleP =email= phone= "";
+             var  id= titleP =email= phone= "";
              responseHtml +='<tr  class="dataRow even first">';
-            var id = '';
-            id= 123;
+            
+            if (result[i] != null && typeof (result[i]['Id']) != "undefined")
+            id= result[i]['Id'];
             for(var j=0;j<fieldsLen;j++)
             {
                 var value =  fields =  "";
@@ -1542,7 +1536,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 
             }//for closed
-            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'">View</a> &nbsp; <a>Edit</a></td>';
+            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'&obj_name='+currentObjectName+'"">View</a> &nbsp; <a>Edit</a></td>';
             responseHtml +='</tr>';
 
             showMoreCnt = i+1;
@@ -1551,7 +1545,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     }
     else
         responseHtml +='<tr><td class="error" colspan="5">No Records To Display</td></tr>';
-    var totalPageCount = totalPageCnt(totalRecords,perPageCnt);
+ //   var totalPageCount = totalPageCnt(totalRecords,perPageCnt);
     page = parseInt(page)+1;
    /* var showMore = '';
     if(page<totalPageCount && totalRecords > perPageCnt)

@@ -168,8 +168,9 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     <?php
     if(count($related_types_array)>0){
         $relateds_types = implode(",",$related_types_array);
-        
+        $related_lists = implode(",",$related_list_array);   
         echo '<input type="hidden" id="relatedTypes" value="'.$relateds_types.'" >';
+        echo '<input type="hidden" id="relatedLists" value="'.$related_lists.'" >';
         $i =0 ;
         foreach($related_types_array as $each){
             $rel_name = $related_list_array[$i];

@@ -94,7 +94,8 @@ top:250px;position:fixed;left:500px
        font-size: 80%;
     line-height: 20px;
     margin: 0;
-
+    border-radius:40px;
+      min-height:450px;
  }
  .contentSub{
 

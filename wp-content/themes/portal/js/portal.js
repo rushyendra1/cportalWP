@@ -42,6 +42,19 @@ $(document).ready(function(){
             }
         }
     }
+   var blog=$.trim($("#blogname").val());
+    
+    var gettitle = $.trim($(".headTitle").html());
+    if(path =="" && path == "home")
+    {
+        gettitle = '';
+    }
+    if(gettitle != "")
+        blog = gettitle +'|'+blog;
+    document.title = blog;
+    
+
+    
     /*** more tabs ***/
     /** Edit User profile page **/
     

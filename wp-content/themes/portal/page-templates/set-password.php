@@ -79,8 +79,8 @@ $user_id = $user_ID; */
   <div class="row toggle-full-width">
     <div class="large-12 columns">
       <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >
-      <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" >
-      <h4><br><?php echo $title; ?></h4>
+      <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" ><br>
+      <h4 class="headTitle"><?php echo $title; ?></h4>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
       <input type="hidden" id="status" value="<?php echo $status ?>" > 

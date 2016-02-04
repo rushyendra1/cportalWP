@@ -6,8 +6,13 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
+
+$blogname = get_option('blogname');
+$blogdescription=get_option('blogdescription');
+$blog=$blogname."|".$blogdescription;
 redirect_to_login();
 get_header(); ?>
+
 
 <div class="bodyCell contentSub row-fluid" >
 <!-- Start page content -->
@@ -16,10 +21,12 @@ get_header(); ?>
 </a>
 
 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+<input type="hidden" id="blog" value="<?php echo $blog ?>" >
+
   <div class="row toggle-full-width">
     <div class="large-12 columns">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h4>Customer Portal</h4>
+      <h4 class="headTitle">Customer Portal</h4>
      <br>
       <div id="section_1">
          

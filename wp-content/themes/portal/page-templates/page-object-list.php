@@ -43,10 +43,14 @@ if(isset($result->data->is_Edit))
                     <!-- Start page content -->
                     <div class="bodyPage">
                         <div class="bPageTitle">
-                            <h1 class="pageType noSecondHeader"><?php echo $obj_name; ?></h1>
+
+                            <h1  class="pageType noSecondHeader headTitle" ><?php echo $obj_name; ?></h1>
+
+                         
                             <h2><?php echo $parent_obj; ?></h2>
                             <input type="hidden" id="parentObj" value="<?php echo $parent_obj; ?>" > 
                             <input type="hidden" id="parentObjType" value="<?php echo $parent_obj_type; ?>" > 
+
                             <?php if($is_create) { ?>
                             <input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">
                             <?php } ?>

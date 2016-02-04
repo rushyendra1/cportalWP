@@ -89,16 +89,16 @@ if(is_array($result) && count($result)>0)
   <div class="row toggle-full-width">
     <div class="large-12 columns">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h4><?php echo $title; ?></h4>
+        <h4 class="headTitle"><?php echo $title; ?></h4>
       
      
       <div id="section_1">
         <div class="row statusAccount" >
               <div class="links-pad">
                   <?php if($is_edit){ ?>
-              <a  class="edit" >Edit My Details</a> &nbsp; &nbsp;
+                  <a  class="edit" class="headTitle" >Edit My Details</a> &nbsp; &nbsp;
                 <?php } ?>
-              <a href="<?php echo get_site_url() ?>/change-password"  >Change My  Password</a> &nbsp; &nbsp;
+              <a  href="<?php echo get_site_url() ?>/change-password"   >Change My  Password</a> &nbsp; &nbsp;
              
               
               </div>

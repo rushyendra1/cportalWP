@@ -34,8 +34,8 @@ get_header(); ?>
 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
   <div class="row toggle-full-width">
     <div class="large-12 columns">
-      <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h4><br>
+      <!--<h4 class="right"><small><em>* = Required</em></small></h4>--><br>
+        <h4 class="headTitle">
         Login</h4>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>

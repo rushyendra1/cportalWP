@@ -1,7 +1,7 @@
 var geocoder;  
   var files = "";
   var attachWindow ;
-  var pageSize = 5;
+  var pageSize = 100;
 //  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
@@ -42,6 +42,19 @@ $(document).ready(function(){
             }
         }
     }
+   var blog=$.trim($("#blogname").val());
+    
+    var gettitle = $.trim($(".headTitle").html());
+    if(path =="" && path == "home")
+    {
+        gettitle = '';
+    }
+    if(gettitle != "")
+        blog = gettitle +'|'+blog;
+    document.title = blog;
+    
+
+    
     /*** more tabs ***/
     /** Edit User profile page **/
     

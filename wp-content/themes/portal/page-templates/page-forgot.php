@@ -10,8 +10,8 @@ $title = "Forgot Password";
 ?>
   <div class="row toggle-full-width">
     <div class="large-12 columns">
-     
-      <h4><br>Forgot Password</h4>
+     <br>
+        <h4 class="headTitle">Forgot Password</h4>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
       <div id="section_1">

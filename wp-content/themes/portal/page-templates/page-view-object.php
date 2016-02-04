@@ -62,7 +62,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
 ?>
 <div class="bPageTitle serviceTitle">
   
-     <h1><?php echo $object_type; ?></h1>
+    <h1 class="headTitle">View <?php echo $object_type; ?></h1>
      <!--<h2><?php echo $name;?></h2>-->
     
 </div>

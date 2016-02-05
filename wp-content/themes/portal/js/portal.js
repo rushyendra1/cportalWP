@@ -1152,8 +1152,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     paginationHtml += paginationWC("",length, page, parseInt(totalRecords), len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
-           var pixelWidth = 71/fieldsLen;
-    responseHtml += '<style type="text/css">.list th, .list td{ width:'+pixelWidth+ '% !important; }@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
+           //var pixelWidth = 71/fieldsLen;
+    responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
     for(var j=0;j<fieldsLen;j++)
     {
@@ -1528,7 +1528,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
          for (var i = 0; i < len; i++)
         {
             
-             var  id= titleP =email= phone= "";
+             var  id =  "";
              responseHtml +='<tr  class="dataRow even first">';
             
             if (result[i] != null && typeof (result[i]['Id']) != "undefined")
@@ -1569,7 +1569,21 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
 <span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'&obj_name='+objectType+'&parent_obj='+objName+'&parent_obj_type='+parentObjType+'">Go to List( '+totalRecords+' )</a></span></div>';
         if(typeof(totalRecords) != "undefined" && totalRecords >0)
    $(".showMoreDivObject"+objectType).html(responseShowList);
+   responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
+    var k = 0;
+    for(var j=0;j<fieldsLen;j++)
+    {
+         k = j+1;
+         var fields = fieldsArray[j];
+        responseHtml += '.object-'+objectType+'-list td:nth-of-type( '+k+' ):before { content: "'+fields+'"; font-weight:bold;}';
+    }
+    k+=1;
+    
+    responseHtml += '.object-'+objectType+'-list td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
+     responseHtml += '}</style>';
     $(".Object"+objectType+"Res").html(responseHtml);
+    
+    
     $(that).removeClass(classView);
     displayContacts();
     showMoreContact();

@@ -105,10 +105,10 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
         </div>-->
        
     </div>
-    <div class="pbBody">
+    <!--<div class="pbBody">-->
                <div class="pbSubsection">
-                   <div class="objectDets">
-                       <div class="objectDetsDet">
+                   <div class="row">
+                       <div class=" large-6 columns " >
                            <?php
                              $item_cnt = count($params_array);
                             $rep_cnt = ceil($item_cnt/2);
@@ -121,15 +121,15 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
                                    if($i == $rep_cnt)
                                    {
                                        $i=0;
-                                       echo '</div><div class="objectDetsDet">';
+                                       echo '</div><div class="large-6 columns">';
                                    }
                                    $i++;
                                    $j++;
                                ?>
-                           <div class="eachObjectDetsDet">
-                            <div class="labelColItem"><label > <?php echo $val; ?> </label>
+                           <div class="row object-view-row clearfix">
+                            <div class="small-3 columns labelColItem"><label > <?php echo $val; ?> </label>
                             </div>
-                        <div class="oddDivObject">
+                        <div class=" small-9 columns labelColItem  oddDivObject">
                             <span class="objectSpan"><?php echo $result->$key; ?></span>
                         </div>
                         </div>
@@ -145,7 +145,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
         
         </div>
       
-    </div>
+    <!--</div>-->
     <div class="pbBottomButtons">
         <div class="buttonWidth buttonEdit">
         <input type="button"  title="Edit" name="edit" data-id="<?php echo $contact_id ?>" class="btn editContact" value=" Edit ">

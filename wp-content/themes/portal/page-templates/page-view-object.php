@@ -30,6 +30,7 @@ echo place_message();
 <?php
 $object_type = (isset($_GET['type']))?$_GET['type']:"";
 $object_id = (isset($_GET['id']))?$_GET['id']:"";
+$object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
 
 
  /*** Connect the salesforce ***/
@@ -42,6 +43,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
    $object_array = array("method" => "getRecordDetails",
                                 "Type" =>$object_type,
        "RecordId" => $object_id);  
+  // echo json_encode($object_array);
    $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
    $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))
@@ -58,11 +60,14 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
     </div>                       
    <?php }else{
        $response = json_decode($response);
-       $related_types_array = $params_array = $fields_array = array();
+       $related_types_array = $params_array = $related_list_array = $fields_array = array();
        if(isset($response->Fields->Fields))
          $params_array = $response->Fields->Fields;
      if(isset($response->ApiFields->ApiFields))
          $fields_array = $response->ApiFields->ApiFields;
+     if(isset($response->RelatedList->RelatedList))
+     $related_list_array = $response->RelatedList->RelatedList;
+     
      if(isset($response->RelatedListApi->RelatedListApi))
      $related_types_array = $response->RelatedListApi->RelatedListApi;
       if(isset($response->Data->Data))
@@ -79,7 +84,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
 <div class="bPageTitle serviceTitle">
 
   
-    <h1 class="headTitle">View <?php echo $object_type; ?></h1>
+    <h1 class="headTitle">View <?php echo $object_name; ?></h1>
      <!--<h2><?php echo $name;?></h2>-->
     
 
@@ -93,7 +98,7 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
     <input type="hidden" id="objectType" value="<?php echo $object_type ?>" >
     <div class="pbHeader">
         <div class="pbTitle titleWidth">
-            <h2 class="mainTitle"> <?php echo $object_type; ?> Detail</h2>
+            <h2 class="mainTitle"> <?php echo $object_name; ?> Detail</h2>
         </div>
       <!--  <div class="buttonWidth">
             <input type="button"  title="Edit" name="edit" class="btn editContact" value="Edit"  data-id="<?php echo $contact_id ?>">
@@ -163,13 +168,18 @@ $object_id = (isset($_GET['id']))?$_GET['id']:"";
     <?php
     if(count($related_types_array)>0){
         $relateds_types = implode(",",$related_types_array);
+        $related_lists = implode(",",$related_list_array);   
         echo '<input type="hidden" id="relatedTypes" value="'.$relateds_types.'" >';
+        echo '<input type="hidden" id="relatedLists" value="'.$related_lists.'" >';
+        $i =0 ;
         foreach($related_types_array as $each){
+            $rel_name = $related_list_array[$i];
+            $i++;
     ?>
     <div class="bPageBlock">
         <div class="pbHeader">
             <div class="pbTitle titleWidth">
-            <h3 class="accountTitleH3"><?php echo $each ?></h3>
+            <h3 class="accountTitleH3"><?php echo $rel_name ?></h3>
         </div>
         <!--<div class="buttonWidth">
             <input type="button" title="New Case" data-contactid="<?php echo $contact_id; ?>" data-contactname="<?php echo $name; ?>"  class="btn newCase" value="New Case">

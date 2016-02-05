@@ -672,8 +672,22 @@ function redirect_to_home() {
     exit;    
     }
     }
-
-
+function add_headers()
+{
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="icon" href="'.get_template_directory_uri().'/img/favicon.ico" />
+<link rel="apple-touch-icon" href="'.get_template_directory_uri().'/img/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="'.get_template_directory_uri().'/img/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="'.get_template_directory_uri().'/img/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="'.get_template_directory_uri().'/img/touch-icon-ipad-retina.png">
+<link rel="apple-touch-icon" sizes="180x180" href="'.get_template_directory_uri().'/img/touch-icon-iphone6-retina.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Content Portal">
+<!--[if IE]>
+<script src="'.get_template_directory_uri().'/js/html5.js"></script>
+<![endif]-->';
+}
+add_action('wp_head', 'add_headers');
 /**
  * call the files in loading
  * @name call_js_css_file
@@ -682,6 +696,7 @@ function redirect_to_home() {
  */
 function call_js_css_files() {
     $path = get_current_files();
+    
     wp_enqueue_style("style-google-api", get_template_directory_uri() . "/css/google-api.css", array(), NULL, false);
     wp_enqueue_style("style-jquery-ui", get_template_directory_uri() . "/css/jquery-ui.css", array(), NULL, false);
     //wp_enqueue_style("style-site", get_template_directory_uri()."/css/site.css", array(), NULL,false);      

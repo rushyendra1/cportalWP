@@ -140,7 +140,7 @@ if(isset($result->data->is_Edit))
             </div><!-- #content -->
         </div><!-- #primary -->
     </div>
-</div><!-- #main-content -->
+<!--</div>--><!-- #main-content -->
 
 <?php
 get_footer();

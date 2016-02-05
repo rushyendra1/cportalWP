@@ -19,9 +19,6 @@ global $table_prefix;
      include_once('../../../../../wp-includes/class-phpass.php');   
      include_once('../functions.php');
 } 
-//redirect_to_login(); 
-//redirect_to_home();
-
 get_header(); 
 $rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
 $user_info = $wpdb->get_row("SELECT ID 
@@ -36,40 +33,7 @@ if(count($user_info)==0)
   
     exit;
 }
-/*$status = (isset($_GET['s']))?$_GET['s']: 0;
-$is_admin = (isset($_GET['a']))?$_GET['a']: 0;
-$is_new = (isset($_GET['n']))?$_GET['n']: 0;
-$id = (isset($_GET['id']))?$_GET['id']: 0;
-*/
 $title = "Set New Password";
-/*if($status){
-     $title = "Set Password"; 
-    login_check(0);
-    @pg_update("contacts", array("status" => 1), array("pwd_activation_code" =>$id));
-    $user_query = $wpdb->get_row("SELECT id,name "
-            .$table_prefix. " FROM wp_3uvwes_settings"
-            . " WHERE pwd_activation_code='".$id."'");
-    $id = $user_query['id'];
-    if(is_bool($user_query) || is_null($user_query))
-    {
-        header("Location:index.php");
-    }
-}else{
-   login_check(1);
-}*/
-
-/* if(isset($_REQUEST['forgotPwdSubmit']))
-    {
-        $result = $wpdb->update('users', array( 'user_pass' => $password),"WHERE ID =".$_REQUEST["$id"]);
-        echo 'Password updated';
-    }
-
-global $user_ID;
-$user_id = $user_ID; */
- //$user_id = (isset($_SESSION['user']['id']))?$_SESSION['user']['id']:$id;
-
-
-//if((strlen($password) > wp_3uvwes_settings.$min_pass_len) && (strlen($password) < wp_3uvwes_settings.$max_pass_len ))
 ?>
 <input type="hidden" id="rand" value="<?php echo $rand?>">
  <input type="hidden" id="page" value="<?php echo $title ?>">

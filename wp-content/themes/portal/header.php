@@ -14,51 +14,16 @@ $pages = get_current_files();
 $blogname=get_option('blogname');
               $blogdescription=get_option('blogdescription');
               $blog=$blogname ."|".$blogdescription;
-/*if($pages == "login" && is_user_logged_in()){
-    
-        wp_redirect(get_site_url());
-        exit;
-}*/
+
 ?>
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php echo $title; ?> </title>
-
-<link rel="icon" href="<?php  echo get_template_directory_uri(); ?>/img/favicon.ico" />
-<link rel="apple-touch-icon" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="76x76" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="120x120" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone-retina.png">
-<link rel="apple-touch-icon" sizes="152x152" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-ipad-retina.png">
-<link rel="apple-touch-icon" sizes="180x180" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone6-retina.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Creative Brief">
+<!DOCTYPE html>
+<html>
+    <head>
 <?php wp_head(); ?>
-</head>
+    </head>
 <body>
-<!--<a id="toggle_full_width" href="#" class="button tiny fixed hide-for-medium-down"><i class="fi-arrows-out"></i>&nbsp;&nbsp;Toggle Wide Screen</a>-->
-    
-    <!doctype html>
 
-<html lang="en-US">
-<head>
-<meta charset="UTF-8" />
-<title>Customer Portal</title>
-
-<!--<link href="style.css" rel="stylesheet" type="text/css">
-<link href="styles/print/main.css" rel="stylesheet" type="text/css" media="print">-->
-<!--[if IE]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<!--[if IE 6]>
-<script src="js/belatedPNG.js"></script>
-<script>
-	DD_belatedPNG.fix('*');
-</script>
-<![endif]-->
-</head>
+    <div class="row-fluid">
  <div id="wrapHome"  >
 	
 	   <div >

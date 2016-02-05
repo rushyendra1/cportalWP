@@ -84,9 +84,9 @@ get_header(); ?>
         <!-- Account Information end here -->
 				
 
-			</div><!-- #content -->
-		</div><!-- #primary -->
-	</div>
+		<!--	</div><!-- #content -->
+	<!--	</div><!-- #primary -->
+	<!--</div>
 	
 </div><!-- #main-content -->
 

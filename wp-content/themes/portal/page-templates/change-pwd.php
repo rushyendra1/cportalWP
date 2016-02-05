@@ -23,28 +23,7 @@ if(!isset($wpdb))
 redirect_to_login();
 get_header();
 
-/*$status = (isset($_GET['s']))?$_GET['s']: 0;
-$is_admin = (isset($_GET['a']))?$_GET['a']: 0;
-$is_new = (isset($_GET['n']))?$_GET['n']: 0;
-$id = (isset($_GET['id']))?$_GET['id']: 0;
-*/
 $title = "Change My Password";
-/*if($status){
-     $title = "Set Password"; 
-    login_check(0);
-    @pg_update("contacts", array("status" => 1), array("pwd_activation_code" =>$id));
-    $user_query = $wpdb->get_row("SELECT id,name "
-            .$table_prefix. " FROM wp_3uvwes_settings"
-            . " WHERE pwd_activation_code='".$id."'");
-    $id = $user_query['id'];
-    if(is_bool($user_query) || is_null($user_query))
-    {
-        header("Location:index.php");
-    }
-}else{
-   login_check(1);
-}*/
-
  if(isset($_REQUEST['changePwdSubmit']))
     {
         $result = $wpdb->update('users', array( 'user_pass' => $password),"WHERE ID =".$_REQUEST["$id"]);
@@ -53,14 +32,14 @@ $title = "Change My Password";
 
 global $user_ID;
 $user_id = $user_ID;
- //$user_id = (isset($_SESSION['user']['id']))?$_SESSION['user']['id']:$id;
+
  $result= get_wp_settings();
 if( count($result)>0)
 {
   $max_pass_len = $result['max_pass_len'] ;
   $min_pass_len = $result['min_pass_len'] ;
 }
-//if((strlen($password) > wp_3uvwes_settings.$min_pass_len) && (strlen($password) < wp_3uvwes_settings.$max_pass_len ))
+
 ?>
 
 <input type="hidden" id="page" value="<?php echo $title ?>">

@@ -93,7 +93,7 @@ if(count($result) == 0)
     unset($_SESSION['forgot-times']);      
         $credentials = array( 'user_login' =>  $user,
             'user_password' => $pass,
-            'remember' => true );
+            'remember' => false );
 
         $user = wp_signon( $credentials, false );
         wp_set_current_user($user->ID);

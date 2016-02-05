@@ -13,7 +13,7 @@ ob_start();
 $pages = get_current_files();
 $blogname=get_option('blogname');
               $blogdescription=get_option('blogdescription');
-              $blog=$blogname ."|".$blogdescription;
+             // $blog=$blogname ."|".$blogdescription;
 
 ?>
 <!DOCTYPE html>

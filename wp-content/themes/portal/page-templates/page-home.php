@@ -9,11 +9,9 @@
 
 $blogname = get_option('blogname');
 $blogdescription=get_option('blogdescription');
-$blog=$blogname."|".$blogdescription;
+$blog=$blogname." | ".$blogdescription;
 redirect_to_login();
 get_header(); ?>
-
-
 <div class="bodyCell contentSub row-fluid" >
 <!-- Start page content -->
 <a name="skiplink">
@@ -81,14 +79,5 @@ get_header(); ?>
 
 <!-- End page content -->
 </div>
-        <!-- Account Information end here -->
-				
-
-		<!--	</div><!-- #content -->
-	<!--	</div><!-- #primary -->
-	<!--</div>
-	
-</div><!-- #main-content -->
-
 <?php
 get_footer();

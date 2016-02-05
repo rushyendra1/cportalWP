@@ -13,7 +13,7 @@ ob_start();
 $pages = get_current_files();
 $blogname=get_option('blogname');
               $blogdescription=get_option('blogdescription');
-             // $blog=$blogname ."|".$blogdescription;
+             $blog=$blogname ."|".$blogdescription;
 
 ?>
 <!DOCTYPE html>
@@ -22,20 +22,20 @@ $blogname=get_option('blogname');
 <?php wp_head(); ?>
     </head>
 <body>
-
+    
     <div class="row-fluid">
- <div id="wrapHome"  >
+ <div id="wrapHome" class="row-fluid"  >
 	
-	   <div >
+	   <!--<div >-->
                <div id="logo">
                    <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                    </div>
                                 <h1 id="name" class="header">
 					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
 				</h1>
-               </div> 
+               <!--</div>--> 
                
-               <div id="Login">
+              
      <?php
          // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
      if(is_user_logged_in()){
@@ -47,24 +47,26 @@ $blogname=get_option('blogname');
              $name = $result->user_login;
         
      ?>
-          <div class="row nameDisp">
+                <div id="Login">
+          <div class="columns-4 nameDisp">
               Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                <a   class="logouts logoutHeader logms">LOGOUT</a>
-          </div>
+          </div></div>
           <?php } ?>
-</div>
+
              <?php
              
              $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
              unset($_SESSION['msg']);
              ?>
              <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+             <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
               
                   
 	 	
 
     
-      <!--<div id="nav_area"> -->
+</div>      
       <nav class="top-bar" data-topbar>
       <ul class="title-area">
 
@@ -147,21 +149,12 @@ if(is_user_logged_in()){
       </ul> <!--</div>-->
           </section>
       </nav>
-</div>    
+    
   
-<p class="hide-for-medium-down">&nbsp;</p>
-
-<!--<a href="<?php echo get_site_url() ?>" id="home" >Home</a>
-
-<a href="<?php echo get_site_url() ?>" id="homeSite" >Login</a> -->
+<!--<p class="hide-for-medium-down">&nbsp;</p>-->
+        <div class="clear"></div>
 
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
              <input type="hidden" value="<?php echo $pages; ?>" id="path" >
-             <input type="hidden" value="<?php echo $blogname; ?>" id="blogname">
-            <input type="hidden" value="<?php echo $blogdescription; ?>" id="blogdescription">
-             <!--<div id="home">
-                
-                 </div>-->
-
              

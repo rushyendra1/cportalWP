@@ -101,6 +101,7 @@ top:250px;position:fixed;left:500px
 
      margin-left: 230px;
     width: 71%;
+     margin-top: 20px;
 }
 /** ***/
 /*** Object list ***/
@@ -270,7 +271,8 @@ top:250px;position:fixed;left:500px
     font-size: 1.1em;
     letter-spacing: -0.01em;
     position: relative;
-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    border-radius:5px;
    }
    
    .labelCol{

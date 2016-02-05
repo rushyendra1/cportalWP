@@ -11,7 +11,7 @@
 ?>
 		<!--</div>--><!-- #main -->
 
-		<div class="clearfix"></div>
+		<!--<div class="clearfix"></div>-->
 
 		<footer name="footer-main" >
 			<div id="footer" class="row-fluid footer-wrapper-width" align="center" >
@@ -33,19 +33,15 @@
 			
 		</footer>
 
-		<!--<footer id="colophon" class="site-footer" role="contentinfo">
-
-			<?php //get_sidebar( 'footer' );
-                        ?>
-			
-		</footer><!-- #colophon -->
+	
 		
 	</div><!-- #page -->
-
+        
+<div id="popup">
+    
+</div>
 	<?php wp_footer(); ?>
 
 </body>
 </html>
-<div id="popup">
-    
-</div>
+

@@ -484,16 +484,22 @@ top:250px;position:fixed;left:500px
 
     margin: 0;
     vertical-align: top;
-    
+    min-height:50px;
+    word-wrap: break-word;
+     //white-space: pre;
    }
    .oddDivObject
    {
-       height: inherit;
+       
         background: #eee none repeat scroll 0 0;
+        text-align:left;
+        font-weight: normal;
    }
    .evenDivObject
    {
         background: #fff none repeat scroll 0 0;
+        text-align:left;
+        font-weight: normal;
    }
    
    .objectSpan{
@@ -669,4 +675,7 @@ h2 {
 .activeSort{
        display:block !important;
    }
-   
+   .object-view-row{
+   background: #eee none repeat scroll 0 0;
+   }
+    

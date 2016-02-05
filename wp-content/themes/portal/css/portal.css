@@ -10,9 +10,12 @@
 }
 /**** Buttons in Home page **/
 button, .button {
-    //padding:0.8rem 0.5rem 0.8625rem;
-    padding: 0.4rem !important;
+    padding:0.8rem 0.5rem 0.8625rem;
+    
     border-radius: 5px;
+}
+.buttonCss{
+    padding: 0.4rem !important;
 }
 /*** **/
 /*** common ***/

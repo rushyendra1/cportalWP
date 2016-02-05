@@ -147,7 +147,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
         <input type="button"  title="Edit" name="edit" data-id="<?php echo $contact_id ?>" class="btn editContact" value=" Edit ">
         </div>-->
       <div class="buttonEdit small-3">
-      <a  class="button" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
+      <a  class="button buttonCss" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
       </div>
     <!--</div>-->
     <div class="clear"></div>

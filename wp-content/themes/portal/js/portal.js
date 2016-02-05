@@ -73,7 +73,7 @@ $(document).ready(function(){
         gettitle = '';
     }
     if(gettitle != "")
-        blog = gettitle +'|'+blog;
+        blog = gettitle + ' | ' +blog;
     document.title = blog;
        $(this).hide();
    });

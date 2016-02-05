@@ -43,16 +43,15 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
    $object_array = array("method" => "getRecordDetails",
                                 "Type" =>$object_type,
        "RecordId" => $object_id);  
-  // echo json_encode($object_array);
+  //echo json_encode($object_array);
    $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
    $response_array = explode("chunked",$json_response);
     if(isset($response_array[1]))
     $json_response = $response_array[1];
  }catch(Exception $e){}
+ 
+  
   $response = json_decode($json_response);
-  
-  
-  //var_dump($response);
   //if no data is there 
    if(isset($response[0]->errorCode)){ ?>
     <div class="content">
@@ -60,6 +59,12 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     </div>                       
    <?php }else{
        $response = json_decode($response);
+       if (isset($response->errorCode))
+       { ?>
+           <div class="content">
+    <h1 class="pageType"> <?php echo $response->errorCode; ?></h1>
+    </div> 
+       <?php }else {
        $related_types_array = $params_array = $related_list_array = $fields_array = array();
        if(isset($response->Fields->Fields))
          $params_array = $response->Fields->Fields;
@@ -82,13 +87,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
        
 ?>
 <div class="bPageTitle serviceTitle">
-
-  
     <h1 class="headTitle">View <?php echo $object_name; ?></h1>
-     <!--<h2><?php echo $name;?></h2>-->
-    
-
-
 </div>
     
 &nbsp;
@@ -97,12 +96,9 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >
     <input type="hidden" id="objectType" value="<?php echo $object_type ?>" >
     <div class="pbHeader">
-        <div class="pbTitle titleWidth">
+        <div class="pbTitle small-9">
             <h2 class="mainTitle"> <?php echo $object_name; ?> Detail</h2>
         </div>
-      <!--  <div class="buttonWidth">
-            <input type="button"  title="Edit" name="edit" class="btn editContact" value="Edit"  data-id="<?php echo $contact_id ?>">
-        </div>-->
        
     </div>
     <!--<div class="pbBody">-->
@@ -146,14 +142,14 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
         </div>
       
     <!--</div>-->
-    <div class="pbBottomButtons">
+    <!--<div class="pbBottomButtons">-->
       <!--  <div class="buttonWidth buttonEdit">
         <input type="button"  title="Edit" name="edit" data-id="<?php echo $contact_id ?>" class="btn editContact" value=" Edit ">
         </div>-->
-      <div class="buttonWidth buttonEdit">
+      <div class="buttonEdit small-3">
       <a  class="button" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
       </div>
-    </div>
+    <!--</div>-->
     <div class="clear"></div>
     
         
@@ -180,7 +176,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     ?>
     <div class="bPageBlock">
         <div class="pbHeader">
-            <div class="pbTitle titleWidth">
+            <div class="pbTitle small-3">
             <h3 class="accountTitleH3"><?php echo $rel_name ?></h3>
         </div>
         <!--<div class="buttonWidth">
@@ -213,7 +209,8 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
 </div>
 <!-- End RelatedListElement -->
 
-   <?php } ?>
+ <?php } }
+   ?>
 
 <!-- Body events -->
 

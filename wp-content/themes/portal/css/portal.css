@@ -96,7 +96,7 @@ top:250px;position:fixed;left:500px
        font-size: 80%;
     line-height: 20px;
     margin: 0;
-    border-radius:40px;
+    border-radius:10px;
       min-height:450px;
  }
  .contentSub{
@@ -363,13 +363,16 @@ top:250px;position:fixed;left:500px
       .buttonWidth{
           
           float: right;
-    margin-right: 10px;
-    margin-top: -42px;
+    //margin-right: 10px;
+    margin-right: -130px;
+    //margin-top: -42px;
     text-align: right;
     width: 80%;
       }
       .buttonEdit{
           margin-top:0px;
+          text-align: right;
+          float:right;
       }
       .buttonCaseDiv{
           float:right;

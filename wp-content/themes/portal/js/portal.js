@@ -2,7 +2,7 @@ var geocoder;
   var files = "";
   var attachWindow ;
   var pageSize = 100;
-//  var pageSize = 5; for testing
+  var pageSize = 5;  //for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
 $(document).ready(function(){
@@ -1164,6 +1164,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     k+=1;
     
     responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
+    responseHtml += '.objectListTable td.error:nth-of-type( '+k+' ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
     $(that).removeClass(classView);
@@ -1580,6 +1581,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     k+=1;
     
     responseHtml += '.object-'+objectType+'-list td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
+    responseHtml += '.object-'+objectType+'-list td.error:nth-of-type( '+k+' ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".Object"+objectType+"Res").html(responseHtml);
     

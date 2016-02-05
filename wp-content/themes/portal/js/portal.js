@@ -66,10 +66,20 @@ $(document).ready(function(){
        e.stopImmediatePropagation();
        $(".dispRow").hide();
        $(".editRow").show();
+       $(".headTitle").html("Edit My Details");
+       var gettitle = $.trim($(".headTitle").html());
+    if(path =="" && path == "home")
+    {
+        gettitle = '';
+    }
+    if(gettitle != "")
+        blog = gettitle +'|'+blog;
+    document.title = blog;
        $(this).hide();
    });
    /** Update profile **/
      $("#mysubmit").on("click",function(e){
+           
         e.stopImmediatePropagation(); 
         var className = "ajaxCall";
         if($(this).hasClass(className))

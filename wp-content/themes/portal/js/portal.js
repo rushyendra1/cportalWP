@@ -1152,8 +1152,8 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     paginationHtml += paginationWC("",length, page, parseInt(totalRecords), len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
-           var pixelWidth = 71/fieldsLen;
-    responseHtml += '<style type="text/css">.list th, .list td{ width:'+pixelWidth+ '% !important; }@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
+           //var pixelWidth = 71/fieldsLen;
+    responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
     for(var j=0;j<fieldsLen;j++)
     {

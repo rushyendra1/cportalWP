@@ -53,13 +53,19 @@ if(isset($result->data->is_Edit))
 
                          
                             <h2><?php echo $parent_obj; ?></h2>
-                            
+                        </div>    
 
                             <?php if($is_create) { ?>
-                            <input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">
+                            <!--<input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">-->
+                            <!--<div class="buttonWidth buttonEdit small-3">-->
+                            <div class="buttonWidth small" >
+                            <button  class="btn addobject">Add</button>
+                            </div>
+                            <div class="clearfix"></div>
+                <!--</div>-->
                             <?php } ?>
 
-                        </div>
+                        
 
                         <!-- Begin ListElement -->
 

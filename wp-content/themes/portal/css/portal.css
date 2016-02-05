@@ -101,6 +101,7 @@ top:250px;position:fixed;left:500px
 
      margin-left: 230px;
     width: 71%;
+     margin-top: 20px;
 }
 /** ***/
 /*** Object list ***/
@@ -132,6 +133,8 @@ top:250px;position:fixed;left:500px
 .list{
     margin-left: -12px;
     margin-top: 10px;
+    width:100%;
+    table-layout:fixed;
 }
 .list tr:nth-child(even){
     background-color:#f2f2f2;
@@ -156,7 +159,7 @@ top:250px;position:fixed;left:500px
     color:#555;
     font-family: "Montserrat",sans-serif;
     border-bottom: 1px solid #555;
-    width:12.5%;
+   // width:12.5%;
 
 }
 .list td{
@@ -268,7 +271,8 @@ top:250px;position:fixed;left:500px
     font-size: 1.1em;
     letter-spacing: -0.01em;
     position: relative;
-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    border-radius:5px;
    }
    
    .labelCol{
@@ -648,6 +652,7 @@ position: relative;
 .toggle-full-width 
 {
     box-shadow: 0 0 0px #ddd; 
+     border-radius: 40px;
 }
 h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.03em; text-transform: uppercase; }
 h2 {

@@ -13,64 +13,29 @@ ob_start();
 $pages = get_current_files();
 $blogname=get_option('blogname');
               $blogdescription=get_option('blogdescription');
-              $blog=$blogname ."|".$blogdescription;
-/*if($pages == "login" && is_user_logged_in()){
-    
-        wp_redirect(get_site_url());
-        exit;
-}*/
+             $blog=$blogname ."|".$blogdescription;
+
 ?>
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php echo $title; ?> </title>
-
-<link rel="icon" href="<?php  echo get_template_directory_uri(); ?>/img/favicon.ico" />
-<link rel="apple-touch-icon" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="76x76" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="120x120" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone-retina.png">
-<link rel="apple-touch-icon" sizes="152x152" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-ipad-retina.png">
-<link rel="apple-touch-icon" sizes="180x180" href="<?php  echo get_template_directory_uri(); ?>/img/touch-icon-iphone6-retina.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Creative Brief">
+<!DOCTYPE html>
+<html>
+    <head>
 <?php wp_head(); ?>
-</head>
+    </head>
 <body>
-<!--<a id="toggle_full_width" href="#" class="button tiny fixed hide-for-medium-down"><i class="fi-arrows-out"></i>&nbsp;&nbsp;Toggle Wide Screen</a>-->
     
-    <!doctype html>
-
-<html lang="en-US">
-<head>
-<meta charset="UTF-8" />
-<title>Customer Portal</title>
-
-<!--<link href="style.css" rel="stylesheet" type="text/css">
-<link href="styles/print/main.css" rel="stylesheet" type="text/css" media="print">-->
-<!--[if IE]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<!--[if IE 6]>
-<script src="js/belatedPNG.js"></script>
-<script>
-	DD_belatedPNG.fix('*');
-</script>
-<![endif]-->
-</head>
- <div id="wrapHome"  >
+    <div class="row-fluid">
+ <div id="wrapHome" class="row-fluid"  >
 	
-	   <div >
+	   <!--<div >-->
                <div id="logo">
                    <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                    </div>
                                 <h1 id="name" class="header">
 					<a href="<?php echo get_site_url() ?>">Customer Portal</a>
 				</h1>
-               </div> 
+               <!--</div>--> 
                
-               <div id="Login">
+              
      <?php
          // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
      if(is_user_logged_in()){
@@ -82,24 +47,26 @@ $blogname=get_option('blogname');
              $name = $result->user_login;
         
      ?>
-          <div class="row nameDisp">
+                <div id="Login">
+          <div class="columns-4 nameDisp">
               Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                <a   class="logouts logoutHeader logms">LOGOUT</a>
-          </div>
+          </div></div>
           <?php } ?>
-</div>
+
              <?php
              
              $msg = (isset($_SESSION['msg']))?$_SESSION['msg']: "";
              unset($_SESSION['msg']);
              ?>
              <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+             <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
               
                   
 	 	
 
     
-      <!--<div id="nav_area"> -->
+</div>      
       <nav class="top-bar" data-topbar>
       <ul class="title-area">
 
@@ -182,21 +149,12 @@ if(is_user_logged_in()){
       </ul> <!--</div>-->
           </section>
       </nav>
-</div>    
+    
   
-<p class="hide-for-medium-down">&nbsp;</p>
-
-<!--<a href="<?php echo get_site_url() ?>" id="home" >Home</a>
-
-<a href="<?php echo get_site_url() ?>" id="homeSite" >Login</a> -->
+<!--<p class="hide-for-medium-down">&nbsp;</p>-->
+        <div class="clear"></div>
 
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
              <input type="hidden" value="<?php echo $pages; ?>" id="path" >
-             <input type="hidden" value="<?php echo $blogname; ?>" id="blogname">
-            <input type="hidden" value="<?php echo $blogdescription; ?>" id="blogdescription">
-             <!--<div id="home">
-                
-                 </div>-->
-
              

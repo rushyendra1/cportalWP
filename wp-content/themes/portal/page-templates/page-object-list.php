@@ -90,9 +90,9 @@ if(isset($result->data->is_Edit))
 
                         <!-- WrappingClass -->
                         <div class="listRelatedObject accountBlock">
-                            <div class="accountListDiv">
+                           <!-- <div class="accountListDiv">-->
                                 <!--<div class="pbHeader"></div>-->
-                                <div class="pbBody">
+                               <!-- <div class="pbBody">-->
                                     <table cellspacing="0" cellpadding="0" border="0" class="list objectListTable" id="objectListTable">
                                         <thead class="displayObjectHeader">
 
@@ -112,9 +112,9 @@ if(isset($result->data->is_Edit))
                                             <img width="17" height="15" align="texttop" title="Show More" alt="Show More" src="<?php echo get_template_directory_uri() ?>/images/extended/accounts_show_more_arrow.gif">more</a>
                                         records per list page
                                     </div>-->
-                                </div>
+                                <!--</div>-->
 
-                            </div>
+                            <!--</div>-->
 
                         </div>
                         <!-- Alpha Pagination started -->
@@ -140,7 +140,7 @@ if(isset($result->data->is_Edit))
             </div><!-- #content -->
         </div><!-- #primary -->
     </div>
-</div><!-- #main-content -->
+<!--</div>--><!-- #main-content -->
 
 <?php
 get_footer();

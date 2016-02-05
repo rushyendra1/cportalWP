@@ -132,6 +132,8 @@ top:250px;position:fixed;left:500px
 .list{
     margin-left: -12px;
     margin-top: 10px;
+    width:100%;
+    table-layout:fixed;
 }
 .list tr:nth-child(even){
     background-color:#f2f2f2;
@@ -156,7 +158,7 @@ top:250px;position:fixed;left:500px
     color:#555;
     font-family: "Montserrat",sans-serif;
     border-bottom: 1px solid #555;
-    width:12.5%;
+   // width:12.5%;
 
 }
 .list td{

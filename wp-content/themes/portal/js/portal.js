@@ -2,7 +2,7 @@ var geocoder;
   var files = "";
   var attachWindow ;
   var pageSize = 100;
-  var pageSize = 5;  //for testing
+//  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
 $(document).ready(function(){

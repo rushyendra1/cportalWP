@@ -10,7 +10,9 @@
 }
 /**** Buttons in Home page **/
 button, .button {
-    padding:0.8rem 0.5rem 0.8625rem;
+    //padding:0.8rem 0.5rem 0.8625rem;
+    padding: 0.4rem !important;
+    border-radius: 5px;
 }
 /*** **/
 /*** common ***/
@@ -494,6 +496,7 @@ top:250px;position:fixed;left:500px
         background: #eee none repeat scroll 0 0;
         text-align:left;
         font-weight: normal;
+        color: #999;
    }
    .evenDivObject
    {

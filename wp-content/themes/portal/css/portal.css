@@ -1,5 +1,4 @@
 /************* login modifications**********/
-
 .loginDiv input{
     height: 30px;
     
@@ -124,7 +123,7 @@ top:250px;position:fixed;left:500px
     line-height: 22px;
     margin-bottom: 30px;
 
-    margin-top:-13px;
+ 
     font-family: "Montserrat",sans-serif;
 }
 .viewTypeLabel{
@@ -216,7 +215,7 @@ top:250px;position:fixed;left:500px
    .pageContact{
        float:right;
         margin-top: 40px;
-       
+      
    }
   .contact-list-res .dataCell{
        word-wrap: break-word;
@@ -438,46 +437,20 @@ top:250px;position:fixed;left:500px
    
    width:100%;
  }
- .objectDets
- {
-   
-     width:100%;
-    display: inline-table;
- }
- .objectDetsDet
- {
-     width:50%;
-    
-     display: table-cell;
-      margin: 0;
-    padding: 0;
-    vertical-align: top;
- }
- .eachObjectDetsDet{
-     width:100%;
-     display: inline-table;
- }
+ 
  .mapAddress{
      height: 100px;
  }
  div.mapAddress div.labelColItem, div.mapAddress div.oddDivObject{
         height: inherit;
  }
- .eachObjectDetsDet div{
-    
-     width: 30%;
-     display: table-cell;
- }
+ 
  .mapDiv { 
      width:475px;
  }
  .mapDivLabel{
      width:5%;
  }
-  .eachObjectDetsDet label{ 
-      float:right;
-        min-height: 35px;
-  }
  .labelColItem{
        background: #dfdfdf none repeat scroll 0 0;
     padding: 5px;
@@ -519,19 +492,20 @@ top:250px;position:fixed;left:500px
    
 /* Header Part */
 #wrapHome {
-    height:17%;
+    
     width:100%;
- text-align: right;
+
+text-align: center;
 background-color: white;
 position: relative;
 }
-#header {
+/*#header {
 	width: 100%;
 	height: 100px;
 	margin: 30px;
 	padding:30px;
         position: relative;
-}
+}*/
 #logo {
 	height: 60px;
 	width: 200px;
@@ -546,9 +520,10 @@ position: relative;
     color:#124d2c;
     font-weight:bold;
     font: bold;
-    height:80px;
+   
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
+    font-size: 2rem;
 }
 #name a {
     color:#124d2c;
@@ -558,9 +533,11 @@ position: relative;
 #name.header a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
 #name.header a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #name a:hover {color:#052714;}
-        
+.headTitle{
+    font-size:2rem;
+}      
 /*-----------------start nav_area-----------------*/
-#nav_area {
+/*#nav_area {
 	width: 100%;
 	height: 49px;
         margin-top: 42px;
@@ -595,7 +572,7 @@ position: relative;
 	background-color: #DC6A50;
 	background-image:linear-gradient(#DC6A50, #D14829);
 	border-top: 1px solid #E17C66;
-}
+}*/
 
  .active
 {
@@ -604,7 +581,7 @@ position: relative;
 }
 
 
-
+/*
  .submenu{
     margin:0;
     padding:0;
@@ -620,7 +597,7 @@ position: relative;
 }
 #nav_area ul li:hover .submenu{
     display:block;
-}
+}*/
 
 #footer {
   width: 100%;
@@ -676,7 +653,7 @@ h2 {
     font-size: 24px;
 }
 .top-bar.expanded {
-    height: 300px;
+  
     background: transparent;
 }
 .noRecordRow{

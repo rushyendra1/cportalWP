@@ -87,11 +87,12 @@ if(is_array($result) && count($result)>0)
 
 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
+    <div class="bPageTitle">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-        <h4 class="headTitle"><?php echo $title; ?></h4>
-      
-     
+        <h1 class="headTitle"><?php echo $title; ?></h1>
+    </div>
+  </div>   
+<div class="row">
       <div id="section_1">
         <div class="row statusAccount" >
               <div class="links-pad">

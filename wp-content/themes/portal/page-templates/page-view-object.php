@@ -62,7 +62,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
        if (isset($response->errorCode))
        { ?>
            <div class="content">
-    <h1 class="pageType"> <?php echo $response->errorCode; ?></h1>
+    <h1 class="pageType"> <?php echo $response->msg; ?></h1>
     </div> 
        <?php }else {
        $related_types_array = $params_array = $related_list_array = $fields_array = array();
@@ -86,17 +86,18 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
           $name = $result->Id;
        
 ?>
-<div class="bPageTitle serviceTitle">
+ <div class="row toggle-full-width">
+<div class="bPageTitle">
     <h1 class="headTitle">View <?php echo $object_name; ?></h1>
 </div>
-    
-&nbsp;
+ </div> 
+
 <div>
     <input type="hidden" id="objName" value="<?php echo $name; ?>" >
     <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >
     <input type="hidden" id="objectType" value="<?php echo $object_type ?>" >
     <div class="pbHeader">
-        <div class="pbTitle small-9">
+        <div class="pbTitle small-12">
             <h2 class="mainTitle"> <?php echo $object_name; ?> Detail</h2>
         </div>
        
@@ -122,11 +123,16 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
                                    $i++;
                                    $j++;
                                ?>
-                           <div class="row object-view-row clearfix">
-                            <div class="small-3 columns labelColItem"><label > <?php echo $val; ?> </label>
+                           <div class="row object-view-row clearfix" data-equalizer data-equalize-on="medium" >
+                            <div class="small-3 columns labelColItem">
+                                <div class="callout" data-equalizer-watch>
+                                    <label > <?php echo $val; ?> </label>
+                                 </div>   
                             </div>
                         <div class=" small-9 columns labelColItem  oddDivObject">
+                            <div class="callout" data-equalizer-watch>
                             <span class="objectSpan"><?php echo $result->$key; ?></span>
+                            </div>
                         </div>
                         </div>
                                <?php 
@@ -176,7 +182,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     ?>
     <div class="bPageBlock">
         <div class="pbHeader">
-            <div class="pbTitle small-3">
+            <div class="pbTitle small-12">
             <h3 class="accountTitleH3"><?php echo $rel_name ?></h3>
         </div>
         <!--<div class="buttonWidth">

@@ -46,36 +46,29 @@ if(isset($result->data->is_Edit))
                 </div>
                 <div class="bodyCell contentSub" >
                     <!-- Start page content -->
-                    <div class="bodyPage">
+                    <div class="row toggle-full-width">
                         <div class="bPageTitle">
 
                             <h1  class="pageType noSecondHeader headTitle" ><?php echo $obj_name; ?></h1>
 
-                         
-                            <h2><?php echo $parent_obj; ?></h2>
+                          <?php if($parent_obj != "") 
+                             echo "<h2>".$parent_obj."</h2>"; ?>
                         </div>    
-
+                    </div>
+                    
                             <?php if($is_create) { ?>
                             <!--<input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">-->
                             <!--<div class="buttonWidth buttonEdit small-3">-->
                             <div class="buttonWidth small" >
                             <button  class="btn buttonCss">Add</button>
                             </div>
-                            <div class="clearfix"></div>
-                <!--</div>-->
+                            
+               
                             <?php } ?>
 
                         
-
-                        <!-- Begin ListElement -->
-
-                        <!-- motif: Account -->
-
-
-
-                        </div>
                         <!-- Paginations Start Here  -->
-                        <div class="paginationLinks pageContact"></div>
+                        <div class="paginationLinks pageContact row"></div>
                         <!-- Pagination End Here -->
                         <div class="clear"></div>
                         <!-- Alphabet Pagination -->

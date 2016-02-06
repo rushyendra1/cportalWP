@@ -33,12 +33,15 @@ get_header(); ?>
 
 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
+    <div class="bPageTitle">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>--><br>
-        <h4 class="headTitle">
-        Login</h4>
+        <h1 class="headTitle">
+        Login</h14>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
+      </div>
+  </div>
+<div class="row">
       <div id="section_1" class="loginDiv">
            <div class="row">
           <div class="medium-6 columns">
@@ -97,7 +100,7 @@ get_header(); ?>
             ?>
 	</div>
 	
-</div><!-- #main-content -->
+<!-- #main-content -->
 
 <?php
 get_footer();

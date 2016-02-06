@@ -22,20 +22,15 @@ h1, h2, h3, h4, h5, h6 {
 margin-top: 30px;
 }
 .top-bar.expanded {
-   // overflow-y: 300px;
-    //height: 300px;
+  
 }
 /* edit profile and change my password page */
 .links-pad {
     margin-left: 2px;
 }
-/*.columns {
-    position: relative;
-    padding-left: 0.475rem;
-    padding-right: 1.4375rem;
-    float: left;
-}*/
-/*  */
+
+
+
 }
 @media only screen and
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -48,7 +43,8 @@ margin-top: 30px;
         display:block;
          
          margin-left: 20px;
-       //  margin-top: 180px;
+
+     
          width:90%;
         }
         .mainTitleH1{

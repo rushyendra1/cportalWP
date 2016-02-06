@@ -50,9 +50,16 @@ if( count($result)>0)
 <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" >
 <div class="bodyCell contentSub row-fluid" >
   <div class="row toggle-full-width">
+<<<<<<< HEAD
+    <div class="large-12 columns columnsDivs">
+      <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >
+      <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" ><br>
+      <h4 class="headTitle"><?php echo $title; ?></h4>
+=======
     <div class="bPageTitle">
      
       <h1 class="headTitle"><?php echo $title; ?></h1>
+>>>>>>> 6db658b1bfcbc1544ef77098341d87d57cac0747
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
     </div>

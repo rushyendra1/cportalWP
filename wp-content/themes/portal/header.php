@@ -26,10 +26,10 @@ $blog = $blogname . "|" . $blogdescription;
             <div id="wrapHome" class="row-fluid"  >
 
                 <div  class="row">
-                <div id="logo" class="small-3 columns">
+                <div id="logo" class="medium-3 columns">
                     <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                 </div>
-                <div class="small-9 columns">
+                <div class="medium-9 columns mainTitleH1">
                 <h1 id="name" class="header">
                     <a href="<?php echo get_site_url() ?>">Customer Portal</a>
                 </h1>

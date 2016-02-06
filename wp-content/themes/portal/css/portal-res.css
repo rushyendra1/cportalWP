@@ -1,8 +1,8 @@
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 
-    #wrapHome {
+  /*  #wrapHome {
     height:32%;
-}
+}*/
 /*#logo {
     height: 80px;
     margin-left: 0px;
@@ -15,15 +15,15 @@
 h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.09em;
 }*/
-.top-bar.expanded {
-    height: 300px;
-}
+/*.top-bar.expanded {
+   // height: 300px;
+}*/
 .contentSub{
 margin-top: 30px;
 }
 .top-bar.expanded {
     overflow-y: 300px;
-    height: 300px;
+    //height: 300px;
 }
 /* edit profile and change my password page */
 .links-pad {
@@ -50,6 +50,12 @@ margin-top: 30px;
          margin-left: 20px;
          margin-top: 180px;
          width:90%;
+        }
+        .mainTitleH1{
+            margin-top:20px;
+        }
+        #name {
+            text-align: left;
         }
         /* Force table to not be like tables anymore */
 		table, thead, tbody, th, td, tr { 

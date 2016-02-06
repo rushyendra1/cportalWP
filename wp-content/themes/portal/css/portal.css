@@ -1,5 +1,4 @@
 /************* login modifications**********/
-
 .loginDiv input{
     height: 30px;
     
@@ -517,19 +516,20 @@ top:250px;position:fixed;left:500px
    
 /* Header Part */
 #wrapHome {
-    height:17%;
+    //height:17%;
     width:100%;
- text-align: right;
+// text-align: right;
+text-align: center;
 background-color: white;
 position: relative;
 }
-#header {
+/*#header {
 	width: 100%;
 	height: 100px;
 	margin: 30px;
 	padding:30px;
         position: relative;
-}
+}*/
 #logo {
 	height: 60px;
 	width: 200px;
@@ -547,6 +547,7 @@ position: relative;
    // height:80px;
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
+    font-size: 2rem;
 }
 #name a {
     color:#124d2c;
@@ -558,7 +559,7 @@ position: relative;
 #name a:hover {color:#052714;}
         
 /*-----------------start nav_area-----------------*/
-#nav_area {
+/*#nav_area {
 	width: 100%;
 	height: 49px;
         margin-top: 42px;
@@ -593,7 +594,7 @@ position: relative;
 	background-color: #DC6A50;
 	background-image:linear-gradient(#DC6A50, #D14829);
 	border-top: 1px solid #E17C66;
-}
+}*/
 
  .active
 {
@@ -602,7 +603,7 @@ position: relative;
 }
 
 
-
+/*
  .submenu{
     margin:0;
     padding:0;
@@ -618,7 +619,7 @@ position: relative;
 }
 #nav_area ul li:hover .submenu{
     display:block;
-}
+}*/
 
 #footer {
   width: 100%;

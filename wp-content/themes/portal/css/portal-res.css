@@ -29,7 +29,7 @@ margin-top: 30px;
 .links-pad {
     margin-left: 2px;
 }
-.columns {
+.columnsDivs {
     position: relative;
     padding-left: 0.475rem;
     padding-right: 1.4375rem;
@@ -48,7 +48,7 @@ margin-top: 30px;
         display:block;
          
          margin-left: 20px;
-         margin-top: 180px;
+         margin-top: 30px;
          width:90%;
         }
         /* Force table to not be like tables anymore */

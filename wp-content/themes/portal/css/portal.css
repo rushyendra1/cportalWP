@@ -10,7 +10,7 @@
 }
 /**** Buttons in Home page **/
 button, .button {
-    //padding:0.8rem 0.5rem 0.8625rem;
+    
     padding: 0.4rem !important;
     border-radius: 5px;
 }
@@ -363,9 +363,9 @@ top:250px;position:fixed;left:500px
       .buttonWidth{
           
           float: right;
-    //margin-right: 10px;
+   
     margin-right: -130px;
-    //margin-top: -42px;
+  
     text-align: right;
     width: 80%;
       }

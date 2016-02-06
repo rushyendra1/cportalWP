@@ -64,6 +64,13 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
         exit;
     }
       $response = json_decode($result); 
+      /*if(isset($response->errorCode))
+      {
+            echo json_encode(array("errorCode" => "Request Message", 
+                "message" => $response->msg
+                ));
+             exit;
+      }*/
       $result =  $response->Data->Data;
      if($result == null)
          $result = array();

@@ -62,7 +62,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
        if (isset($response->errorCode))
        { ?>
            <div class="content">
-    <h1 class="pageType"> <?php echo $response->errorCode; ?></h1>
+    <h1 class="pageType"> <?php echo $response->msg; ?></h1>
     </div> 
        <?php }else {
        $related_types_array = $params_array = $related_list_array = $fields_array = array();

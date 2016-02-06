@@ -47,7 +47,7 @@ if( count($result)>0)
 <input type="hidden" id="maxPassLen" value="<?php echo $max_pass_len ?>">
 <input type="hidden" id="status" value="0">
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
+    <div class="large-12 columns columnsDivs">
       <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >
       <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" ><br>
       <h4 class="headTitle"><?php echo $title; ?></h4>

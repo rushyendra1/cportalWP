@@ -59,7 +59,7 @@ if(isset($result->data->is_Edit))
                             <!--<input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">-->
                             <!--<div class="buttonWidth buttonEdit small-3">-->
                             <div class="buttonWidth small" >
-                            <button  class="btn addobject">Add</button>
+                            <button  class="btn buttonCss">Add</button>
                             </div>
                             <div class="clearfix"></div>
                 <!--</div>-->

@@ -40,14 +40,18 @@ $title = "Set New Password";
   <input type="hidden" id="status" value="1">
 <input type="hidden" id="minPassLen" value="<?php echo $min_pass_len ?>">
 <input type="hidden" id="maxPassLen" value="<?php echo $max_pass_len ?>">
+<input type="hidden" id="id" value="<?php echo $user_id ?>" >
+ <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" >
+<div class="bodyCell contentSub row-fluid" >
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
-      <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >
-      <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" ><br>
+    <div class="bPageTitle">
+      
       <h4 class="headTitle"><?php echo $title; ?></h4>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
-      <input type="hidden" id="status" value="<?php echo $status ?>" > 
+    </div>
+  </div>
+    <div class="row">
       <div id="section_1">
                    
           <div class="row">
@@ -81,8 +85,8 @@ $title = "Set New Password";
         </div>
       </div>
     </div>
-  </div>
-
+  
+</div>
  <?php  get_footer();
 
 

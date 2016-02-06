@@ -86,11 +86,12 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
           $name = $result->Id;
        
 ?>
-<div class="bPageTitle serviceTitle">
+ <div class="row toggle-full-width">
+<div class="bPageTitle">
     <h1 class="headTitle">View <?php echo $object_name; ?></h1>
 </div>
-    
-&nbsp;
+ </div> 
+
 <div>
     <input type="hidden" id="objName" value="<?php echo $name; ?>" >
     <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >

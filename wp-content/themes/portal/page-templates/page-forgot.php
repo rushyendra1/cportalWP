@@ -8,12 +8,16 @@ get_header();
 
 $title = "Forgot Password";
 ?>
+<div class="bodyCell contentSub row-fluid" >
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
-     <br>
-        <h4 class="headTitle">Forgot Password</h4>
+    <div class="bPageTitle">
+   
+        <h1 class="headTitle">Forgot Password</h1>
        <h4 class="right"><small><em>* = Required</em></small></h4>
       <hr>
+    </div>
+  </div>
+    <div class="row">
       <div id="section_1">
            <div class="row">
           <div class="medium-6 columns">
@@ -44,5 +48,6 @@ $title = "Forgot Password";
      
       </div>
     </div>
-  </div>
+  
+</div>
 <?php get_footer();?>

@@ -22,10 +22,12 @@ get_header(); ?>
 <input type="hidden" id="blog" value="<?php echo $blog ?>" >
 
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
+    <div class="bPageTitle">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h4 class="headTitle">Customer Portal</h4>
-     <br>
+      <h1 class="headTitle">Customer Portal</h1>
+    </div>
+  </div>   
+      <div class="row" >
       <div id="section_1">
          
           <div class="row">
@@ -78,6 +80,5 @@ get_header(); ?>
 <!-- Body events -->
 
 <!-- End page content -->
-</div>
 <?php
 get_footer();

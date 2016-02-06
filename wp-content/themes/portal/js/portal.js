@@ -12,6 +12,27 @@ $(document).ready(function(){
 	},
         //'reveal': "open"
 });
+var h1 = h2 =  0;
+$(".cal1").each(function(){
+    var h = $(this).attr("style");
+   
+    h1 = maxH(h1,h);
+});
+$(".cal2").each(function(){
+    var h = $(this).attr("style");
+    
+    h2 = maxH(h2,h);
+});
+
+var h = h1;
+if(h2 >h1 )
+    h = h2;
+
+var addStyle= '<style type="text/css">.cal1{ height:'+h+'px !important;}\n\
+.cal2{ height:'+h+'px !important;}</style>';
+$('head').append(addStyle);
+//$(".viewObjectDiv p").append(addStyle);
+//alert($(".viewObjectDiv").html());
 //$('#myModal').foundation('reveal', 'open');
 //$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());
@@ -2018,4 +2039,15 @@ function errorFocus(error)
        return false;
    }
    return true;
+}
+function maxH(h1,h)
+{
+    h = $.trim(h);
+     h = h.replace("height:","");
+     h = h.replace("px;","");
+     h = parseInt($.trim(h));
+     h1 =parseInt(h1);
+    if(h1 <h)
+        h1 = h;
+    return h1;
 }

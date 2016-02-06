@@ -103,34 +103,41 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
        
     </div>
     <!--<div class="pbBody">-->
-               <div class="pbSubsection">
-                   <div class="row">
+               <!--<div class="pbSubsection">-->
+                   <div class="row" data-equalizer="foo"  >
                        <div class=" large-6 columns " >
+                            <div class="callout" data-equalizer-watch="foo">
                            <?php
                              $item_cnt = count($params_array);
                             $rep_cnt = ceil($item_cnt/2);
                            if($item_cnt>0)
                            {
                                $i=0; $j = 0;
+                                $c_class = 'callout cal1';
                                foreach($params_array as $val){
                                    //if($key != "related_types"){
                                    $key = $fields_array[$j];
+                                   //$c_class = 'panel';
+                                  
                                    if($i == $rep_cnt)
                                    {
                                        $i=0;
-                                       echo '</div><div class="large-6 columns">';
+                                       echo '</div></div><div class="large-6 columns">'
+                                       . '<div class="callout" data-equalizer-watch="foo">';
+                                       //$c_class = 'callout';
+                                       $c_class = 'callout cal2';
                                    }
                                    $i++;
                                    $j++;
                                ?>
-                           <div class="row object-view-row clearfix" data-equalizer data-equalize-on="medium" >
+                           <div class="row object-view-row clearfix" data-equalizer="bar"  >
                             <div class="small-3 columns labelColItem">
-                                <div class="callout" data-equalizer-watch>
+                                <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
                                     <label > <?php echo $val; ?> </label>
                                  </div>   
                             </div>
                         <div class=" small-9 columns labelColItem  oddDivObject">
-                            <div class="callout" data-equalizer-watch>
+                            <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
                             <span class="objectSpan"><?php echo $result->$key; ?></span>
                             </div>
                         </div>
@@ -152,14 +159,14 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
       <!--  <div class="buttonWidth buttonEdit">
         <input type="button"  title="Edit" name="edit" data-id="<?php echo $contact_id ?>" class="btn editContact" value=" Edit ">
         </div>-->
-      <div class="buttonEdit small-3">
-      <a  class="button buttonCss" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
-      </div>
+     
     <!--</div>-->
     <div class="clear"></div>
-    
+     <div class="buttonEdit row">
+      <a  class="button buttonCss" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
+      </div>
         
-</div>
+<!--</div>-->
 <!-- Begin RelatedListElement -->
 <div  class="bRelatedList first">
    <!-- <a name="0032000000ck5ZE_00Nw0000003EEmL_target"></a>-->

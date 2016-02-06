@@ -372,7 +372,7 @@ top:250px;position:fixed;left:500px
     width: 80%;
       }
       .buttonEdit{
-          margin-top:0px;
+          margin-top:5px;
           text-align: right;
           float:right;
       }
@@ -664,4 +664,6 @@ h2 {
    .object-view-row{
    background: #eee none repeat scroll 0 0;
    }
-    
+.panel {
+    background: none;
+}

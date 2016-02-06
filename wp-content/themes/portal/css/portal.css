@@ -121,7 +121,7 @@ top:250px;position:fixed;left:500px
     line-height: 22px;
     margin-bottom: 30px;
 
-    margin-top:-13px;
+  //  margin-top:-13px;
     font-family: "Montserrat",sans-serif;
 }
 .viewTypeLabel{

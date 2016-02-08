@@ -31,6 +31,9 @@ if(h2 >h1 )
 var addStyle= '<style type="text/css">.cal1{ height:'+h+'px !important;}\n\
 .cal2{ height:'+h+'px !important;}</style>';
 $('head').append(addStyle);
+$(".toggle-topbar").on("click",function(){
+   $(".top-bar-section").toggle(); 
+});
 //$(".viewObjectDiv p").append(addStyle);
 //alert($(".viewObjectDiv").html());
 //$('#myModal').foundation('reveal', 'open');
@@ -1185,7 +1188,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     k+=1;
     
     responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
-    responseHtml += '.objectListTable td.error:nth-of-type( '+k+' ):before { content: "" !important; font-weight:bold;}';
+    responseHtml += '.objectListTable td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
     $(that).removeClass(classView);
@@ -1602,7 +1605,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     k+=1;
     
     responseHtml += '.object-'+objectType+'-list td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
-    responseHtml += '.object-'+objectType+'-list td.error:nth-of-type( '+k+' ):before { content: "" !important; font-weight:bold;}';
+    responseHtml += '.object-'+objectType+'-list td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".Object"+objectType+"Res").html(responseHtml);
     

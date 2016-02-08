@@ -103,10 +103,10 @@ if ($pages == "" || $pages == "home") {
                             if (count($response_array) > 0) {
 
                                 $tab_array = $response_array['TabList'];
-                                //$tab_array = array("link1", "link2","link3","link4","link5");
+                                $tab_array = array("link1", "link2","link3","link4","link5","link1", "link2","link3","link4","link5","link1", "link2","link3","link4","link5","link1", "link2","link3","link4","link5");
 
                                 $api_array = $response_array['ApiList'];
-                                //$api_array = array("link1", "link2","link3","link4","link5");
+                                $api_array = array("link1", "link2","link3","link4","link5","link1", "link2","link3","link4","link5","link1", "link2","link3","link4","link5","link1", "link2","link3","link4","link5");
                                 $i = 0;
                                 $j = 0;
                                 for ($i = 0; $i <= 14; $i++) {

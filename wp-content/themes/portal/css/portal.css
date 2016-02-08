@@ -626,9 +626,13 @@ position: relative;
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: #99ccff none repeat scroll 0 0;
 }
-.top-bar-section li:not(.has-form) a:hover:not(.button) {
+.top-bar-section li:not(.has-form) a:hover:not(.button)  {
     background: #c73  none repeat scroll 0 0;
 }
+.top-bar-section ul > li > ul > li{
+     background: #99ccff none repeat scroll 0 0;
+}
+
 .top-bar-section ul li > a {
     color: green;
 }   
@@ -672,4 +676,6 @@ h2 {
        margin-top: -21px;
        
    }
+  
+   
 

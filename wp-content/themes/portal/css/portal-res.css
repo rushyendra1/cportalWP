@@ -28,7 +28,12 @@ margin-top: 30px;
 .links-pad {
     margin-left: 2px;
 }
-
+.column,
+.columns {
+  padding-left: 0.0375rem;
+  padding-right: 0.0375rem;
+  width: 100%;
+  float: left; }
 
 
 }

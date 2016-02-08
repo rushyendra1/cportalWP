@@ -617,14 +617,24 @@ position: relative;
 /**menus**/
 .top-bar {               
     background: #99ccff none repeat scroll 0 0;
+    height:auto;
 
            }
 .top-bar-section ul li {
      background: #99ccff none repeat scroll 0 0;
 }
-
+.top-bar-section{
+    width:100%;
+}
+.top-bar-section ul li{
+    width:10%;
+}
+.top-bar-section ul{
+    width:90%;
+}
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: #99ccff none repeat scroll 0 0;
+    text-align:center;
 }
 .top-bar-section li:not(.has-form) a:hover:not(.button) {
     background: #c73  none repeat scroll 0 0;

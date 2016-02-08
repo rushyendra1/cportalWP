@@ -630,7 +630,7 @@ position: relative;
     width:10%;
 }
 .top-bar-section ul{
-    width:90%;
+    width:99%;
 }
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: #99ccff none repeat scroll 0 0;

@@ -1,23 +1,6 @@
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 
-  /*  #wrapHome {
-    height:32%;
-}*/
-/*#logo {
-    height: 80px;
-    margin-left: 0px;
-}
-
-#name {
-    height: 120px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.09em;
-}*/
-/*.top-bar.expanded {
-   // height: 300px;
-}*/
+ 
 .contentSub{
 margin-top: 30px;
 }
@@ -28,14 +11,40 @@ margin-top: 30px;
 .links-pad {
     margin-left: 2px;
 }
-
-
-
+/** alignment of header(Customer Portal )**/
+#name {
+    font-size: 1.9rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.09em;
+}
+#name a {
+    text-align: left;
+}
+/** alignment for my profile**/
+.column, .columns {
+    position: relative;
+    padding-left: 0.0375rem;
+    padding-right: 0.0375rem;
+    float: left;
+}
 }
 @media only screen and
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
         }
 @media only screen and (min-device-width : 240px) and (max-device-width : 319px){
+    .dispRow {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+             }
+             .links-pad a {
+                            display: inline-block;
+                            margin-right: 35px;
+                            
+                          }
+             .row .row {
+                            margin-top: 8px;
+                       }
         }
         @media only screen and (max-width: 760px),
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -106,4 +115,5 @@ margin-top: 30px;
                 }
                 .top-bar-section ul li {
                     width:100%;
+        }
         }

@@ -2125,7 +2125,7 @@ meta.foundation-mq-topbar {
         padding: 12px 0.9375rem;
         background: #333333; }
       .top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button) {
-        color: #FFFFFF;
+        color: green;
         background: #333333; }
       .top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
         color: #FFFFFF;

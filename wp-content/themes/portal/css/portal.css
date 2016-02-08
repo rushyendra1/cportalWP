@@ -639,7 +639,6 @@ position: relative;
 .top-bar-section li:not(.has-form) a:hover:not(.button)  {
     background: #c73  none repeat scroll 0 0;
 }
-
 .top-bar-section li.has-dropdown a:not(.button){
     background: #99ccff none repeat scroll 0 0;
 }

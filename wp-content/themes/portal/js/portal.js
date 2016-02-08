@@ -31,6 +31,9 @@ if(h2 >h1 )
 var addStyle= '<style type="text/css">.cal1{ height:'+h+'px !important;}\n\
 .cal2{ height:'+h+'px !important;}</style>';
 $('head').append(addStyle);
+$(".toggle-topbar").on("click",function(){
+   $(".top-bar-section").toggle(); 
+});
 //$(".viewObjectDiv p").append(addStyle);
 //alert($(".viewObjectDiv").html());
 //$('#myModal').foundation('reveal', 'open');

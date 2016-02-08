@@ -1191,6 +1191,9 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     responseHtml += '.objectListTable td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
+    var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if(devWidth<=1024)
+    $("table.objectListTable tr td:last-child").parent().append("<br>");
     $(that).removeClass(classView);
    displayObjects();
     hideLoader();

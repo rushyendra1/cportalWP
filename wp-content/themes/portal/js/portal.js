@@ -12,6 +12,7 @@ $(document).ready(function(){
 	},
         //'reveal': "open"
 });
+
 var h1 = h2 =  0;
 $(".cal1").each(function(){
     var h = $(this).attr("style");
@@ -45,6 +46,9 @@ $(".toggle-topbar").on("click",function(){
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
+   if(path == "login"){
+       $("#username").focus();
+   }
    if(path == "object-list")
     {
        
@@ -173,66 +177,17 @@ $(".toggle-topbar").on("click",function(){
                  
      });
     /** Login Functionality **/
+    $("#loginForm").on("keypress",function(e){
+       if(e.keyCode ==13)
+       {
+           //form is submitted
+           loginPerform(e,this);
+       }  
+        
+    });
    $("#submit").on("click",function(e){
        /** Stop the immediate propagation **/
-        e.stopImmediatePropagation();
-      var className = "ajaxCall";
-        if($(this).hasClass(className))
-        {
-            return false;
-        }
-        $(this).addClass(className);
-      showLoader(); 
-      $(this).attr("disabled");
-      
-      $(".errorInput").removeClass("errorInput");
-      var username = $.trim($("#username").val());
-      var pass = $.trim($("#lpassword").val());
-      var title = "Request Message";
-      var that = this;
-      var error = [];
-      /** check the error validtions **/
-      error = checkUserName("#username",error, "Please enter Username/E-mail.");
-      error = checkPwdError("#lpassword",error,"");
-      if(error.indexOf("e") != -1)
-      {
-          $(this).removeAttr("disabled");
-          $(this).removeClass(className);
-          hideLoader();
-          $("#username").focus();
-          return false;
-      }
-       if(error.indexOf("pr") != -1)
-      {
-          $(this).removeAttr("disabled");
-          $(this).removeClass(className);
-          hideLoader();
-          $("#lpassword").val("");
-          $("#lpassword").focus();
-          return false;
-      }
-      var that = this;
-      $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
-          password:pass},function(data){
-          data = $.trim(data);
-         
-        if(data != "")
-        {
-            
-            alertData(title,data);
-                //showLabelFocus("#password",data);
-                $(that).removeClass(className);
-            $(that).removeAttr("disabled");
-            $("#lpassword").val("");
-             hideLoader();
-             $("#lpassword").focus();
-           
-            return false;
-        }
-        
-        //alertData(title, "Login Successfully !!");
-        window.location.href=site;
-   });
+        loginPerform(e,this)
 });
 /** logouts **/
 $(".logouts").on("click",function(e){
@@ -1886,4 +1841,74 @@ function maxH(h1,h)
 function nl2br (str, is_xhtml) {   
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+}
+/**
+ * Perform the login functionality
+ * @name loginPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {Boolean}
+ */
+function loginPerform(e,that)
+{
+    e.stopImmediatePropagation();
+      var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        var root = $.trim($("#rootTheme").val());
+        var site = $.trim($("#siteTheme").val());
+        showLoader(); 
+        $(that).attr("disabled");
+      
+      $(".errorInput").removeClass("errorInput");
+      var username = $.trim($("#username").val());
+      var pass = $.trim($("#lpassword").val());
+      var title = "Request Message";
+     // var that = this;
+      var error = [];
+      /** check the error validtions **/
+      error = checkUserName("#username",error, "Please enter Username/E-mail.");
+      error = checkPwdError("#lpassword",error,"");
+      if(error.indexOf("e") != -1)
+      {
+          $(that).removeAttr("disabled");
+          $(that).removeClass(className);
+          hideLoader();
+          $("#username").focus();
+          return false;
+      }
+       if(error.indexOf("pr") != -1)
+      {
+          $(that).removeAttr("disabled");
+          $(that).removeClass(className);
+          hideLoader();
+          $("#lpassword").val("");
+          $("#lpassword").focus();
+          return false;
+      }
+     // var that = this;
+      $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
+          password:pass},function(data){
+          data = $.trim(data);
+         
+        if(data != "")
+        {
+            
+            alertData(title,data);
+                //showLabelFocus("#password",data);
+                $(that).removeClass(className);
+            $(that).removeAttr("disabled");
+            $("#lpassword").val("");
+             hideLoader();
+             $("#lpassword").focus();
+           
+            return false;
+        }
+        
+        //alertData(title, "Login Successfully !!");
+        window.location.href=site;
+   });
 }

@@ -41,6 +41,7 @@ get_header(); ?>
       </div>
   </div>
 <div class="row">
+    <form id="loginForm" >
       <div id="section_1" class="loginDiv">
            <div class="row">
           <div class="medium-6 columns">
@@ -48,7 +49,7 @@ get_header(); ?>
                 
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Username/E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
                     User Name/E-mail*</strong>
-                <input type="email" id="username" name="username" placeholder="Username/E-mail" class="radius" >
+                <input type="email" id="username" name="username" placeholder="Username/E-mail" class="radius" tabindex="1" >
              <span class="label error alert  radius " style="display:none">Required</span>
             </label>
           </div>
@@ -60,7 +61,7 @@ get_header(); ?>
                 
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Password.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
                     Password*</strong>
-                <input type="password" id="lpassword" name="lpassword" placeholder="Password" class="radius" >
+                <input type="password" id="lpassword" name="lpassword" placeholder="Password" class="radius" tabindex="2" >
                 <span class="label error alert  radius" style="display:none">Required</span>
                           </label>
           </div>
@@ -75,11 +76,12 @@ get_header(); ?>
           <div class="row">
           <div class="columns small-12"> 
             
-            <a  id="submit" class="button radius submit link">Submit</a> <br>
+              <a  id="submit" class="button radius submit link" tabindex="3">Submit</a> <br>
           </div>
         </div>
      
       </div>
+    </form>
     </div>
   </div>
     

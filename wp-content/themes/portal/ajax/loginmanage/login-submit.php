@@ -38,7 +38,7 @@ if($_SESSION['forgot-times']>= $max_login_attempts)
     exit;
 }
  $user = (isset($_POST['username']))?$_POST['username']: "";
-$pass = (isset($_POST['password']))?$_POST['password']: "";
+$pass = (isset($_POST['password']))?base64_decode(trim($_POST['password'])): "";
 
 try{
 /*** Check the username is present in wp users ***/

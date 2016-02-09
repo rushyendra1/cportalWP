@@ -1642,7 +1642,7 @@ function loginPerform(e,that)
       }
      // var that = this;
       $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
-          password:pass},function(data){
+          password:Base64.encode(pass)},function(data){
           data = $.trim(data);
          
         if(data != "")

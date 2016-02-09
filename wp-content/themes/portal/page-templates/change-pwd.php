@@ -81,7 +81,7 @@ if( count($result)>0)
                   New Password*</strong>
                   <input type="password" maxlength="<?php echo $max_pass_len ?>" id="newPwd" name="newPwd" placeholder="New Password" class="radius" required tabindex="2">
               <span class="label error alert  radius" style="display:none">Required</span>
-               <span class="correctPassword" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>
+               <span class="correctPassword" style="display:none" ><img class="imageShown" src="<?php echo get_template_directory_uri() ?>/img/correct1.png"  ></span>
             </label>
           </div>
           </div>
@@ -93,7 +93,7 @@ if( count($result)>0)
                  Confirm New Password*</strong>
                 <input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirm New Password" class="radius"  maxlength="<?php echo $max_pass_len ?>" tabindex="3" >
               <span class="label error alert radius" style="display:none">Required</span>
-              <span class="correctPassword" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>
+              <span class="correctPassword" style="display:none" ><img class="imageShown" src="<?php echo get_template_directory_uri() ?>/img/correct1.png"  ></span>
             </label>
           </div>
           </div>

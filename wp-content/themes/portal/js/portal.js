@@ -35,10 +35,6 @@ $('head').append(addStyle);
 $(".toggle-topbar").on("click",function(){
    $(".top-bar-section").toggle(); 
 });
-//$(".viewObjectDiv p").append(addStyle);
-//alert($(".viewObjectDiv").html());
-//$('#myModal').foundation('reveal', 'open');
-//$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
@@ -46,9 +42,9 @@ $(".toggle-topbar").on("click",function(){
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
-   if(path == "login"){
+   if(path == "login")
        $("#username").focus();
-   }
+        
    if(path == "object-list")
     {
        
@@ -96,84 +92,23 @@ $(".toggle-topbar").on("click",function(){
        $(".editRow").show();
        $(".headTitle").html("Edit My Details");
        var gettitle = $.trim($(".headTitle").html());
-    if(path =="" && path == "home")
-    {
-        gettitle = '';
-    }
+    
     if(gettitle != "")
         blog = gettitle + ' | ' +blog;
     document.title = blog;
+     $("#firstname").focus();
        $(this).hide();
+   });
+   $("#editForm").on("keypress",function(e){
+       if(e.keyCode ==13)
+       {
+           editPerform(e,this);
+       }
    });
    /** Update profile **/
      $("#mysubmit").on("click",function(e){
            
-        e.stopImmediatePropagation(); 
-        var className = "ajaxCall";
-        if($(this).hasClass(className))
-        {
-            return false;
-        }
-        $(this).addClass(className);
-        showLoader();
-        $(this).attr("disabled");
-        $(".errorInput").removeClass("errorInput");
-        var name = $.trim($("#firstname").val());
-        var lastName = $.trim($("#lastname").val());
-        var company = $.trim($("#company").val());
-        
-        var phone = $.trim($("#phone").val());
-        var mobile = $.trim($("#mobile").val());
-        var email = $.trim($("#email").val());
-        var altEmail = $.trim($("#alternateemail").val());
-        
-        var street = $.trim($("#street").val());
-        var city = $.trim($("#city").val());
-        var state = $.trim($("#state").val());
-        var country = $.trim($("#country").val());
-        var error = "";
-        var title = "Request Message";
-        var error = [];
-        error = firstNameError("#firstname",error);
-        error =   LastNameError("#lastname",error);
-        error = checkUserName("#email",error, "Please enter your E-mail.");
-        error = checkUserName("#alternateemail",error, "Please enter your Alternate E-mail.");
-        error = phoneValidation("#phone",error);
-        error = phoneValidation("#mobile",error);
-         error = addressValidation("#street",error);
-         error = addressValidation("#city",error);
-        error = addressValidation("#state",error);
-        error = addressValidation("#country",error);
-        error = addressValidation("#zip",error);
-        error = addressValidation("#message",error);
-        var status = errorFocus(error);
-        if(!status)
-        {
-            $(this).removeClass(className);
-            hideLoader();
-            return false;
-        }
-        var that = this;
-        $.post(root+"/ajax/loginmanage/my-update.php",{name:name,last_name:lastName, salutation:$.trim($("#salutation").val()) ,company:company,
-                                phone:phone, mobile:mobile, email:email,alt_email:altEmail,
-                             city:city,zipcode : $.trim($("#zip").val()),state:state,street:street,
-                             id:$.trim($("#id").val()),
-                             country:country, message: $.trim($("#message").val())},function(data){
-                        data = $.trim(data);
-                        if(data != "")
-                        {
-                            alertData(title,data);
-                            $(that).removeClass(className);
-                            hideLoader();
-                            return false;
-                        }else{
-                                    //alertData(title,"Your Details Has Been Updated Successfully.");
-                            $(".edit").show();
-                            $(that).removeClass(className);
-                            hideLoader();
-                             window.location.href=site+"/profile";
-                        }
-                        });
+        editPerform(e,this);
                  
      });
     /** Login Functionality **/
@@ -1911,4 +1846,82 @@ function loginPerform(e,that)
         //alertData(title, "Login Successfully !!");
         window.location.href=site;
    });
+}
+/**
+ * Edit the user details
+ * @name editPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {Boolean}
+ */
+function editPerform(e,that)
+{
+    e.stopImmediatePropagation(); 
+        var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        showLoader();
+        var root = $.trim($("#rootTheme").val());
+        var site = $.trim($("#siteTheme").val());
+        $(that).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var name = $.trim($("#firstname").val());
+        var lastName = $.trim($("#lastname").val());
+        var company = $.trim($("#company").val());
+        
+        var phone = $.trim($("#phone").val());
+        var mobile = $.trim($("#mobile").val());
+        var email = $.trim($("#email").val());
+        var altEmail = $.trim($("#alternateemail").val());
+        
+        var street = $.trim($("#street").val());
+        var city = $.trim($("#city").val());
+        var state = $.trim($("#state").val());
+        var country = $.trim($("#country").val());
+        var error = "";
+        var title = "Request Message";
+        var error = [];
+        error = firstNameError("#firstname",error);
+        error =   LastNameError("#lastname",error);
+        error = checkUserName("#email",error, "Please enter your E-mail.");
+        error = checkUserName("#alternateemail",error, "Please enter your Alternate E-mail.");
+        error = phoneValidation("#phone",error);
+        error = phoneValidation("#mobile",error);
+         error = addressValidation("#street",error);
+         error = addressValidation("#city",error);
+        error = addressValidation("#state",error);
+        error = addressValidation("#country",error);
+        error = addressValidation("#zip",error);
+        error = addressValidation("#message",error);
+        var status = errorFocus(error);
+        if(!status)
+        {
+            $(that).removeClass(className);
+            hideLoader();
+            return false;
+        }
+        //var that = this;
+        $.post(root+"/ajax/loginmanage/my-update.php",{name:name,last_name:lastName, salutation:$.trim($("#salutation").val()) ,company:company,
+                                phone:phone, mobile:mobile, email:email,alt_email:altEmail,
+                             city:city,zipcode : $.trim($("#zip").val()),state:state,street:street,
+                             id:$.trim($("#id").val()),
+                             country:country, message: $.trim($("#message").val())},function(data){
+                        data = $.trim(data);
+                        if(data != "")
+                        {
+                            alertData(title,data);
+                            $(that).removeClass(className);
+                            hideLoader();
+                            return false;
+                        }else{
+                                    //alertData(title,"Your Details Has Been Updated Successfully.");
+                            $(".edit").show();
+                            $(that).removeClass(className);
+                            hideLoader();
+                             window.location.href=site+"/profile";
+                        }
+                        });
 }

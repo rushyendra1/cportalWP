@@ -106,6 +106,7 @@ if(is_array($result) && count($result)>0)
           </div>
            <div class="clear"></div>
           <input type="hidden" id="id" value="<?php echo $user_ID; ?>" >
+          <form id="editForm">
         <div class="row">
          <?php
          $sql = " SELECT  id,attribute,form_element, options, searchable,placeholder,
@@ -310,7 +311,8 @@ if(is_array($result) && count($result)>0)
          
          ?>
         </div>
-           <div class="clear" style="height:15px"></div>
+          </form>
+              <div class="clear" style="height:15px"></div>
           
           <div class="row editRow" style="display:none">
           <div class="columns small-12"> 

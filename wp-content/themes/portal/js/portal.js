@@ -42,9 +42,9 @@ $(".toggle-topbar").on("click",function(){
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
-   if(path == "login")
+   if(path == "login"|| path == "forgot")
        $("#username").focus();
-        
+   
    if(path == "object-list")
     {
        
@@ -103,6 +103,7 @@ $(".toggle-topbar").on("click",function(){
        if(e.keyCode ==13)
        {
            editPerform(e,this);
+           return false;
        }
    });
    /** Update profile **/
@@ -117,6 +118,7 @@ $(".toggle-topbar").on("click",function(){
        {
            //form is submitted
            loginPerform(e,this);
+           return false;
        }  
         
     });
@@ -374,69 +376,16 @@ $(".logouts").on("click",function(e){
             }
         },"json");
      });
-     
+     $("#forGotForm").on("keypress",function(e){
+         if(e.keyCode ==13)
+         { forgotPerform(e,this);
+            return false;
+         }
+     });
      /** Forgot password **/
     $("#forogotSubmit").on("click",function(e)
     {
-        var site = $.trim($("#siteTheme").val());
-      e.stopImmediatePropagation();
-       var className = "ajaxCall";
-        if($(this).hasClass(className))
-        {
-            return false;
-        }
-        $(this).addClass(className);
-      showLoader();
-      $(this).attr("disabled");
-      $(".errorInput").removeClass("errorInput");
-     // var title = "Request Message";
-      var username = $.trim($("#username").val());
-      if(username == "")
-      {
-          var msg = "Please enter Username/E-mail.";
-         // alertData(title,msg);
-          showLabelFocus("#username",msg);
-          $(this).removeClass(className);
-          $(this).removeAttr("disabled");
-          hideLoader();
-          $("#username").focus();
-          return false;
-        }else if(!emailValid(username))
-        {
-            var msg = "Please enter valid E-mail";
-           //alertData(title,msg);
-          
-            showLabelFocus("#username",msg);
-           $(this).removeAttr("disabled");
-           $(this).removeClass(className);
-            hideLoader();
-            $("#username").focus();
-            return false;
-        }else
-            hideData("#username");
-        var that = this;
-         $.post(root+"/ajax/loginmanage/forgot-pwd-submit.php", {username:username},function(data){
-          data = $.trim(data);
-             if(data != "")
-        
-        {
-            //alertData(title,data);
-            hideLoader();
-             showLabelFocus("#username",data);
-           $(that).removeAttr("disabled");
-           $(that).removeClass(className);
-            //$("#correctEmail").hide();
-             $("#correctEmail").css("display", "none");
-            hideLoader();
-            $("#username").focus();
-            return false;
-        }
-         // $("#correctEmail").show();
-           $("#correctEmail").css("display", "block");
-           $(that).removeClass(className);
-        //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
-         window.location.href = site+'/login';
-      });
+       forgotPerform(e,this);
     });
     
     /** set Password **/
@@ -1924,4 +1873,74 @@ function editPerform(e,that)
                              window.location.href=site+"/profile";
                         }
                         });
+}
+/**
+ * Perform the forgot functionality
+ * @name forgotPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {void}
+ */
+function forgotPerform(e,that)
+{
+     var site = $.trim($("#siteTheme").val());
+     var root = $.trim($("#rootTheme").val());
+      e.stopImmediatePropagation();
+       var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+      showLoader();
+      $(this).attr("disabled");
+      $(".errorInput").removeClass("errorInput");
+     // var title = "Request Message";
+      var username = $.trim($("#username").val());
+      if(username == "")
+      {
+          var msg = "Please enter Username/E-mail.";
+         // alertData(title,msg);
+          showLabelFocus("#username",msg);
+          $(that).removeClass(className);
+          $(that).removeAttr("disabled");
+          hideLoader();
+          $("#username").focus();
+          return false;
+        }else if(!emailValid(username))
+        {
+            var msg = "Please enter valid E-mail";
+           //alertData(title,msg);
+          
+            showLabelFocus("#username",msg);
+           $(that).removeAttr("disabled");
+           $(that).removeClass(className);
+            hideLoader();
+            $("#username").focus();
+            return false;
+        }else
+            hideData("#username");
+        //var that = this;
+         $.post(root+"/ajax/loginmanage/forgot-pwd-submit.php", {username:username},function(data){
+          data = $.trim(data);
+             if(data != "")
+        
+        {
+            //alertData(title,data);
+            hideLoader();
+             showLabelFocus("#username",data);
+           $(that).removeAttr("disabled");
+           $(that).removeClass(className);
+            //$("#correctEmail").hide();
+             $("#correctEmail").css("display", "none");
+            hideLoader();
+            $("#username").focus();
+            return false;
+        }
+         // $("#correctEmail").show();
+           $("#correctEmail").css("display", "block");
+           $(that).removeClass(className);
+        //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
+         window.location.href = site+'/login';
+      });
 }

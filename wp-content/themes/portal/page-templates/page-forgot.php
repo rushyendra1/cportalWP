@@ -18,6 +18,7 @@ $title = "Forgot Password";
     </div>
   </div>
     <div class="row">
+        <form id="forGotForm" >
       <div id="section_1">
            <div class="row">
           <div class="medium-6 columns">
@@ -25,9 +26,9 @@ $title = "Forgot Password";
                 
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Username/E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
                    User Name/E-mail*</strong>
-                <input type="email" id="username" name="username" placeholder="E-mail" class="radius" required>
+                <input type="email" id="username" name="username" placeholder="E-mail" class="radius" required tabindex="1">
             <span class="label error alert  radius" style="display:none">Required</span>
-              <span id="correctEmail" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>
+            <span id="correctEmail" style="display:none" ><img class="imageShown" src="<?php echo get_template_directory_uri() ?>/img/correct1.png"  ></span>
             </label>
           </div>
           </div>
@@ -47,6 +48,7 @@ $title = "Forgot Password";
         </div>
      
       </div>
+        </form>
     </div>
   
 </div>

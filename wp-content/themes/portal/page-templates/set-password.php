@@ -52,6 +52,7 @@ $title = "Set New Password";
     </div>
   </div>
     <div class="row">
+        <form id="setPwdForm" >
       <div id="section_1">
                    
           <div class="row">
@@ -59,7 +60,7 @@ $title = "Set New Password";
               <label for="newPwd">
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter New Password.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
                   New Password*</strong>
-                <input type="password" maxlength="<?php echo $max_pass_len ?>" id="newPwd" name="newPwd" placeholder="New Password" class="radius" required>
+                <input type="password" maxlength="<?php echo $max_pass_len ?>" id="newPwd" name="newPwd" placeholder="New Password" class="radius" required tabindex="1">
               <span class="label error alert  radius" style="display:none">Required</span>
                <span class="correctPassword" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>
             </label>
@@ -71,7 +72,7 @@ $title = "Set New Password";
                 
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Confirm New Password.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
                  Confirm New Password*</strong>
-                <input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirm New Password" class="radius"  maxlength="<?php echo $max_pass_len ?>" >
+                <input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirm New Password" class="radius"  maxlength="<?php echo $max_pass_len ?>" tabindex="2" >
               <span class="label error alert radius" style="display:none">Required</span>
               <span class="correctPassword" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>
             </label>
@@ -84,6 +85,7 @@ $title = "Set New Password";
           </div>
         </div>
       </div>
+    </form>
     </div>
   
 </div>

@@ -44,7 +44,8 @@ $(".toggle-topbar").on("click",function(){
        alertData("Message",msg);
    if(path == "login"|| path == "forgot")
        $("#username").focus();
-   
+   if(path == "set-paasword")
+       $("#newPwd").focus();
    if(path == "object-list")
     {
        
@@ -387,84 +388,18 @@ $(".logouts").on("click",function(e){
     {
        forgotPerform(e,this);
     });
-    
-    /** set Password **/
-     $("#setpassword").on("click",function(e){
-         
-         var site = $.trim($("#siteTheme").val());
-        e.stopImmediatePropagation();
-        var className = "ajaxCall";
-        if($(this).hasClass(className))
+    $("#setPwdForm").on("keypress",function(e){
+        if(e.keyCode ==13)
         {
+            setPwdPerform(e, this);
             return false;
         }
-        $(this).addClass(className);
-        showLoader();
-        $(this).attr("disabled");
-        $(".errorInput").removeClass("errorInput");
-        var newp = $.trim($("#newPwd").val());
-        var conp = $.trim($("#confirmPwd").val());
-        var oldPwd = $.trim($("#oldPwd").val());
-      //  var status = $.trim($("#status").val());
-       var status=1;
-        //var title = "Request Message";
-        var error = []; 
-        
-        error = newPwdCheckError(status,error,"#newPwd");
-        error = confirmCheckError(error,"#confirmPwd",newp);
-           if(error.indexOf("n") != -1)
-            {
-                 hideEnd(this);
-                 $(this).removeClass(className);
-                $("#newPwd").focus();
-                return false;
-            }
-            else if(error.indexOf("c") != -1)
-            {
-                 hideEnd(this);
-                 $(this).removeClass(className);
-                $("#confirmPwd").focus();
-                return false;
-            }
-            
-        var isAdmin = parseInt($.trim($("#isAdmin").val()));
-         $(".correctPassword").show();
-         var that = this;
-         
-         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
-         new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
-     status:status,rand :$("#rand").val() }, function (data) {
-    
-                if( data=="0"  )
-            {
-                window.location.href = site+'/login';
-                return false;
-            } 
-     
-            data = $.trim(data);
-         var msg = data.msg;
-                         
-                      
-            var role = data.role;
-          
-             if (data.error == 1)
-            {
-                $(that).removeClass(className);
-                $("#newPassword").focus();
-                 $(".correctPassword").hide();
-               // alertData(title,data);
-                hideLoader();
-                return false;
-            } else {
-                $(".correctPassword").show();
-                $(that).removeClass(className);
-               // window.location.href = site+'/login';
-              window.location.href = site+'/login';
-            }
-            
-        },"json");
-        
+    });
+    /** set Password **/
+     $("#setpassword").on("click",function(e){
+         setPwdPerform(e, this);
      });
+        
 });
 
 /**
@@ -1943,4 +1878,89 @@ function forgotPerform(e,that)
         //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
          window.location.href = site+'/login';
       });
+}
+/**
+ * Set the password functionality
+ * @name setPwdperform
+ * @param {object} e
+ * @param {object} that
+ * @returns void
+ */
+function setPwdPerform(e, that)
+{
+     var site = $.trim($("#siteTheme").val());
+      var root = $.trim($("#rootTheme").val());
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        showLoader();
+        $(that).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var newp = $.trim($("#newPwd").val());
+        //var conp = $.trim($("#confirmPwd").val());
+        //var oldPwd = $.trim($("#oldPwd").val());
+      //  var status = $.trim($("#status").val());
+       var status=1;
+        //var title = "Request Message";
+        var error = []; 
+        
+        error = newPwdCheckError(status,error,"#newPwd");
+        error = confirmCheckError(error,"#confirmPwd",newp);
+           if(error.indexOf("n") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#newPwd").focus();
+                return false;
+            }
+            else if(error.indexOf("c") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#confirmPwd").focus();
+                return false;
+            }
+            
+        var isAdmin = parseInt($.trim($("#isAdmin").val()));
+         $(".correctPassword").show();
+         //var that = this;
+         
+         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
+         new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+     status:status,rand :$("#rand").val() }, function (data) {
+    
+                if( data=="0"  )
+            {
+                window.location.href = site+'/login';
+                return false;
+            } 
+     
+            data = $.trim(data);
+         //var msg = data.msg;
+                         
+                      
+            //var role = data.role;
+          
+             if (data.error == 1)
+            {
+                $(that).removeClass(className);
+                $("#newPassword").focus();
+                 $(".correctPassword").hide();
+               // alertData(title,data);
+                hideLoader();
+                return false;
+            } else {
+                $(".correctPassword").show();
+                $(that).removeClass(className);
+               // window.location.href = site+'/login';
+              window.location.href = site+'/login';
+            }
+            
+        },"json");
+        
+     
 }

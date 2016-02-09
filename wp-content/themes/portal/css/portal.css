@@ -232,12 +232,15 @@ top:250px;position:fixed;left:500px
 /*** Alpha Pagination ***/
 .listItem{
     background-color: #582;
-    margin-bottom: 2px;
-    margin-right: 5px;
-    padding: 5px;
+    //margin-bottom: 2px;
+   // margin-right: 5px;
+   //padding: 5px;
     color: #fff;
     cursor:pointer;
-    line-height: 35px;
+    padding: 0.5rem;
+    //line-height: 35px;
+    //line-height: 35px;
+    //0.1rem 0.5rem 0.1rem
 }
 .activeAlpha{
     background-color: #c73;

@@ -138,7 +138,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
                             </div>
                         <div class=" small-9 columns labelColItem  oddDivObject">
                             <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
-                            <span class="objectSpan"><?php echo $result->$key; ?></span>
+                            <span class="objectSpan"><?php echo nl2br($result->$key); ?></span>
                             </div>
                         </div>
                         </div>

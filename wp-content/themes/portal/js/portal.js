@@ -12,6 +12,7 @@ $(document).ready(function(){
 	},
         //'reveal': "open"
 });
+
 var h1 = h2 =  0;
 $(".cal1").each(function(){
     var h = $(this).attr("style");
@@ -34,10 +35,6 @@ $('head').append(addStyle);
 $(".toggle-topbar").on("click",function(){
    $(".top-bar-section").toggle(); 
 });
-//$(".viewObjectDiv p").append(addStyle);
-//alert($(".viewObjectDiv").html());
-//$('#myModal').foundation('reveal', 'open');
-//$("#wpadminbar").html("");
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
@@ -45,6 +42,14 @@ $(".toggle-topbar").on("click",function(){
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
+   if(path == "login"|| path == "forgot")
+       $("#username").focus();
+   if(path == "set-paasword")
+       $("#newPwd").focus();
+   if(path == "change-password")
+   {
+        $("#oldPwd").focus();
+   }
    if(path == "object-list")
     {
        
@@ -92,147 +97,39 @@ $(".toggle-topbar").on("click",function(){
        $(".editRow").show();
        $(".headTitle").html("Edit My Details");
        var gettitle = $.trim($(".headTitle").html());
-    if(path =="" && path == "home")
-    {
-        gettitle = '';
-    }
+    
     if(gettitle != "")
         blog = gettitle + ' | ' +blog;
     document.title = blog;
+     $("#firstname").focus();
        $(this).hide();
+   });
+   $("#editForm").on("keypress",function(e){
+       if(e.keyCode ==13)
+       {
+           editPerform(e,this);
+           return false;
+       }
    });
    /** Update profile **/
      $("#mysubmit").on("click",function(e){
            
-        e.stopImmediatePropagation(); 
-        var className = "ajaxCall";
-        if($(this).hasClass(className))
-        {
-            return false;
-        }
-        $(this).addClass(className);
-        showLoader();
-        $(this).attr("disabled");
-        $(".errorInput").removeClass("errorInput");
-        var name = $.trim($("#firstname").val());
-        var lastName = $.trim($("#lastname").val());
-        var company = $.trim($("#company").val());
-        
-        var phone = $.trim($("#phone").val());
-        var mobile = $.trim($("#mobile").val());
-        var email = $.trim($("#email").val());
-        var altEmail = $.trim($("#alternateemail").val());
-        
-        var street = $.trim($("#street").val());
-        var city = $.trim($("#city").val());
-        var state = $.trim($("#state").val());
-        var country = $.trim($("#country").val());
-        var error = "";
-        var title = "Request Message";
-        var error = [];
-        error = firstNameError("#firstname",error);
-        error =   LastNameError("#lastname",error);
-        error = checkUserName("#email",error, "Please enter your E-mail.");
-        error = checkUserName("#alternateemail",error, "Please enter your Alternate E-mail.");
-        error = phoneValidation("#phone",error);
-        error = phoneValidation("#mobile",error);
-         error = addressValidation("#street",error);
-         error = addressValidation("#city",error);
-        error = addressValidation("#state",error);
-        error = addressValidation("#country",error);
-        error = addressValidation("#zip",error);
-        error = addressValidation("#message",error);
-        var status = errorFocus(error);
-        if(!status)
-        {
-            $(this).removeClass(className);
-            hideLoader();
-            return false;
-        }
-        var that = this;
-        $.post(root+"/ajax/loginmanage/my-update.php",{name:name,last_name:lastName, salutation:$.trim($("#salutation").val()) ,company:company,
-                                phone:phone, mobile:mobile, email:email,alt_email:altEmail,
-                             city:city,zipcode : $.trim($("#zip").val()),state:state,street:street,
-                             id:$.trim($("#id").val()),
-                             country:country, message: $.trim($("#message").val())},function(data){
-                        data = $.trim(data);
-                        if(data != "")
-                        {
-                            alertData(title,data);
-                            $(that).removeClass(className);
-                            hideLoader();
-                            return false;
-                        }else{
-                                    //alertData(title,"Your Details Has Been Updated Successfully.");
-                            $(".edit").show();
-                            $(that).removeClass(className);
-                            hideLoader();
-                             window.location.href=site+"/profile";
-                        }
-                        });
+        editPerform(e,this);
                  
      });
     /** Login Functionality **/
+    $("#loginForm").on("keypress",function(e){
+       if(e.keyCode ==13)
+       {
+           //form is submitted
+           loginPerform(e,this);
+           return false;
+       }  
+        
+    });
    $("#submit").on("click",function(e){
        /** Stop the immediate propagation **/
-        e.stopImmediatePropagation();
-      var className = "ajaxCall";
-        if($(this).hasClass(className))
-        {
-            return false;
-        }
-        $(this).addClass(className);
-      showLoader(); 
-      $(this).attr("disabled");
-      
-      $(".errorInput").removeClass("errorInput");
-      var username = $.trim($("#username").val());
-      var pass = $.trim($("#lpassword").val());
-      var title = "Request Message";
-      var that = this;
-      var error = [];
-      /** check the error validtions **/
-      error = checkUserName("#username",error, "Please enter Username/E-mail.");
-      error = checkPwdError("#lpassword",error,"");
-      if(error.indexOf("e") != -1)
-      {
-          $(this).removeAttr("disabled");
-          $(this).removeClass(className);
-          hideLoader();
-          $("#username").focus();
-          return false;
-      }
-       if(error.indexOf("pr") != -1)
-      {
-          $(this).removeAttr("disabled");
-          $(this).removeClass(className);
-          hideLoader();
-          $("#lpassword").val("");
-          $("#lpassword").focus();
-          return false;
-      }
-      var that = this;
-      $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
-          password:pass},function(data){
-          data = $.trim(data);
-         
-        if(data != "")
-        {
-            
-            alertData(title,data);
-                //showLabelFocus("#password",data);
-                $(that).removeClass(className);
-            $(that).removeAttr("disabled");
-            $("#lpassword").val("");
-             hideLoader();
-             $("#lpassword").focus();
-           
-            return false;
-        }
-        
-        //alertData(title, "Login Successfully !!");
-        window.location.href=site;
-   });
+        loginPerform(e,this)
 });
 /** logouts **/
 $(".logouts").on("click",function(e){
@@ -401,135 +298,41 @@ $(".logouts").on("click",function(e){
       });
    
     });
-    
-     /** Change Password **/
-     $("#changePwdSubmit").on("click",function(e){
-         var site = $.trim($("#siteTheme").val());
-        e.stopImmediatePropagation();
-        var className = "ajaxCall";
-        if($(this).hasClass(className))
+    $("#chgFrm").on("keypress",function(e){
+        if(e.keyCode ==13)
         {
+            changePwdPerform(e,this);
             return false;
         }
-        $(this).addClass(className);
-        showLoader();
-        $(this).attr("disabled");
-        $(".errorInput").removeClass("errorInput");
-        var old = $.trim($("#oldPwd").val());
-        var newp = $.trim($("#newPwd").val());
-        var status = $.trim($("#status").val());
-       
-        //var title = "Request Message";
-        var error = []; 
-        error = pwdCheckError(status,error,"#oldPwd");
-        error = newPwdCheckError(status,error,"#newPwd",old);
-        error = confirmCheckError(error,"#confirmPwd",newp);
-        
-          if(error.indexOf("o") != -1)
-            {
-                 hideEnd(this);
-                 $(this).removeClass(className);
-                $("#oldPwd").focus();
-                return false;
-            }
-            else if(error.indexOf("n") != -1)
-            {
-                 hideEnd(this);
-                 $(this).removeClass(className);
-                $("#newPwd").focus();
-                return false;
-            }
-            else if(error.indexOf("c") != -1)
-            {
-                 hideEnd(this);
-                 $(this).removeClass(className);
-                $("#confirmPwd").focus();
-                return false;
-            }
-            
-        var isAdmin = parseInt($.trim($("#isAdmin").val()));
-         $(".correctPassword").show();
-         var that = this;
-         
-         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
-         old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
-     status:status,type:"site"}, function (data) {
-     
-      if(data == "0" )
-            {
-                window.location.href = site+'/profile';
-               
-                return false;
-            } 
-            //data = $.trim(data);
-          // var msg = data.msg;
-                         
-                      
-            var role = data.role;
-          
-             if (data.error == 1)
-            {
-                $(that).removeClass(className);
-                $("#newPassword").focus();
-                 $(".correctPassword").hide();
-               // alertData(title,data);
-                hideLoader();
-                return false;
-            } else {
-                $(".correctPassword").show();
-                $(that).removeClass(className);
-              
-             
-               
-                window.location.href = site+'/profile';
-            }
-        },"json");
+    });
+     /** Change Password **/
+     $("#changePwdSubmit").on("click",function(e){
+         changePwdPerform(e,this);
      });
-     
+     $("#forGotForm").on("keypress",function(e){
+         if(e.keyCode ==13)
+         { forgotPerform(e,this);
+            return false;
+         }
+     });
      /** Forgot password **/
     $("#forogotSubmit").on("click",function(e)
     {
-        var site = $.trim($("#siteTheme").val());
-      e.stopImmediatePropagation();
-       var className = "ajaxCall";
-        if($(this).hasClass(className))
+       forgotPerform(e,this);
+    });
+    $("#setPwdForm").on("keypress",function(e){
+        if(e.keyCode ==13)
         {
+            setPwdPerform(e, this);
             return false;
         }
-        $(this).addClass(className);
-      showLoader();
-      $(this).attr("disabled");
-      $(".errorInput").removeClass("errorInput");
-     // var title = "Request Message";
-      var username = $.trim($("#username").val());
-      if(username == "")
-      {
-          var msg = "Please enter Username/E-mail.";
-         // alertData(title,msg);
-          showLabelFocus("#username",msg);
-          $(this).removeClass(className);
-          $(this).removeAttr("disabled");
-          hideLoader();
-          $("#username").focus();
-          return false;
-        }else if(!emailValid(username))
-        {
-            var msg = "Please enter valid E-mail";
-           //alertData(title,msg);
-          
-            showLabelFocus("#username",msg);
-           $(this).removeAttr("disabled");
-           $(this).removeClass(className);
-            hideLoader();
-            $("#username").focus();
-            return false;
-        }else
-            hideData("#username");
-        var that = this;
-         $.post(root+"/ajax/loginmanage/forgot-pwd-submit.php", {username:username},function(data){
-          data = $.trim(data);
-             if(data != "")
+    });
+    /** set Password **/
+     $("#setpassword").on("click",function(e){
+         setPwdPerform(e, this);
+     });
         
+<<<<<<< HEAD
         {
             //alertData(title,data);
             hideLoader();
@@ -627,6 +430,8 @@ $(".logouts").on("click",function(e){
         },"json");
         
      });
+=======
+>>>>>>> 2264dd9bc43b1d6ab39366320f03dadaa27cb821
 });
 
 /**
@@ -1156,7 +961,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
-                responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+                responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 
             }//for closed
@@ -1192,9 +997,9 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     responseHtml += '.objectListTable td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
-    var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    /*var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if(devWidth<=1024)
-    $("table.objectListTable tr td:last-child").parent().append("<br>");
+    $("table.objectListTable tr td:last-child").parent().append("<br>");*/
     $(that).removeClass(classView);
    displayObjects();
     hideLoader();
@@ -1488,7 +1293,6 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
          var status = getConnectionError(data,that,classView);
         if(!status){
             displayContacts();
-          showMoreContact();
             return false;
         }
             var  res = data;
@@ -1571,7 +1375,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                 //value = res[i].fields;
                   value = result[i][fields];  
            
-                responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+                responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 
             }//for closed
@@ -1616,8 +1420,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     
     $(that).removeClass(classView);
     displayContacts();
-    showMoreContact();
-    hideLoader();
+     hideLoader();
       },'json');
 }
 /**
@@ -1638,194 +1441,7 @@ function displayContacts()
       e.stopImmediatePropagation();
       $(this).removeClass("addColorSpan");
    });
-   /** View Type **/
-   $("#contactViewType").on("change",function(e){
-      e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var view = $.trim($(this).val());
-       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-       var type = $(".activeCont").data("type");
-       var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,100,0,type,field,orderType,alphaType)
-   });
-   
-   /*** Contact Pagination***/
-   $(".displayContacts").on("click",function(e){
-       e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var page = $.trim($(this).data("paged"));
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var type = $(".activeCont").data("type");
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
-   });
-   /*** Click on the More Button **/
-   $(".moreContact").on("click",function(e){
-        e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      $(this).addClass("activeMore");
-      var page = getPageNo("displayContacts");
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      $(this).addClass("activeCont");
-      $(".fewerContact").removeClass("activeCont");
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,1,field,orderType,alphaType);
-   });
-   /*** Fewer functionalities ***/
-    $(".fewerContact").on("click",function(e){
-        e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      $(this).addClass("activeFewer");
-      showLoader();
-      var page = getPageNo("displayContacts");
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      $(this).addClass("activeCont");
-      $(".moreContact").removeClass("activeCont");
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,0,field,orderType,alphaType);
-   });
-   /*** Alpha paginations***/
-   $(".alphaContact").on("click",function(e){
-         e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var page = getPageNo("displayContacts");  
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      var alphaType = $.trim($(this).data('alphatype'));
-      $(".listItem").removeClass("activeAlpha");
-      $(".listItem[data-alphatype="+alphaType+"]").addClass("activeAlpha");
-       var type = $(".activeCont").data("type");
-       var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
-   });
-   
-   /*** Sort the functionality**/
-   $(".sortClass").on("click", function(e){
-          e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var orderType = $.trim($(this).data("type"));
-     
-      var orderBy = "asc";
-      if(orderType == "asc")
-          orderBy = "desc";
-      var page = getPageNo("displayContacts");  
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-       var type = $(".activeCont").data("type");
-       var field = $.trim($(this).data("field"));
-       getContactTemplate(view,this,classView,length,page,type,field,orderBy,alphaType);
-       });
-}
-/**
- * Show more functionalities
- * @name showMoreContact
- * @returns {void}
- */
-function showMoreContact()
-{
-    /** Show more in contacts in view account **/
-    $(".showMoreContactAct").on("click",function(e){
-       e.stopImmediatePropagation();
-        var classView = "ajaxCall";
-        if($(this).hasClass(classView))
-        return false;
-        $(this).addClass(classView);
-        var offset = $.trim($(this).data("cnt"));
-        var page = $.trim($(this).data("page"));
-        var pagePart = $.trim($(this).data("pagepart"));
-        if(typeof(page) == "undefined")
-              page =0;
-          if(typeof(pagePart) == "undefined")
-              pagePart =0;
-        getContactTemplateByAccount(this,classView,page,'all',pagePart,"CreatedDate","desc");
-        
-    });
-    /**show more in cases in view account **/
-    $(".showMoreCaseAct").on("click",function(e){
-       e.stopImmediatePropagation();
-        var classView = "ajaxCall";
-        if($(this).hasClass(classView))
-        return false;
-        $(this).addClass(classView);
-        var offset = $.trim($(this).data("cnt"));
-        var page = $.trim($(this).data("page"));
-        var pagePart = $.trim($(this).data("pagepart"));
-        if(typeof(page) == "undefined")
-              page =0;
-          if(typeof(pagePart) == "undefined")
-              pagePart =0;
-        getCaseTemplateByAccount(this,classView,page,'all', pagePart,"CreatedDate","desc");
-        
-    });
-    /**show more in cases in view account **/
-    $(".showMoreCaseHistoryAct").on("click",function(e){
-       e.stopImmediatePropagation();
-        var classView = "ajaxCall";
-        if($(this).hasClass(classView))
-        return false;
-        $(this).addClass(classView);
-        //var offset = $.trim($(this).data("cnt"));
-        var page = $.trim($(this).data("page"));
-        var pagePart = $.trim($(this).data("pagepart"));
-        if(typeof(page) == "undefined")
-              page =0;
-          if(typeof(pagePart) == "undefined")
-              pagePart =0;
-        getCaseHistory(this,classView,page);
-        
-    });
+  
 }
 /**
  * Display the first name errors
@@ -2047,6 +1663,13 @@ function errorFocus(error)
    }
    return true;
 }
+/**
+ * Get the maximum values
+ * @name maxH
+ * @param {int} h1
+ * @param {string} h
+ * @returns {@var;h}
+ */
 function maxH(h1,h)
 {
     h = $.trim(h);
@@ -2057,4 +1680,410 @@ function maxH(h1,h)
     if(h1 <h)
         h1 = h;
     return h1;
+}
+/**
+ * Convert the new line into break in given string
+ * @name nl2br
+ * @param {type} str
+ * @param {type} is_xhtml
+ * @returns {String}
+ * 
+ */
+function nl2br (str, is_xhtml) {   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+}
+/**
+ * Perform the login functionality
+ * @name loginPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {Boolean}
+ */
+function loginPerform(e,that)
+{
+    e.stopImmediatePropagation();
+      var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        var root = $.trim($("#rootTheme").val());
+        var site = $.trim($("#siteTheme").val());
+        showLoader(); 
+        $(that).attr("disabled");
+      
+      $(".errorInput").removeClass("errorInput");
+      var username = $.trim($("#username").val());
+      var pass = $.trim($("#lpassword").val());
+      var title = "Request Message";
+     // var that = this;
+      var error = [];
+      /** check the error validtions **/
+      error = checkUserName("#username",error, "Please enter Username/E-mail.");
+      error = checkPwdError("#lpassword",error,"");
+      if(error.indexOf("e") != -1)
+      {
+          $(that).removeAttr("disabled");
+          $(that).removeClass(className);
+          hideLoader();
+          $("#username").focus();
+          return false;
+      }
+       if(error.indexOf("pr") != -1)
+      {
+          $(that).removeAttr("disabled");
+          $(that).removeClass(className);
+          hideLoader();
+          $("#lpassword").val("");
+          $("#lpassword").focus();
+          return false;
+      }
+     // var that = this;
+      $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
+          password:pass},function(data){
+          data = $.trim(data);
+         
+        if(data != "")
+        {
+            
+            alertData(title,data);
+                //showLabelFocus("#password",data);
+                $(that).removeClass(className);
+            $(that).removeAttr("disabled");
+            $("#lpassword").val("");
+             hideLoader();
+             $("#lpassword").focus();
+           
+            return false;
+        }
+        
+        //alertData(title, "Login Successfully !!");
+        window.location.href=site;
+   });
+}
+/**
+ * Edit the user details
+ * @name editPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {Boolean}
+ */
+function editPerform(e,that)
+{
+    e.stopImmediatePropagation(); 
+        var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        showLoader();
+        var root = $.trim($("#rootTheme").val());
+        var site = $.trim($("#siteTheme").val());
+        $(that).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var name = $.trim($("#firstname").val());
+        var lastName = $.trim($("#lastname").val());
+        var company = $.trim($("#company").val());
+        
+        var phone = $.trim($("#phone").val());
+        var mobile = $.trim($("#mobile").val());
+        var email = $.trim($("#email").val());
+        var altEmail = $.trim($("#alternateemail").val());
+        
+        var street = $.trim($("#street").val());
+        var city = $.trim($("#city").val());
+        var state = $.trim($("#state").val());
+        var country = $.trim($("#country").val());
+        var error = "";
+        var title = "Request Message";
+        var error = [];
+        error = firstNameError("#firstname",error);
+        error =   LastNameError("#lastname",error);
+        error = checkUserName("#email",error, "Please enter your E-mail.");
+        error = checkUserName("#alternateemail",error, "Please enter your Alternate E-mail.");
+        error = phoneValidation("#phone",error);
+        error = phoneValidation("#mobile",error);
+         error = addressValidation("#street",error);
+         error = addressValidation("#city",error);
+        error = addressValidation("#state",error);
+        error = addressValidation("#country",error);
+        error = addressValidation("#zip",error);
+        error = addressValidation("#message",error);
+        var status = errorFocus(error);
+        if(!status)
+        {
+            $(that).removeClass(className);
+            hideLoader();
+            return false;
+        }
+        //var that = this;
+        $.post(root+"/ajax/loginmanage/my-update.php",{name:name,last_name:lastName, salutation:$.trim($("#salutation").val()) ,company:company,
+                                phone:phone, mobile:mobile, email:email,alt_email:altEmail,
+                             city:city,zipcode : $.trim($("#zip").val()),state:state,street:street,
+                             id:$.trim($("#id").val()),
+                             country:country, message: $.trim($("#message").val())},function(data){
+                        data = $.trim(data);
+                        if(data != "")
+                        {
+                            alertData(title,data);
+                            $(that).removeClass(className);
+                            hideLoader();
+                            return false;
+                        }else{
+                                    //alertData(title,"Your Details Has Been Updated Successfully.");
+                            $(".edit").show();
+                            $(that).removeClass(className);
+                            hideLoader();
+                             window.location.href=site+"/profile";
+                        }
+                        });
+}
+/**
+ * Perform the forgot functionality
+ * @name forgotPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {void}
+ */
+function forgotPerform(e,that)
+{
+     var site = $.trim($("#siteTheme").val());
+     var root = $.trim($("#rootTheme").val());
+      e.stopImmediatePropagation();
+       var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+      showLoader();
+      $(this).attr("disabled");
+      $(".errorInput").removeClass("errorInput");
+     // var title = "Request Message";
+      var username = $.trim($("#username").val());
+      if(username == "")
+      {
+          var msg = "Please enter Username/E-mail.";
+         // alertData(title,msg);
+          showLabelFocus("#username",msg);
+          $(that).removeClass(className);
+          $(that).removeAttr("disabled");
+          hideLoader();
+          $("#username").focus();
+          return false;
+        }else if(!emailValid(username))
+        {
+            var msg = "Please enter valid E-mail";
+           //alertData(title,msg);
+          
+            showLabelFocus("#username",msg);
+           $(that).removeAttr("disabled");
+           $(that).removeClass(className);
+            hideLoader();
+            $("#username").focus();
+            return false;
+        }else
+            hideData("#username");
+        //var that = this;
+         $.post(root+"/ajax/loginmanage/forgot-pwd-submit.php", {username:username},function(data){
+          data = $.trim(data);
+             if(data != "")
+        
+        {
+            //alertData(title,data);
+            hideLoader();
+             showLabelFocus("#username",data);
+           $(that).removeAttr("disabled");
+           $(that).removeClass(className);
+            //$("#correctEmail").hide();
+             $("#correctEmail").css("display", "none");
+            hideLoader();
+            $("#username").focus();
+            return false;
+        }
+         // $("#correctEmail").show();
+           $("#correctEmail").css("display", "block");
+           $(that).removeClass(className);
+        //alertData(title,"Thank you, Your Password Details Are Sent To Your E-mail.");
+         window.location.href = site+'/login';
+      });
+}
+/**
+ * Set the password functionality
+ * @name setPwdperform
+ * @param {object} e
+ * @param {object} that
+ * @returns void
+ */
+function setPwdPerform(e, that)
+{
+     var site = $.trim($("#siteTheme").val());
+      var root = $.trim($("#rootTheme").val());
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        showLoader();
+        $(that).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var newp = $.trim($("#newPwd").val());
+        //var conp = $.trim($("#confirmPwd").val());
+        //var oldPwd = $.trim($("#oldPwd").val());
+      //  var status = $.trim($("#status").val());
+       var status=1;
+        //var title = "Request Message";
+        var error = []; 
+        
+        error = newPwdCheckError(status,error,"#newPwd");
+        error = confirmCheckError(error,"#confirmPwd",newp);
+           if(error.indexOf("n") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#newPwd").focus();
+                return false;
+            }
+            else if(error.indexOf("c") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#confirmPwd").focus();
+                return false;
+            }
+            
+        var isAdmin = parseInt($.trim($("#isAdmin").val()));
+         $(".correctPassword").show();
+         //var that = this;
+         
+         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
+         new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+     status:status,rand :$("#rand").val() }, function (data) {
+    
+                if( data=="0"  )
+            {
+                window.location.href = site+'/login';
+                return false;
+            } 
+     
+            data = $.trim(data);
+         //var msg = data.msg;
+                         
+                      
+            //var role = data.role;
+          
+             if (data.error == 1)
+            {
+                $(that).removeClass(className);
+                $("#newPassword").focus();
+                 $(".correctPassword").hide();
+               // alertData(title,data);
+                hideLoader();
+                return false;
+            } else {
+                $(".correctPassword").show();
+                $(that).removeClass(className);
+               // window.location.href = site+'/login';
+              window.location.href = site+'/login';
+            }
+            
+        },"json");
+        
+     
+}
+/**
+ * perform change password functionality
+ * @name changePwdPerform
+ * @param {object} e
+ * @param {object} that
+ * @returns {void}
+ */
+function changePwdPerform(e,that)
+{
+    var site = $.trim($("#siteTheme").val());
+    var root = $.trim($("#rootTheme").val());
+        e.stopImmediatePropagation();
+        var className = "ajaxCall";
+        if($(that).hasClass(className))
+        {
+            return false;
+        }
+        $(that).addClass(className);
+        showLoader();
+        $(that).attr("disabled");
+        $(".errorInput").removeClass("errorInput");
+        var old = $.trim($("#oldPwd").val());
+        var newp = $.trim($("#newPwd").val());
+        var status = $.trim($("#status").val());
+       
+        //var title = "Request Message";
+        var error = []; 
+        error = pwdCheckError(status,error,"#oldPwd");
+        error = newPwdCheckError(status,error,"#newPwd",old);
+        error = confirmCheckError(error,"#confirmPwd",newp);
+        
+          if(error.indexOf("o") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#oldPwd").focus();
+                return false;
+            }
+            else if(error.indexOf("n") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#newPwd").focus();
+                return false;
+            }
+            else if(error.indexOf("c") != -1)
+            {
+                 hideEnd(that);
+                 $(that).removeClass(className);
+                $("#confirmPwd").focus();
+                return false;
+            }
+            
+        var isAdmin = parseInt($.trim($("#isAdmin").val()));
+         $(".correctPassword").show();
+         //var that = this;
+         
+         $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
+         old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+     status:status,type:"site"}, function (data) {
+     
+      if(data == "0" )
+            {
+                window.location.href = site+'/profile';
+               
+                return false;
+            } 
+            //data = $.trim(data);
+          // var msg = data.msg;
+                         
+                      
+           // var role = data.role;
+          
+             if (data.error == 1)
+            {
+                $(that).removeClass(className);
+                $("#newPassword").focus();
+                 $(".correctPassword").hide();
+               // alertData(title,data);
+                hideLoader();
+                return false;
+            } else {
+                $(".correctPassword").show();
+                $(that).removeClass(className);
+              
+             
+               
+                window.location.href = site+'/profile';
+            }
+        },"json");
 }

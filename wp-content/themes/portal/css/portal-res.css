@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
 }
 /** alignment for my profile**/
-.column, .headercolumns {
+ .headercolumns {
     position: relative;
     padding-left: 0.0375rem;
     padding-right: 0.0375rem;

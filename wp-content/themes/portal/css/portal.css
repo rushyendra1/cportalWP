@@ -236,7 +236,11 @@ top:250px;position:fixed;left:500px
     color: #fff;
     cursor:pointer;
     padding: 0.5rem;
+
    
+
+    border-radius:3px;
+
 }
 .activeAlpha{
     background-color: #c73;

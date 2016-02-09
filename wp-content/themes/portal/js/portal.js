@@ -131,6 +131,7 @@ $(".toggle-topbar").on("click",function(){
        /** Stop the immediate propagation **/
         loginPerform(e,this)
 });
+
 /** logouts **/
 $(".logouts").on("click",function(e){
        /** Stop the immediate propagation **/

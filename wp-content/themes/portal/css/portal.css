@@ -171,6 +171,7 @@ top:250px;position:fixed;left:500px
 .list td{
        border-bottom: 1px solid #ccc;
        word-wrap: break-word;
+       vertical-align: top;
    }
 .addColorSpan{
     background-color: #cdcdcd;

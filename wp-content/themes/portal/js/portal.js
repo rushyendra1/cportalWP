@@ -1155,7 +1155,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
                value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
-                responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+                responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 
             }//for closed
@@ -1487,7 +1487,6 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
          var status = getConnectionError(data,that,classView);
         if(!status){
             displayContacts();
-          showMoreContact();
             return false;
         }
             var  res = data;
@@ -1570,7 +1569,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                 //value = res[i].fields;
                   value = result[i][fields];  
            
-                responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+                responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
                 
             }//for closed
@@ -1615,8 +1614,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     
     $(that).removeClass(classView);
     displayContacts();
-    showMoreContact();
-    hideLoader();
+     hideLoader();
       },'json');
 }
 /**
@@ -1637,194 +1635,7 @@ function displayContacts()
       e.stopImmediatePropagation();
       $(this).removeClass("addColorSpan");
    });
-   /** View Type **/
-   $("#contactViewType").on("change",function(e){
-      e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var view = $.trim($(this).val());
-       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-       var type = $(".activeCont").data("type");
-       var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,100,0,type,field,orderType,alphaType)
-   });
-   
-   /*** Contact Pagination***/
-   $(".displayContacts").on("click",function(e){
-       e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var page = $.trim($(this).data("paged"));
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var type = $(".activeCont").data("type");
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
-   });
-   /*** Click on the More Button **/
-   $(".moreContact").on("click",function(e){
-        e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      $(this).addClass("activeMore");
-      var page = getPageNo("displayContacts");
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      $(this).addClass("activeCont");
-      $(".fewerContact").removeClass("activeCont");
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,1,field,orderType,alphaType);
-   });
-   /*** Fewer functionalities ***/
-    $(".fewerContact").on("click",function(e){
-        e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      $(this).addClass("activeFewer");
-      showLoader();
-      var page = getPageNo("displayContacts");
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      $(this).addClass("activeCont");
-      $(".moreContact").removeClass("activeCont");
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-      var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,0,field,orderType,alphaType);
-   });
-   /*** Alpha paginations***/
-   $(".alphaContact").on("click",function(e){
-         e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var page = getPageNo("displayContacts");  
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      var alphaType = $.trim($(this).data('alphatype'));
-      $(".listItem").removeClass("activeAlpha");
-      $(".listItem[data-alphatype="+alphaType+"]").addClass("activeAlpha");
-       var type = $(".activeCont").data("type");
-       var ele = $(".activeSort").parent();
-       var field = $.trim(ele.data("field"));
-       var orderType = $.trim(ele.data("type"));
-      getContactTemplate(view,this,classView,length,page,type,field,orderType,alphaType);
-   });
-   
-   /*** Sort the functionality**/
-   $(".sortClass").on("click", function(e){
-          e.stopImmediatePropagation();
-      var classView = "ajaxCall";
-      if($(this).hasClass(classView))
-      {
-          return false;
-      }
-      $(this).addClass(classView);
-      showLoader();
-      var orderType = $.trim($(this).data("type"));
-     
-      var orderBy = "asc";
-      if(orderType == "asc")
-          orderBy = "desc";
-      var page = getPageNo("displayContacts");  
-      var length = 100;
-      var view = $.trim($("#contactViewType").val());
-      var alphaType = $.trim($(".activeAlpha").data('alphatype'));
-       var type = $(".activeCont").data("type");
-       var field = $.trim($(this).data("field"));
-       getContactTemplate(view,this,classView,length,page,type,field,orderBy,alphaType);
-       });
-}
-/**
- * Show more functionalities
- * @name showMoreContact
- * @returns {void}
- */
-function showMoreContact()
-{
-    /** Show more in contacts in view account **/
-    $(".showMoreContactAct").on("click",function(e){
-       e.stopImmediatePropagation();
-        var classView = "ajaxCall";
-        if($(this).hasClass(classView))
-        return false;
-        $(this).addClass(classView);
-        var offset = $.trim($(this).data("cnt"));
-        var page = $.trim($(this).data("page"));
-        var pagePart = $.trim($(this).data("pagepart"));
-        if(typeof(page) == "undefined")
-              page =0;
-          if(typeof(pagePart) == "undefined")
-              pagePart =0;
-        getContactTemplateByAccount(this,classView,page,'all',pagePart,"CreatedDate","desc");
-        
-    });
-    /**show more in cases in view account **/
-    $(".showMoreCaseAct").on("click",function(e){
-       e.stopImmediatePropagation();
-        var classView = "ajaxCall";
-        if($(this).hasClass(classView))
-        return false;
-        $(this).addClass(classView);
-        var offset = $.trim($(this).data("cnt"));
-        var page = $.trim($(this).data("page"));
-        var pagePart = $.trim($(this).data("pagepart"));
-        if(typeof(page) == "undefined")
-              page =0;
-          if(typeof(pagePart) == "undefined")
-              pagePart =0;
-        getCaseTemplateByAccount(this,classView,page,'all', pagePart,"CreatedDate","desc");
-        
-    });
-    /**show more in cases in view account **/
-    $(".showMoreCaseHistoryAct").on("click",function(e){
-       e.stopImmediatePropagation();
-        var classView = "ajaxCall";
-        if($(this).hasClass(classView))
-        return false;
-        $(this).addClass(classView);
-        //var offset = $.trim($(this).data("cnt"));
-        var page = $.trim($(this).data("page"));
-        var pagePart = $.trim($(this).data("pagepart"));
-        if(typeof(page) == "undefined")
-              page =0;
-          if(typeof(pagePart) == "undefined")
-              pagePart =0;
-        getCaseHistory(this,classView,page);
-        
-    });
+  
 }
 /**
  * Display the first name errors
@@ -2046,6 +1857,13 @@ function errorFocus(error)
    }
    return true;
 }
+/**
+ * Get the maximum values
+ * @name maxH
+ * @param {int} h1
+ * @param {string} h
+ * @returns {@var;h}
+ */
 function maxH(h1,h)
 {
     h = $.trim(h);
@@ -2056,4 +1874,16 @@ function maxH(h1,h)
     if(h1 <h)
         h1 = h;
     return h1;
+}
+/**
+ * Convert the new line into break in given string
+ * @name nl2br
+ * @param {type} str
+ * @param {type} is_xhtml
+ * @returns {String}
+ * 
+ */
+function nl2br (str, is_xhtml) {   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }

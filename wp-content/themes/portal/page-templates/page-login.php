@@ -36,9 +36,8 @@ get_header(); ?>
     <div class="bPageTitle">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>--><br>
         <h1 class="headTitle">
-        Login</h14>
+        Login</h1>
        <h4 class="right"><small><em>* = Required</em></small></h4>
-      <hr>
       </div>
   </div>
 <div class="row">

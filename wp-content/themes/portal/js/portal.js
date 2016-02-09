@@ -1862,7 +1862,7 @@ function setPwdPerform(e, that)
          //var that = this;
          
          $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
-         new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+         new_pwd: Base64.encode(newp),id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,rand :$("#rand").val() }, function (data) {
     
                 if( data=="0"  )
@@ -1954,7 +1954,7 @@ function changePwdPerform(e,that)
          //var that = this;
          
          $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
-         old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+         old_pwd:Base64.encode(old) , new_pwd: Base64.encode(newp),id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
      
       if(data == "0" )

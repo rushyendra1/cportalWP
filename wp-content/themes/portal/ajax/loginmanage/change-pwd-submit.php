@@ -1,8 +1,8 @@
 <?php
 
-$old_pwd = (isset($_POST['old_pwd'])) ? $_POST['old_pwd'] : "";
+$old_pwd = (isset($_POST['old_pwd'])) ? base64_decode($_POST['old_pwd']) : "";
 $status = (isset($_POST['status'])) ? $_POST['status'] : 0;
-$new_pwd = (isset($_POST['new_pwd'])) ? $_POST['new_pwd'] : "";
+$new_pwd = (isset($_POST['new_pwd'])) ? base64_decode($_POST['new_pwd']) : "";
 
 global $table_prefix;
 

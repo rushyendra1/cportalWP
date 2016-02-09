@@ -1240,8 +1240,8 @@ function generate_input($element, $options, $attribute, $is_searchable, $place_h
 
         if ($attribute != "salutation") {
             $result.='<span class="label error alert radius" style="display:none">Required</span>';
-            if ($attribute == "email")
-                $result .= '<span id="correctEmail" style="display:none" ><img class="imageShown" src="img/correct1.png"  ></span>';
+            if ($attribute == "email" || $attribute == "alternate email")
+                $result .= '<span id="correctEmail" style="display:none" ><img class="imageShown" src="'.  get_template_directory_uri().'/img/correct1.png"  ></span>';
             $result .= '</label>';
             $result .= '</div></div>';
         } else

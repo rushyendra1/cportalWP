@@ -26,10 +26,10 @@ $blog = $blogname . "|" . $blogdescription;
             <div id="wrapHome" class="row-fluid"  >
 
                 <div  class="row headerrow">
-                <div id="logo" class="medium-3 columns">
+                <div id="logo" class="medium-3 columns headercolumns">
                     <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                 </div>
-                <div class="medium-9 columns mainTitleH1">
+                <div class="medium-9 columns mainTitleH1 headercolumns">
                 <h1 id="name" class="header">
                     <a href="<?php echo get_site_url() ?>">Customer Portal</a>
                 </h1>
@@ -47,7 +47,7 @@ $blog = $blogname . "|" . $blogdescription;
                         $name = $result->user_login;
                     ?>
                     <div id="Login" class="row">
-                        <div class="columns-4 nameDisp">
+                        <div class="columns-4 nameDisp ">
                             Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                             <a   class="logouts logoutHeader logms">LOGOUT</a>
                         </div></div>

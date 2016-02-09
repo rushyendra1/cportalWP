@@ -92,7 +92,7 @@ if(is_array($result) && count($result)>0)
         <h1 class="headTitle"><?php echo $title; ?></h1>
     </div>
   </div>   
-<div class="row">
+<div class="row mobilerow">
       <div id="section_1">
         <div class="row statusAccount" >
               <div class="links-pad">

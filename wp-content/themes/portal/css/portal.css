@@ -630,7 +630,8 @@ position: relative;
     width:100%;
 }
 .top-bar-section ul li{
-    width:10%;
+   // width:10%;
+    width:13%;
 }
 .top-bar-section ul{
     width:99%;

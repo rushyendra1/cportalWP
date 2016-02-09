@@ -25,7 +25,7 @@ $blog = $blogname . "|" . $blogdescription;
         <div class="row-fluid">
             <div id="wrapHome" class="row-fluid"  >
 
-                <div  class="row">
+                <div  class="row headerrow">
                 <div id="logo" class="medium-3 columns">
                     <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                 </div>
@@ -94,10 +94,10 @@ if ($pages == "" || $pages == "home") {
 
                                 $tab_array = $response_array['TabList'];
 
-                               // $tab_array = array("link1dfdfd dfdfd dfdfdsfsdf", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11");
+                               $tab_array = array("link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11");
 
                                 $api_array = $response_array['ApiList'];
-                                //$api_array = array("link1cvcvcvcvcvcvcvxc", "link2cvxcvcv ccvcvc","link3","link4","link5","link6","link7","link8","link9","link10","link11");
+                                $api_array = array("link1cvcvcvcvcvcvcvxc", "link2cvxcvcv ccvcvc","link3","link4","link5","link6","link7","link8","link9","link10","link11");
                                 $i = 0;
                                 $j = 0;
                                 $limit =8;

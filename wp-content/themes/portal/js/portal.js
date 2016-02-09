@@ -238,6 +238,7 @@ $(".toggle-topbar").on("click",function(){
 $(".logouts").on("click",function(e){
        /** Stop the immediate propagation **/
         e.stopImmediatePropagation();
+        
       var className = "ajaxCall";
         if($(this).hasClass(className))
         {
@@ -602,8 +603,8 @@ $(".logouts").on("click",function(e){
                 return false;
             } 
      
-            data = $.trim(data);
-         var msg = data.msg;
+           // data = $.trim(data);
+         //var msg = data.msg;
                          
                       
             var role = data.role;

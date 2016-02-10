@@ -873,6 +873,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'&obj_name='+objectName+'">View</a>'+editLink+'</td>';
             responseHtml +='</tr>';
         }
+        $(".alphaDiv").show();
     }else{
          responseHtml +='<tr><td class="error noRecordRow" colspan="9">No Records To Display</td></tr>';
     }
@@ -1643,7 +1644,7 @@ function loginPerform(e,that)
       }
      // var that = this;
       $.post(root+"/ajax/loginmanage/login-submit.php", {username:username, 
-          password:pass},function(data){
+          password:Base64.encode(pass)},function(data){
           data = $.trim(data);
          
         if(data != "")
@@ -1863,7 +1864,7 @@ function setPwdPerform(e, that)
          //var that = this;
          
          $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
-         new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+         new_pwd: Base64.encode(newp),id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,rand :$("#rand").val() }, function (data) {
     
                 if( data=="0"  )
@@ -1955,7 +1956,7 @@ function changePwdPerform(e,that)
          //var that = this;
          
          $.post( root+"/ajax/loginmanage/change-pwd-submit.php", {id:$.trim($("#userId").val()),
-         old_pwd:old , new_pwd: newp,id:$.trim($("#id").val()), is_admin:isAdmin ,
+         old_pwd:Base64.encode(old) , new_pwd: Base64.encode(newp),id:$.trim($("#id").val()), is_admin:isAdmin ,
      status:status,type:"site"}, function (data) {
      
       if(data == "0" )

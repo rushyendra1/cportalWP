@@ -90,6 +90,9 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
 <div class="bPageTitle">
     <h1 class="headTitle">View <?php echo $object_name; ?></h1>
 </div>
+     <div class="goBackDiv">
+          <a  class="goBack buttonCss">Back</a>
+     </div>
  </div> 
 
 <div>

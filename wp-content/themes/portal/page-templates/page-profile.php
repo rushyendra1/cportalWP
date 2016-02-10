@@ -91,6 +91,9 @@ if(is_array($result) && count($result)>0)
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
         <h1 class="headTitle"><?php echo $title; ?></h1>
     </div>
+      <div class="goBackDiv">
+           <a  class="goBack buttonCss">Back</a>
+      </div>
   </div>   
 <div class="row mobilerow">
       <div id="section_1">

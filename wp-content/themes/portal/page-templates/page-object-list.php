@@ -54,6 +54,9 @@ if(isset($result->data->is_Edit))
                           <?php if($parent_obj != "") 
                              echo "<h2>".$parent_obj."</h2>"; ?>
                         </div>    
+                        <div class="goBackDiv">
+                            <a  class="goBack buttonCss">Back</a>
+                        </div>
                     </div>
                     
                             <?php if($is_create) { ?>

@@ -1,7 +1,7 @@
 var geocoder;  
   var files = "";
   var attachWindow ;
-  var pageSize = 100;
+  var pageSize = 5;
 //  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
@@ -12,7 +12,30 @@ $(document).ready(function(){
 	},
         //'reveal': "open"
 });
-
+    var root = $.trim($("#rootTheme").val());
+    var path = $.trim($("#path").val());
+    var site = $.trim($("#siteTheme").val());
+    var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+/*** Go back **/
+$(".goBack").on("click",function(e){
+    e.stopImmediatePropagation();
+    var className = "ajaxCall";
+    if($(this).hasClass(className))
+         return false;
+    $(this).addClass(className);
+    var title = $(".headTitle").html();
+    if(path == "profile" && title == "Edit My Details")
+    {
+        $(".headTitle").html("My Profile");
+        $(".edit").show();
+        $(".dispRow").show();
+        $(".editRow").hide();
+        $(this).removeClass(className);
+        return false;
+    }
+     history.back(); 
+     $(this).removeClass(className);
+});
 var h1 = h2 =  0;
 $(".cal1").each(function(){
     var h = $(this).attr("style");
@@ -35,10 +58,7 @@ $('head').append(addStyle);
 $(".toggle-topbar").on("click",function(){
    $(".top-bar-section").toggle(); 
 });
-    var root = $.trim($("#rootTheme").val());
-    var path = $.trim($("#path").val());
-    var site = $.trim($("#siteTheme").val());
-    var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+   
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
@@ -46,10 +66,10 @@ $(".toggle-topbar").on("click",function(){
        $("#username").focus();
    if(path == "set-paasword")
        $("#newPwd").focus();
-   if(path == "change-password")
+  /* if(path == "change-password")
    {
         $("#oldPwd").focus();
-   }
+   }*/
    if(path == "object-list")
     {
        

@@ -1473,12 +1473,12 @@ if( ! function_exists('helloinfinity_php') )
 	function helloinfinity_php()
 	{
 		$helloinfinity_content = get_the_content();
-		preg_match_all('!\[hi_php[^\]]*\](.*?)\[/hi_php[^\]]*\]!is',$helloinfinity_content,$helloinfinity_matches);
+		preg_match_all('!\[insert_php[^\]]*\](.*?)\[/insert_php[^\]]*\]!is',$helloinfinity_content,$helloinfinity_matches);
 		$helloinfinity_nummatches = count($helloinfinity_matches[0]);
 		for( $helloinfinity_i=0; $helloinfinity_i<$helloinfinity_nummatches; $helloinfinity_i++ )
 		{
 			ob_start();
-			//eval($helloinfinity_matches[1][$helloinfinity_i]);
+			@eval($helloinfinity_matches[1][$helloinfinity_i]);
 			$helloinfinity_replacement = ob_get_contents();
 			ob_clean();
 			ob_end_flush();
@@ -1489,6 +1489,16 @@ if( ! function_exists('helloinfinity_php') )
 		return $helloinfinity_content;
 	} # function helloinfinity_insert_php()
 
-	add_filter( 'the_content', 'helloinfinity_php', 9 );
+	add_filter( 'the_content', 'helloinfinity_php' );
 
 }
+function execute_php($html){
+     if(strpos($html,"\<"."\?php")!==false){
+          ob_start();
+         eval("\?"."\>".$html);
+          $html=ob_get_contents();
+          ob_end_clean();
+     }
+     return $html;
+}
+//add_filter('the_content','execute_php');

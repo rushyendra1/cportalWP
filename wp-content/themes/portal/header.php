@@ -104,7 +104,7 @@ if ($pages == "" || $pages == "home") {
                                 //$api_array = array("link1cvcvcvcvcvcvcvxc", "link2cvxcvcv ccvcvc","link3","link4","link5","link6","link7","link8","link9","link10","link11");
                                 $i = 0;
                                 $j = 0;
-                                $limit =8;
+                                $limit =7;
                                 for ($i = 0; $i <= $limit; $i++) {
                                 //foreach($tab_array as $each_tab)
                                     $tabs = '';

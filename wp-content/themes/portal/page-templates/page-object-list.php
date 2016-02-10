@@ -123,6 +123,7 @@ if(isset($result->data->is_Edit))
                         </div>
                         <!-- Alpha pagination Ended -->
                         <div class="paginationLinks paginationRight"></div>
+                        <div class="showTotalCnt"></div>
                         <!-- End ListElement -->
                     </div>
                     <!-- Body events -->

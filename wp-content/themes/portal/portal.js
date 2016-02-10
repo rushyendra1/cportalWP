@@ -1,7 +1,7 @@
 var geocoder;  
   var files = "";
   var attachWindow ;
-  var pageSize = 5;
+  var pageSize = 100;
 //  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
@@ -901,9 +901,16 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     /** Pagination Links ***/
      var alpha = '';
        var paginationHtml = '';
-    paginationHtml += paginationWC("",length, page, parseInt(totalRecords), len, "displayObjects", alpha);
+      totalRecords =  parseInt(totalRecords);
+    paginationHtml += paginationWC("",length, page, totalRecords, len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
+    var showLabel = '';
+    var pageRelArray = calculatePageRel(page,totalRecords,len,length);
+    var from = pageRelArray[0];
+    var to = pageRelArray[1];
+    showLabel = 'Showing ' + from + ' to ' + to + ' of ' + totalRecords + ' entries.';
+    $(".showTotalCnt").html(showLabel);
            //var pixelWidth = 71/fieldsLen;
     responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
@@ -2006,3 +2013,25 @@ function changePwdPerform(e,that)
             }
         },"json");
 }
+/**
+ * Calculate the from and to 
+ * @name calculatePageRel
+ * @param {int} page
+ * @param {int} totalRecords
+ * @param {int} lenPage
+ * @param {int} pageSize
+ * @returns {Array}
+ */
+function calculatePageRel(page,totalRecords,lenPage,pageSize)
+{
+    var from = 1, to =pageSize;
+    if(page >1){
+        from = (page-1)*pageSize+1;
+        to = pageSize*page;
+    }
+    if(totalRecords <to)
+         to = totalRecords;
+    if(totalRecords<to)
+         to = totalRecords;
+    return [from,to];
+} 

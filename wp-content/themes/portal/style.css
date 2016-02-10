@@ -201,7 +201,7 @@ top:250px;position:fixed;left:500px
     background-color: #cdcdcd;
 }
 .sortAsc {
-    background-image: url("../images/extended/sort_asc_arrow.gif");
+    background-image: url("images/extended/sort_asc_arrow.gif");
     background-position: 0 0;
     height: 14px;
     vertical-align: text-top;
@@ -210,7 +210,7 @@ top:250px;position:fixed;left:500px
 }
 
 .sortDesc {
-    background-image: url("../images/extended/sort_desc_arrow.gif");
+    background-image: url("images/extended/sort_desc_arrow.gif");
     background-position: 0 0;
     height: 14px;
     vertical-align: text-top;

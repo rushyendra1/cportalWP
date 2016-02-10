@@ -321,7 +321,7 @@ if(is_array($result) && count($result)>0)
           <div class="columns small-12"> 
             
             <a  id="mysubmit" class="button radius submit link">Submit</a> 
-            <a  id="mycancel" class="button radius cancel link">Cancel</a> <br>
+            <a  id="goBack" class="button radius cancel link goBack">Cancel</a> <br>
           </div>
         </div>
      </div>

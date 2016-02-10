@@ -103,7 +103,9 @@ if( count($result)>0)
           <div class="clear" style="height:15px"></div>
           <div class="row">
           <div class="columns small-12"> 
-            <button  id="changePwdSubmit" name="changePwdSubmit" class="button radius submit link"  >Submit</button> <br>
+            <button  id="changePwdSubmit" name="changePwdSubmit" class="button radius submit link"  >Submit</button> 
+            <button  id="goBack" class="button radius cancel link goBack">Cancel</button> 
+            <br>
           </div>
         </div>
       </div>

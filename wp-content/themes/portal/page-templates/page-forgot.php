@@ -43,7 +43,9 @@ $title = "Forgot Password";
           <div class="clear" style="height:15px"></div>
           <div class="row">
           <div class="columns small-12"> 
-              <a id="forogotSubmit" class="button radius submit link">Submit</a> <br>
+              <a id="forogotSubmit" class="button radius submit link">Submit</a> 
+              <a  id="goBack" class="button radius cancel link goBack">Cancel</a>
+              <br>
           </div>
         </div>
      

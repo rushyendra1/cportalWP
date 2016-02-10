@@ -719,7 +719,7 @@ function call_js_css_files() {
     //wp_enqueue_script("script-foundations-tooltip", get_template_directory_uri() . "/js/foundation/foundation.equalizer.js", array(), NULL, false);
     wp_enqueue_script("base64", get_template_directory_uri() . "/js/base64.js", array(), NULL, false);
     
-    wp_enqueue_script("script-ext-name", get_template_directory_uri() . "/js/portal.js", array(), NULL, false);
+    wp_enqueue_script("script-ext-name", get_template_directory_uri() . "/portal.js", array(), NULL, false);
 }
 
 add_action("wp_enqueue_scripts", "call_js_css_files");

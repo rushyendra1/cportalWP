@@ -2002,9 +2002,6 @@ function changePwdPerform(e,that)
             } else {
                 $(".correctPassword").show();
                 $(that).removeClass(className);
-              
-             
-               
                 window.location.href = site+'/profile';
             }
         },"json");

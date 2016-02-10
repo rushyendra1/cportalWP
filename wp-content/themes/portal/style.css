@@ -1475,7 +1475,6 @@ section [name="spending_content"] p {
 nav.omnibar {
     padding: 0;
     background-color: #F3F5FA;
-    //border-bottom: 4px solid #fff;
     position: -webkit-sticky;
     position: -moz-sticky;
     position: -ms-sticky;
@@ -1486,9 +1485,7 @@ nav.omnibar {
     max-width: 1170px;
     margin-left: auto;
     margin-right: auto;
-    //background-color: #F4C182;
     color: #fff;
-    //padding: 2em;
 }
 .omnibar:after {
     content: "";
@@ -1884,7 +1881,7 @@ select.selectmenustyleone {
 }
 
 .bb1ccc {
-    //border-bottom: 1px solid #ccc;
+    
     margin-bottom: 30px;
 }
 

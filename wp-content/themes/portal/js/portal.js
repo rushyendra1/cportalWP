@@ -872,6 +872,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'&obj_name='+objectName+'">View</a>'+editLink+'</td>';
             responseHtml +='</tr>';
         }
+        $(".alphaDiv").show();
     }else{
          responseHtml +='<tr><td class="error noRecordRow" colspan="9">No Records To Display</td></tr>';
     }

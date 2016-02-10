@@ -248,6 +248,7 @@ top:250px;position:fixed;left:500px
 }
 .alphaDiv{
     margin-top:10px;
+    display:none;
 }
 /**** ***/
 /*** View Object ***/

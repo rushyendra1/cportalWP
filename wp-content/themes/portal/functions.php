@@ -1467,3 +1467,28 @@ function get_tabs_from_sales() {
     $response = (array) json_decode($response);
     return $response;
 }
+if( ! function_exists('helloinfinity_php') )
+{
+
+	function helloinfinity_php()
+	{
+		$helloinfinity_content = get_the_content();
+		preg_match_all('!\[hi_php[^\]]*\](.*?)\[/hi_php[^\]]*\]!is',$helloinfinity_content,$helloinfinity_matches);
+		$helloinfinity_nummatches = count($helloinfinity_matches[0]);
+		for( $helloinfinity_i=0; $helloinfinity_i<$helloinfinity_nummatches; $helloinfinity_i++ )
+		{
+			ob_start();
+			//eval($helloinfinity_matches[1][$helloinfinity_i]);
+			$helloinfinity_replacement = ob_get_contents();
+			ob_clean();
+			ob_end_flush();
+			$helloinfinity_search = quotemeta($helloinfinity_matches[0][$helloinfinity_i]);
+			$helloinfinity_search = str_replace('/',"\\".'/',$helloinfinity_search);
+			$helloinfinity_content = preg_replace("/$helloinfinity_search/",$helloinfinity_replacement,$helloinfinity_content,1);
+		}
+		return $helloinfinity_content;
+	} # function helloinfinity_insert_php()
+
+	add_filter( 'the_content', 'helloinfinity_php', 9 );
+
+}

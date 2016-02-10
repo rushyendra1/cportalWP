@@ -28,10 +28,6 @@ $country = (isset($_POST['country']))?check_null(trim($_POST['country'])): "";
 $zip = (isset($_POST['zipcode']))?check_null(trim($_POST['zipcode'])): "";
  
 $message = (isset($_POST['message']))?check_null(trim($_POST['message'])): "";
- //$user['password'] = (isset($_POST['password']))?md5($_POST['password']): "";
-//$user['allow_login'] = 1;
-//$user['allow_admin'] = 0;
-//$user['status'] = 1;
 
 if($email != "" && !preg_match('/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/', $email))
 {
@@ -90,16 +86,6 @@ $user_id = mysqli_insert_id($con);
  $msg = str_replace("!!URL!!",$url, $msg );
  $msg = str_replace("!!UserName!!",$uname, $msg );
  $msg = str_replace("!!PassWord!!",$password, $msg );
-  /*$msg = "<h3>Your Authentication Details</h3><table cellspacing='0' cellpadding='0'>"
-          . "<tr><td colspan='2'>Thank you for registering for " .$blog_title."</td></tr>"
-         . "<tr><td style='width:150px'>Access Url:</td>"
-         . "<td><a href='".get_site_url()."'>".get_site_url()."</a></td></tr>"
-         . "<tr><td style='width:150px'>User Name:</td>"
-         . "<td>".$uname."</td></tr>"
-         . "<tr><td style='width:150px'>Password:</td>"
-         . "<td>".$password."</td></tr>"
-         . "</table>";*/
- 
  $admin_email = get_option('admin_email');
  //Send the password to respect email
   $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -194,7 +180,7 @@ if(!$res){
 
 //user previliges
 $cap = 'a:1:{s:10:"subscriber";b:1;}';
-$insert_capbilites = "INSERT INTO ".$table_prefix."usermeta(meta_key, meta_value,user_id) values('wp_capabilities','". $cap."','".$user_id."')";
+$insert_capbilites = "INSERT INTO ".$table_prefix."usermeta(meta_key, meta_value,user_id) values('".$table_prefix."capabilities','". $cap."','".$user_id."')";
 $res = mysqli_query($con,$insert_capbilites);
  	if(!$res){
     echo json_encode(array("errorCode" => "Failure", "message" => "Insertion Query Failure"));
@@ -275,7 +261,12 @@ $res = mysqli_query($con,$insert_act_id);
     exit;
     
 }
-
+//user subscriber
+$wpdb->insert($table_prefix."usermeta",
+	    array( "meta_key" => $table_prefix."user_level",
+		    "meta_value" => 1,
+		"user_id" => $user_id,
+		 ));
 echo json_encode(array(
     "errorCode" => "Success",
     "message" =>"", 

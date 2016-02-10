@@ -1492,13 +1492,3 @@ if( ! function_exists('helloinfinity_php') )
 	add_filter( 'the_content', 'helloinfinity_php' );
 
 }
-function execute_php($html){
-     if(strpos($html,"\<"."\?php")!==false){
-          ob_start();
-         eval("\?"."\>".$html);
-          $html=ob_get_contents();
-          ob_end_clean();
-     }
-     return $html;
-}
-//add_filter('the_content','execute_php');

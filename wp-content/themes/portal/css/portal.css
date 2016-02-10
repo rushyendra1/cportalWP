@@ -674,8 +674,11 @@ position: relative;
 }
 .nameDisp{
     width:100%;
-   
+   float:right;
+   padding-left: 650px;
+   padding-top: -10px;
 }
+
 .toggle-full-width 
 {
     box-shadow: 0 0 0px #ddd; 

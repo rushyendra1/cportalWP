@@ -48,8 +48,12 @@ $blog = $blogname . " | " . $blogdescription;
                     ?>
                     <div id="Login" class="row">
                         <div class="columns-4 nameDisp ">
-                            Hello <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
+                            <div class="loggin">
+                            <b>You are logged in as:</b> <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
+                            </div>
+                            <div>
                             <a   class="logouts logoutHeader logms">LOGOUT</a>
+                            </div>
                         </div></div>
 <?php } 
                 $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";

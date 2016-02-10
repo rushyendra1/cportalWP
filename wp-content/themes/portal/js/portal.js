@@ -875,7 +875,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
         }
         $(".alphaDiv").show();
     }else{
-         responseHtml +='<tr><td class="error noRecordRow" colspan="9">No Records To Display</td></tr>';
+         responseHtml +='<tr><td class="error noRecordRow" colspan="9">No records to display</td></tr>';
     }
     
     /** Pagination Links ***/
@@ -1289,7 +1289,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
         }
     }
     else
-        responseHtml +='<tr><td class="error" colspan="5">No Records To Display</td></tr>';
+        responseHtml +='<tr><td class="error" colspan="5">No records to display</td></tr>';
  //   var totalPageCount = totalPageCnt(totalRecords,perPageCnt);
     page = parseInt(page)+1;
    /* var showMore = '';

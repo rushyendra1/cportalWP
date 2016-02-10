@@ -56,6 +56,9 @@ if( count($result)>0)
       <h1 class="headTitle"><?php echo $title; ?></h1>
 
        <h4 class="right"><small><em>* = Required</em></small></h4>
+       <div class="goBackDiv">
+                            <a  class="goBack buttonCss">Back</a>
+       </div>
       <hr>
     </div>
   </div>

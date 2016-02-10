@@ -59,7 +59,7 @@ if(isset($result) && count($result)>0)
                 <div class="control-group ">
                     <label  class="control-label viewUserDisp">Title </label>
                     <div class="controls viewSettingControls">
-                        <input type="text" id="headertitle"  placeholder="Title" value="<?php echo $min_pass_len ?>" >
+                        <input type="text" id="headertitle"  placeholder="Header Title" value="" >
                         <p class="help-block errorTag" style="display:none"></p>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ if(isset($result) && count($result)>0)
                 <div class="control-group ">
                     <label  class="control-label viewUserDisp">Footer Title </label>
                     <div class="controls viewSettingControls">
-                        <input type="text" id="footertitle"  placeholder="Footer Title" value="<?php echo $max_pass_len ?>" >
+                        <input type="text" id="footertitle"  placeholder="Footer Title" value="" >
                         <p class="help-block errorTag" style="display:none"></p>
                     </div>
                 </div>

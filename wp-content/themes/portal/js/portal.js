@@ -156,6 +156,7 @@ $(".toggle-topbar").on("click",function(){
 $(".logouts").on("click",function(e){
        /** Stop the immediate propagation **/
         e.stopImmediatePropagation();
+        
       var className = "ajaxCall";
         if($(this).hasClass(className))
         {
@@ -334,7 +335,7 @@ $(".logouts").on("click",function(e){
          { forgotPerform(e,this);
             return false;
          }
-     });
+     }); 
      /** Forgot password **/
     $("#forogotSubmit").on("click",function(e)
     {
@@ -346,12 +347,12 @@ $(".logouts").on("click",function(e){
             setPwdPerform(e, this);
             return false;
         }
-    });
+    }); 
     /** set Password **/
      $("#setpassword").on("click",function(e){
-         setPwdPerform(e, this);
-     });
-        
+         setPwdPerform(e, this); 
+     });   
+
 });
 
 /**

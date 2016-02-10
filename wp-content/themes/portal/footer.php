@@ -19,11 +19,13 @@
 				
 					<div class="span1 footer-logo-content" >
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" > 
-							<img src="<?php echo get_template_directory_uri() ?>/images/CustomerPortal.jpg" width="114" height="40" class="footer-logo" />
-						</a>
+					        </a>
 					</div>
 					<div class="span7">
-						<p>&copy; <?php echo date("Y"); ?> All rights reserved <br/> </p> 
+                                            <p >
+                                                    <a href="<?php echo get_site_url() ?>">Customer Portal</a>
+                                         <br>  
+						&copy; <?php echo date("Y"); ?> All rights reserved <br/> </p> 
 						
 					</div>
 					

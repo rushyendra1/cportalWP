@@ -320,7 +320,8 @@ if(is_array($result) && count($result)>0)
           <div class="row editRow" style="display:none">
           <div class="columns small-12"> 
             
-            <a  id="mysubmit" class="button radius submit link">Submit</a> <br>
+            <a  id="mysubmit" class="button radius submit link">Submit</a> 
+            <a  id="mycancel" class="button radius cancel link">Cancel</a> <br>
           </div>
         </div>
      </div>

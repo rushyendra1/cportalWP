@@ -618,11 +618,16 @@ position: relative;
   font-size: 0.8rem;
   line-height: 1.6;
   margin-bottom: 1.25rem;
-  text-rendering: optimizeLegibility; }
+  text-rendering: optimizeLegibility; 
+  }
+  p a {
+      font-size: 1.2rem;
+  }
 /**menus**/
 .top-bar {               
     background: #99ccff none repeat scroll 0 0;
     height:auto;
+    font-style: bold;
 
            }
 .top-bar-section ul li {
@@ -632,7 +637,7 @@ position: relative;
     width:100%;
 }
 .top-bar-section ul li{
-   // width:10%;
+  
     width:13%;
 }
 .top-bar-section ul{
@@ -657,6 +662,8 @@ position: relative;
 
 .top-bar-section ul li > a {
     color: green;
+    font-weight: bold;
+    font-size: 16px;
 }   
   .top-bar.expanded .title-area {
       background: #99ccff; }

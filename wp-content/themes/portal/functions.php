@@ -707,9 +707,9 @@ function call_js_css_files() {
     //if($path == "object-list" || $path == "view-object")
     //wp_enqueue_style("style-wc", get_template_directory_uri()."/css/wc-extended.css", array(), NULL,false);
     //else
-    wp_enqueue_style("style-portal", get_template_directory_uri() . "/css/portal.css", array(), NULL, false);
-    wp_enqueue_style("style-portal-res", get_template_directory_uri() . "/css/portal-res.css", array(), NULL, false);
-    //wp_enqueue_style("style-table-res", get_template_directory_uri()."/css/table-res.css", array(), NULL,false);
+    //wp_enqueue_style("style-portal", get_template_directory_uri() . "/css/portal.css", array(), NULL, false);
+    //wp_enqueue_style("style-portal-res", get_template_directory_uri() . "/css/portal-res.css", array(), NULL, false);
+    wp_enqueue_style("style-portal", get_template_directory_uri() . "/style.css", array(), NULL, false);
     wp_enqueue_script("script-ss-jquerys", get_template_directory_uri() . "/js/vendor/jquery.js", array(), NULL, false);
     wp_enqueue_script("script-s-jquerys", get_template_directory_uri() . "/js/jquery-ui.js", array(), NULL, false);
     wp_enqueue_script("script-foundations", get_template_directory_uri() . "/js/foundation.min.js", array(), NULL, false);

@@ -68,18 +68,10 @@ $(".toggle-topbar").on("click",function(){
        $("#username").focus();
    if(path == "set-paasword")
        $("#newPwd").focus();
-  /* if(path == "change-password")
-   {
-        $("#oldPwd").focus();
-   }*/
+  
    if(path == "object-list")
-    {
-       
-         getObjectTemplate('2','','',pageSize,1,0,'','ASC','all');
-        /*$.post(root+"/ajax/object/object-list.php",{type:type},function(e){
-            
-        });*/
-    }
+         getObjectTemplate('','',pageSize,1,0,'','ASC','all');
+    
     if(path == "view-object")
     {
         var relatedTypes = $.trim($("#relatedTypes").val());
@@ -788,7 +780,7 @@ function alertData(title, statusContent)
  * @param (string) alphaType
  * @returns {void}
  */
-function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType,alphaType)
+function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alphaType)
 {
     showLoader();
     var root = $.trim($("#rootTheme").val()); 
@@ -798,7 +790,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
      var parentObjectType = $.trim($("#parentObjType").val());
      var parentObjId = $.trim($("#parentObjectId").val());
      var isEdit = parseInt($.trim($("#isEdit").val()));
-      $.post(root+"/ajax/object/object-list.php",{view:view,PageNum:page,
+      $.post(root+"/ajax/object/object-list.php",{PageNum:page,
         is_more:isMore,parent_obj_type:parentObjectType,object_id:parentObjId,
     field:field,sort_type:sortType, alpha_type:alphaType,object_type:objectType,length:length},
         function(data){
@@ -969,13 +961,13 @@ function displayObjects()
       showLoader();
       var page = $.trim($(this).data("paged"));
       
-      var view = $.trim($("#viewType").val());
+      //var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
       var type = $(".activeCont").data("type");
        var ele = $(".activeSort").parent();
        var field = $.trim(ele.data("field"));
        var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,this,classView,pageSize,page,type,field,orderType,alphaType);
+      getObjectTemplate(this,classView,pageSize,page,type,field,orderType,alphaType);
    });
    
    /*** Alpha paginations***/
@@ -989,8 +981,7 @@ function displayObjects()
       $(this).addClass(classView);
       showLoader();
       var page = getPageNo("displayObjects");  
-      
-      var view = $.trim($("#viewType").val());
+      //var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(this).data('alphatype'));
       $(".listItem").removeClass("activeAlpha");
       $(".listItem[data-alphatype="+alphaType+"]").addClass("activeAlpha");
@@ -998,7 +989,7 @@ function displayObjects()
        var ele = $(".activeSort").parent();
        var field = $.trim(ele.data("field"));
        var orderType = $.trim(ele.data("type"));
-      getObjectTemplate(view,this,classView,pageSize,page,type,field,orderType,alphaType);
+      getObjectTemplate(this,classView,pageSize,page,type,field,orderType,alphaType);
    });
    /*** Sort the functionality**/
    $(".sortOrders").on("click", function(e){
@@ -1016,11 +1007,11 @@ function displayObjects()
       if(orderType == "asc")
           orderBy = "desc";
       var page = getPageNo("displayObjects");  
-      var view = $.trim($("#viewType").val());
+      //var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
        var type = $(".activeCont").data("type");
        var field = $.trim($(this).data("field"));
-      getObjectTemplate(view,this,classView,pageSize,page,type,field,orderBy,alphaType);
+      getObjectTemplate(this,classView,pageSize,page,type,field,orderBy,alphaType);
    });
 
 }
@@ -1203,11 +1194,11 @@ function getPageNo(ele)
  * @param {string} sortType
  * @returns {void}
  */
-function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectTypeArray,currentObjectNameArray,i)
+function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectTypeArray,currentObjectNameArray,iVal)
 {
     showLoader();
-   var  objectType = objectTypeArray[i];
-   var currentObjectName = currentObjectNameArray[i];
+   var  objectType = objectTypeArray[iVal];
+   var currentObjectName = currentObjectNameArray[iVal];
    var objectLen = objectTypeArray.length;
     if(typeof(page) == "undefined")
         page = 0;
@@ -1341,8 +1332,13 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     responseHtml += '.object-'+objectType+'-list td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".Object"+objectType+"Res").html(responseHtml);
-    //if()
-    
+    iVal+=1;
+    if(iVal <objectLen)
+    {
+        getObjectTemplateByObject('','',1,'all',1,"CreatedDate","desc",objectTypeArray,currentObjectNameArray,iVal);
+        return false;
+    }
+    $(".objectmainContent").show();
     $(that).removeClass(classView);
     displayContacts();
      hideLoader();

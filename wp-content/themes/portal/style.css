@@ -164,7 +164,7 @@ top:250px;position:fixed;left:500px
 .list{
     margin-left: -12px;
     margin-top: 10px;
-    width:100%;
+
     table-layout:fixed;
 }
 .list tr:nth-child(even){
@@ -720,7 +720,7 @@ h2 {
 }
 .noRecordRow{
  text-align: center;
-    width: 730px;    
+    width: 100%;    
 }
 .activeSort{
        display:block !important;

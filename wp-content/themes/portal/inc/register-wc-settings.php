@@ -36,6 +36,9 @@ if(isset($result) && count($result)>0)
     <input type="hidden" id="pages" value="general_settings">
     <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
     <div class="box span12 content-disp">
+        
+         
+        
         <div data-original-title="" class="box-header">
         <h2><i class="halflings-icon wrench"></i>
             <span class="break"></span>Portal Settings
@@ -52,6 +55,24 @@ if(isset($result) && count($result)>0)
                 </div>
             </div>
          
+            <div class="box-content titles" > <!-- Box Content Started -->
+                <div class="control-group ">
+                    <label  class="control-label viewUserDisp">Title </label>
+                    <div class="controls viewSettingControls">
+                        <input type="text" id="headertitle"  placeholder="Header Title" value="" >
+                        <p class="help-block errorTag" style="display:none"></p>
+                    </div>
+                </div>
+                
+                <div class="control-group ">
+                    <label  class="control-label viewUserDisp">Footer Title </label>
+                    <div class="controls viewSettingControls">
+                        <input type="text" id="footertitle"  placeholder="Footer Title" value="" >
+                        <p class="help-block errorTag" style="display:none"></p>
+                    </div>
+                </div>
+                 </div>
+            
             <div class="box-content" > <!-- Box Content Started -->
                 <div class="control-group ">
                     <label  class="control-label viewUserDisp">Minimum Password Length* </label>

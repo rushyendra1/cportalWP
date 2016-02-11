@@ -34,8 +34,8 @@ if(isset($result->data->is_Edit))
 <input type="hidden" id="parentObjectId" value="<?php echo $parent_obj_id; ?>" >
 <input type="hidden" id="parentObj" value="<?php echo $parent_obj; ?>" > 
 <input type="hidden" id="parentObjType" value="<?php echo $parent_obj_type; ?>" > 
-<div id="main-content" class="main-content">
-    <div class="row-fluid data-content-outer" >
+<div id="main-content" class="main-content ">
+    <div class="row-fluid data-content-outer objectmainContent" >
         <div id="primary" class="content-area">
             <div id="content" class="site-content" role="main">
                 <div class=" contentSub sidebarCell">

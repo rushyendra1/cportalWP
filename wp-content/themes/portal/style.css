@@ -747,7 +747,9 @@ h2 {
 .goBackDiv{
     margin-top:-20px;
 }
-
+.objectmainContent{
+    display:none;
+}
 /**** Mobile Support ****/
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 

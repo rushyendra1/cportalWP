@@ -14,7 +14,7 @@ echo place_message();
 
 <div id="main-content" class="main-content">
 
-	<div class="row-fluid data-content-outer" >
+	<div class="row-fluid data-content-outer objectmainContent" >
 		<div id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">
 				

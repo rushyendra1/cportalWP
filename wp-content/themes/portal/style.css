@@ -749,7 +749,7 @@ h2 {
 .goBackDiv{
     margin-top:-20px;
 }
-.objectmainContent{
+.objectmainContent,#footerPortal,.objectmainContentDisp{
     display:none;
 }
 /**** Mobile Support ****/

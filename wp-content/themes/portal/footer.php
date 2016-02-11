@@ -13,7 +13,7 @@
 
 		<!--<div class="clearfix"></div>-->
 
-		<footer name="footer-main" >
+		<footer name="footer-main"  id="footerPortal">
 			<div id="footer" class="row-fluid footer-wrapper-width" align="center" >
 				<div class="footer-content"  >
 				

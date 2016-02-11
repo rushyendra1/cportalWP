@@ -15,10 +15,10 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Muli';
+  font-family: 'muli';
   font-style: normal;
   font-weight: 400;
-  src: local('Muli'), url(css/font/mul_normal.woff2) format('woff2');
+  src: local('muli'), url(css/font/mul_normal.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
@@ -222,6 +222,7 @@ top:250px;position:fixed;left:500px
 }
 .error{
      color:red !important;
+         text-align: center;
      background-color: #ffffff !important;
 }
 /**** ***/

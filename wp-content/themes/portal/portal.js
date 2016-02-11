@@ -5,6 +5,7 @@ var geocoder;
 //  var pageSize = 5; for testing
 $ = jQuery.noConflict();
 //$('#myModal').foundation('reveal', 'open');
+showLoader();
 $(document).ready(function(){
     $(document).foundation({
 	abide:{
@@ -12,6 +13,7 @@ $(document).ready(function(){
 	},
         //'reveal': "open"
 });
+
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
@@ -88,10 +90,11 @@ $(".toggle-topbar").on("click",function(){
         var relatedListsArray = relatedLists.split(",");
         if(relatedObjlen >0)
         {
-            for(var i =0; i<relatedObjlen; i++)
-            {
-                getObjectTemplateByObject('','',1,'all',1,"CreatedDate","desc",relatedTypesArray[i],relatedListsArray[i]);
-            }
+            //for(var i =0; i<relatedObjlen; i++)
+            //{
+            var i =0;
+                getObjectTemplateByObject('','',1,'all',1,"CreatedDate","desc",relatedTypesArray,relatedListsArray,i);
+            //}
         }
     }
    var blog=$.trim($("#blogname").val());
@@ -370,7 +373,7 @@ $(".logouts").on("click",function(e){
             classNm = 'account-pagent';
           $(parent).append(
                 '<div  class= "loaderPageant '+classNm+'" ><img src="'+root+'/images/loading2.gif" ></div>');
-        //$(".loaderPageant").show();
+        $(".loaderPageant").show();
       
  }
  /**
@@ -863,7 +866,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
        
     if(typeof(result)!= "undefined" && typeof(result.status)!="undefined" && result.status== "Failure")
     {
-            responseHtml +='<tr><td class="error noRecordRow" colspan="9">'+result.message+'</td></tr>';
+            responseHtml +='<tr><td class="error noRecordRow" colspan="'+fieldsLen+'">'+result.message+'</td></tr>';
     }else if(len>0){
         for (var i = 0; i < len; i++)
         {
@@ -895,7 +898,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
         }
         $(".alphaDiv").show();
     }else{
-         responseHtml +='<tr><td class="error noRecordRow" colspan="9">No records to display</td></tr>';
+         responseHtml +='<tr><td class="error noRecordRow" colspan="'+fieldsLen+'">No records to display</td></tr>';
     }
     
     /** Pagination Links ***/
@@ -926,6 +929,7 @@ function getObjectTemplate(view,that,classView,length,page,isMore,field,sortType
     responseHtml += '.objectListTable td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
+       $(".objectmainContent").show();
     /*var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if(devWidth<=1024)
     $("table.objectListTable tr td:last-child").parent().append("<br>");*/
@@ -1199,9 +1203,12 @@ function getPageNo(ele)
  * @param {string} sortType
  * @returns {void}
  */
-function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectType,currentObjectName)
+function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,sortType,objectTypeArray,currentObjectNameArray,i)
 {
     showLoader();
+   var  objectType = objectTypeArray[i];
+   var currentObjectName = currentObjectNameArray[i];
+   var objectLen = objectTypeArray.length;
     if(typeof(page) == "undefined")
         page = 0;
     if(typeof(pagePart) == "undefined")
@@ -1317,20 +1324,9 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     }
     else
         responseHtml +='<tr><td class="error" colspan="5">No records to display</td></tr>';
- //   var totalPageCount = totalPageCnt(totalRecords,perPageCnt);
+ 
     page = parseInt(page)+1;
-   /* var showMore = '';
-    if(page<totalPageCount && totalRecords > perPageCnt)
-     showMore = '<span class="showMoreContactAct" data-cnt="'+showMoreCnt+'" data-page="'+page+'" data-pagepart="'+pagePart+'"  >Show '+perPageCnt+' more</span>&nbsp;&nbsp;';
-            */
-    
-/*  var responseShowList = '<div >'+showMore+'\n\
-<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'">Go to List( '+totalRecords+' )</a></span></div>';
-  */          
-             var responseShowList = '<div >\n\
-<span><a href="'+siteUrl+'/object-list?id='+objectType+'&parent_obj_id='+parentObjectId+'&obj_name='+objectType+'&parent_obj='+objName+'&parent_obj_type='+parentObjType+'">Go to List( '+totalRecords+' )</a></span></div>';
-        if(typeof(totalRecords) != "undefined" && totalRecords >0)
-   $(".showMoreDivObject"+objectType).html(responseShowList);
+             
    responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
     for(var j=0;j<fieldsLen;j++)
@@ -1345,7 +1341,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
     responseHtml += '.object-'+objectType+'-list td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
      responseHtml += '}</style>';
     $(".Object"+objectType+"Res").html(responseHtml);
-    
+    //if()
     
     $(that).removeClass(classView);
     displayContacts();

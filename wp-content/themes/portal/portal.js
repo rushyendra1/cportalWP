@@ -364,7 +364,7 @@ $(".logouts").on("click",function(e){
         if(path == "account-lookup")
             classNm = 'account-pagent';
           $(parent).append(
-                '<div  class= "loaderPageant '+classNm+'" ><img src="'+root+'/images/loading2.gif" ></div>');
+                '<div  class= "loaderPageant '+classNm+'" ><img src="'+root+'/images/loader3.gif" ></div>');
         $(".loaderPageant").show();
       
  }

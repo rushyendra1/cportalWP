@@ -47,8 +47,6 @@ $blog = $blogname . " | " . $blogdescription;
                     <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
                 </h1>
                 </div>
-                </div>
-                <div>
                     <?php
                 // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
                 if (is_user_logged_in()) {
@@ -68,6 +66,7 @@ $blog = $blogname . " | " . $blogdescription;
                             <a   class="logouts logoutHeader logms">LOGOUT</a>
                             </div>
                         </div></div>
+                </div>
                 </div>
 
                 

@@ -29,6 +29,7 @@ $(".goBack").on("click",function(e){
     if($(this).hasClass(className))
          return false;
     $(this).addClass(className);
+    $(".error").remove();
     var title = $(".headTitle").html();
     if(path == "profile" && title == "Edit My Details")
     {
@@ -68,11 +69,12 @@ $(".toggle-topbar").on("click",function(){
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
-   //if(path == "login"|| path == "forgot")
-     //  $("#username").focus();
-   //if(path == "set-paasword")
-     //  $("#newPwd").focus();
-  
+   if(path == "login"|| path == "forgot")
+      $("#username").focus();
+   if(path == "set-paasword")
+       $("#newPwd").focus();
+   if(path == "change-password")
+       $("#oldPwd").focus();
    if(path == "object-list")
          getObjectTemplate('','',pageSize,1,0,'','ASC','all');
     
@@ -120,7 +122,7 @@ $(".toggle-topbar").on("click",function(){
     if(gettitle != "")
         blog = gettitle + ' | ' +blog;
     document.title = blog;
-     //$("#firstname").focus();
+     $("#firstname").focus();
        $(this).hide();
    });
    $("#editForm").on("keypress",function(e){

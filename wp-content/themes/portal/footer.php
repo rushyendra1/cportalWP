@@ -8,11 +8,21 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
+global $table_prefix;
+global $wpdb;
+$result = $wpdb->get_row("SELECT title"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+                $title='';
+                if(isset($result) && count($result)>0)
+                {
+                    $portal = $result->title;
+                }
 ?>
 		<!--</div>--><!-- #main -->
 
 		<!--<div class="clearfix"></div>-->
-
+                       
 		<footer name="footer-main" >
 			<div id="footer" class="row-fluid footer-wrapper-width" align="center" >
 				<div class="footer-content"  >
@@ -23,7 +33,7 @@
 					</div>
 					<div class="span7">
                                             <p >
-                                                    <a href="<?php echo get_site_url() ?>">Customer Portal</a>
+                                                    <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
                                          <br>  
 						&copy; <?php echo date("Y"); ?> All rights reserved <br/> </p> 
 						

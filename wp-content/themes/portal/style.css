@@ -701,6 +701,8 @@ position: relative;
 .nameDisp{
     width:100%;
    float:right;
+   margin-top: -70px;
+       margin-right: -140px;
    padding-left: 650px;
    padding-top: -10px;
 }
@@ -735,9 +737,10 @@ h2 {
        
    }
   .headerrow {
-    width: 100%;
+        width: 80%;
     height: 85px;
-    margin-left: auto;
+        margin-left: -50px;
+        float: left;
     margin-right: auto;
     max-width: 62.5rem;
     background-color: white;

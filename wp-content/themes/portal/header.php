@@ -10,11 +10,24 @@ ob_start();
  * @subpackage Portal
  * @since Portal 1.0
  */
+global $table_prefix;
+global $wpdb;
 $pages = get_current_files();
 $blogname = get_option('blogname');
 $blogdescription = get_option('blogdescription');
 $blog = $blogname . " | " . $blogdescription;
+
+ 
+ $result = $wpdb->get_row("SELECT title"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+                $title='';
+                if(isset($result) && count($result)>0)
+                {
+                    $portal = $result->title;
+                }
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,12 +44,12 @@ $blog = $blogname . " | " . $blogdescription;
                 </div>
                 <div class="medium-9 columns mainTitleH1 headercolumns">
                 <h1 id="name" class="header">
-                    <a href="<?php echo get_site_url() ?>">Customer Portal</a>
+                    <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
                 </h1>
                 </div>
                 </div>
-
-                <?php
+                <div>
+                    <?php
                 // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
                 if (is_user_logged_in()) {
 
@@ -55,6 +68,10 @@ $blog = $blogname . " | " . $blogdescription;
                             <a   class="logouts logoutHeader logms">LOGOUT</a>
                             </div>
                         </div></div>
+                </div>
+
+                
+                    
 <?php } 
                 $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
                 unset($_SESSION['msg']);
@@ -63,6 +80,7 @@ $blog = $blogname . " | " . $blogdescription;
                 <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
 
             </div>      
+            </div>
             <nav class="top-bar" data-topbar>
                 <ul class="title-area">
                     <li  class="name"> <a href="#">&nbsp;</a></li>

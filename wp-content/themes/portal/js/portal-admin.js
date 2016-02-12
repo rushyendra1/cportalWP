@@ -27,6 +27,7 @@ $(document).ready(function(){
                var minPassLen = $.trim($("#minPassLen").val());
                var maxPassLen = $.trim($("#maxPassLen").val());
                var maxLoginAttempts = $.trim($("#maxLoginAttempts").val());
+               var title = $.trim($("#headerTitle").val());
                var isallowEdit = 0;
                        
                if($("#allowEdit").is(":checked")) 
@@ -36,6 +37,7 @@ $(document).ready(function(){
                 error = checkSetError("#minPassLen",error);
                 error = checkSetError("#maxPassLen",error);
                 error = checkSetError("#maxLoginAttempts",error);
+               
                 var status = errorFocus(error) ;
                 if(!status)
                 {
@@ -45,7 +47,7 @@ $(document).ready(function(){
                 }
                 var that = this;
                $.post(root+"/ajax/settings/save-settings.php",{min_pass_len:minPassLen,max_pass_len:maxPassLen,
-               max_login_attempts:maxLoginAttempts,is_edit:isallowEdit},function(data){
+               max_login_attempts:maxLoginAttempts,is_edit:isallowEdit,title:title},function(data){
                    var msg = data.msg;
                          alertData("Request Message",msg);
                        $(that).removeAttr("disabled")

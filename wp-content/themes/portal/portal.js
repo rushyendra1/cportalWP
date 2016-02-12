@@ -4,20 +4,24 @@ var geocoder;
   var pageSize = 100;
 //  var pageSize = 5; for testing
 $ = jQuery.noConflict();
-//$('#myModal').foundation('reveal', 'open');
 showLoader();
 $(document).ready(function(){
     $(document).foundation({
 	abide:{
 		
-	},
-        //'reveal': "open"
+	}
 });
 
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
-    var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    //var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if(path != "object-list" && path != "view-object")
+    {
+        $(".objectmainContentDisp").show();
+        $("#footerPortal").show();
+        hideLoader();
+    }
 /*** Go back **/
 $(".goBack").on("click",function(e){
     e.stopImmediatePropagation();
@@ -25,6 +29,7 @@ $(".goBack").on("click",function(e){
     if($(this).hasClass(className))
          return false;
     $(this).addClass(className);
+    $(".error").remove();
     var title = $(".headTitle").html();
     if(path == "profile" && title == "Edit My Details")
     {
@@ -65,10 +70,11 @@ $(".toggle-topbar").on("click",function(){
    if(msg != "")
        alertData("Message",msg);
    if(path == "login"|| path == "forgot")
-       $("#username").focus();
+      $("#username").focus();
    if(path == "set-paasword")
        $("#newPwd").focus();
-  
+   if(path == "change-password")
+       $("#oldPwd").focus();
    if(path == "object-list")
          getObjectTemplate('','',pageSize,1,0,'','ASC','all');
     
@@ -251,11 +257,6 @@ $(".logouts").on("click",function(e){
          // hideLoader();
           return false;
       }
-    /*  var status = $.trim($("#status").val());
-      if(!status){
-          //hideLoader();
-          return false;
-      } */
      $(this).removeClass("errorInput");
       $(this).next().hide();
       
@@ -265,17 +266,15 @@ $(".logouts").on("click",function(e){
        error = newPwdCheckError(1,error,this,oldPwd);
        if(error.indexOf("o") != -1)
         {
-         // $(this).removeAttr("disabled");
-         // hideLoader();
           $("#oldPwd").focus();
           return false;
         }
            if(error.indexOf("n") != -1)
         {
-         // $(this).removeAttr("disabled");
+      
          $(this).val("");
          $(this).focus();
-         //  hideLoader();
+      
           return false;
         }
 
@@ -284,19 +283,14 @@ $(".logouts").on("click",function(e){
  
  $("#oldPwd").on("blur",function(e){
        e.stopImmediatePropagation();
-      //showLoader(); 
+    
       var pwd  =  $.trim($(this).val());
-    /*  var status = $.trim($("#status").val());
-      if(!status)
-          return false; */
       $(this).removeClass("errorInput");
       $(this).next().hide();
       var error = [];
       error =  pwdCheckError(status,error,"#oldPwd");
            if(error.indexOf("o") != -1)
         {
-         // $(this).removeAttr("disabled");
-          //hideLoader();
           return false;
         }
       var that = this;
@@ -305,13 +299,10 @@ $(".logouts").on("click",function(e){
           {
               showLabelFocus(that,data);
               $(that).val("");
-               //$(this).removeAttr("disabled");
               $(that).focus();
-            //  hideLoader();
               return false;
           }
-         // hideLoader();
-      });
+          });
    
     });
     $("#chgFrm").on("keypress",function(e){
@@ -376,7 +367,7 @@ $(".logouts").on("click",function(e){
 function hideLoader()
 {
         $(".loaderPageant").remove();
-        //$(".loaderPageant").hide();
+       
 }
 /**
  * Check the User name 
@@ -405,22 +396,13 @@ function  checkUserName(ele,error,errorMsg)
           var msg = errorMsg;
           error.push(type);
           showLabelFocus(ele,msg);
-         // $("#correctEmail").hide();
           $("#correctEmail").css("display", "none");
-          //$(ele).focus();
+       
          
-      }/*else if( username != "" && !emailValid(username))
-        {
-           var msg = "Please enter valid e-mail.";
-           error.push(type);
-           showLabelFocus(ele,msg);
-           //$("#correctEmail").hide();
-            $("#correctEmail").css("display", "none");
-           //$(ele).focus();
-        }*/
+      }
     else{
             hideData(ele);
-           // $(nextEle).focus();
+       
         }
     return error;
           
@@ -441,11 +423,10 @@ function pwdCheckError(status,error,ele)
               showLabelFocus(ele,msg);
               $(ele).val("");
               error.push('o');
-             //$(ele).focus();
+             
         }else{
             hideData(ele);
-           /* if($(nextEle).val() == "")
-            $(nextEle).focus();*/
+           
         }
         return error;
 }
@@ -465,38 +446,38 @@ function newPwdCheckError(status,error,ele,oldPwd)
     var minPassLen = $.trim($("#minPassLen").val());
     if (newp == "") {
             var msg = "Please enter your New Password.";
-           //error +=msg+"<br/>";
+           
            $(ele).val("");
            error.push("n");
            showLabelFocus(ele,msg);
-           //$(ele).focus();
+           
             
         }else if(newp.length <minPassLen)
         {
             var msg = "Minimum Password character length should be "+minPassLen+".";
             $(ele).val("");
-            //error += msg+"<br/>";
+           
             error.push("n");
             $(ele).val("");
             showLabelFocus(ele,msg);
-            //$(ele).focus();
+           
         }else if(!passwordValid(newp))
         {
             var msg = "New Password should contains atleast one upper,one lowercase,one number and one symbol.";
-            //error +=msg+"<br/>";
-            error.push("n");
-            $(ele).val("");
-            showLabelFocus(ele,msg);
-            //$(ele).focus();
-        }else if(status ==0 &&  oldPwd == newp)
-        {
-             var msg = "Old Password and New Password should not be same.";
-            //error +=msg+"<br/>";
             
             error.push("n");
             $(ele).val("");
             showLabelFocus(ele,msg);
-           // $(ele).focus();
+            
+        }else if(status ==0 &&  oldPwd == newp)
+        {
+             var msg = "Old Password and New Password should not be same.";
+            
+            
+            error.push("n");
+            $(ele).val("");
+            showLabelFocus(ele,msg);
+           
         }else if(status ==1 )
         {
             var rand = $.trim($("#rand").val());
@@ -513,8 +494,7 @@ function newPwdCheckError(status,error,ele,oldPwd)
              
         }else{
             hideData(ele);
-           /* if($(nextEle).val() == "")
-                $(nextEle).focus();*/
+           
         }
         return error;
 }
@@ -531,20 +511,19 @@ function confirmCheckError(error,ele,newp)
     var confirmp = $.trim($(ele).val());
         if (confirmp == "") {
             var msg = "Please enter your Confirm New Password.";
-            //error +=msg+"<br/>";
+           
             error.push('c');
             showLabelFocus(ele,msg);
             $(ele).val("");
             $(".correctPassword").hide();
-            //$(ele).focus();
+            
         }
         else if(newp != confirmp)
         {
-            //$(ele).focus();
+            
             error.push('c');
             var msg = "New Password and Confirm New Password should be same.";
             $(ele).val("");
-            //error+=msg+"<br/>";
             $(".correctPassword").hide();
             showLabelFocus(ele,msg);
             
@@ -552,18 +531,16 @@ function confirmCheckError(error,ele,newp)
         else if(!passwordValid(confirmp))
         {
             var msg = "Confirm New Password should contains atleast one upper,one lowercase,one number and one symbol.";
-            //error +=msg+"<br/>";
             error.push('c');
             $(ele).val("");
             showLabelFocus(ele,msg);
             $(".correctPassword").hide();
-            //$(ele).focus();
+            
         }
         else{
             hideData(ele);
             $(".correctPassword").show();
-           /* if($(nextEle).val() == "")
-            $(nextEle).focus();*/
+           
         }
         return error;
 }
@@ -640,15 +617,10 @@ function pwdCheckErrorReg(error,ele)
  */
 function showLabelFocus(ele,msg)
 {
-    //if(typeof(type) == "undefined"){
+    
     $(ele).next().show();
     $(ele).next().html(msg);
-    //$(ele).prev().prev().html(msg);
-//}
-   // else{
-        /*$(ele).prev().prev().prev().show();
-     $(ele).prev().prev().prev().html(msg);
- }*/
+    
     $(ele).addClass("errorInput");
 }
 /**
@@ -746,15 +718,10 @@ function alertData(title, statusContent)
     if (typeof (statusContent) != 'undefined' && statusContent != "") {
              var opt = {
             modal: true,
-            close: function ()
+            /*close: function ()
             {
 
-               /* if ($('.shareListingEmail').html() != "") {
-
-                    $('.shareListingEmail').dialog("open");
-                }*/
-
-            },
+            },*/
            width: "auto"
         };
         try{
@@ -871,14 +838,13 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 var value =  fields =  "";
                 fields = apiFields[j];
               
-            //if (res[i] != null && typeof (res[i].fields) != "undefined")   
-             if (res[i] != null && typeof (res[i][fields]) != "undefined")
-               //value = res[i].fields;
+            if (res[i] != null && typeof (res[i][fields]) != "undefined")
+               
                value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
-               // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+               
                 
             }//for closed
             var editLink = '';
@@ -900,13 +866,15 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
     paginationHtml += paginationWC("",length, page, totalRecords, len, "displayObjects", alpha);
     
     $(".paginationLinks").html(paginationHtml);
-    var showLabel = '';
-    var pageRelArray = calculatePageRel(page,totalRecords,len,length);
-    var from = pageRelArray[0];
-    var to = pageRelArray[1];
-    showLabel = 'Showing ' + from + ' to ' + to + ' of ' + totalRecords + ' entries.';
-    $(".showTotalCnt").html(showLabel);
-           //var pixelWidth = 71/fieldsLen;
+    
+    if(totalRecords){
+        var showLabel = '';
+        var pageRelArray = calculatePageRel(page,totalRecords,len,length);
+        var from = pageRelArray[0];
+        var to = pageRelArray[1];
+        showLabel = 'Showing ' + from + ' to ' + to + ' of ' + totalRecords + ' entries.';
+        $(".showTotalCnt").html(showLabel);
+    }
     responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
     for(var j=0;j<fieldsLen;j++)
@@ -919,12 +887,10 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
     
     responseHtml += '.objectListTable td:nth-of-type( '+k+' ):before { content: "Action"; font-weight:bold;}';
     responseHtml += '.objectListTable td.error:nth-of-type( 1 ):before { content: "" !important; font-weight:bold;}';
-     responseHtml += '}</style>';
+    responseHtml += '}</style>';
     $(".object-list-res").html(responseHtml);
-       $(".objectmainContent").show();
-    /*var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if(devWidth<=1024)
-    $("table.objectListTable tr td:last-child").parent().append("<br>");*/
+    $(".objectmainContent").show();
+    $("#footerPortal").show();
     $(that).removeClass(classView);
    displayObjects();
     hideLoader();
@@ -961,7 +927,6 @@ function displayObjects()
       showLoader();
       var page = $.trim($(this).data("paged"));
       
-      //var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
       var type = $(".activeCont").data("type");
        var ele = $(".activeSort").parent();
@@ -981,7 +946,6 @@ function displayObjects()
       $(this).addClass(classView);
       showLoader();
       var page = getPageNo("displayObjects");  
-      //var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(this).data('alphatype'));
       $(".listItem").removeClass("activeAlpha");
       $(".listItem[data-alphatype="+alphaType+"]").addClass("activeAlpha");
@@ -1007,7 +971,6 @@ function displayObjects()
       if(orderType == "asc")
           orderBy = "desc";
       var page = getPageNo("displayObjects");  
-      //var view = $.trim($("#viewType").val());
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
        var type = $(".activeCont").data("type");
        var field = $.trim($(this).data("field"));
@@ -1064,8 +1027,7 @@ function itemAlertData(title, statusContent,type)
     if (typeof (statusContent) != 'undefined' && statusContent != "") {
          var opt = {
             modal: true,
-            /*close: function (){/*if ($('.shareListingEmail').html() != "") {$('.shareListingEmail').dialog("open");}*///},
-           // width: "auto",
+           
             minWidth: "250"
         };  
         try{
@@ -1081,7 +1043,7 @@ function itemAlertData(title, statusContent,type)
         
         $("#dialog").dialog(opt);
         okFun();
-       // hideLoader();
+       
     }
 }
 /**
@@ -1093,10 +1055,10 @@ function okFun()
 {
     $(".okButton").on("click",function(e){
        
-         //$("#dialogParent").remove();
+       
          $(".ui-dialog").remove();
          $("#dialogParent").remove();
-       // $('#dialog').dialog('close');   
+       
     });
   
 }
@@ -1115,12 +1077,10 @@ function paginationWC(difClass,perPage, start, total, pageCnt, className,alpha) 
         alpha = "";
     var totalPages = totalPageCnt(total,perPage);
     var page = parseInt(start);
-    var nextPage = prevPage = "";
+    var nextPage ="", prevPage = "";
    if(page < totalPages)
    {
        nextPage = page+1;
-      /* if(nextPage == totalPages)
-           nextPage = "";*/
        prevPage = page -1;
        if(prevPage == -1)
            prevPage = "";
@@ -1208,14 +1168,11 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
      var siteUrl = $.trim($("#siteTheme").val()); 
      var parentObjectId = $.trim($("#objectId").val());
      var parentObjType = $.trim($("#objectType").val());
-     var objName = $.trim($("#objName").val());
      
-     //var perPageCnt = 15;
     $.post(root+"/ajax/object/object-list.php",{
         object_id:parentObjectId,parent_obj_type :parentObjType,
         object_type:objectType,length:5,
-        /*per_page_cnt:perPageCnt,PageNumShow:page,*/
-        PageNum:pagePart,alpha_type:alphaType,
+         PageNum:pagePart,alpha_type:alphaType,
         field:field, sort_type:sortType},function(data){
          var status = getConnectionError(data,that,classView);
         if(!status){
@@ -1226,12 +1183,9 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
            var result = res.objectList;
            var fieldsArray = data.fields;
            var fieldsLen = fieldsArray.length;
-           var totalRecords = 0;
-           if(typeof(res.NumberofRec) != "undefined")
-            totalRecords = res.NumberofRec;
-        
+         
             var msg = "Request Message";
-            var len = showMoreCnt = 0;
+            var len = 0;
             
     try {
         len = res.pageRecords;
@@ -1297,19 +1251,19 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             {
                 var value =  fields =  "";
                 fields = fieldsArray[j];
-            //  if (res[i] != null && typeof (res[i].fields) != "undefined")   
+           
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
-                //value = res[i].fields;
+           
                   value = result[i][fields];  
            
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
-               // responseHtml +='<td class=" dataCell  " scope="row">'+value+'</td>';
+           
                 
             }//for closed
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'&obj_name='+currentObjectName+'"">View</a> &nbsp; <a>Edit</a></td>';
             responseHtml +='</tr>';
 
-            showMoreCnt = i+1;
+           
             
         }
     }
@@ -1339,6 +1293,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
         return false;
     }
     $(".objectmainContent").show();
+    $("#footerPortal").show();
     $(that).removeClass(classView);
     displayContacts();
      hideLoader();
@@ -1380,21 +1335,19 @@ function firstNameError(ele,error)
     if(isRequired== "required" && name == "" )
         {
             var msg = "Please enter your Firstname.";
-            //error  += msg+"<br/>";
             error.push("f");
              showLabelFocus(ele,msg,1);
-            //$(ele).focus();
+            
         }else if(isRequired == "required" && name.length < 2)
         {
             var msg = "Minimum Firstname character length should be 2.";
-            //error  += msg+"<br/>";
+            
             error.push("f");
              showLabelFocus(ele,msg,1);
-            // $(ele).focus();
+            
         }else{
              hideData(ele);
-            /* if($(nextEle).val() == "")
-                $(nextEle).focus();*/
+            
          }
          return error;
 }
@@ -1412,21 +1365,19 @@ function LastNameError(ele,error)
     if( isRequired == "required" && lastName == "")
         {
             var msg = "Please enter your Lastname.";
-            //error += msg+"<br/>";
-            error.push("l");
+             error.push("l");
             showLabelFocus(ele,msg);
-            //$(ele).focus();
+            
 
         }else if(isRequired == "required" && lastName.length<2){
             var msg = "Minimum Lastname character length should be 2.";
-            //error += msg+"<br/>";
+            
             error.push("l");
             showLabelFocus(ele,msg);
-            //$(ele).focus();
+            
         }else{
              hideData(ele);
-            /* if($(nextEle).val() == "")
-             $(nextEle).focus();*/
+            
          }
          return error;
 }
@@ -1452,24 +1403,23 @@ function phoneValidation(ele,error)
     if( isRequired == "required" && phone == "" )
         {
             var msg = "Please enter your "+type+" number.";
-            //error+=msg+"<br/>";
+            
             hidePassword();
             error.push(emsg);
             showLabelFocus(ele,msg);
-            //$(ele).focus();
+            
         }
        else  if(phone != "" && !phoneValid(phone))
         {  var msg = "Please enter valid "+type+" number.";
-            //error += msg+"<br/>";
+            
             error.push(emsg);
             hidePassword();
             showLabelFocus(ele,msg);
-           // $(ele).focus();
+           
         }
         else {
             hideData(ele);
-           /* if($(nextEle).val() == "")
-                $(nextEle).focus();*/
+           
         }
         return error;
 }
@@ -1528,8 +1478,7 @@ function addressValidation(ele,error)
     if(isRequired == "required" && $.trim($(ele).val()) == "")
     {
         var msg = "Please enter your "+errorTitle+".";
-            //error+=msg+"<br/>";
-           // hidePassword();
+           
             error.push(errorMsg);
             showLabelFocus(ele,msg);
     }else
@@ -1639,8 +1588,7 @@ function loginPerform(e,that)
       var username = $.trim($("#username").val());
       var pass = $.trim($("#lpassword").val());
       var title = "Request Message";
-     // var that = this;
-      var error = [];
+        var error = [];
       /** check the error validtions **/
       error = checkUserName("#username",error, "Please enter Username/E-mail.");
       error = checkPwdError("#lpassword",error,"");
@@ -1670,8 +1618,7 @@ function loginPerform(e,that)
         {
             
             alertData(title,data);
-                //showLabelFocus("#password",data);
-                $(that).removeClass(className);
+            $(that).removeClass(className);
             $(that).removeAttr("disabled");
             $("#lpassword").val("");
              hideLoader();
@@ -1679,8 +1626,7 @@ function loginPerform(e,that)
            
             return false;
         }
-        
-        //alertData(title, "Login Successfully !!");
+     
         window.location.href=site;
    });
 }
@@ -1984,12 +1930,6 @@ function changePwdPerform(e,that)
                
                 return false;
             } 
-            //data = $.trim(data);
-          // var msg = data.msg;
-                         
-                      
-           // var role = data.role;
-          
              if (data.error == 1)
             {
                 $(that).removeClass(className);
@@ -2017,6 +1957,8 @@ function changePwdPerform(e,that)
 function calculatePageRel(page,totalRecords,lenPage,pageSize)
 {
     var from = 1, to =pageSize;
+    if(totalRecords ==0)
+        from =0;
     if(page >1){
         from = (page-1)*pageSize+1;
         to = pageSize*page;

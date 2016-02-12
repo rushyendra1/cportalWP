@@ -68,7 +68,7 @@ if(is_array($result) && count($result)>0)
 
 <div id="main-content" class="main-content">
 
-	<div class="row-fluid data-content-outer" >
+	<div class="row-fluid data-content-outer objectmainContentDisp" >
 		<div id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">
 

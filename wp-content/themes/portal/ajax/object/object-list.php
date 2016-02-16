@@ -37,6 +37,9 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
         {
             $object_array['chr'] = strtolower($alpha_type);
         }
+        global $user_ID;
+        if($user_ID)
+         $object_array['userId'] =$user_ID;
         if($object_id != "")
         {
             $object_array['RecordId'] = $object_id;

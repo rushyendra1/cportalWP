@@ -20,10 +20,11 @@ function general_settings_fun()
 { 
     global $wpdb;
     global $table_prefix;
-    $result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts,allow_edit"
+    $result = $wpdb->get_row("SELECT title,min_pass_len,max_pass_len,max_login_attempts,allow_edit"
                             . " FROM ".$table_prefix."settings"
                            . " WHERE id=1");
-$min_pass_len =$max_pass_len = $max_login_attempts = $allow_edit =  0;
+    $min_pass_len =$max_pass_len = $max_login_attempts = $allow_edit =  0;
+    $title = '';
 
 if(isset($result) && count($result)>0)
 {
@@ -31,13 +32,14 @@ if(isset($result) && count($result)>0)
     $max_pass_len = $result->max_pass_len;
     $max_login_attempts = $result->max_login_attempts;
     $allow_edit = $result->allow_edit;
+    $title = $result->title;
 }
+
+
     ?>
     <input type="hidden" id="pages" value="general_settings">
     <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
-    <div class="box span12 content-disp">
-        
-         
+    <div class="box span12 content-disp headeralign" id="headeralign">
         
         <div data-original-title="" class="box-header">
         <h2><i class="halflings-icon wrench"></i>
@@ -47,37 +49,26 @@ if(isset($result) && count($result)>0)
         <div class="box-content">
             
     <div class="row-fluid ">		
-        <div class="box span12 content-disp">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span><?php echo $title; ?></h2>
-                <div class="box-icon">
-                     <small><em>* = Required</em></small>
-                </div>
-            </div>
+        <div class="box span12 content-disp" id="contentalign">
+      
          
             <div class="box-content titles" > <!-- Box Content Started -->
                 <div class="control-group ">
-                    <label  class="control-label viewUserDisp">Title </label>
+                    <label  class="control-label viewUserDisp">Title* </label>
                     <div class="controls viewSettingControls">
-                        <input type="text" id="headertitle"  placeholder="Header Title" value="" >
+                        <input type="text" id="headerTitle" name="headerTitle"  placeholder="Portal Title" value="<?php echo $title ?>" >
                         <p class="help-block errorTag" style="display:none"></p>
                     </div>
                 </div>
                 
-                <div class="control-group ">
-                    <label  class="control-label viewUserDisp">Footer Title </label>
-                    <div class="controls viewSettingControls">
-                        <input type="text" id="footertitle"  placeholder="Footer Title" value="" >
-                        <p class="help-block errorTag" style="display:none"></p>
-                    </div>
-                </div>
+               
                  </div>
             
             <div class="box-content" > <!-- Box Content Started -->
                 <div class="control-group ">
                     <label  class="control-label viewUserDisp">Minimum Password Length* </label>
                     <div class="controls viewSettingControls">
-                        <input type="text" id="minPassLen"  placeholder="Minimum Password Length" value="<?php echo $min_pass_len ?>" >
+                        <input type="text" id="minPassLen" placeholder="Minimum Password Length" value="<?php echo $min_pass_len ?>" >
                         <p class="help-block errorTag" style="display:none"></p>
                     </div>
                 </div>
@@ -334,7 +325,7 @@ function user_settings_fun()
     ?>
 <input type="hidden" id="pages" value="wc_user_settings">
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
-<div class="box span12 content-disp">
+<div class="box span12 content-disp" id="contentalign">
     
 </div>
   <?php }

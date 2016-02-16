@@ -13,9 +13,9 @@ if(!isset($wpdb))
  $settings['max_pass_len'] = (isset($_POST['max_pass_len']))?$_POST['max_pass_len']: 0;
  $settings['max_login_attempts'] = (isset($_POST['max_login_attempts']))?$_POST['max_login_attempts']: 0;
  $settings['allow_edit'] = (isset($_POST['is_edit']))?$_POST['is_edit']: 0;
+ $settings['title'] = (isset($_POST['title']))?$_POST['title']: '';
 
-
-$result = $wpdb->get_row("SELECT min_pass_len,max_pass_len,max_login_attempts,allow_edit"
+$result = $wpdb->get_row("SELECT title,min_pass_len,max_pass_len,max_login_attempts,allow_edit"
                             . " FROM ".$table_prefix."settings"
                            . " WHERE id=1");
 

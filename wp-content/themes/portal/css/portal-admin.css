@@ -80,3 +80,24 @@ margin-left:-5px;
 #adminmenu .wp-not-current-submenu .wp-submenu{
     margin-left:-1px;
 }
+#perPageItem {
+	width: 70px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+#searchItem {
+	width:200px;
+}
+#contentalign {
+	margin-left:-26px;
+}
+#headeralign{
+	margin-left:-5px;
+}
+#isVisibleReg,#isVisibleUser,#isVisible,#isRequired {
+	height:15px;
+	width:15px;
+}
+#editattralign {
+	contentalign:center;
+}

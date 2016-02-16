@@ -703,7 +703,7 @@ position: relative;
    float:right;
    margin-top: -30px;
        margin-right: -340px;
-   padding-left: 650px;
+   padding-left: 470px;
    padding-top: -10px;
 }
 
@@ -752,15 +752,15 @@ h2 {
     display:none;
 }
 /**** Mobile Support ****/
+
+
+
  @media only screen and (max-width: 319px),(min-device-width : 320px) and (max-device-width : 480px) {
 
     #wrapHome {
-    width: 100%;
-    text-align: center;
-    background-color: white;
-    min-height: 230px;
+    min-height: 260px;
         text-align: center;
-    position: relative;
+
 }
 .top-bar {
     background: #99ccff none repeat scroll 0 0;
@@ -768,12 +768,12 @@ h2 {
     font-style: bold;
 }
 .contentSub{
-        margin-left: 40px;
+        margin-left: 45px;
 }
 .nameDisp {
-    width: 100%;
     float: left;
     margin-left: 10px;
+         margin-right: 0px; 
     margin-top: -10px;
 }
 /* edit profile and change my password page */
@@ -801,26 +801,102 @@ h1, h2, h3, h4, h5, h6 {
     padding:0.2rem !important;
 }
 }
+
+@media only screen and (max-width: 479px),(min-device-width : 480px) and (max-device-width : 640px) {
+
+    #wrapHome {
+    min-height: 230px;
+        text-align: center;
+
+}
+.top-bar {
+    background: #99ccff none repeat scroll 0 0;
+    margin-top: 0px;
+    font-style: bold;
+}
+.contentSub{
+        margin-left: 70px;
+}
+.nameDisp {
+    float: left;
+    margin-left: 10px;
+     margin-right: 0px;
+    margin-top: -10px;
+}
+/* edit profile and change my password page */
+.links-pad {
+    margin-left: 2px;
+}
+/** alignment of header(Customer Portal )**/
+#name {
+    font-size: 1.9rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.09em;
+}
+#name a {
+    text-align: left;
+}
+/** alignment for my profile**/
+ .headercolumns {
+    position: relative;
+    padding-left: 0.0375rem;
+    padding-right: 0.0375rem;
+    float: left;
+}
+.listItem{
+    padding:0.2rem !important;
+}
+}
+
 @media only screen and
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
         }
-@media only screen and (min-device-width : 240px) and (max-device-width : 319px){
-    .dispRow {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-             }
-             .links-pad a {
-                            display: inline-block;
-                            margin-right: 35px;
-                          }
-             .row .mobilerow {
-                            margin-top: 8px;
-                       }
-                       .listItem{
+        
+        @media only screen and (max-width: 239px),(min-device-width : 240px) and (max-device-width : 320px) {
+
+    #wrapHome {
+    min-height: 230px;
+        text-align: center;
+
+}
+
+.contentSub{
+       margin-left: 35px;
+}
+.nameDisp {
+    float: left;
+    margin-left: 10px;
+    margin-right: 0px;
+    
+}
+/* edit profile and change my password page */
+.links-pad {
+    margin-left: 2px;
+}
+/** alignment of header(Customer Portal )**/
+#name {
+    font-size: 1.9rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.09em;
+}
+#name a {
+    text-align: left;
+}
+/** alignment for my profile**/
+ .headercolumns {
+    position: relative;
+    padding-left: 0.0375rem;
+    padding-right: 0.0375rem;
+    float: left;
+}
+.listItem{
     padding:0.2rem !important;
 }
-        }
-        @media only screen and (max-width: 760px),
+}
+
+@media only screen and (max-width: 760px),
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
             .contentSub{
         display:block;

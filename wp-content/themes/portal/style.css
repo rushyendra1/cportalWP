@@ -734,17 +734,7 @@ h2 {
    .displayEle{
        word-wrap: break-word;
        margin-top: -21px;
-       
    }
- /* .headerrow {
-        width: 80%;
-    height: 85px;
-        margin-left: -50px;
-        float: left;
-    margin-right: auto;
-    max-width: 62.5rem;
-    background-color: white;
-}*/
  .headerrow {
      height:85px;
     width: 80%;
@@ -762,8 +752,30 @@ h2 {
     display:none;
 }
 /**** Mobile Support ****/
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+ @media only screen and (max-width: 319px),(min-device-width : 320px) and (max-device-width : 480px) {
 
+    #wrapHome {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    min-height: 230px;
+        text-align: center;
+    position: relative;
+}
+.top-bar {
+    background: #99ccff none repeat scroll 0 0;
+    margin-top: 0px;
+    font-style: bold;
+}
+.contentSub{
+        margin-left: 40px;
+}
+.nameDisp {
+    width: 100%;
+    float: left;
+    margin-left: 10px;
+    margin-top: -10px;
+}
 /* edit profile and change my password page */
 .links-pad {
     margin-left: 2px;
@@ -800,7 +812,6 @@ h1, h2, h3, h4, h5, h6 {
              .links-pad a {
                             display: inline-block;
                             margin-right: 35px;
-                            
                           }
              .row .mobilerow {
                             margin-top: 8px;
@@ -813,11 +824,9 @@ h1, h2, h3, h4, h5, h6 {
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
             .contentSub{
         display:block;
-         
-         margin-left: 20px;
-
-     
-         width:90%;
+        margin-left: 112px;
+        width: 71%;
+        margin-top: 20px;
         }
         .mainTitleH1{
             margin-top:20px;
@@ -825,6 +834,13 @@ h1, h2, h3, h4, h5, h6 {
         #name a{
             text-align: center;
         }
+    .nameDisp {
+    width: 100%;
+    float: left;
+    margin-top: -10px;
+    margin-right: -340px;
+    margin-left: 430px;
+}
         /* Force table to not be like tables anymore */
 		table, thead, tbody, th, td, tr { 
 			display: block; 

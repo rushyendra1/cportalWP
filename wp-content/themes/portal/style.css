@@ -526,10 +526,11 @@ top:250px;position:fixed;left:500px
     
     width:100%;
 
-text-align: center;
+text-align: left;
 background-color: white;
 position: relative;
 }
+
 /*#header {
 	width: 100%;
 	height: 100px;
@@ -539,11 +540,11 @@ position: relative;
 }*/
 #logo {
 	height: 60px;
-	width: 200px;
+	width: 100px;
 	float: left;
 	padding:0px;
 	margin-top: 0px;
-	margin-left: 10px;
+	margin-left: 50px;
    
 	background-repeat: no-repeat;
 }
@@ -650,10 +651,14 @@ position: relative;
       font-size: 1.2rem;
   }
 /**menus**/
+.autoheighthm {
+    background-color: white;
+}
 .top-bar {               
     background: #99ccff none repeat scroll 0 0;
     height:auto;
     font-style: bold;
+    margin-top: 10px;
 
            }
 .top-bar-section ul li {
@@ -736,9 +741,8 @@ h2 {
        margin-top: -21px;
    }
  .headerrow {
-     height:85px;
+     
     width: 80%;
-    height: 100px;
     margin-left: 10px;
  }
 .goBack{
@@ -753,155 +757,12 @@ h2 {
 }
 /**** Mobile Support ****/
 
-
-
- @media only screen and (max-width: 319px),(min-device-width : 320px) and (max-device-width : 480px) {
-
-    #wrapHome {
-    min-height: 260px;
-        text-align: center;
-
-}
-.top-bar {
-    background: #99ccff none repeat scroll 0 0;
-    margin-top: 0px;
-    font-style: bold;
-}
-.contentSub{
-        margin-left: 45px;
-}
-.nameDisp {
-    float: left;
-    margin-left: 10px;
-         margin-right: 0px; 
-    margin-top: -10px;
-}
-/* edit profile and change my password page */
-.links-pad {
-    margin-left: 2px;
-}
-/** alignment of header(Customer Portal )**/
-#name {
-    font-size: 1.9rem;
-}
-h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.09em;
-}
-#name a {
-    text-align: left;
-}
-/** alignment for my profile**/
- .headercolumns {
-    position: relative;
-    padding-left: 0.0375rem;
-    padding-right: 0.0375rem;
-    float: left;
-}
-.listItem{
-    padding:0.2rem !important;
-}
-}
-
-@media only screen and (max-width: 479px),(min-device-width : 480px) and (max-device-width : 640px) {
-
-    #wrapHome {
-    min-height: 230px;
-        text-align: center;
-
-}
-.top-bar {
-    background: #99ccff none repeat scroll 0 0;
-    margin-top: 0px;
-    font-style: bold;
-}
-.contentSub{
-        margin-left: 70px;
-}
-.nameDisp {
-    float: left;
-    margin-left: 10px;
-     margin-right: 0px;
-    margin-top: -10px;
-}
-/* edit profile and change my password page */
-.links-pad {
-    margin-left: 2px;
-}
-/** alignment of header(Customer Portal )**/
-#name {
-    font-size: 1.9rem;
-}
-h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.09em;
-}
-#name a {
-    text-align: left;
-}
-/** alignment for my profile**/
- .headercolumns {
-    position: relative;
-    padding-left: 0.0375rem;
-    padding-right: 0.0375rem;
-    float: left;
-}
-.listItem{
-    padding:0.2rem !important;
-}
-}
-
-@media only screen and
-	(min-device-width: 768px) and (max-device-width: 1024px)  {
-        }
-        
-        @media only screen and (max-width: 239px),(min-device-width : 240px) and (max-device-width : 320px) {
-
-    #wrapHome {
-    min-height: 230px;
-        text-align: center;
-
-}
-
-.contentSub{
-       margin-left: 35px;
-}
-.nameDisp {
-    float: left;
-    margin-left: 10px;
-    margin-right: 0px;
-    
-}
-/* edit profile and change my password page */
-.links-pad {
-    margin-left: 2px;
-}
-/** alignment of header(Customer Portal )**/
-#name {
-    font-size: 1.9rem;
-}
-h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.09em;
-}
-#name a {
-    text-align: left;
-}
-/** alignment for my profile**/
- .headercolumns {
-    position: relative;
-    padding-left: 0.0375rem;
-    padding-right: 0.0375rem;
-    float: left;
-}
-.listItem{
-    padding:0.2rem !important;
-}
-}
-
 @media only screen and (max-width: 760px),
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
             .contentSub{
-        display:block;
-        margin-left: 112px;
-        width: 71%;
+        display:block; 
+        margin-left: 0px;
+        width: 100%;
         margin-top: 20px;
         }
         .mainTitleH1{
@@ -910,13 +771,19 @@ h1, h2, h3, h4, h5, h6 {
         #name a{
             text-align: center;
         }
-    .nameDisp {
+    /*.nameDisp {
     width: 100%;
     float: left;
     margin-top: -10px;
     margin-right: -340px;
     margin-left: 430px;
-}
+}*/
+    .nameDisp{
+        margin-right: 0px;
+        padding-left: 0px;
+        margin-top:10px;
+        
+    }
         /* Force table to not be like tables anymore */
 		table, thead, tbody, th, td, tr { 
 			display: block; 

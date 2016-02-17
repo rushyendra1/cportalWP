@@ -81,3 +81,7 @@ ALTER TABLE `wp_3uvwes_users` ADD `user_forgot_pass` VARCHAR(255) NOT NULL AFTER
 /*** Added a title in wc_3uvwes_settings ***/
 ALTER TABLE `wp_3uvwes_settings` add title varchar(255) NOT NULL;
 
+
+/** added a row title in settings
+ALTER TABLE  `wp_3uvwes_settings` ADD  `title` VARCHAR( 255 ) NOT NULL AFTER  `id`
+

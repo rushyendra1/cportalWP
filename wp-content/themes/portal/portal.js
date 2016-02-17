@@ -315,6 +315,7 @@ $(".logouts").on("click",function(e){
      /** Change Password **/
      $("#changePwdSubmit").on("click",function(e){
          changePwdPerform(e,this);
+         return false;
      });
      $("#forGotForm").on("keypress",function(e){
          if(e.keyCode ==13)
@@ -326,6 +327,7 @@ $(".logouts").on("click",function(e){
     $("#forogotSubmit").on("click",function(e)
     {
        forgotPerform(e,this);
+       return false;
     });
     $("#setPwdForm").on("keypress",function(e){
         if(e.keyCode ==13)
@@ -337,6 +339,7 @@ $(".logouts").on("click",function(e){
     /** set Password **/
      $("#setpassword").on("click",function(e){
          setPwdPerform(e, this); 
+         return false;
      });   
 
 });
@@ -633,6 +636,7 @@ function hideEnd(that)
 {
     $(that).removeAttr("disabled");
           hideLoader();
+          return false;
 }
 /**
  * Check the Password Errors
@@ -1944,6 +1948,7 @@ function changePwdPerform(e,that)
                 window.location.href = site+'/profile';
             }
         },"json");
+        return false;
 }
 /**
  * Calculate the from and to 

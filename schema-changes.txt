@@ -78,6 +78,10 @@ ALTER TABLE `wp_3uvwes_users` ADD `forgotpwd_activation_code` VARCHAR(255) NOT N
 ALTER TABLE `wp_3uvwes_users` ADD `is_Edit` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_deactive`, ADD `is_Delete` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_Edit`, ADD `is_Create` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_Delete`, ADD `is_View` BOOLEAN NOT NULL DEFAULT FALSE AFTER `is_Create`; 
 /** added a row user_forgot_pass in users  
 ALTER TABLE `wp_3uvwes_users` ADD `user_forgot_pass` VARCHAR(255) NOT NULL AFTER `is_View`;
+/*** Added a title in wc_3uvwes_settings ***/
+ALTER TABLE `wp_3uvwes_settings` add title varchar(255) NOT NULL;
+
 
 /** added a row title in settings
 ALTER TABLE  `wp_3uvwes_settings` ADD  `title` VARCHAR( 255 ) NOT NULL AFTER  `id`
+

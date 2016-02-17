@@ -28,7 +28,8 @@ $title = "Forgot Password";
                    User Name/E-mail*</strong>
                 <input type="email" id="username" name="username" placeholder="E-mail" class="radius" required tabindex="1">
             <span class="label error alert  radius" style="display:none">Required</span>
-            <span id="correctEmail" style="display:none" ><img class="imageShown" src="[insert_php] echo get_template_directory_uri() [/insert_php]/img/correct1.png"  ></span>
+            <span id="correctEmail" style="display:none" >
+                <img class="imageShown" src="[insert_php] echo get_template_directory_uri();[/insert_php]/img/correct1.png"  ></span>
             </label>
           </div>
           </div>

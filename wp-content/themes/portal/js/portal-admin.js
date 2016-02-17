@@ -2,17 +2,17 @@ $ = jQuery.noConflict();
 $(document).ready(function(){
     
     var page = $.trim($("#page").val());
-     if(page == "users.php")
+    /* if(page == "users.php")
     {
-       /* $(".column-username a").removeAttr("href");
+        $(".column-username a").removeAttr("href");
         $(".row-actions").html("");
         $("#bulk-action-selector-top option[value=delete]").html("");
         $("#wp-admin-bar-edit-profile").remove();
         $(".page-title-action").remove();
         $(".add-new-h2").remove();
         $("#submit").remove();
-            */
-    } 
+            
+    } */
 
    var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")

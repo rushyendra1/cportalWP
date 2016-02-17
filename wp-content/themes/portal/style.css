@@ -523,9 +523,7 @@ top:250px;position:fixed;left:500px
    
 /* Header Part */
 #wrapHome {
-    
     width:100%;
-
 text-align: left;
 background-color: white;
 position: relative;
@@ -658,7 +656,7 @@ position: relative;
     background: #99ccff none repeat scroll 0 0;
     height:auto;
     font-style: bold;
-    margin-top: 10px;
+       margin-top: 25px;
 
            }
 .top-bar-section ul li {

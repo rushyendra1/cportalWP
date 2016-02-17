@@ -4,7 +4,7 @@
   <div class="row toggle-full-width">
     <div class="bPageTitle">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h1 class="headTitle">Customer Portal</h1>
+      <h1 class="headTitle">[insert_php] echo $portal;[/insert_php]</h1>
     </div>
   </div>   
       <div class="row" >
@@ -20,10 +20,7 @@
             [/insert_php]
               <a href="[insert_php] echo get_site_url();[/insert_php]/profile"  class="button radius submit link">My Profile</a>
               [insert_php] 
-              
-              $response_array = json_decode(RESPONSEARRAY);
-              var_dump($response_array);
-              exit;
+              $response_array = get_tabs_from_sales();
                if(count($response_array)>0)
                 { 
                   $tab_array = $response_array['TabList'];

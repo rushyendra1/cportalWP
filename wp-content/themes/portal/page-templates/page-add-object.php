@@ -49,7 +49,7 @@ if(isset($result->data->is_Edit))
                     </div>
                     <?php if(!$is_create){ ?>
                     <div class="row-fluid">
-                        <h1> You have enough previliages to access this page</h1>
+                        <h1> You have enough previleges to access this page</h1>
                     </div>
                     <?php }else{
                         /*** Connect the salesforce ***/

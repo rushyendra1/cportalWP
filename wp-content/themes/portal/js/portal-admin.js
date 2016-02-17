@@ -2,7 +2,7 @@ $ = jQuery.noConflict();
 $(document).ready(function(){
     
     var page = $.trim($("#page").val());
-     if(page == "users.php")
+    /* if(page == "users.php")
     {
         $(".column-username a").removeAttr("href");
         $(".row-actions").html("");
@@ -12,7 +12,7 @@ $(document).ready(function(){
         $(".add-new-h2").remove();
         $("#submit").remove();
             
-    } 
+    } */
 
    var page = $.trim($("#pages").val());
    if(page == "wc_user_settings")

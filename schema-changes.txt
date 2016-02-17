@@ -80,4 +80,4 @@ ALTER TABLE `wp_3uvwes_users` ADD `is_Edit` BOOLEAN NOT NULL DEFAULT FALSE AFTER
 ALTER TABLE `wp_3uvwes_users` ADD `user_forgot_pass` VARCHAR(255) NOT NULL AFTER `is_View`;
 
 /** added a row title in settings
-ALTER TABLE  `wp_3uvwes_settings` CHANGE  `title`  `title` VARCHAR( 255 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+ALTER TABLE  `wp_3uvwes_settings` ADD  `title` VARCHAR( 255 ) NOT NULL AFTER  `id`

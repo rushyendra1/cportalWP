@@ -59,7 +59,7 @@ $blog = $blogname . " | " . $blogdescription;
                         $name = $result->user_login;
                     ?>
                     
-                        <div class="medium-4 columns nameDisp " >
+                    <div class="medium-4 columns nameDisp " id="Login" >
                             <div class="loggin">
                             <b>You are logged in as:</b> <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                             </div>
@@ -67,8 +67,7 @@ $blog = $blogname . " | " . $blogdescription;
                             <a   class="logouts logoutHeader logms">LOGOUT</a>
                             </div>
                         </div>
-                </div>
-                </div>
+               
 
                 
                     
@@ -78,9 +77,11 @@ $blog = $blogname . " | " . $blogdescription;
                 ?>
                 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
                 <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
-
+ </div>
+                </div>
           
           <!--  </div>-->
+          <div class="row-fluid">
             <nav class="top-bar" data-topbar>
                 <ul class="title-area">
                     <li  class="name"> <a href="#">&nbsp;</a></li>
@@ -164,7 +165,7 @@ if ($pages == "" || $pages == "home") {
                     </ul> <!--</div>-->
                 </section>
             </nav>
-
+          </div>
   </div>     
 <!--<p class="hide-for-medium-down">&nbsp;</p>-->
             <div class="clear"></div>

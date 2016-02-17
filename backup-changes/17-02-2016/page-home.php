@@ -20,7 +20,7 @@
             [/insert_php]
               <a href="[insert_php] echo get_site_url();[/insert_php]/profile"  class="button radius submit link">My Profile</a>
               [insert_php] 
-              //$response_array = get_tabs_from_sales();
+              
               $response_array = json_decode(RESPONSEARRAY);
               var_dump($response_array);
               exit;

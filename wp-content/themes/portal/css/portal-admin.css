@@ -76,6 +76,7 @@
 }
 #adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, #adminmenu a.wp-has-current-submenu:focus + .wp-submenu, .no-js li.wp-has-current-submenu:hover .wp-submenu {
 margin-left:-5px;    
+width:102%;
 }
 #adminmenu .wp-not-current-submenu .wp-submenu{
     margin-left:-1px;

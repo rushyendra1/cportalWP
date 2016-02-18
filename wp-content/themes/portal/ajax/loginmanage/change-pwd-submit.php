@@ -16,9 +16,7 @@ if (!isset($wpdb)) {
 //$id = (isset($_POST['id']))?$_POST['id']: "";
 global $user_ID;
 $id = $user_ID;
-
 $rand = (isset($_POST['rand'])) ? trim($_POST['rand']) : "";
-
 $user_email="";
 if ($status == 1) {
 
@@ -35,7 +33,7 @@ $user_email=$rel->user_email;
 $result = $wpdb->get_row("SELECT ID,user_pass,user_nicename,user_email,user_login,is_Deactive 
 				FROM " . $table_prefix . "users
 				WHERE ID='" . $id . "'");
-
+//var_dump($result);
 //echo wp_check_password( $old_pwd, $result->user_pass,$id);	
 $is_fun = 0;
 //check the given password and database password
@@ -87,7 +85,7 @@ if ($is_fun) {
     $message = str_replace("!!userName!!", $user_nicename, $message);
     $message = str_replace("!!uname!!", $result->user_email, $message);
     $message = str_replace("!!pwd!!", $new_pwd, $message);
-    
+    var_dump($message);
     // if($type != "")  
     //$_SESSION['msg'] = $subject;
 
@@ -95,7 +93,9 @@ if ($is_fun) {
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= 'From: ' . $admin_email . "\r\n";
 
-    mail($user_email, $subject, nl2br($message), $headers);
+    mail($user_email,$subject,nl2br($message),$headers);
+  //  var_dump($user_email);
+   // echo $uner_email;
 
   
     echo "1";

@@ -6,7 +6,19 @@
  * @subpackage Portal
  * @since Portal 1.0
  */
-get_header(); ?>
+get_header();
+global $wpdb;
+global $table_prefix;
+$result = $wpdb->get_row("SELECT title"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+                $title='';
+                if(isset($result) && count($result)>0)
+                {
+                    $portal = $result->title;
+                }
+ ?>
+
 <div class="bodyCell contentSub row-fluid" >
 <!-- Start page content -->
 <a name="skiplink">
@@ -19,7 +31,7 @@ get_header(); ?>
   <div class="row toggle-full-width">
     <div class="bPageTitle">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
-      <h1 class="headTitle">Customer Portal</h1>
+      <h1 class="headTitle"><?php echo $portal; ?></h1>
     </div>
   </div>   
       <div class="row" >

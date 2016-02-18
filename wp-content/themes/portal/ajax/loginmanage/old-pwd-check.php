@@ -21,6 +21,7 @@ $id = $user_ID;
 				WHERE ID='".$id."'");
 
 			 $user_status = wp_check_password( $old_pwd, $result->user_pass,$id);	
+                        // var_dump($user_status);
                     
         //check the given password and database password
 	

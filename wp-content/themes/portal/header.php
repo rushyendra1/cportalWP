@@ -139,7 +139,7 @@ if ($pages == "" || $pages == "home") {
                                     if ($j < $limit) {
                                         ?>
                                         <li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class ?>"><span><?php echo $each_tab; ?></span></a></li>
-                                    <?php } if ($j == $limit && count($tab_array) >= $limit) { ?>
+                                    <?php } if ($j == $limit && count($tab_array) > $limit) { ?>
                                         <li class="has-dropdown"><a href="#" > +</a><ul class="dropdown">
                                         <?php
                                         for ($k = $j; $k < count($tab_array); $k++) {

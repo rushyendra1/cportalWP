@@ -233,10 +233,17 @@ function theme_wc_sf_settings() {
     $wc_sf_public_site_url = get_option("wc_sf_public_site_url");
     
 ?>
-
+<div class="box span12 content-disp headeralign" id="headeralign">
     <div class="wrap">  
-        <?php screen_icon('themes'); ?> <h2>Salesforce Configurations</h2>  
-    
+        <div data-original-title="" class="box-header">
+        <h2><i class="halflings-icon wrench"></i>
+            <span class="break"></span>Salesforce Configurations
+        </h2>
+         </div>
+        
+     <div class="box-content">
+         <div class="row-fluid ">
+              <div class="box span12 content-disp" id="contentalign">
         <form method="POST" action="">  
             <input type="hidden" name="update_settings" value="Y" />
             <table class="form-table salesforceSettings">  
@@ -314,6 +321,10 @@ function theme_wc_sf_settings() {
             
         </form>  
     </div>  
+         </div>
+     </div>
+    </div>
+</div>
 <?php 
 }
 

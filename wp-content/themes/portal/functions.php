@@ -1474,7 +1474,7 @@ if( ! function_exists('helloinfinity_php') )
 	{
 		$helloinfinity_content = get_the_content();
 		preg_match_all('!\[insert_php[^\]]*\](.*?)\[/insert_php[^\]]*\]!is',$helloinfinity_content,$helloinfinity_matches);
-		$helloinfinity_nummatches = count($helloinfinity_matches[0]);
+		 $helloinfinity_nummatches = count($helloinfinity_matches[0]);
 		for( $helloinfinity_i=0; $helloinfinity_i<$helloinfinity_nummatches; $helloinfinity_i++ )
 		{
 			ob_start();
@@ -1491,4 +1491,33 @@ if( ! function_exists('helloinfinity_php') )
 
 	add_filter( 'the_content', 'helloinfinity_php' );
 
+}
+function get_home_data()
+{
+     $result = '';
+     if(is_user_logged_in()){
+            $result .= '<a href="'.get_site_url().'/profile"  class="button radius submit link">My Profile</a>';
+     $response_array = json_decode(RESARRAY);
+     if(count($response_array)>0)
+     { 
+        $tab_array = $response_array['TabList'];
+        $api_array = $response_array['ApiList'];
+        $i =0;
+        foreach($tab_array as $each_tab)
+        {
+         if($each_tab != ""){
+                        
+               $result.='<a href="'.get_site_url().'/object-list/?id='.$api_array[$i].'&obj_name='.$each_tab.'"  class="button radius submit link">'.$each_tab.'</a>';
+                         }
+                        $i++;
+                        }
+                }
+              
+              
+            $result .='<a href="#"  class="button radius submit link logouts">Logout</a>';
+             }else{ 
+          $result .='<a href="'.get_site_url().'/login"  class="button radius submit link">Login</a> <br>';
+          
+            } 
+            return $result;
 }

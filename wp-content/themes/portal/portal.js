@@ -22,6 +22,17 @@ $(document).ready(function(){
         $("#footerPortal").show();
         hideLoader();
     }
+    /*** Add Object **/
+    $(".addObject").on("click",function(e){
+        e.stopImmediatePropagation();
+    var className = "ajaxCall";
+    if($(this).hasClass(className))
+         return false;
+    $(this).addClass(className);
+    var objectType = $.trim($("#object").val());
+     var objectName = $.trim($("#objectName").val());
+     window.location.href = site+"/add-object?id="+objectType+"&obj_name="+objectName; 
+    });
 /*** Go back **/
 $(".goBack").on("click",function(e){
     e.stopImmediatePropagation();
@@ -118,7 +129,7 @@ $(".toggle-topbar").on("click",function(){
        $(".editRow").show();
        $(".headTitle").html("Edit My Details");
        var gettitle = $.trim($(".headTitle").html());
-    
+   var blog=$.trim($("#blogname").val()); 
     if(gettitle != "")
         blog = gettitle + ' | ' +blog;
     document.title = blog;

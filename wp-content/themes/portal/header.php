@@ -112,7 +112,8 @@ if ($pages == "" || $pages == "home") {
                             /** * Connects to salesforce * */
 
                             $response_array = get_tabs_from_sales();
-
+                            $res_array = json_encode($response_array);
+                            define("RESARRAY",$res_array);
                             if (count($response_array) > 0) {
 
                                 $tab_array = $response_array['TabList'];

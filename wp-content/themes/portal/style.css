@@ -709,6 +709,12 @@ position: relative;
        margin-right: -340px;
    padding-left: 470px;
    padding-top: -10px;
+   font-size:70%;
+}
+.loggin{
+    width:66%;
+    word-wrap:  break-word;
+        
 }
 
 .toggle-full-width 
@@ -753,6 +759,12 @@ h2 {
 }
 .objectmainContent,#footerPortal,.objectmainContentDisp{
     display:none;
+}
+table thead tr th, table thead tr td {
+    font-size:69%;
+}
+table tbody  tr td {
+    font-size:65%;
 }
 /**** Mobile Support ****/
 

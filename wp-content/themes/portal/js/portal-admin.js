@@ -593,7 +593,7 @@ option value and option label are separated by :: suppose option value and label
        <div class="controls viewControls"><input type="checkbox" id="isRequired" >\n\
  <p class="help-block errorTag" style="display:none"></p></div></div><input type="hidden" id="id" >'; 
             
-       data += ' <div class="form-actions"><button  id="saveUserSettingSubmit" class="btn btn-primary">Submit</button></div></div>';
+       data += ' <button  id="saveUserSettingSubmit" class="btn btn-primary">Submit</button></div>';
        
     return data;
 }
@@ -1275,7 +1275,7 @@ function checkAll(ele)
  <p class="help-block errorTag" style="display:none"></p></div></div><input type="hidden" id="id" >';
             
             
-       data += ' <div class="form-actions"><button  id="saveEmailSubmit" class="btn btn-primary">Submit</button></div></div>';
+       data += ' <button  id="saveEmailSubmit" class="btn btn-primary">Submit</button></div>';
        emailCheckErrors();
        return data;
     }

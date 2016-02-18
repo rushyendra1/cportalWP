@@ -95,7 +95,7 @@ if(isset($result) && count($result)>0)
                     </div>
                 </div>-->
                 
-                <div class="form-actions"><button  id="saveSettings" class="btn btn-primary">Submit</button></div>
+                <button  id="saveSettings" class="btn btn-primary">Submit</button>
                     </div> <!-- Box Content Closed-->
             </div>
         </div>

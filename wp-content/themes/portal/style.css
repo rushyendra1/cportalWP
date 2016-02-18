@@ -707,7 +707,7 @@ position: relative;
    margin-top: -10px;
    vertical-align: bottom;
        margin-right: -340px;
-   padding-left: 470px;
+   padding-left: 10px;
    padding-top: -10px;
    font-size:70%;
 }
@@ -761,10 +761,12 @@ h2 {
     display:none;
 }
 table thead tr th, table thead tr td {
-    font-size:69%;
+    font-size:80%;
+    //font-size:69%;
 }
 table tbody  tr td {
-    font-size:65%;
+    font-size:75%;
+    //font-size:65%;
 }
 /**** Mobile Support ****/
 

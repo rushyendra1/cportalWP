@@ -129,7 +129,7 @@ $(".toggle-topbar").on("click",function(){
        $(".editRow").show();
        $(".headTitle").html("Edit My Details");
        var gettitle = $.trim($(".headTitle").html());
-    
+   var blog=$.trim($("#blogname").val()); 
     if(gettitle != "")
         blog = gettitle + ' | ' +blog;
     document.title = blog;

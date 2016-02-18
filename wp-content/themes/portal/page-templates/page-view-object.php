@@ -40,9 +40,12 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
  /*** Retrieve contact details **/
  $response = array();
  try{
+     global $user_ID;
    $object_array = array("method" => "getRecordDetails",
-                                "Type" =>$object_type,
-       "RecordId" => $object_id);  
+                         "Type" =>$object_type,
+                         "RecordId" => $object_id,
+                         "userId" => $user_ID
+                         );  
   //echo json_encode($object_array);
    $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
    $response_array = explode("chunked",$json_response);

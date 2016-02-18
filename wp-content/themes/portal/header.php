@@ -36,8 +36,8 @@ $blog = $blogname . " | " . $blogdescription;
     <body>
 
         <div class="row-fluid">
-            <div class="autoheighthm">
-            <div id="wrapHome" class="row-fluid"  >
+            <div class="autoheighthm row-fluid">
+            <!--<div id="wrapHome" class="row-fluid"  >-->
 
                 <div  class="row headerrow">
                 <div id="logo" class="medium-3 columns headercolumns">
@@ -71,15 +71,16 @@ $blog = $blogname . " | " . $blogdescription;
 
                 
                     
-<?php } 
-                $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
+<?php }  ?>
+               
+ </div>
+                <!--</div>-->
+          <?php
+                 $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
                 unset($_SESSION['msg']);
                 ?>
                 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
                 <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
- </div>
-                </div>
-          
           <!--  </div>-->
           <div class="row-fluid">
             <nav class="top-bar" data-topbar>

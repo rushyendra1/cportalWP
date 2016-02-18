@@ -36,14 +36,14 @@ $blog = $blogname . " | " . $blogdescription;
     <body>
 
         <div class="row-fluid">
-            <div class="autoheighthm">
-            <div id="wrapHome" class="row-fluid"  >
+            <div class="autoheighthm row-fluid">
+            <!--<div id="wrapHome" class="row-fluid"  >-->
 
                 <div  class="row headerrow">
-                <div id="logo" class="medium-3 columns headercolumns">
+                <div id="logo" class="medium-2 columns">
                     <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                 </div>
-                <div class="medium-9 columns mainTitleH1 headercolumns">
+                <div class="medium-6 columns mainTitleH1">
                 <h1 id="name" class="header">
                     <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
                 </h1>
@@ -71,15 +71,16 @@ $blog = $blogname . " | " . $blogdescription;
 
                 
                     
-<?php } 
-                $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
+<?php }  ?>
+               
+ </div>
+                <!--</div>-->
+          <?php
+                 $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
                 unset($_SESSION['msg']);
                 ?>
                 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
                 <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
- </div>
-                </div>
-          
           <!--  </div>-->
           <div class="row-fluid">
             <nav class="top-bar" data-topbar>

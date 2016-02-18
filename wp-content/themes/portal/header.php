@@ -37,7 +37,7 @@ $blog = $blogname . " | " . $blogdescription;
 
         <div class="row-fluid">
             <div class="autoheighthm">
-          <!--  <div id="wrapHome" class="row-fluid"  >-->
+            <div id="wrapHome" class="row-fluid"  >
 
                 <div  class="row headerrow">
                 <div id="logo" class="medium-3 columns headercolumns">
@@ -77,7 +77,7 @@ $blog = $blogname . " | " . $blogdescription;
                 ?>
                 <input type="hidden" id="msg" value="<?php echo $msg ?>" >
                 <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
- <!--</div>-->
+ </div>
                 </div>
           
           <!--  </div>-->

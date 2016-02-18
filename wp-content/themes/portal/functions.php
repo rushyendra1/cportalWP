@@ -125,7 +125,7 @@ add_action('after_setup_theme', 'twentyfourteen_setup');
 
 
 
-require_once( 'inc/register-products.php' );   // register custom post types for products
+//require_once( 'inc/register-products.php' );   // register custom post types for products
 require_once( 'inc/register-wc-settings.php' );   // register waste collection settings
 
 /**

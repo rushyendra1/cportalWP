@@ -1,5 +1,4 @@
 <?php
-
 $old_pwd = (isset($_POST['old_pwd'])) ? base64_decode($_POST['old_pwd']) : "";
 $status = (isset($_POST['status'])) ? $_POST['status'] : 0;
 $new_pwd = (isset($_POST['new_pwd'])) ? base64_decode($_POST['new_pwd']) : "";
@@ -25,7 +24,7 @@ if ($status == 1) {
                            FROM " . $table_prefix . "users
                            WHERE forgotpwd_activation_code='" . $rand . "'");
     $id = $rel->ID;
-$user_email=$rel->user_email;
+    $user_email=$rel->user_email;
 
     //  var_dump($forgotpwd_activation_code);
 }
@@ -33,9 +32,7 @@ $user_email=$rel->user_email;
 $result = $wpdb->get_row("SELECT ID,user_pass,user_nicename,user_email,user_login,is_Deactive 
 				FROM " . $table_prefix . "users
 				WHERE ID='" . $id . "'");
-echo $user_email=$result->user_email;
-//var_dump($result);
-//echo wp_check_password( $old_pwd, $result->user_pass,$id);	
+ $user_email=$result->user_email;
 $is_fun = 0;
 //check the given password and database password
 if ($status == 1) {
@@ -94,7 +91,7 @@ if ($is_fun) {
 
 
     @mail($user_email,$subject,nl2br($message),$headers);
-   
+
     echo "1";
 }
 ?>

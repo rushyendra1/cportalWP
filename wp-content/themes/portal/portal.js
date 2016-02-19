@@ -240,7 +240,7 @@ $(".logouts").on("click",function(e){
         var old = $.trim($("#oldPwd").val());
         var error = [];
         error = pwdCheckError(status,error,"#oldPwd");
-        error = newPwdCheckError(status,error,"#newPwd",old);
+        error = newPwdCheckError(0,error,"#newPwd",old);
             if(error.indexOf("o") != -1)
             {
                 hideLoader();
@@ -458,6 +458,8 @@ function newPwdCheckError(status,error,ele,oldPwd)
      var root = $.trim($("#rootTheme").val());
     var newp = $.trim($(ele).val());
     var minPassLen = $.trim($("#minPassLen").val());
+    
+   
     if (newp == "") {
             var msg = "Please enter your New Password.";
            
@@ -1906,7 +1908,7 @@ function changePwdPerform(e,that)
         //var title = "Request Message";
         var error = []; 
         error = pwdCheckError(status,error,"#oldPwd");
-        error = newPwdCheckError(status,error,"#newPwd",old);
+        error = newPwdCheckError(0,error,"#newPwd",old);
         error = confirmCheckError(error,"#confirmPwd",newp);
         
           if(error.indexOf("o") != -1)

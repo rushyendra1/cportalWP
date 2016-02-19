@@ -12,7 +12,7 @@ if(!isset($wpdb))
 }
 $id  = 0;
  $randno = (isset($_POST['randno']))?$_POST['randno']:"" ;
- var_dump($randno);
+ //var_dump($randno);
 $new_pwd = (isset($_POST['new_pwd']))?$_POST['new_pwd']: "";
  $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename,user_forgot_pass 
 				FROM ".$table_prefix."users

@@ -85,7 +85,7 @@ if ($is_fun) {
     $message = str_replace("!!userName!!", $user_nicename, $message);
     $message = str_replace("!!uname!!", $result->user_email, $message);
     $message = str_replace("!!pwd!!", $new_pwd, $message);
-    var_dump($message);
+   // var_dump($message);
     // if($type != "")  
     //$_SESSION['msg'] = $subject;
 

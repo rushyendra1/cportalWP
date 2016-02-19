@@ -858,3 +858,6 @@ table tbody  tr td {
 .top-bar-section .has-dropdown {
     position: relative; 
   }
+  .homePage .button{
+       margin: 0 0.1rem;
+  }

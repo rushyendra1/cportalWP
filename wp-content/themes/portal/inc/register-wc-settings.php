@@ -243,7 +243,7 @@ function theme_wc_sf_settings() {
         
      <div class="box-content">
          <div class="row-fluid ">
-              <div class="box span10 content-disp" id="contentalign">
+              <div class="box span12 content-disp" id="contentalign">
          <input type="hidden" name="update_settings" value="Y" />
             <form class="form-horizontal" role="form" method="post" action="">
              <div class="form-group firstLabel">

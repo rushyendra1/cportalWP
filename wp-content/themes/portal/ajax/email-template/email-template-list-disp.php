@@ -9,7 +9,7 @@
                <a  class="searchEmails cursorPt"><i class="halflings-icon search" data-rel="tooltip"  data-original-title="Search"  ></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
           
                 <a  class="addClass linkButton" data-rel="tooltip"  data-original-title="Add E-mail Template"  >Add</a> &nbsp;&nbsp;
-               <a  class="deleteAllEmailClass linkButton" data-type="2">Delete</a>&nbsp;&nbsp;
+               <a  class="deleteAllEmailClass linkButton" data-type="2"  data-rel="tooltip"  data-original-title="Delete E-mail Templates" >Delete</a>&nbsp;&nbsp;
               
             </div>
                 <table class="table table-striped table-bordered bootstrap-datatable datatables userSettings" >

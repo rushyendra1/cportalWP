@@ -1497,7 +1497,8 @@ function get_home_data()
      $result = '';
      if(is_user_logged_in()){
             $result .= '<a href="'.get_site_url().'/profile"  class="button radius submit link">My Profile</a>';
-     $response_array = json_decode(RESARRAY);
+     //$response_array = json_decode(RESARRAY);
+            $response_array = get_tabs_from_sales();
      if(count($response_array)>0)
      { 
         $tab_array = $response_array['TabList'];

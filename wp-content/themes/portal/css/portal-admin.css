@@ -90,10 +90,17 @@ width:102%;
 	width:200px;
 }
 #contentalign {
-	margin-left:0px;
+	//margin-left:0px;
 }
-#headeralign{
-	margin-left:-5px;
+/*#headeralign{
+	
+margin-left:-5px;
+
+
+}*/
+.contentDisp{
+    margin-left:70px !important;
+    border-radius:1px;
 }
 #isVisibleReg,#isVisibleUser,#isVisible,#isRequired {
 	height:15px;
@@ -101,4 +108,23 @@ width:102%;
 }
 #editattralign {
 	contentalign:center;
+}
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append {
+     height: 15%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    width: 55%;
+}
+.firstLabel{
+    margin-top:10px;
+}
+.userSettings th, .userSettings td {
+    // padding: 1%;
+    padding:0.3%;
+    font-size:90%;
+    word-wrap: break-word;
+}
+.userSettings{
+    table-layout: fixed;
 }

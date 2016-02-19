@@ -2,7 +2,7 @@
                 <h2><i class="halflings-icon envelope"></i><span class="break"></span>E-mail Template List</h2>
              
             </div>
-<div class="box-content" >
+<div class="box-content " >
                <div class="row-fluid">
               
                <input type="text" id="searchItem" class="input-xlarge focused">
@@ -12,7 +12,7 @@
                <a  class="deleteAllEmailClass linkButton" data-type="2">Delete</a>&nbsp;&nbsp;
               
             </div>
-                <table class="table table-striped table-bordered bootstrap-datatable datatables" >
+                <table class="table table-striped table-bordered bootstrap-datatable datatables userSettings" >
             <thead><tr>
                <th><input type="checkbox" id="checkBoxId" ></th>
                 <th class="sortOrder" data-type="name">Name <span class="sorting-indicator">^</span></th>

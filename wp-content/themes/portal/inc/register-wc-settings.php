@@ -39,7 +39,7 @@ if(isset($result) && count($result)>0)
     ?>
     <input type="hidden" id="pages" value="general_settings">
     <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
-    <div class="box span12 content-disp headeralign" id="headeralign">
+    <div class="box span10 content-disp headeralign" id="headeralign">
         
         <div data-original-title="" class="box-header">
         <h2><i class="halflings-icon wrench"></i>
@@ -49,7 +49,7 @@ if(isset($result) && count($result)>0)
         <div class="box-content">
             
     <div class="row-fluid ">		
-        <div class="box span12 content-disp" id="contentalign">
+        <div class="box span10 content-disp" id="contentalign">
       
          
             <div class="box-content titles" > <!-- Box Content Started -->
@@ -233,8 +233,8 @@ function theme_wc_sf_settings() {
     $wc_sf_public_site_url = get_option("wc_sf_public_site_url");
     
 ?>
-<div class="box span12 content-disp headeralign" id="headeralign">
-    <div class="wrap">  
+<div class="box span10 content-disp headeralign" id="headeralign">
+    <!--<div class="wrap">  -->
         <div data-original-title="" class="box-header">
         <h2><i class="halflings-icon wrench"></i>
             <span class="break"></span>Salesforce Configurations
@@ -243,87 +243,57 @@ function theme_wc_sf_settings() {
         
      <div class="box-content">
          <div class="row-fluid ">
-              <div class="box span12 content-disp" id="contentalign">
-        <form method="POST" action="">  
-            <input type="hidden" name="update_settings" value="Y" />
-            <table class="form-table salesforceSettings">  
-                <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_client_id">  
-                            Client ID
-                        </label>   
-                    </th>  
-                    <td>  
-                        <input type="text" id="wc_sf_client_id" name="wc_sf_client_id" value="<?php echo $wc_sf_client_id;?>" class="regular-text" />  
-                    </td>  
-                </tr>  
-                <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_client_secret">  
-                            Client Secret
-                        </label>   
-                    </th>  
-                    <td>  
-                        <input type="text" id="wc_sf_client_secret" name="wc_sf_client_secret" value="<?php echo $wc_sf_client_secret;?>" class="regular-text" />  
-                    </td>  
-                </tr>
-                <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_client_redirect_uri">  
-                            Redirect URI
-                        </label>   
-                    </th>  
-                    <td>  
-                        <input type="text" id="wc_sf_client_redirect_uri" name="wc_sf_client_redirect_uri" value="<?php echo $wc_sf_client_redirect_uri;?>" class="regular-text" /> 
-                    </td>  
-                </tr>
-                <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_login_url">  
-                            Login URL
-                        </label>   
-                    </th>  
-                    <td>  
-                        <input type="text" id="wc_sf_login_url" name="wc_sf_login_url" value="<?php echo $wc_sf_login_url;?>" class="regular-text" /> 
-                    </td>  
-                </tr>
-                <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_instance_url">  
-                            Instance URL
-                        </label>   
-                    </th>
-                    <td>  
-                        <input type="text" id="wc_sf_instance_url" name="wc_sf_instance_url" value="<?php echo $wc_sf_instance_url;?>" class="regular-text" /> 
-                    </td>  
-                </tr>
-                <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_refresh_token">  
-                            Refresh Token
-                        </label>   
-                    </th>
-                    <td>  
-                        <input type="text" id="wc_sf_refresh_token" name="wc_sf_refresh_token" value="<?php echo $wc_sf_refresh_token;?>" class="regular-text" /> 
-                    </td>  
-                </tr>  
-                 <tr valign="top">  
-                    <th scope="row">  
-                        <label for="wc_sf_refresh_token">  
-                          &nbsp;
-                        </label>   
-                    </th>
-                    <td>  
-                        <input type="submit" value="Save" class="button-primary"/>  
-                    </td>  
-                </tr>        
-            </table>  
+              <div class="box span10 content-disp" id="contentalign">
+         <input type="hidden" name="update_settings" value="Y" />
+            <form class="form-horizontal" role="form" method="post" action="">
+             <div class="form-group firstLabel">
+    <label class="control-label col-sm-2" for="wc_sf_client_id">Client ID</label>
+    <div class="col-sm-10">
+      <input type="text" id="wc_sf_client_id" name="wc_sf_client_id" value="<?php echo $wc_sf_client_id;?>" class="regular-text" />  
+    </div>
+  </div>
+                 <div class="form-group">
+     <label class="control-label col-sm-2" for="wc_sf_client_secret">Client Secret</label>
+    <div class="col-sm-10">
+      <input type="text" id="wc_sf_client_secret" name="wc_sf_client_secret" value="<?php echo $wc_sf_client_secret;?>" class="regular-text" />  
+    </div>
+  </div>
+                 <div class="form-group">
+     <label class="control-label col-sm-2" for="wc_sf_client_redirect_uri">Redirect URI</label>
+    <div class="col-sm-10">
+      <input type="text" id="wc_sf_client_redirect_uri" name="wc_sf_client_redirect_uri" value="<?php echo $wc_sf_client_redirect_uri;?>" class="regular-text" /> 
+    </div>
+  </div>
+                <div class="form-group">
+     <label class="control-label col-sm-2" for="wc_sf_login_url"> Login URL</label>
+    <div class="col-sm-10">
+      <input type="text" id="wc_sf_login_url" name="wc_sf_login_url" value="<?php echo $wc_sf_login_url;?>" class="regular-text" /> 
+    </div>
+  </div>
+                  <div class="form-group">
+     <label class="control-label col-sm-2" for="wc_sf_instance_url"> Instance URL</label>
+    <div class="col-sm-10">
+      <input type="text" id="wc_sf_instance_url" name="wc_sf_instance_url" value="<?php echo $wc_sf_instance_url;?>" class="regular-text" /> 
+    </div>
+  </div>        
+                <div class="form-group">
+     <label class="control-label col-sm-2" for="wc_sf_refresh_token"> Refresh Token</label>
+    <div class="col-sm-10">
+     <input type="text" id="wc_sf_refresh_token" name="wc_sf_refresh_token" value="<?php echo $wc_sf_refresh_token;?>" class="regular-text" /> 
+    </div>
+  </div>
+                           <div class="form-group">
+     <label class="control-label col-sm-2" for="subimtSales"> &nbsp;</label>
+    <div class="col-sm-10">
+     <input type="submit" value="Save" id="subimtSales" class="button-primary"/>
+    </div>
+  </div>
             
         </form>  
     </div>  
          </div>
      </div>
-    </div>
+    <!--</div>-->   
 </div>
 <?php 
 }
@@ -336,7 +306,7 @@ function user_settings_fun()
     ?>
 <input type="hidden" id="pages" value="wc_user_settings">
 <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
-<div class="box span12 content-disp" id="contentalign">
+<div class="box span10 content-disp" id="contentalign">
     
 </div>
   <?php }

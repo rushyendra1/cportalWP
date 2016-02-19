@@ -224,6 +224,7 @@ $(".logouts").on("click",function(e){
  /** Check the above  new password element validations **/
     $("#newPwd").on("focus",function(){
         var status = $.trim($("#status").val());
+        
        var error =  pwdCheckError(status,[],"#oldPwd");
        if(error.indexOf("o") != -1)
        {
@@ -240,7 +241,7 @@ $(".logouts").on("click",function(e){
         var old = $.trim($("#oldPwd").val());
         var error = [];
         error = pwdCheckError(status,error,"#oldPwd");
-        error = newPwdCheckError(0,error,"#newPwd",old);
+        error = newPwdCheckError(status,error,"#newPwd",old);
             if(error.indexOf("o") != -1)
             {
                 hideLoader();
@@ -270,11 +271,11 @@ $(".logouts").on("click",function(e){
       }
      $(this).removeClass("errorInput");
       $(this).next().hide();
-      
+      var status = $.trim($("#status").val());
       var error = [];
-       error = pwdCheckError(1,error,"#oldPwd");
+       error = pwdCheckError(status,error,"#oldPwd");
        
-       error = newPwdCheckError(1,error,this,oldPwd);
+       error = newPwdCheckError(status,error,this,oldPwd);
        if(error.indexOf("o") != -1)
         {
           $("#oldPwd").focus();

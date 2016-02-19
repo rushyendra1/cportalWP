@@ -33,6 +33,7 @@ $user_email=$rel->user_email;
 $result = $wpdb->get_row("SELECT ID,user_pass,user_nicename,user_email,user_login,is_Deactive 
 				FROM " . $table_prefix . "users
 				WHERE ID='" . $id . "'");
+$user_email=$result->user_email;
 //var_dump($result);
 //echo wp_check_password( $old_pwd, $result->user_pass,$id);	
 $is_fun = 0;

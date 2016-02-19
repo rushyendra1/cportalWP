@@ -769,6 +769,12 @@ table tbody  tr td {
     font-size:75%;
     //font-size:65%;
 }
+.top-bar-section .has-dropdown {
+    position: relative; 
+  }
+  .homePage .button{
+       margin: 0 0.1rem;
+  }
 /**** Mobile Support ****/
 
 @media only screen and (max-width: 760px),
@@ -855,9 +861,3 @@ table tbody  tr td {
                     width:100%;
         }
         }
-.top-bar-section .has-dropdown {
-    position: relative; 
-  }
-  .homePage .button{
-       margin: 0 0.1rem;
-  }

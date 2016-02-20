@@ -1258,33 +1258,27 @@ function generate_input($element, $options, $attribute, $is_searchable, $place_h
  * @param string $value
  * @return string
  */
-function display_contact($attribute, $value = "") {
+function display_contact( $attribute, $value="") {
     $result_info = "";
-    $id = preg_replace("/ /", "", $attribute);
-    if ($attribute != "address") {
+     $id = preg_replace("/ /", "", $attribute);
+    if($attribute != "address"){
         $display = 'style="display:none;"';
-      // $value = '<div class="medium-1 columns">:</div>&nbsp;' . $value;
-        if ($attribute != "salutation") {
-
+         $value = ': &nbsp;'.$value;
+        if($attribute != "salutation"){
+           
             $display = '';
-            $result_info .= '<div class="row dispRow"><div class="small-3 columns">';
-           // $result_info .= '<label class="dispRowStrong"><strong  class="radius" >' . ucwords($attribute) . '</strong></label>';
-             $result_info .= '<strong  class="radius" >' . ucwords($attribute) . '</strong></div>';
-             $result_info .= '<div class="small-2 columns">  : </div> ';
-             $result_info .= '<div class="small-8 columns displayEle">';
-            //$result_info .= ' <span id="' . $id . 'Disp" ' . $display . '>' . $value . '</span>';
-             $result_info .=  $value ;
-             $result_info .= "</div>";
-             
-            if ($attribute == "email")
-                $result_info .= '<a href="change-email.php" style="  margin-left: 10px;">Change</a>';
+        $result_info .= '<div class="row dispRow"><div class="medium-6 columns">';
+        $result_info .= '<label class="dispRowStrong"><strong  class="radius" >'.ucwords($attribute).'</strong></label>';
+       
+        $result_info .= ' <span id="'.$id.'Disp" '.$display.'>'.$value.'</span>';
+         if($attribute == "email")
+            $result_info .= '<a href="change-email.php" style="  margin-left: 10px;">Change</a>';
         }
-        if ($attribute != "salutation")
-            $result_info .= '</div>';
+        if($attribute != "salutation")
+        $result_info .= '</div></div>';
     }
     return $result_info;
 }
-
 /**
  * Display the Add slashes to given string
  * @name add_slashes

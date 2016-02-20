@@ -25,7 +25,7 @@ $status = (isset($_POST['status']))?$_POST['status']: 0;
 {
      if($result->is_deactive==1)
 				{
-                                       echo "You are in inactive state, please contact with admin"; exit;
+                                       echo "You are in Inactive state, please contact with admin"; exit;
 				}
                                 else 
                                 {

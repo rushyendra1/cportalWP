@@ -28,7 +28,7 @@ $new_pwd = (isset($_POST['new_pwd']))?$_POST['new_pwd']: "";
 	
 				if($user_status )
 				{
-					echo "Your Old and New Passwords should not match . Please enter another password.";
+					echo "your Old and New Passwords should not match . Please enter another password.";
                                 }    
                                                                
 

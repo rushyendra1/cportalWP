@@ -56,7 +56,7 @@ if ($is_fun) {
     
     wp_set_password($new_pwd,$id);
     session_start();
-    $_SESSION['msg'] = 'Your Password is Changed Successfully';
+    $_SESSION['msg'] = 'Your Password is changed successfully';
       $admin_email = get_option("admin_email");
     unset($_SESSION['forgot-times']);
 

@@ -165,15 +165,14 @@ if(is_array($result) && count($result)>0)
               echo generate_input($each_set->form_element, $each_set->options, $each_set->attribute, $each_set->searchable,  $each_set->placeholder,  $each_set->class_name, $each_set->style_name, $i, $each_set->is_required,$each->title_placeholder,$edit_value, "edit",$salutation);
               if($i==1){?>
            <div class="row dispRow">
-               <div class="column small-3">
-                    <strong  class="radius" > E-mail</strong>
-               </div>
-                <div class="small-2 columns">  : </div> 
-               <div class="columns small-8 displayEle">
-                  
-                       <?php echo $email; ?> <!--<a href="change-email.php" style="margin-left:10px">Change</a>--> 
-              </div> 
-           </div>
+          <div class="medium-6 columns">
+            <label class="dispRowStrong">
+                
+                <strong  class="radius" > E-mail</strong>
+              
+            </label>
+                <span>: <?php echo $email; ?> <!--<a href="change-email.php" style="margin-left:10px">Change</a>--> </span>
+          </div> </div>
               <div class="row editRow" style="display:none">
           <div class="medium-6 columns">
             <label for="email">
@@ -197,15 +196,14 @@ if(is_array($result) && count($result)>0)
                       $astrik = '*';
                   }
                    ?>
-          <div class="row dispRow">
-          <div class="small-3 columns">
-            
+           <div class="row dispRow">
+          <div class="medium-6 columns">
+            <label for="street" class="dispRowStrong">
                  <strong  class="radius" > Street</strong>
-          
-              </div>
-              <div class="small-2 columns">  : </div>
-              <div class="small-8 columns displayEle">
-              &nbsp;<?php echo ucfirst($street) ?>
+                
+              
+            </label>
+               <span>: &nbsp;<?php echo ucfirst($street) ?></span>
           </div>
           </div>
            <div class="row editRow" style="display: none">
@@ -220,14 +218,13 @@ if(is_array($result) && count($result)>0)
           </div>
           </div>
                    <div class="row dispRow">
-          <div class="small-3 columns">
-            
+          <div class="medium-6 columns">
+            <label for="city" class="dispRowStrong">
                  <strong  class="radius" > City</strong>
-            
-              </div>
-                       <div class="small-2 columns">  : </div>
-                       <div class="small-8 columns displayEle">
-              &nbsp;<?php echo ucfirst($city) ?>
+                
+              
+            </label>
+               <span>: &nbsp;<?php echo ucfirst($city) ?></span>
           </div>
           </div>
          <div class="row editRow" style="display: none">
@@ -242,14 +239,13 @@ if(is_array($result) && count($result)>0)
           </div>
           </div>
            <div class="row dispRow">
-          <div class="small-3 columns">
-           
+          <div class="medium-6 columns">
+            <label for="state" class="dispRowStrong">
                  <strong  class="radius" > State</strong>
-            
-              </div>
-               <div class="small-2 columns">  : </div>
-               <div class="small-8 columns displayEle">
-               &nbsp;<?php echo ucfirst($state) ?>
+               
+              
+            </label>
+                <span>: &nbsp;<?php echo ucfirst($state) ?></span>
           </div>
           </div>
           <div class="row editRow" style="display: none">
@@ -264,14 +260,13 @@ if(is_array($result) && count($result)>0)
           </div>
           </div>
             <div class="row dispRow">
-          <div class="small-3 columns">
-           
+          <div class="medium-6 columns">
+            <label for="country" class="dispRowStrong">
                  <strong  class="radius" > Country</strong>
-           
-              </div>
-                <div class="small-2 columns">  : </div>
-              <div class="small-8 columns displayEle">
-               &nbsp;<?php echo ucfirst($country) ?>
+                
+              
+            </label>
+               <span>: &nbsp;<?php echo ucfirst($country) ?></span>
           </div>
           </div>
             <div class="row editRow" style="display: none">
@@ -285,15 +280,14 @@ if(is_array($result) && count($result)>0)
             </label>
           </div>
           </div>
-           <div class="row dispRow">
-          <div class="small-3 columns">
-           
+            <div class="row dispRow">
+          <div class="medium-6 columns">
+            <label for="zip" class="dispRowStrong">
                  <strong  class="radius" > Zip Code</strong>
-           
-              </div>
-               <div class="small-2 columns">  : </div>
-               <div class="small-8 columns displayEle">
-                &nbsp;<?php echo $zip ?>
+                
+              
+            </label>
+               <span>: &nbsp;<?php echo $zip ?></span>
           </div>
           </div>
           <div class="row editRow" style="display: none">

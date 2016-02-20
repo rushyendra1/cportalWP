@@ -702,13 +702,9 @@ position: relative;
     text-align: right;
 }
 .nameDisp{
-  //  width:100%;
+
    float:right;
-   //margin-top: -10px;
    vertical-align: bottom;
-  //     margin-right: -340px;
-   //padding-left: 470px;
-   //padding-top: -10px;
    font-size:70%;
    padding-top: 5px;
 }
@@ -762,11 +758,10 @@ h2 {
 }
 table thead tr th, table thead tr td {
     font-size:80%;
-    //font-size:69%;
+
 }
 table tbody  tr td {
     font-size:75%;
-    //font-size:65%;
 }
 .top-bar-section .has-dropdown {
     position: relative; 

@@ -73,6 +73,15 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
          $params_array = $response->Fields->Fields;
      if(isset($response->ApiFields->ApiFields))
          $fields_array = $response->ApiFields->ApiFields;
+     $key = array_search("Id", $params_array);
+     if($key)
+     {
+         unset($params_array[$key]);
+         $params_array = array_values($params_array);
+         unset($fields_array[$key]);
+         $fields_array = array_values($fields_array);
+     }
+     
      if(isset($response->RelatedList->RelatedList))
      $related_list_array = $response->RelatedList->RelatedList;
      

@@ -818,6 +818,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 var activeClass = "";
                 var arg = apiFields[i];
                 var fieldText = fieldsArray[i];
+               // console.log(field);
                 if(field == "")
                     field = apiFields[0]; 
                 if(field == arg)
@@ -830,10 +831,12 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                         sortC = "sort descending";
                      }
                 }
+                if(arg != "Id"){
                 headerHtml +='<th  scope="col">\n\
                         <a title="'+fieldText+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+fieldText+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
                         </a></th>';
+                    }
             } //for loop closed
             headerHtml +='<th  scope="col">Action</th>';
             headerHtml += '</tr>';
@@ -862,6 +865,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
+               if(fields != "Id")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                
                 
@@ -1247,10 +1251,12 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                         sortC = "sort descending";
                      }
                 }
+                if(arg != "Id"){
                 headerHtml +='<th  scope="col">\n\
                         <a title="'+arg+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+arg+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
                         </a></th>';
+                }
             } //for loop closed
             headerHtml +='<th  scope="col">Action</th>';
             headerHtml += '</tr>';
@@ -1274,7 +1280,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
            
                   value = result[i][fields];  
-           
+                if(fields != "Id")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
            
                 

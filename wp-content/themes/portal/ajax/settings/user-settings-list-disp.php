@@ -18,7 +18,7 @@ global $wpdb;
               
               
             </div>
-                <table class="table table-striped table-bordered bootstrap-datatable datatables" >
+                <table class="table table-striped table-bordered bootstrap-datatable datatables userSettings" >
             <thead><tr>
                
                 <th class="sortOrder" data-type="attribute">Attribute <span class="sorting-indicator">^</span></th>

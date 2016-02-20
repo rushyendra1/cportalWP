@@ -769,6 +769,14 @@ table tbody  tr td {
   .homePage .button{
        margin: 0 0.1rem;
   }
+  .top-bar-section .dropdown li {
+     // width:50%;
+     width:100%;
+  }
+  .top-bar-section .dropdown li a {
+      word-wrap: break-word;
+      white-space: normal;
+   }
 /**** Mobile Support ****/
 
 @media only screen and (max-width: 760px),

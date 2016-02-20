@@ -1343,7 +1343,7 @@ function email_template_list() {
     ?>
     <input type="hidden" id="pages" value="email_template">
     <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
-    <div class="box span12 content-disp">
+    <div class="box span10 content-disp ">
 
     </div>
     <?php

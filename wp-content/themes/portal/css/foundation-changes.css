@@ -3,7 +3,7 @@
     background-color: #43AC6A;
     border-color: #368a55;
     color: #FFFFFF; }
-    .button.link:hover, .button.link:focus,  {
+    .button.link:hover, .button.link:focus  {
       background-color: #368a55; }
      .button.link:hover, .button.link:focus {
       color: #FFFFFF; }

@@ -165,16 +165,17 @@ if(is_array($result) && count($result)>0)
               echo generate_input($each_set->form_element, $each_set->options, $each_set->attribute, $each_set->searchable,  $each_set->placeholder,  $each_set->class_name, $each_set->style_name, $i, $each_set->is_required,$each->title_placeholder,$edit_value, "edit",$salutation);
               if($i==1){?>
            <div class="row dispRow">
-          <div class="medium-6 columns">
-            <label class="dispRowStrong">
-                
-                <strong  class="radius" > E-mail</strong>
-              
-            </label>
-                <span>: <?php echo $email; ?> <!--<a href="change-email.php" style="margin-left:10px">Change</a>--> </span>
-          </div> </div>
+               <div class="column small-2">
+                    <strong  class="radius" > E-mail</strong>
+               </div>
+                <div class="small-1 columns alignmyprofile"> <b>  : </b></div> 
+               <div class="columns small-9 displayEle alignmyprofile">
+                  
+                       <?php echo $email; ?> <!--<a href="change-email.php" style="margin-left:10px">Change</a>--> 
+              </div> 
+           </div>
               <div class="row editRow" style="display:none">
-          <div class="medium-6 columns">
+          <div class="medium-6 columns alignmyprofile">
             <label for="email">
                 
                 <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Email address for login into site.&lt;br&gt;&lt;small&gt;&lt;em&gt;"> 
@@ -196,18 +197,19 @@ if(is_array($result) && count($result)>0)
                       $astrik = '*';
                   }
                    ?>
-           <div class="row dispRow">
-          <div class="medium-6 columns">
-            <label for="street" class="dispRowStrong">
+          <div class="row dispRow">
+          <div class="small-2 columns alignmyprofile">
+            
                  <strong  class="radius" > Street</strong>
-                
-              
-            </label>
-               <span>: &nbsp;<?php echo ucfirst($street) ?></span>
+          
+              </div>
+              <div class="small-1 columns alignmyprofile"><b>  : </b></div>
+              <div class="small-9 columns alignmyprofile displayEle">
+              &nbsp;<?php echo ucfirst($street) ?>
           </div>
           </div>
            <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
+          <div class="medium-6 columns alignmyprofile">
             <label for="street">
                 
                  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Street.&lt;br&gt;&lt;small&gt;&lt;em&gt;<?php echo $required_msg ?>"> 
@@ -218,17 +220,18 @@ if(is_array($result) && count($result)>0)
           </div>
           </div>
                    <div class="row dispRow">
-          <div class="medium-6 columns">
-            <label for="city" class="dispRowStrong">
+          <div class="small-2 columns alignmyprofile">
+            
                  <strong  class="radius" > City</strong>
-                
-              
-            </label>
-               <span>: &nbsp;<?php echo ucfirst($city) ?></span>
+            
+              </div>
+                       <div class="small-1 columns alignmyprofile"><b>  : </b></div>
+                       <div class="small-9 columns alignmyprofile displayEle">
+              &nbsp;<?php echo ucfirst($city) ?>
           </div>
           </div>
          <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
+          <div class="medium-6 columns alignmyprofile">
             <label for="city">
                 
                  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your City.&lt;br&gt;&lt;small&gt;&lt;em&gt;<?php echo $required_msg ?>"> 
@@ -239,17 +242,18 @@ if(is_array($result) && count($result)>0)
           </div>
           </div>
            <div class="row dispRow">
-          <div class="medium-6 columns">
-            <label for="state" class="dispRowStrong">
+          <div class="small-2 columns alignmyprofile">
+           
                  <strong  class="radius" > State</strong>
-               
-              
-            </label>
-                <span>: &nbsp;<?php echo ucfirst($state) ?></span>
+            
+              </div>
+               <div class="small-1 columns alignmyprofile"><b>  : </b></div>
+               <div class="small-9 columns alignmyprofile displayEle">
+               &nbsp;<?php echo ucfirst($state) ?>
           </div>
           </div>
           <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
+          <div class="medium-6 columns alignmyprofile">
             <label for="state">
                 
                  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your State.&lt;br&gt;&lt;small&gt;&lt;em&gt;<?php echo $required_msg ?>"> 
@@ -260,17 +264,18 @@ if(is_array($result) && count($result)>0)
           </div>
           </div>
             <div class="row dispRow">
-          <div class="medium-6 columns">
-            <label for="country" class="dispRowStrong">
+          <div class="small-2 columns alignmyprofile">
+           
                  <strong  class="radius" > Country</strong>
-                
-              
-            </label>
-               <span>: &nbsp;<?php echo ucfirst($country) ?></span>
+           
+              </div>
+                <div class="small-1 columns alignmyprofile"><b>  : </b></div>
+              <div class="small-9 columns alignmyprofile displayEle">
+               &nbsp;<?php echo ucfirst($country) ?>
           </div>
           </div>
             <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
+          <div class="medium-6 columns alignmyprofile">
             <label for="country">
                 
                  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Country.&lt;br&gt;&lt;small&gt;&lt;em&gt;<?php echo $required_msg ?>"> 
@@ -280,18 +285,19 @@ if(is_array($result) && count($result)>0)
             </label>
           </div>
           </div>
-            <div class="row dispRow">
-          <div class="medium-6 columns">
-            <label for="zip" class="dispRowStrong">
+           <div class="row dispRow">
+          <div class="small-2 columns alignmyprofile">
+           
                  <strong  class="radius" > Zip Code</strong>
-                
-              
-            </label>
-               <span>: &nbsp;<?php echo $zip ?></span>
+           
+              </div>
+               <div class="small-1 columns alignmyprofile"><b>  : </b></div>
+               <div class="small-9 columns alignmyprofile displayEle">
+                &nbsp;<?php echo $zip ?>
           </div>
           </div>
           <div class="row editRow" style="display: none">
-          <div class="medium-6 columns">
+          <div class="medium-6 columns alignmyprofile">
             <label for="zip">
                 
                  <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Your Zipcode.&lt;br&gt;&lt;small&gt;&lt;em&gt;<?php echo $required_msg ?>"> 
@@ -312,7 +318,7 @@ if(is_array($result) && count($result)>0)
               <div class="clear" style="height:15px"></div>
           
           <div class="row editRow" style="display:none">
-          <div class="columns small-12"> 
+          <div class="columns small-12 alignmyprofile"> 
             
             <a  id="mysubmit" class="button radius submit link">Submit</a> 
             <a  id="goBack" class="button radius cancel link goBack">Cancel</a> <br>

@@ -841,7 +841,7 @@ position: relative;
 
    float:right;
    vertical-align: bottom;
-   font-size:70%;
+   font-size:80%;
    padding-top: 5px;
 }
 .loggin{
@@ -906,13 +906,15 @@ table tbody  tr td {
        margin: 0 0.1rem;
   }
   .top-bar-section .dropdown li {
-     // width:50%;
      width:100%;
   }
   .top-bar-section .dropdown li a {
       word-wrap: break-word;
       white-space: normal;
    }
+   .alignmyprofile {
+    padding: 0 0.5rem; 
+   margin-top: 1px;}
 /**** Mobile Support ****/
 
 @media only screen and (max-width: 760px),
@@ -938,7 +940,7 @@ table tbody  tr td {
 }*/
     .nameDisp{
         margin-right: 0px;
-        padding-left: 0px;
+        adding-left: 30px;
         margin-top:10px;
         
     }

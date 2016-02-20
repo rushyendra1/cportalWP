@@ -20,18 +20,18 @@ global $table_prefix;
      include_once('../functions.php');
 } 
 get_header(); 
-$rand=(isset($_GET['id']))?base64_decode($_GET['id']):"";
+$rand=(isset($_GET['id']))?base64_decode(trim($_GET['id'])):"";
+if($rand == ""){
+    echo "No access to this page"; exit;
+}
 $user_info = $wpdb->get_row("SELECT ID 
             FROM ".$table_prefix."users
          WHERE forgotpwd_activation_code='".$rand."'");
 
 if(count($user_info)==0)
 {
-    
    echo "Your Session is Expired";
-    
-  
-    exit;
+   exit;
 }
 $title = "Set New Password";
 ?>

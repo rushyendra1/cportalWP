@@ -41,6 +41,7 @@ $(".goBack").on("click",function(e){
          return false;
     $(this).addClass(className);
     $(".error").remove();
+    $(".errorInput").removeClass("errorInput");
     var title = $(".headTitle").html();
     if(path == "profile" && title == "Edit My Details")
     {
@@ -84,8 +85,8 @@ $(".toggle-topbar").on("click",function(){
       $("#username").focus();
    if(path == "set-paasword")
        $("#newPwd").focus();
-   if(path == "change-password")
-       $("#oldPwd").focus();
+  // if(path == "change-password")
+     //  $("#oldPwd").focus();
    if(path == "object-list")
          getObjectTemplate('','',pageSize,1,0,'','ASC','all');
     

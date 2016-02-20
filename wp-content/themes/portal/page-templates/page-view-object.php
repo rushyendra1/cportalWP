@@ -120,8 +120,15 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
                            {
                                $i=0; $j = 0;
                                 $c_class = 'callout cal1';
-                               foreach($params_array as $val){
+                                if($item_cnt %2 >0)
+                                    $item_cnt += 1;
+                                for($j=0;$j<$item_cnt;$j){
+                               //foreach($params_array as $val){
+                                    $val = $key = $content = '';
+                                    if(isset($params_array[$j]))
+                                        $val = $params_array[$j];
                                    //if($key != "related_types"){
+                                    if(isset($fields_array[$j]))
                                    $key = $fields_array[$j];
                                    //$c_class = 'panel';
                                   
@@ -135,6 +142,9 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
                                    }
                                    $i++;
                                    $j++;
+                                   
+                                   if(isset($result->$key))
+                                       $content = $result->$key;
                                ?>
                            <div class="row object-view-row clearfix" data-equalizer="bar"  >
                             <div class="small-3 columns labelColItem">
@@ -144,7 +154,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
                             </div>
                         <div class=" small-9 columns labelColItem  oddDivObject">
                             <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
-                            <span class="objectSpan"><?php echo nl2br($result->$key); ?></span>
+                            <span class="objectSpan"><?php echo nl2br($content); ?></span>
                             </div>
                         </div>
                         </div>

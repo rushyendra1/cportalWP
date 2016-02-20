@@ -47,7 +47,16 @@ button, .button {
 /*** common ***/
 /*** Loader **/
 .loaderPageant{
-top:250px;position:fixed;left:500px
+//top:250px;position:fixed;left:500px
+height: 400px;
+  position: relative;
+}
+.loaderPageant img{
+    position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px; /* -1 * image width / 2 */
+  margin-top: -32px; /* -1 * image height / 2 */
 }
 .account-pagent
 {

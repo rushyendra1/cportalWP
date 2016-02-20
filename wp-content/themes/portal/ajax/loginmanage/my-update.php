@@ -85,6 +85,8 @@ $wpdb->update($table_prefix."users", $users, array("ID" => $id));
       $wpdb->update($table_prefix."usermeta", array("meta_value" => $country),
            array("user_id" =>$id, "meta_key" => "country"));
     //integrate into salesforce
+    session_start();
+    $_SESSION['msg'] = 'Your profile is changed successfully';
        
 
 

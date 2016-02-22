@@ -881,6 +881,10 @@ h2 {
    }
  .headerrow {
      
+<<<<<<< HEAD
+=======
+    width: 80%;
+>>>>>>> 849a4fe34005a5a6c8d50fd63976e414d7c8b1d9
     margin-left: 10px;
  }
 .goBack{

@@ -853,6 +853,7 @@ position: relative;
    vertical-align: bottom;
    font-size:x-small;
    padding-top: 5px;
+   margin-right: -400px;
 }
 .loggin{
     word-wrap:  break-word;
@@ -904,8 +905,6 @@ h2 {
     float:right;
 }
 .listDiv{
-  // margin-right: 1%;
-    //margin-top: -5.3%;
      margin-right: -20%;
     margin-top: 0;
 }
@@ -936,6 +935,7 @@ table tbody  tr td {
    .alignmyprofile {
     padding: 0 0.5rem; 
    margin-top: 1px;
+
    font-family: "Montserrat",sans-serif;
    }
    .alignmyprofile strong{
@@ -945,8 +945,15 @@ table tbody  tr td {
    #section_1 strong{
        font-family: "Montserrat",sans-serif;
    }
+
+
+   .mainTitleH1 {
+       margin-left: 250px;
+   margin-top: 1px;}
+
    .alphaObject{
        font-size:0.5em;
+
    }
    .showTotalCnt{
        
@@ -1057,7 +1064,6 @@ table tbody  tr td {
   #name{display:none;}
 }
 @media only screen and  (max-width:1024px)  {
- //for sample
  #name{display:none !important;}
     .toggle-topbar{
         display:block !important;

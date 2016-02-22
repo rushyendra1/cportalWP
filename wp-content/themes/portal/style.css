@@ -923,6 +923,9 @@ table tbody  tr td {
    .alignmyprofile {
     padding: 0 0.5rem; 
    margin-top: 1px;}
+   .alphaObject{
+       font-size:0.5em;
+   }
 /**** Mobile Support ****/
 
 @media only screen and (max-width: 760px),

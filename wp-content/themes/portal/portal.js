@@ -819,8 +819,10 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
     var headerHtml = '';
         if(fieldsLen>0){
             headerHtml = '<tr class="headerRow">';
-            
-            for(var i=0; i<fieldsLen; i++)
+            var lengthLimit = fieldsLen;
+            if(fieldsLen >8)
+                lengthLimit = 8;
+            for(var i=0; i<lengthLimit; i++)
             {
                 var sortTitle = "Sorted Ascending";
                 var sortC = "sort ascending";
@@ -866,7 +868,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
             var id = '';
              if (res[i] != null && typeof (res[i]['Id']) != "undefined")
                 id= res[i]['Id'];
-            for(var j=0;j<fieldsLen;j++)
+            for(var j=0;j<lengthLimit;j++)
             {
                 var value =  fields =  "";
                 fields = apiFields[j];
@@ -911,7 +913,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
     }
     responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
-    for(var j=0;j<fieldsLen;j++)
+    for(var j=0;j<lengthLimit;j++)
     {
          k = j+1;
          var fields = fieldsArray[j];
@@ -1243,7 +1245,10 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
         var headerHtml = '';
         if(fieldsLen>0){
             headerHtml = '<tr class="headerRow">';
-            for(var i=0; i<fieldsLen; i++)
+            var lengthLimit = fieldsLen;
+            if(fieldsLen >8)
+                lengthLimit = 8;
+            for(var i=0; i<lengthLimit; i++)
             {
                 var sortTitle = "Sorted Ascending";
                 var sortC = "sort ascending";
@@ -1283,7 +1288,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             
             if (result[i] != null && typeof (result[i]['Id']) != "undefined")
             id= result[i]['Id'];
-            for(var j=0;j<fieldsLen;j++)
+            for(var j=0;j<lengthLimit;j++)
             {
                 var value =  fields =  "";
                 fields = fieldsArray[j];
@@ -1310,7 +1315,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
              
    responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;
-    for(var j=0;j<fieldsLen;j++)
+    for(var j=0;j<lengthLimit;j++)
     {
          k = j+1;
          var fields = fieldsArray[j];

@@ -113,7 +113,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     <input type="hidden" id="objectType" value="<?php echo $object_type ?>" >
     <div class="pbHeader">
         <div class="pbTitle small-12">
-            <h2 class="mainTitle"> <?php echo $object_name; ?> Detail</h2>
+            <h3 class="accountTitleH3"> <?php echo $object_name; ?> Detail</h3>
         </div>
        
     </div>

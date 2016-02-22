@@ -21,7 +21,9 @@
   src: local('muli'), url(css/font/mul_normal.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
-
+html , body{
+    width:100%;
+}
 /**** Portal.css (main)**/
 /************* login modifications**********/
 .loginDiv input{
@@ -689,7 +691,8 @@ position: relative;
    
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
-    font-size: 200%;
+    //font-size: 200%;
+    font-size: large;
 }
 #name a {
     color:#124d2c;
@@ -841,7 +844,8 @@ position: relative;
 
    float:right;
    vertical-align: bottom;
-   font-size:80%;
+   //font-size:80%;
+   font-size:x-small;
    padding-top: 5px;
 }
 .loggin{
@@ -879,7 +883,7 @@ h2 {
    }
  .headerrow {
      
-    width: 80%;
+    //width: 80%;
     margin-left: 10px;
  }
 .goBack{
@@ -943,8 +947,8 @@ table tbody  tr td {
 }*/
     .nameDisp{
         margin-right: 0px;
-        padding-left: 30px;
-        margin-top:10px;
+        //padding-left: 30px;
+        margin-top:20px;
         
     }
         /* Force table to not be like tables anymore */

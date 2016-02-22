@@ -40,10 +40,10 @@ $blog = $blogname . " | " . $blogdescription;
             <!--<div id="wrapHome" class="row-fluid"  >-->
 
                 <div  class="row headerrow">
-                <div id="logo" class="medium-2 columns">
+                <div id="logo" class="medium-2 columns" >
                     <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                 </div>
-                <div class="medium-6 columns mainTitleH1">
+                <div class="medium-6 columns mainTitleH1" >
                 <h1 id="name" class="header">
                     <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
                 </h1>
@@ -59,7 +59,7 @@ $blog = $blogname . " | " . $blogdescription;
                         $name = $result->user_login;
                     ?>
                     
-                    <div class="medium-4 columns nameDisp " id="Login" >
+                    <div class="medium-4 columns nameDisp "   >
                             <div class="loggin">
                             <b>You are logged in as:</b> <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                             </div>

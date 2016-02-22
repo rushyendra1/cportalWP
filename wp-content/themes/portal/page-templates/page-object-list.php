@@ -56,7 +56,7 @@ if(isset($result->data->is_Edit))
                         </div>    
                       
                     </div>
-                    <div class="buttonWidth small" >
+                    <div class="buttonWidth small-2" >
                       
                             <?php if($is_create) { ?>
                             <!--<input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">-->
@@ -67,7 +67,7 @@ if(isset($result->data->is_Edit))
                             
                
                             <?php } ?>
-                            <div class="goBackDiv listDiv">
+                            <div class="goBackDiv listDiv small-1">
                            
                                 <button  class="btn goBack1 buttonCss" >Back</button>
                         </div>

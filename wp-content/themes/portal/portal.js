@@ -6,12 +6,14 @@ var geocoder;
 $ = jQuery.noConflict();
 showLoader();
 $(document).ready(function(){
+    try{
     $(document).foundation({
 	abide:{
 		
 	}
+    
 });
-
+}catch(e){}
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());

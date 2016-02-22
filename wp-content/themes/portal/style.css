@@ -1004,3 +1004,11 @@ table tbody  tr td {
                     width:100%;
         }
         }
+@media only screen and (min-device-width : 240px) and (max-device-width : 320px) {
+ .logoutalign {
+        margin-left: 30px;
+ }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    
+}

@@ -64,7 +64,7 @@ $blog = $blogname . " | " . $blogdescription;
                             <b>You are logged in as:</b> <a href="<?php echo get_site_url() ?>/profile"> <?php echo $name; ?></a>
                             </div>
                             <div>
-                            <a   class="logouts logoutHeader logms">LOGOUT</a>
+                            <a   class="logouts logoutHeader logms logoutalign">LOGOUT</a>
                             </div>
                         </div>
                

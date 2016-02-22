@@ -43,12 +43,14 @@ $blog = $blogname . " | " . $blogdescription;
                 <div id="logo" class="medium-2 columns" >
                     <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
                 </div>
-                <div class="medium-6 columns mainTitleH1" >
+                <div class="medium-10 columns " >
+                    <div class="medium-6 columns mainTitleH1">
                 <h1 id="name" class="header">
                     <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
                 </h1>
-                </div>
-                    <?php
+                    </div>
+                    
+                        <?php
                 // if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['lname']) ){ 
                 if (is_user_logged_in()) {
 
@@ -72,6 +74,9 @@ $blog = $blogname . " | " . $blogdescription;
                 
                     
 <?php }  ?>
+                    </div>
+                </div>
+                    
                
  </div>
                 <!--</div>-->

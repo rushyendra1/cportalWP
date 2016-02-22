@@ -54,21 +54,24 @@ if(isset($result->data->is_Edit))
                           <?php if($parent_obj != "") 
                              echo "<h2>".$parent_obj."</h2>"; ?>
                         </div>    
-                        <div class="goBackDiv">
-                            <a  class="goBack buttonCss">Back</a>
-                        </div>
+                      
                     </div>
-                    
+                    <div class="buttonWidth small" >
+                      
                             <?php if($is_create) { ?>
                             <!--<input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">-->
                             <!--<div class="buttonWidth buttonEdit small-3">-->
-                            <div class="buttonWidth small" >
+                            
                             <button  class="btn buttonCss addObject">Add</button>
-                            </div>
+                            
                             
                
                             <?php } ?>
-
+                            <div class="goBackDiv listDiv">
+                           
+                                <button  class="btn goBack1 buttonCss" >Back</button>
+                        </div>
+                        </div>
                         
                         <!-- Paginations Start Here  -->
                         <div class="paginationLinks pageContact row"></div>

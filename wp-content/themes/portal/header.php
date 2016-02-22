@@ -41,7 +41,7 @@ $blog = $blogname . " | " . $blogdescription;
 
                 <div  class="row headerrow">
                 <div id="logo" class="medium-2 columns" >
-                    <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logo.png" /></a>
+                    <a href="<?php echo get_site_url() ?>"><img src="<?php echo get_template_directory_uri() ?>/images/cportal/logods.png" /></a>
                 </div>
                 <div class="medium-10 columns " >
                     <div class="medium-6 columns mainTitleH1">

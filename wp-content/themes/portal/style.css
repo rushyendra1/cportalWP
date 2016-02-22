@@ -1003,7 +1003,24 @@ table tbody  tr td {
                     width:100%;
         }
         }
-@media only screen and (min-device-width : 240px) and (max-device-width : 320px) {
+
+/*Note that the below property device pixel ratio might need to be vendor-prefixed for some browsers*/
+@media screen and (device-pixel-ratio: 1.5)
+{
+/*adjust your layout for 1.5 hardware pixels to each reference pixel*/
+}
+@media screen and (device-pixel-ratio: 2)
+{
+/*adjust your layout, font sizes etc. for 2 hardware pixels to each reference pixel*/
+}
+@media only screen and (min-resultion: 24dpi)  {
+    .toggle-topbar{
+        display:block !important;
+    }
+  
+}
+
+@media only screen and (min-device-width : 240px) and (max-device-width : 319px) {
  .logoutalign {
         margin-left: 30px;
  }
@@ -1015,41 +1032,4 @@ table tbody  tr td {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     
-}
-@media only screen  and (max-device-width : 170%) {
-    .top-bar .toggle-topbar {
-    position: absolute;
-    right: 0;
-    top: 0; }
-    .top-bar .toggle-topbar a {
-      color: #FFFFFF;
-      text-transform: uppercase;
-      font-size: 0.8125rem;
-      font-weight: bold;
-      position: relative;
-      display: block;
-      padding: 0 0.9375rem;
-      height: 2.8125rem;
-      line-height: 2.8125rem; }
-    .top-bar .toggle-topbar.menu-icon {
-      top: 50%;
-      margin-top: -16px; }
-      .top-bar .toggle-topbar.menu-icon a {
-        height: 34px;
-        line-height: 33px;
-        padding: 0 2.5rem 0 0.9375rem;
-        color: #FFFFFF;
-        position: relative; }
-        .top-bar .toggle-topbar.menu-icon a span::after {
-          content: "";
-          position: absolute;
-          display: block;
-          height: 0;
-          top: 50%;
-          margin-top: -8px;
-          right: 0.9375rem;
-          box-shadow: 0 0 0 1px #FFFFFF, 0 7px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF;
-          width: 16px; }
-        .top-bar .toggle-topbar.menu-icon a span:hover:after {
-          box-shadow: 0 0 0 1px "", 0 7px 0 1px "", 0 14px 0 1px ""; }
 }

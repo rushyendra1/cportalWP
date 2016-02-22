@@ -15,7 +15,18 @@ $(document).ready(function(){
     var root = $.trim($("#rootTheme").val());
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
-    //var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    var resolution = parseInt(screen.pixelDepth);
+    
+    /*if(resolution == 24)
+    { 
+        $(".toggle-topbar").attr("style","display:block;");
+    }*/
+    //alert(devWidth);
+    //667
+    //880
+    //933
+    
     if(path != "object-list" && path != "view-object")
     {
         $(".objectmainContentDisp").show();

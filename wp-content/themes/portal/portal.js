@@ -16,7 +16,12 @@ $(document).ready(function(){
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    alert(screen.pixelDepth);
+    var resolution = parseInt(screen.pixelDepth);
+    
+    /*if(resolution == 24)
+    { 
+        $(".toggle-topbar").attr("style","display:block;");
+    }*/
     //alert(devWidth);
     //667
     //880

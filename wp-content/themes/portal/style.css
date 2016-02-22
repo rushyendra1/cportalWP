@@ -691,7 +691,6 @@ position: relative;
    
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
-    //font-size: 200%;
     font-size: xx-large;
 }
 #name a {
@@ -795,7 +794,6 @@ position: relative;
     background: #99ccff none repeat scroll 0 0;
     height:auto;
     font-style: bold;
-    //   margin-top: 25px;
 
            }
 .top-bar-section ul li {
@@ -844,7 +842,6 @@ position: relative;
 
    float:right;
    vertical-align: bottom;
-   //font-size:80%;
    font-size:x-small;
    padding-top: 5px;
 }
@@ -882,7 +879,6 @@ h2 {
        margin-top: -21px;
    }
  .headerrow {
-     
     width: 80%;
     margin-left: 10px;
  }
@@ -947,7 +943,6 @@ table tbody  tr td {
 }*/
     .nameDisp{
         margin-right: 0px;
-        //padding-left: 30px;
         margin-top:20px;
         
     }
@@ -1008,6 +1003,7 @@ table tbody  tr td {
                     width:100%;
         }
         }
+
 /*Note that the below property device pixel ratio might need to be vendor-prefixed for some browsers*/
 @media screen and (device-pixel-ratio: 1.5)
 {
@@ -1017,9 +1013,18 @@ table tbody  tr td {
 {
 /*adjust your layout, font sizes etc. for 2 hardware pixels to each reference pixel*/
 }
-@media only screen and (resultion: 24)  {
+@media only screen and (min-resultion: 24dpi)  {
     .toggle-topbar{
         display:block !important;
     }
   
+}
+
+@media only screen and (min-device-width : 240px) and (max-device-width : 319px) {
+ .logoutalign {
+        margin-left: 30px;
+ }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    
 }

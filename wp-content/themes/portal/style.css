@@ -1008,3 +1008,18 @@ table tbody  tr td {
                     width:100%;
         }
         }
+/*Note that the below property device pixel ratio might need to be vendor-prefixed for some browsers*/
+@media screen and (device-pixel-ratio: 1.5)
+{
+/*adjust your layout for 1.5 hardware pixels to each reference pixel*/
+}
+@media screen and (device-pixel-ratio: 2)
+{
+/*adjust your layout, font sizes etc. for 2 hardware pixels to each reference pixel*/
+}
+@media only screen and (resultion: 24)  {
+    .toggle-topbar{
+        display:block !important;
+    }
+  
+}

@@ -794,7 +794,6 @@ position: relative;
     background: #99ccff none repeat scroll 0 0;
     height:auto;
     font-style: bold;
-    //   margin-top: 25px;
 
            }
 .top-bar-section ul li {
@@ -880,11 +879,7 @@ h2 {
        margin-top: -21px;
    }
  .headerrow {
-     
-<<<<<<< HEAD
-=======
     width: 80%;
->>>>>>> 849a4fe34005a5a6c8d50fd63976e414d7c8b1d9
     margin-left: 10px;
  }
 .goBack{

@@ -1007,6 +1007,11 @@ table tbody  tr td {
  .logoutalign {
         margin-left: 30px;
  }
+ .mainTitleH1 {
+    margin-top: 20px;
+    position: relative;
+    margin-left: -1.9rem;
+}
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     

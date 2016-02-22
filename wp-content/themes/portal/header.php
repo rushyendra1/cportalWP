@@ -35,8 +35,8 @@ $blog = $blogname . " | " . $blogdescription;
     </head>
     <body>
 
-        <div class="row-fluid">
-            <div class="autoheighthm row-fluid">
+        <div class="row-fluid autoheighthm">
+            <!--<div class=" row-fluid">-->
             <!--<div id="wrapHome" class="row-fluid"  >-->
 
                 <div  class="row headerrow">
@@ -168,7 +168,7 @@ if ($pages == "" || $pages == "home") {
                 </section>
             </nav>
           </div>
-  </div>     
+  <!--</div>     -->
 <!--<p class="hide-for-medium-down">&nbsp;</p>-->
             <div class="clear"></div>
 

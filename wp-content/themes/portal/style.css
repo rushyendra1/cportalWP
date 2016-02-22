@@ -689,7 +689,7 @@ position: relative;
    
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
-    font-size: 2rem;
+    font-size: 200%;
 }
 #name a {
     color:#124d2c;
@@ -854,7 +854,7 @@ position: relative;
     box-shadow: 0 0 0px #ddd; 
      border-radius: 40px;
 }
-h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.03em; text-transform: uppercase; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.06em; text-transform: uppercase; }
 h2 {
     font-size: 24px;
 }
@@ -903,7 +903,7 @@ table tbody  tr td {
     position: relative; 
   }
   .homePage .button{
-       margin: 0 0.1rem;
+       margin: 0.1rem 0.1rem;
   }
   .top-bar-section .dropdown li {
      width:100%;
@@ -927,6 +927,9 @@ table tbody  tr td {
         }
         .mainTitleH1{
             margin-top:20px;
+            position: relative;
+    padding-left: 0.075rem;
+    
         }
         #name a{
             text-align: center;
@@ -940,7 +943,7 @@ table tbody  tr td {
 }*/
     .nameDisp{
         margin-right: 0px;
-        adding-left: 30px;
+        padding-left: 30px;
         margin-top:10px;
         
     }

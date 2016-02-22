@@ -10,6 +10,7 @@ if(!isset($wpdb))
     include_once('../../../../../wp-includes/wp-db.php');
     include_once('../../../../../wp-includes/class-phpass.php');
 }
+ini_set("display_errors",0);
 $id  = 0;
  $randno = (isset($_POST['randno']))?$_POST['randno']:"" ;
 $new_pwd = (isset($_POST['new_pwd']))?$_POST['new_pwd']: "";

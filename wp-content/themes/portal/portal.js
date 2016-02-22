@@ -17,7 +17,7 @@ $(document).ready(function(){
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     var resolution = parseInt(screen.pixelDepth);
-    
+    //alert(devWidth);
     /*if(resolution == 24)
     { 
         $(".toggle-topbar").attr("style","display:block;");
@@ -45,7 +45,7 @@ $(document).ready(function(){
      window.location.href = site+"/add-object?id="+objectType+"&obj_name="+objectName; 
     });
 /*** Go back **/
-$(".goBack").on("click",function(e){
+$(".goBack,.goBack1").on("click",function(e){
     e.stopImmediatePropagation();
     var className = "ajaxCall";
     if($(this).hasClass(className))

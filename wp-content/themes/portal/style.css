@@ -272,6 +272,10 @@ button, .button {
      margin-top: 20px;
 }
 /** ***/
+.callout label,.labelColItem span{
+    font-size: 80%;
+    font-family: "Montserrat",sans-serif;
+}
 /*** Object list ***/
 
 

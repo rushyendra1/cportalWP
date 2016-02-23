@@ -82,9 +82,9 @@ if(isset($result->data->is_Edit))
 
                             <div class="alphaDiv row-fluid">
                                 <?php foreach (range('A', 'Z') as $char) { ?>
-                                    <a  class="button listItem alphaObject" data-alphatype="<?php echo $char ?>" ><span class="listItemPad"><?php echo $char ?></span></a>
+                                    <a  class=" listItem alphaObject" data-alphatype="<?php echo $char ?>" ><span class="listItemPad"><?php echo $char ?></span></a>
 <?php } ?>
-                                <a class="button listItem alphaObject activeAlpha" data-alphatype="all" >
+                                <a class=" listItem alphaObject activeAlpha" data-alphatype="all" >
                                     <span class=" listItemSelected listItemLast">All</span>
                                 </a>
                             </div>
@@ -115,12 +115,12 @@ if(isset($result->data->is_Edit))
                         <!-- Alpha Pagination started -->
                         <div class="alphaDiv">
                             <?php foreach (range('A', 'Z') as $char) { ?>
-                                <a class="button listItem alphaObject " data-alphatype="<?php echo $char ?>" ><span class="listItemPad"><?php echo $char ?></span></a>
+                                <a class="listItem alphaObject " data-alphatype="<?php echo $char ?>" ><span class="listItemPad"><?php echo $char ?></span></a>
 <?php } ?>
                             <!--<a  class="listItem alphaObject" data-alphatype="other" >
                                 <span class="listItemPad">Other</span>
                             </a>-->
-                            <a class="button listItem alphaObject activeAlpha" data-alphatype="all">
+                            <a class=" listItem alphaObject activeAlpha" data-alphatype="all">
                                 <span class=" listItemSelected listItemLast">All</span>
                             </a>
                         </div>

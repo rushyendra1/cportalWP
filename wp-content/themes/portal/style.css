@@ -38,9 +38,8 @@ html , body{
 button, .button {
 
     padding:0.8rem 0.5rem 0.8625rem;
-    
-
     border-radius: 5px;
+     font-family: "Montserrat",sans-serif;
 }
 .buttonCss{
     padding: 0.4rem !important;
@@ -338,7 +337,7 @@ button, .button {
        font-family: "Montserrat",sans-serif;
    }
    strong,b{
-       font-family: "Montserrat",sans-serif;
+       font-family: "Montserrat",sans-serif !important;
    }
 .addColorSpan{
     background-color: #cdcdcd;
@@ -401,19 +400,26 @@ button, .button {
 /**** ****/
 /*** Alpha Pagination ***/
 .listItem{
-    background-color: #582;
-   
-    color: #fff;
+    //background-color: #582;
+    //color: #fff;
+   background-color: none !important;
+    color: #000;
     cursor:pointer;
-    padding: 0.5rem;
+    //padding: 0.5rem;
+    padding: 0.3rem;
 
-   
+text-decoration: none;   
 
     border-radius:3px;
 
 }
+a.listItem:hover{
+    text-decoration: underline;
+}
 .activeAlpha{
-    background-color: #c73;
+    //background-color: #c73;
+    text-decoration: underline;
+    color:#c73;
 }
 .alphaDiv{
     margin-top:10px;
@@ -821,6 +827,9 @@ position: relative;
     background: #99ccff none repeat scroll 0 0;
     text-align:center;
     font-family: "Montserrat",sans-serif;
+    //font-size: 90%;
+    font-size:70%;
+    font-weight:normal;
 }
 .top-bar-section li:not(.has-form) a:hover:not(.button)  {
     background: #c73  none repeat scroll 0 0;
@@ -952,7 +961,9 @@ table tbody  tr td {
    margin-top: 1px;}
 
    .alphaObject{
-       font-size:0.5em;
+      // font-size:0.5em;
+        font-size: 60%;
+    font-weight: bold;
 
    }
    .showTotalCnt{

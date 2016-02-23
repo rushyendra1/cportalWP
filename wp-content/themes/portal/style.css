@@ -38,9 +38,8 @@ html , body{
 button, .button {
 
     padding:0.8rem 0.5rem 0.8625rem;
-    
-
     border-radius: 5px;
+     font-family: "Montserrat",sans-serif;
 }
 .buttonCss{
     padding: 0.4rem !important;
@@ -335,6 +334,10 @@ button, .button {
        border-bottom: 1px solid #ccc;
        word-wrap: break-word;
        vertical-align: top;
+       font-family: "Montserrat",sans-serif;
+   }
+   strong,b{
+       font-family: "Montserrat",sans-serif !important;
    }
 .addColorSpan{
     background-color: #cdcdcd;
@@ -363,6 +366,7 @@ button, .button {
          text-align: center;
      background-color: #ffffff !important;
 }
+.links-pad{font-family: "Montserrat",sans-serif;}
 /**** ***/
 /*** Pagination ***/
  /*** Pagination ***/
@@ -396,19 +400,26 @@ button, .button {
 /**** ****/
 /*** Alpha Pagination ***/
 .listItem{
-    background-color: #582;
-   
-    color: #fff;
+    //background-color: #582;
+    //color: #fff;
+   background-color: none !important;
+    color: #000;
     cursor:pointer;
-    padding: 0.5rem;
+    //padding: 0.5rem;
+    padding: 0.3rem;
 
-   
+text-decoration: none;   
 
     border-radius:3px;
 
 }
+a.listItem:hover{
+    text-decoration: underline;
+}
 .activeAlpha{
-    background-color: #c73;
+    //background-color: #c73;
+    text-decoration: underline;
+    color:#c73;
 }
 .alphaDiv{
     margin-top:10px;
@@ -515,7 +526,8 @@ button, .button {
     float:right;
     padding: 8px 10px;
     display: inline;
-    font-family: "Verdana","Geneva",sans-serif;
+   // font-family: "Verdana","Geneva",sans-serif;
+   font-family: "Montserrat",sans-serif;
       }
       .btn:hover,.btn:focus{
            background: #1570a5 none repeat scroll 0 0;
@@ -541,6 +553,7 @@ button, .button {
   
     text-align: right;
     width: 80%;
+    margin-top:1.5%;
       }
       .buttonEdit{
           margin-top:5px;
@@ -692,6 +705,7 @@ position: relative;
     text-shadow:#f5d18b 1px 1px 1px;
     background-color: #ffffff;
     font-size: xx-large;
+    font-family: "Montserrat",sans-serif;
 }
 #name a {
     color:#124d2c;
@@ -812,6 +826,10 @@ position: relative;
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: #99ccff none repeat scroll 0 0;
     text-align:center;
+    font-family: "Montserrat",sans-serif;
+    //font-size: 90%;
+    font-size:70%;
+    font-weight:normal;
 }
 .top-bar-section li:not(.has-form) a:hover:not(.button)  {
     background: #c73  none repeat scroll 0 0;
@@ -848,6 +866,7 @@ position: relative;
 }
 .loggin{
     word-wrap:  break-word;
+    font-family: "Montserrat",sans-serif;
         
 }
 
@@ -878,6 +897,8 @@ h2 {
    .displayEle{
        word-wrap: break-word;
        margin-top: -21px;
+       font-size: 95%;
+       font-family: "Montserrat",sans-serif;
    }
  .headerrow {
     width: 80%;
@@ -886,6 +907,7 @@ h2 {
 .goBack{
       color: #423208;
     text-decoration: none;
+    font-family: "Montserrat",sans-serif;
 }  
 .goBackDiv{
     margin-top:-20px;
@@ -922,13 +944,31 @@ table tbody  tr td {
    .alignmyprofile {
     padding: 0 0.5rem; 
    margin-top: 1px;
+
+   font-family: "Montserrat",sans-serif;
    }
+   .alignmyprofile strong{
+       font-family: "Montserrat",sans-serif;
+       font-size:110%;
+   }
+   #section_1 strong{
+       font-family: "Montserrat",sans-serif;
+   }
+
+
    .mainTitleH1 {
        margin-left: 180px;
    margin-top: 1px;}
-   .alphaObject{
-       font-size:0.5em;
 
+   .alphaObject{
+      // font-size:0.5em;
+        font-size: 60%;
+    font-weight: bold;
+
+   }
+   .showTotalCnt{
+       
+   font-family: "Montserrat",sans-serif;
    }
 /**** Mobile Support ****/
 

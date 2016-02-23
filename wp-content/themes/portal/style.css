@@ -844,7 +844,7 @@ position: relative;
    vertical-align: bottom;
    font-size:x-small;
    padding-top: 5px;
-   margin-right: -400px;
+   margin-right: -190px;
 }
 .loggin{
     word-wrap:  break-word;
@@ -924,7 +924,7 @@ table tbody  tr td {
    margin-top: 1px;
    }
    .mainTitleH1 {
-       margin-left: 250px;
+       margin-left: 180px;
    margin-top: 1px;}
    .alphaObject{
        font-size:0.5em;
@@ -943,7 +943,9 @@ table tbody  tr td {
         .mainTitleH1{
             margin-top:20px;
             position: relative;
-    padding-left: 0.075rem;
+    
+    margin-left: -2rem;
+    margin-left: 0px;
     
         }
         #name a{
@@ -1032,10 +1034,10 @@ table tbody  tr td {
     .toggle-topbar{
         display:block !important;
     }
-  #name{display:none;}
+  #name{display:block;}
 }
 @media only screen and  (max-width:1024px)  {
- #name{display:none !important;}
+ #name{display:block !important;}
     .toggle-topbar{
         display:block !important;
     }

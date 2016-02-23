@@ -846,7 +846,8 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                         sortC = "sort descending";
                      }
                 }
-                if(arg != "Id"){
+                //console.log(arg);
+                if(arg != "Id" && arg != "Body"){
                 headerHtml +='<th  scope="col">\n\
                         <a title="'+fieldText+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+fieldText+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
@@ -880,7 +881,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                value = res[i][fields];  
                if(value == "null" || value == null)
                    value= "";
-               if(fields != "Id")
+               if(fields != "Id" && fields != "Body")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                
                 
@@ -1269,7 +1270,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                         sortC = "sort descending";
                      }
                 }
-                if(arg != "Id"){
+                if(arg != "Id" && arg != "Body"){
                 headerHtml +='<th  scope="col">\n\
                         <a title="'+arg+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+arg+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
@@ -1298,7 +1299,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
            
                   value = result[i][fields];  
-                if(fields != "Id")
+                if(fields != "Id" && fields != "Body")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
            
                 

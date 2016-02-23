@@ -866,7 +866,7 @@ position: relative;
    vertical-align: bottom;
    font-size:x-small;
    padding-top: 5px;
-   margin-right: -400px;
+  //just comment margin-right: -400px;
 }
 .loggin{
     word-wrap:  break-word;
@@ -904,10 +904,10 @@ h2 {
        font-size: 95%;
        font-family: "Montserrat",sans-serif;
    }
- .headerrow {
-    width: 80%;
-    margin-left: 10px;
- }
+ /*.headerrow {
+   //just comment width: 80%;
+    //margin-left: 10px;
+ }*/
 .goBack{
       color: #423208;
     text-decoration: none;
@@ -961,8 +961,11 @@ table tbody  tr td {
 
 
    .mainTitleH1 {
-       margin-left: 250px;
-   margin-top: 1px;}
+      /* margin-left: 250px;
+   margin-top: 1px;*/
+        padding-left: 10%;
+    text-align: center;
+   }
 
    .alphaObject{
       // font-size:0.5em;
@@ -984,12 +987,13 @@ table tbody  tr td {
         width: 100%;
         margin-top: 20px;
         }
-        .mainTitleH1{
+       /* .mainTitleH1{
             margin-top:20px;
             position: relative;
     padding-left: 0.075rem;
     
-        }
+        }*/
+        
         #name a{
             text-align: center;
         }
@@ -1061,6 +1065,7 @@ table tbody  tr td {
                 .top-bar-section ul li {
                     width:100%;
         }
+       
         }
 
 /*Note that the below property device pixel ratio might need to be vendor-prefixed for some browsers*/
@@ -1076,10 +1081,10 @@ table tbody  tr td {
     .toggle-topbar{
         display:block !important;
     }
-  #name{display:none;}
+//  #name{display:none;}
 }
 @media only screen and  (max-width:1024px)  {
- #name{display:none !important;}
+ //#name{display:none !important;}
     .toggle-topbar{
         display:block !important;
     }
@@ -1099,10 +1104,21 @@ table tbody  tr td {
  .logoutalign {
         margin-left: 20px;
  }
- .mainTitleH1 {
-    margin-left: -2rem;
+  .mainTitleH1{
+            padding-left:0%;
+            margin-left: -1%;
+        }
 }
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) 
+  {
+      .mainTitleH1{
+            padding-left:0%;
+            margin-left: -1% !important;
+        }  
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    
-}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
+            .mainTitleH1{
+            padding-left:0%;
+            margin-left: -15%;
+        }
+        }

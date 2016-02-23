@@ -866,11 +866,11 @@ position: relative;
    vertical-align: bottom;
    font-size:x-small;
    padding-top: 5px;
-<<<<<<< HEAD
+
   //just comment margin-right: -400px;
-=======
-   margin-right: -190px;
->>>>>>> 13a7df7ce1b3355f7607636459fee668d471920c
+
+   //margin-right: -190px;
+
 }
 .loggin{
     word-wrap:  break-word;
@@ -1092,17 +1092,9 @@ table tbody  tr td {
     .toggle-topbar{
         display:block !important;
     }
-<<<<<<< HEAD
-//  #name{display:none;}
+
 }
 @media only screen and  (max-width:1024px)  {
- //#name{display:none !important;}
-=======
-  #name{display:block;}
-}
-@media only screen and  (max-width:1024px)  {
- #name{display:block !important;}
->>>>>>> 13a7df7ce1b3355f7607636459fee668d471920c
     .toggle-topbar{
         display:block !important;
     }

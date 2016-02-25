@@ -1513,9 +1513,9 @@ function get_home_data()
               
               
             //$result .='<a href="#"  class="button radius submit link logouts">Logout</a>';
-             }else{ 
+             }/*else{ 
           $result .='<a href="'.get_site_url().'/login"  class="button radius submit link">Login</a> <br>';
           
-            } 
+            } */
             return $result;
 }

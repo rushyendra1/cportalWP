@@ -1493,7 +1493,7 @@ function get_home_data()
 {
      $result = '';
      if(is_user_logged_in()){
-            $result .= '<a href="'.get_site_url().'/profile"  class="button radius submit link">My Profile</a>';
+            //$result .= '<a href="'.get_site_url().'/profile"  class="button radius submit link">My Profile</a>';
      //$response_array = json_decode(RESARRAY);
             $response_array = get_tabs_from_sales();
      if(count($response_array)>0)
@@ -1512,7 +1512,7 @@ function get_home_data()
                 }
               
               
-            $result .='<a href="#"  class="button radius submit link logouts">Logout</a>';
+            //$result .='<a href="#"  class="button radius submit link logouts">Logout</a>';
              }else{ 
           $result .='<a href="'.get_site_url().'/login"  class="button radius submit link">Login</a> <br>';
           

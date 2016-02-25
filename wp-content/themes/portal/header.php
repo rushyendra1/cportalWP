@@ -22,6 +22,7 @@ $blog = $blogname . " | " . $blogdescription;
                             . " FROM ".$table_prefix."settings"
                            . " WHERE id=1");
                 $title='';
+                $portal = '';
                 if(isset($result) && count($result)>0)
                 {
                     $portal = $result->title;

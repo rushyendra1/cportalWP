@@ -8,26 +8,6 @@
  */
 session_start();
 redirect_to_login();
-get_header();
-echo place_message();
-?>
-
-<div id="main-content" class="main-content">
-
-	<div class="row-fluid data-content-outer objectmainContent" >
-		<div id="primary" class="content-area">
-			<div id="content" class="site-content" role="main">
-				
-                           <div class=" contentSub sidebarCell">
-            <!-- Sidebar Started -->
-              <?php //echo portal_sidebar();
-              ?>
-            <!-- Sidebar ended -->
-      </div>
-<div class="bodyCell contentSub" >
-<!-- Start page content -->
-<a name="skiplink" id="skiplink">&nbsp;</a>
-<?php
 $object_type = (isset($_GET['type']))?$_GET['type']:"";
 $object_id = (isset($_GET['id']))?$_GET['id']:"";
 $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
@@ -52,22 +32,19 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     if(isset($response_array[1]))
     $json_response = $response_array[1];
  }catch(Exception $e){}
- 
-  
   $response = json_decode($json_response);
-  //if no data is there 
-   if(isset($response[0]->errorCode)){ ?>
-    <div class="content">
-    <h1 class="pageType"> <?php echo $response[0]->message; ?></h1>
-    </div>                       
-   <?php }else{
-       $response = json_decode($response);
-       if (isset($response->errorCode))
-       { ?>
-           <div class="content">
-    <h1 class="pageType"> <?php echo $response->msg; ?></h1>
-    </div> 
-       <?php }else {
+$msg = '';
+if(isset($response[0]->errorCode)){
+    $msg = $response[0]->message;
+}else{
+    $response = json_decode($response);
+    if (isset($response->errorCode))
+    {
+        $msg = $response->msg;
+    }
+    if(is_string($response))
+    $response = json_decode($response);
+    
        $related_types_array = $params_array = $related_list_array = $fields_array = array();
        if(isset($response->Fields->Fields))
          $params_array = $response->Fields->Fields;
@@ -92,10 +69,106 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
       if(isset($result[0]))
       $result = $result[0];
       $name = '';
-      if(isset($result->Name))
+      $is_attach = 0;
+      $body = $ext_mime ='';
+      if(!isset($result))
+      {
+          $result = $response;
+          $is_attach = 1;
+         //var_dump($result); exit;
+           if(isset($result->name))
+        $name = $result->name;
+           if(isset($result->body))
+        $body = $result->body;
+           if(isset($result->type))
+              $ext_mime = $result->type;
+      }else{
+          if(isset($result->Name))
         $name = $result->Name;
+      
       if($name == "" && isset($result->Id))
           $name = $result->Id;
+      }
+}
+ if($is_attach){
+     if($msg != ""){ ?>
+    <div class="content">
+    <h1 class="pageType"> <?php echo $msg; ?></h1>
+    </div>                       
+   <?php  exit; }
+                   if($ext_mime != "" && $body != "")
+  $ext_array = array("image/bmp", "image/x-windows-bmp","image/vnd.dwg","image/x-dwg","image/fif","image/florian"
+          ,"image/vnd.fpx","image/vnd.net-fpx","image/g3fax","image/gif","image/x-icon",
+          "image/ief",	"image/jpeg", "image/pjpeg","image/x-jps","image/vasa","image/naplps",
+         "image/x-niff","image/x-portable-bitmap","image/x-pict", "image/x-pcx","image/x-portable-graymap",
+         "image/x-xpixmap","image/png","image/x-quicktime","image/cmu-raster","image/x-cmu-raster",
+      "image/vnd.rn-realflash", "image/x-rgb","	image/vnd.rn-realpix","image/tiff", "image/x-tiff", 
+      "	image/x-xbitmap", "image/x-xbm","image/xbm","image/vnd.xiff","image/xpm","image/x-xwd",
+      "	image/x-xwindowdump");
+  if(in_array($ext_mime, $ext_array)){
+?>
+<img src="data:<?php echo $ext_mime.";base64,".$body ?>">
+  <?php }else { 
+      $content = base64_decode($body);
+      $cntent_len = strlen($content);
+     if($ext_mime == "text/plain")
+       echo nl2br($content);
+      else{
+      /* header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.$file.'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . $cntent_len);*/
+       header('Content-Description: File Transfer');
+     header("Content-type: $ext_mime"); 
+     header("Content-length: $cntent_len"); 
+      header("Content-Disposition: attachment; filename=".$file);
+     header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+     
+    // header("Content-Disposition: attachment; filename=$file");
+     
+    ob_clean(); 
+    echo $content;
+    exit;
+     }
+   } 
+               } else{
+              
+get_header();
+echo place_message();
+
+?>
+
+<div id="main-content" class="main-content">
+
+	<div class="row-fluid data-content-outer objectmainContent" >
+		<div id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
+				
+                           <div class=" contentSub sidebarCell">
+            <!-- Sidebar Started -->
+              <?php //echo portal_sidebar();
+              ?>
+            <!-- Sidebar ended -->
+      </div>
+<div class="bodyCell contentSub" >
+<!-- Start page content -->
+<a name="skiplink" id="skiplink">&nbsp;</a>
+<?php
+  //if no data is there 
+   if($msg != ""){ ?>
+    <div class="content">
+    <h1 class="pageType"> <?php echo $msg; ?></h1>
+    </div>                       
+   <?php }else{
+       
+      
+      
+      
        
 ?>
  <div class="row toggle-full-width">
@@ -111,6 +184,9 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     <input type="hidden" id="objName" value="<?php echo $name; ?>" >
     <input type="hidden" id="objectId" value="<?php echo $object_id ?>" >
     <input type="hidden" id="objectType" value="<?php echo $object_type ?>" >
+      <?php 
+               ?>
+             
     <div class="pbHeader">
         <div class="pbTitle small-12">
             <h3 class="accountTitleH3"> <?php echo $object_name; ?> Detail</h3>
@@ -242,12 +318,15 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
     } //for closed?>
 </div>
 <!--<div class="listElementBottomNav"></div>-->
-
+              
 <!-- End ListElement -->
 </div>
 <!-- End RelatedListElement -->
 
- <?php } }
+               <?php }  //attachment else part is closed
+               //} 
+               
+        
    ?>
 
 <!-- Body events -->
@@ -263,3 +342,4 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
 
 <?php
 get_footer();
+}

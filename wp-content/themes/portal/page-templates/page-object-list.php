@@ -3,8 +3,8 @@
  * Template Name: Page Object List
  *
  * @package WordPress
- * @subpackage Portal
- * @since Portal 1.0
+ * @subpackage portalDesign2
+ * @since portalDesign2 1.0
  */
 redirect_to_login();
 get_header();

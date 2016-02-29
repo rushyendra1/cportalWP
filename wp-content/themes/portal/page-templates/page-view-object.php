@@ -3,8 +3,8 @@
  * Template Name: Page View Object
  *
  * @package WordPress
- * @subpackage Portal
- * @since Portal 1.0
+ * @subpackage portalDesign2
+ * @since portalDesign2 1.0
  */
 session_start();
 redirect_to_login();

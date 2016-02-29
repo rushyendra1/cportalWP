@@ -400,12 +400,9 @@ button, .button {
 /**** ****/
 /*** Alpha Pagination ***/
 .listItem{
-    //background-color: #582;
-    //color: #fff;
    background-color: none !important;
     color: #000;
     cursor:pointer;
-    //padding: 0.5rem;
     padding: 0.3rem;
 
 text-decoration: none;   
@@ -417,7 +414,6 @@ a.listItem:hover{
     text-decoration: underline;
 }
 .activeAlpha{
-    //background-color: #c73;
     text-decoration: underline;
     color:#c73;
 }
@@ -521,12 +517,11 @@ a.listItem:hover{
     font-size: 14px;
     font-weight: 500;
     line-height: 14px;
-    margin-right:  130px;
+    margin-right:  170px;
     margin-top: -30px;
     float:right;
     padding: 8px 10px;
     display: inline;
-   // font-family: "Verdana","Geneva",sans-serif;
    font-family: "Montserrat",sans-serif;
       }
       .btn:hover,.btn:focus{
@@ -827,7 +822,6 @@ position: relative;
     background: #99ccff none repeat scroll 0 0;
     text-align:center;
     font-family: "Montserrat",sans-serif;
-    //font-size: 90%;
     font-size:70%;
     font-weight:normal;
 }
@@ -961,7 +955,6 @@ table tbody  tr td {
    margin-top: 1px;}
 
    .alphaObject{
-      // font-size:0.5em;
         font-size: 60%;
     font-weight: bold;
 

@@ -3,8 +3,8 @@
  * Template Name: Page Profile
  *
  * @package WordPress
- * @subpackage Portal
- * @since Portal 1.0
+ * @subpackage portalDesign2
+ * @since portalDesign2 1.0
  */
 redirect_to_login();
 get_header();
@@ -67,7 +67,9 @@ if(is_array($result) && count($result)>0)
 ?>
 
 <div id="main-content" class="main-content">
-
+<?php 
+get_template_part("menualign","none");
+?>
 	<div class="row-fluid data-content-outer objectmainContentDisp" >
 		<div id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">

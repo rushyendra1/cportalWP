@@ -6,6 +6,7 @@ var geocoder;
 $ = jQuery.noConflict();
 showLoader();
 $(document).ready(function(){
+    
     try{
     $(document).foundation({
 	abide:{
@@ -18,13 +19,25 @@ $(document).ready(function(){
     var path = $.trim($("#path").val());
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    var resolution = parseInt(screen.pixelDepth);
-    //alert(devWidth);
+    //var resolution = parseInt(screen.pixelDepth);
+    var resolution = parseInt(devWidth);
+    
+    if(resolution >=width( 1024)){
+         $('.widthresponse').show();
+        $('.mobileresponse').hide();    
+    } 
+   // alert(devWidth);
+    else {
+      $('.widthresponse').hide();
+        $('.mobileresponse').show();
+    }
+
+    alert(devWidth);
     /*if(resolution == 24)
     { 
         $(".toggle-topbar").attr("style","display:block;");
-    }*/
-    //alert(devWidth);
+    }
+    alert(devWidth); */
     //667
     //880
     //933
@@ -90,7 +103,14 @@ $('head').append(addStyle);
 $(".toggle-topbar").on("click",function(){
    $(".top-bar-section").toggle(); 
 });
-   
+   $(".widthresponse").on("click",function(){
+   $(".widthresponse").toggle();     
+});
+   $(".mobileresponse").on("click",function(){
+   $(".mobileresponse").toggle(); 
+    
+});
+
    var msg = $("#msg").val();
    if(msg != "")
        alertData("Message",msg);
@@ -367,7 +387,8 @@ $(".logouts").on("click",function(e){
          setPwdPerform(e, this); 
          return false;
      });   
-
+     /** mobile response design **/
+     
 });
 
 /**

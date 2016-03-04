@@ -46,7 +46,7 @@ if(isset($result->data->is_Edit))
                 </div>
                 <div class="bodyCell contentSub" >
                     <!-- Start page content -->
-                    <div class="row toggle-full-width">
+                    <div class="">
                         <div class="bPageTitle">
 
                             <h1  class="pageType noSecondHeader headTitle" ><?php echo $obj_name; ?></h1>

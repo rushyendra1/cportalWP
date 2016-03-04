@@ -171,7 +171,7 @@ echo place_message();
       
        
 ?>
- <div class="row toggle-full-width">
+ <div class="">
 <div class="bPageTitle">
     <h1 class="headTitle">View <?php echo $object_name; ?></h1>
 </div>
@@ -262,7 +262,6 @@ echo place_message();
         </div>-->
      
     <!--</div>-->
-    <div class="clear"></div>
      <div class="buttonEdit row">
       <a  class="button buttonCss" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
       </div>

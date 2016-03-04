@@ -1,0 +1,72 @@
+/*base*/
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: -0.03em; text-transform: uppercase; }
+body { background: #EEE; }
+.row { background-color: #FFFFFF; }
+.toggle-full-width { box-shadow: 0 0 0px #ddd; }
+#toggle_full_width { box-shadow: 0 0 20px #666; }
+.row.full-width { width: 100%; margin-left: auto; margin-right: auto; max-width: initial; }
+#header { max-width: 200px; height: auto; display: block; margin: 2rem auto 2rem; }
+/*forms*/
+textarea.small, select[multiple].small { height: 5em; }
+textarea.medium, select[multiple].medium { height: 10em; }
+textarea.large, select[multiple].large { height: 20em; }
+select[multiple] { background-image: none; }
+select[multiple] optgroup { color: #555; font-style: italic; font-weight: normal; }
+select[multiple] option { color: #000; font-style: normal; font-weight: bold; }
+/*file field*/
+.upload-container{position: relative;border: dashed 2px #43AC6A;padding: 20px;color: #43AC6A;margin-top: 0.5rem;font-size: 1rem;}
+.upload-container input{position: absolute;left: 0;top: 0;margin: 0;width:100%;height: 100%;-moz-opacity:0;filter:alpha(opacity: 0);opacity: 0;z-index: 2;cursor: pointer;}
+.upload-container .number-of-files{display: block;font-size: 0.8rem;font-style: italic;color: #999;}
+/*switch labels*/
+.switch.with-label label { margin-bottom: 1.3rem; }
+.switch.with-label label > span.active, .switch label > span.inactive { position: absolute; margin-top: 8px; z-index: 1; font-size: .6rem; text-indent: 0; width: 1.75rem; text-align: center; font-weight: bold; text-transform: uppercase; display: block; }
+.switch.with-label label > span.active { margin-left: .25rem; color: #ffffff; }
+.switch.with-label label > span.inactive { margin-left: 2rem; color: #6f6f6f; }
+.switch.with-label label:after { z-index: 2; /*width: 2rem;*/ }
+/*.switch.with-label input:checked + label:after { left: 3rem; }*/
+/*labels*/
+.error .label { font-weight: normal !important; display: inline-block !important; margin-bottom: auto !important; padding: 0.25rem 0.5rem 0.25rem !important; font-size: 0.6875rem !important; }
+/*.switch.error .label{margin-top: -1.4rem !important;}*/
+label.error strong { color: #4d4d4d; }
+.error input, .error textarea, .error select { margin-bottom: 1rem; }
+/*icons*/
+.round-icon { background: #222222; color: white; width: 3rem; display: inline-block; border-radius: 1.5rem; height: 3rem; text-align: center; font-size: .7em; line-height: 3.2rem; top: -0.25rem; position: relative; }
+.fi-calendar { font-size: 1.2rem; cursor: pointer; }
+small.vehicle-label{display:block;}
+.side-nav i{font-size:32px; vertical-align:middle;}
+/*lightbox*/
+.clearing-blackout .carousel {display: none;}
+.clearing-thumbs li, [data-clearing] li{float:none;}
+@media only screen and (min-width: 40em){
+.clearing-assembled .clearing-container .visible-img {height: 100%;}
+}
+.clearing-caption {padding: 30px;background: rgba(0,0,0,0.5);}
+/*side nav*/
+.side-nav {padding-top:0;}
+.side-nav li {margin:0;}
+/*tool tips*/
+.has-tip { border-bottom: none; cursor: pointer; }
+.has-tip:hover, .has-tip:focus { border-bottom: none; }
+@media only screen and (max-width: 40em) {
+.tooltip { max-width: none; left: 0 !important; }
+}
+/*toggle fields*/
+a.toggle-fields{margin-top: -47px; margin-bottom:0;}
+/*reveal*/
+#modal_confirm .fi-checkbox{font-size:3rem;}
+.reveal-modal .close-reveal-modal {font-size: 1.5rem;right: .675rem;}
+.reveal-modal h1 i:before{-webkit-animation:spin 1.5s linear infinite;-moz-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite;}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+/*helpers*/
+.add-top { margin-top: 1rem !important; }
+.add-bottom { margin-bottom: 1rem !important; }
+.half-top { margin-top: 0.5rem !important; }
+.half-bottom { margin-bottom: 0.5rem !important; }
+.remove-top { margin-top: 0 !important; }
+.remove-bottom { margin-bottom: 0 !important; }
+.loginDiv.radius {
+    radius:4px;
+}

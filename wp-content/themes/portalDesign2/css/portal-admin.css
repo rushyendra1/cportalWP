@@ -1,0 +1,145 @@
+.viewSettingControls input{
+    height:30px;
+}
+.addEmailDisp input{
+    height:30px;
+    width:500px;
+}
+.addEmailDisp textarea{
+  height: 350px;
+    width: 500px;
+}
+/*** pagination **/
+/** Pagination **/
+
+.pagination
+{
+	text-align:center;
+	    padding: 0px 0px;
+    margin: 0px 0 0px;
+}
+
+.pagination a
+{
+	display:inline-block;
+	padding:5px 10px;
+	color:#33485E;
+	background-color:#ECF0F1;
+	border-radius:3px;
+	border:1px solid #dae2e4;
+	text-decoration:none;
+	box-shadow:0 2px 0 #c0cdd1;
+	font-weight:300;
+	margin:10px 2px;
+	outline:none;
+	cursor:pointer
+}
+
+.pagination a:hover,.pagination .endless_page_current
+{
+	display:inline-block;
+	padding:5px 10px;
+	color:#fff;
+	background-color:#04955f;
+	border-radius:3px;
+	border:1px solid #03774b;
+	box-shadow:0 2px 0 #024b2f;
+	text-decoration:none;
+	margin:10px 2px;
+	cursor:pointer
+}
+
+.pagination a:hover strong,.pagination .endless_page_current strong
+{
+	font-weight:300
+}
+
+.pagination .endless_page_link:last-of-type
+{
+	display:inline
+}
+
+.btn-info {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.salesforceSettings input{
+    height:30px;
+    width:550px;
+}
+.button-primary{
+    width:auto !important;
+}
+.errorTag{
+    color:#ff0000;
+}
+#adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, #adminmenu a.wp-has-current-submenu:focus + .wp-submenu, .no-js li.wp-has-current-submenu:hover .wp-submenu {
+margin-left:-5px;    
+width:102%;
+}
+#adminmenu .wp-not-current-submenu .wp-submenu{
+    margin-left:-1px;
+}
+#perPageItem {
+	width: 70px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+#searchItem {
+	width:200px;
+}
+/*#contentalign {
+	//margin-left:0px;
+}*/
+/*#headeralign{
+	
+margin-left:-5px;
+
+
+}*/
+.contentDisp{
+    margin-left:70px !important;
+    border-radius:1px;
+}
+#isVisibleReg,#isVisibleUser,#isVisible,#isRequired {
+	height:15px;
+	width:15px;
+}
+#editattralign {
+	contentalign:center;
+}
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append {
+     height: 15%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    width: 55%;
+}
+.firstLabel{
+    margin-top:10px;
+}
+.userSettings th, .userSettings td {
+    // padding: 1%;
+    padding:0.3%;
+    font-size:90%;
+    word-wrap: break-word;
+}
+.userSettings{
+    table-layout: fixed;
+}
+.cursorPt{
+ cursor:pointer;  
+}
+.halflings-icon{
+    background-color: transparent;
+}
+.textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border-radius:3px;
+}
+.box-header h2{
+       font-size: 23px;
+    font-weight: 400;
+   // line-height: 29px;
+      font-family: "Open Sans",sans-serif;
+}

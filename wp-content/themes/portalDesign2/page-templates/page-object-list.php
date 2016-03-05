@@ -57,22 +57,27 @@ if(isset($result->data->is_Edit))
                         </div>    
                       
                     </div>
-                    <div class="buttonWidth small-2" >
+                   <!-- <div class="buttonWidth small-2" >
                       
                             <?php if($is_create) { ?>
                             <!--<input type="button" value="Add" class="btn addObject" data-id="" name="edit" title="Add">-->
                             <!--<div class="buttonWidth buttonEdit small-3">-->
                             
-                            <button  class="btn buttonCss addObject">Add</button>
+                            <!--<button  class="btn buttonCss addObject">Add</button>-->
                             
                             
                
                             <?php } ?>
-                            <div class="goBackDiv listDiv small-1">
+                            
+                            <!--<div class="goBackDiv listDiv small-1">
                            
                                 <button  class="btn goBack1 buttonCss" >Back</button>
-                        </div>
-                        </div>
+                        </div> 
+                            
+                        </div>-->
+                    <div class="goBackDiv">
+           <a class="goBack buttonCss">Back</a>
+      </div>
                         
                         <!-- Paginations Start Here  -->
                         <div class="paginationLinks pageContact row"></div>

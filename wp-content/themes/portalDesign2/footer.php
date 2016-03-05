@@ -34,8 +34,8 @@ $result = $wpdb->get_row("SELECT title"
 					</div>
 					<div class="span7">
                                             <p >
-                                                    <a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
-                                         <br>  
+                                                    <!--<a href="<?php echo get_site_url() ?>"><?php echo $portal; ?></a>
+                                         <br> --> 
 						&copy; <?php echo date("Y"); ?> All rights reserved <br/> </p> 
 						
 					</div>

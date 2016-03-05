@@ -60,6 +60,10 @@ if ($pages == "" || $pages == "home") {
                                     $each_tab = $tab_array[$i];
                                     if ($pages == "object-list" && $each_tab == $tabs) {
                                         $active_class = 'active';
+                                    }else  if ($pages == "view-object" && $each_tab == $tabs) {
+                                        $active_class = 'active';
+                                    }else  if ($pages == "add-object" && $each_tab == $tabs) {
+                                        $active_class = 'active';
                                     }
                                     if ($j < $limit) {
                                         ?>
@@ -103,7 +107,7 @@ if ($pages == "" || $pages == "home") {
           </div>
               </div>
               
-              <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="display:none">
+              <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="">
               <div class="container">
               <div class="navbar-header">
                   <button class="navbar-toggle collapsed" data-target=".navbar-collapse" data-toggle="collapse" type="button" style="display:none">

@@ -34,7 +34,7 @@ $blog = $blogname . " | " . $blogdescription;
         <?php wp_head(); ?>
     </head>
     <body>
-
+        <input type="hidden" value="<?php echo $blog ?>" id="blogname" >
         <div class="row-fluid ">
             <div class=" row-fluid autoheighthm">
             <!--<div id="wrapHome" class="row-fluid"  >-->

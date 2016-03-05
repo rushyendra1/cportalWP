@@ -887,8 +887,8 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
             }//for closed
             var editLink = '';
          
-            if(isEdit)
-                editLink = ' &nbsp; <a>Edit</a>';
+           //just comment if(isEdit)
+               //just comment editLink = ' &nbsp; <a>Edit</a>';
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'&obj_name='+objectName+'">View</a>'+editLink+'</td>';
             responseHtml +='</tr>';
         }
@@ -1303,7 +1303,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
            
                 
             }//for closed
-            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'&obj_name='+currentObjectName+'"">View</a> &nbsp; <a>Edit</a></td>';
+            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'&obj_name='+currentObjectName+'"">View</a><!-- &nbsp; <a>Edit</a>--></td>';
             responseHtml +='</tr>';
 
            

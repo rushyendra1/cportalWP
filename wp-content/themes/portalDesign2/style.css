@@ -1032,6 +1032,17 @@ button.radius, .button.radius {
         border-color: #008CBA;
     color: #FFFFFF;
 }
+.button.link:hover{
+    background-color: #008CBA;
+        border-color: #008CBA;
+    color: #FFFFFF;
+}
+.button.link:active,.button.link:focus{
+    background-color: #008CBA;
+        border-color: #008CBA;
+    color: #FFFFFF;
+}
+
 /**** Mobile Support ****/
 
 

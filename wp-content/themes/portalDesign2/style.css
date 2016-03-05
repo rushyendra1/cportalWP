@@ -705,7 +705,7 @@ position: relative;
     text-align: left; 
     text-decoration:none; 
 }
-#name.header a {display:block; color:#5c1904; text-shadow:#f1d8a4 1px 1px 1px;}
+#name.header a {display:block; color:#008CBA; text-shadow:#f1d8a4 1px 1px 1px;}
 #name.header a:hover {color:#e6ded5!important; text-shadow:#5f4d3b 1px 1px 1px!important; text-decoration:none!important;}
 #name a:hover {color:#052714;}
 .headTitle{

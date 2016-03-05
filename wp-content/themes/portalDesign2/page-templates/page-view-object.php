@@ -189,12 +189,12 @@ echo place_message();
       <?php 
                ?>
              
-    <div class="pbHeader">
+    <!--<div class="pbHeader">
         <div class="pbTitle small-12">
             <h3 class="accountTitleH3"> <?php echo $object_name; ?> Detail</h3>
         </div>
        
-    </div>
+    </div> -->
     <!--<div class="pbBody">-->
                <!--<div class="pbSubsection">-->
                    <div class="" data-equalizer="foo"  >
@@ -264,9 +264,9 @@ echo place_message();
         </div>-->
      
     <!--</div>-->
-     <div class="buttonEdit row">
+     <!--<div class="buttonEdit row">
       <a  class="button buttonCss" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
-      </div>
+      </div>-->
         
 <!--</div>-->
 <!-- Begin RelatedListElement -->

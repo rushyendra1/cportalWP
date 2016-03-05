@@ -776,7 +776,7 @@ position: relative;
 
 #footer {
   width: 100%;
-  background-color: skyblue;
+  background-color: #d3d3d3;
   margin-top: 20px;
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 0px;
@@ -1026,6 +1026,11 @@ tbody.ObjectCaseRes {
 }
 button.radius, .button.radius {
     border-radius: 0px;
+}
+.button.link {
+    background-color: #008CBA;
+        border-color: #008CBA;
+    color: #FFFFFF;
 }
 /**** Mobile Support ****/
 

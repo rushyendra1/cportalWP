@@ -1519,3 +1519,18 @@ function get_home_data()
             } */
             return $result;
 }
+function get_portal_title()
+{
+    global $wpdb;
+    global $table_prefix;
+    $portal = '';
+    $result = $wpdb->get_row("SELECT title"
+                            . " FROM ".$table_prefix."settings"
+                           . " WHERE id=1");
+                $title='';
+                if(isset($result) && count($result)>0)
+                {
+                    $portal = $result->title;
+                }
+                return $portal;
+}

@@ -1,16 +1,10 @@
-<?php
-                 $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
-                unset($_SESSION['msg']);
-?>
+<div class="menuMobile" style="display:none">
+    menu
+</div>
+<div class="menuStyle" style="display:none" >
+           <nav class="top-bar" data-topbar>
                 
-          <!--  </div>-->
-          <div class="widthresponse" style="">
-          <div class="row-fluid menualign ">
-              <input type="hidden" id="msg" value="<?php echo $msg ?>" >
-                <input type="hidden" id="blogname" value="<?php echo $blog ?>" >
-            <nav class="top-bar" data-topbar>
-                
-                <section class="">
+                <section >
                     <ul class="menu vertical">
 <?php
 $active_class = '';
@@ -22,6 +16,7 @@ if ($pages == "" || $pages == "home") {
 
 ?>
                         <li ><a href="<?php echo get_site_url() ?>" class="<?php echo $active_class; ?>" >Home</a></li>
+                        
                         <?php
                         if (!is_user_logged_in()) {
                             $active_class = '';
@@ -79,7 +74,8 @@ if ($pages == "" || $pages == "home") {
                                                             <span><?php echo $each_tab; ?></span>
                                                         </a></li>
                 <?php } ?>
-                                            </ul>
+                    <li ><a href="<?php echo get_site_url() ?>/contact-us-2" class="<?php echo $active_class; ?>" >contact us</a></li>                        
+                    </ul>
                     
                     
                     
@@ -95,14 +91,16 @@ if ($pages == "" || $pages == "home") {
     } //if of response array
 } // is user logged in  
 ?>   
-                                        </nav>
+</section>                                        
+            </nav>
+
     </div>
               </div>
           
                                      
 <!--<li ><a href="<?php echo get_site_url() ?>/logout">Logout</a></li> -->
-                    </ul> <!--</div>-->
-                </section>
+                   <!-- </ul>--> <!--</div>-->
+                
             </nav>
           </div>
               </div>

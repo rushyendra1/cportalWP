@@ -953,7 +953,7 @@ table tbody  tr td {
    margin-top: 1px;}
 
    .alphaObject{
-        font-size: 80%;
+        font-size: 90%;
     font-weight: bold;
 
    }
@@ -1042,7 +1042,9 @@ button.radius, .button.radius {
         border-color: #008CBA;
     color: #FFFFFF;
 }
-
+table {
+    width: 100%;
+}
 /**** Mobile Support ****/
 
 
@@ -1190,6 +1192,6 @@ button.radius, .button.radius {
 }
 
 @media (max-width: 890px) {
-  nav ul     { display: none; }
-  nav select { display: inline-block; }
+/*  nav ul     { display: none; }
+  nav select { display: inline-block; }*/
 }

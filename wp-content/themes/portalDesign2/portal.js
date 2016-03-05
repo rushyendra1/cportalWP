@@ -19,6 +19,20 @@ $(document).ready(function(){
     var site = $.trim($("#siteTheme").val());
     var devWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     var resolution = parseInt(screen.pixelDepth);
+    if(devWidth <= 1024)
+    {
+        $(".menuMobile").show();
+        
+    }else{
+          $(".menuMobile").hide();        
+           $(".menuStyle").show();
+      }
+      $(".menuMobile").on("click",function(){
+         
+          $(".menuStyle").attr("style","display:block;");
+         // $(".bodyCell").hide();
+          return false;
+      });
     //alert(devWidth);
     /*if(resolution == 24)
     { 

@@ -94,3 +94,12 @@ $blog = $blogname . " | " . $blogdescription;
             <input type="hidden" value="<?php echo get_template_directory_uri() ?>" id="rootTheme" >
             <input type="hidden" value="<?php echo get_site_url() ?>" id="siteTheme" >
             <input type="hidden" value="<?php echo $pages; ?>" id="path" >
+<?php
+                 $msg = (isset($_SESSION['msg'])) ? $_SESSION['msg'] : "";
+                unset($_SESSION['msg']);
+?>
+ <!--  </div>-->
+          <div class="widthresponse" style="">
+          <div class="row-fluid menualign ">
+              <input type="hidden" id="msg" value="<?php echo $msg ?>" >
+                <input type="hidden" id="blogname" value="<?php echo $blog ?>" >

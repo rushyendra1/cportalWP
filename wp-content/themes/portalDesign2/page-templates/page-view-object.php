@@ -233,7 +233,7 @@ echo place_message();
                                    if(isset($result->$key))
                                        $content = $result->$key;
                                ?>
-                           <div class="row object-view-row " data-equalizer="bar"  >
+                           <div class="row object-view-row clearfix" data-equalizer="bar"  >
                             <div class="small-3 columns labelColItem">
                                 <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
                                     <label > <?php echo $val; ?> </label>

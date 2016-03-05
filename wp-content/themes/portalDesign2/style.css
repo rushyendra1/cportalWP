@@ -639,7 +639,7 @@ a.listItem:hover{
      font-size: 91%;
      
       border-bottom: 1px solid #ccc;
-
+      border-top: 1px solid #ccc;
     margin: 0;
     vertical-align: top;
     min-height:50px;
@@ -1044,6 +1044,11 @@ button.radius, .button.radius {
 }
 table {
     width: 100%;
+}
+a img {
+    border: none;
+    float: right;
+    
 }
 /**** Mobile Support ****/
 

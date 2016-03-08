@@ -1,5 +1,5 @@
 <div class="menuMobile" style="display:none">
-    <a id="menubtn" href="javascript:void(0);" class="topnav-localicons w3-left" onclick="w3_open()" title="Menu">☰</a>
+    menu
 </div>
 <div class="menuStyle" style="display:none" >
            <nav class="top-bar" data-topbar>

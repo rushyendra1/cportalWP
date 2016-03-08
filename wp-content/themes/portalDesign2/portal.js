@@ -22,6 +22,7 @@ $(document).ready(function(){
     if(devWidth <= 1024)
     {
         $(".menuMobile").show();
+        $(".menuStyle").hide();
         
     }else{
           $(".menuMobile").hide();        

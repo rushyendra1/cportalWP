@@ -1050,6 +1050,9 @@ a img {
     float: right;
     
 }
+.imagealign{
+position:absolute;
+}
 /**** Mobile Support ****/
 
 

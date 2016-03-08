@@ -864,8 +864,8 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 if(arg != "Id"){
                 headerHtml +='<th  scope="col">\n\
                         <a title="'+fieldText+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+fieldText+'\n\
-                        <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
-                        </a></th>';
+                        <span class="imagealign"><img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
+                        </span></a></th>';
                     }
             } //for loop closed
             headerHtml +='<th  scope="col">Action</th>';

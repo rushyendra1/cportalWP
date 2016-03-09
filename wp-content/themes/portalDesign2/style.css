@@ -1012,9 +1012,7 @@ table thead {
 tbody.ObjectCaseRes {
     font-size: 0.875rem;
 }
-.large-6 {
-    width: 100%;
-}
+
 .row.editRow {
     display: flex;
 }
@@ -1031,6 +1029,7 @@ button.radius, .button.radius {
     background-color: #008CBA;
         border-color: #008CBA;
     color: #FFFFFF;
+        min-width: 90px;
 }
 .button.link:hover{
     background-color: #008CBA;
@@ -1215,6 +1214,9 @@ a.topnav-localicons {
 }
 .nameDisp {
     margin-right: -190px;
+}
+.large-6 {
+    width: 100%;
 }
 }
 @media (max-width: 768px) {

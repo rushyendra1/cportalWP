@@ -175,7 +175,7 @@ echo place_message();
 ?>
  <div class="">
 <div class="bPageTitle">
-    <h1 class="headTitle">View <?php echo $object_name; ?></h1>
+    <h1 class="headTitle"> <?php echo $object_name; ?></h1>
 </div>
      <div class="goBackDiv">
           <a  class="goBack buttonCss">Back</a>

@@ -30,8 +30,6 @@ $(document).ready(function(){
       }
       $(".menuMobile").on("click",function(){
          
-          //$(".menuStyle").attr("style","display:block;");
-         // $(".bodyCell").hide();
          $(".menuStyle").toggle();
           return false;
       });

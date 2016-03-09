@@ -292,7 +292,7 @@ echo place_message();
     <div class="bPageBlock">
         <div class="pbHeader">
             <div class="pbTitle small-12">
-            <h3 class="accountTitleH3"><?php echo $rel_name ?>s</h3>
+            <h3 class="accountTitleH3"><?php echo $rel_name ?></h3>
         </div>
         <!--<div class="buttonWidth">
             <input type="button" title="New Case" data-contactid="<?php echo $contact_id; ?>" data-contactname="<?php echo $name; ?>"  class="btn newCase" value="New Case">

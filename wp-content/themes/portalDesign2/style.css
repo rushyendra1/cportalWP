@@ -630,7 +630,7 @@ a.listItem:hover{
        background: #dfdfdf none repeat scroll 0 0;
     padding: 5px;
     font-weight: bold;
-    line-height: 15 px;
+    line-height: normal;
     color: #555;
      font-family: "Montserrat",sans-serif;
     
@@ -663,6 +663,7 @@ a.listItem:hover{
    
    .objectSpan{
        word-wrap: break-word;
+           line-height: normal;
    }   
    
 /* Header Part */
@@ -1052,6 +1053,7 @@ a img {
 .imagealign{
 position:absolute;
 }
+
 /**** Mobile Support ****/
 
 

@@ -207,8 +207,8 @@ echo place_message();
                            {
                                $i=0; $j = 0;
                                 $c_class = 'callout cal1';
-                                if($item_cnt %2 >0)
-                                    $item_cnt += 1;
+                              /*  if($item_cnt %2 >0)
+                                    $item_cnt += 1;*/
                                 for($j=0;$j<$item_cnt;$j){
                                //foreach($params_array as $val){
                                     $val = $key = $content = '';
@@ -289,17 +289,17 @@ echo place_message();
             $rel_name = $related_list_array[$i];
             $i++;
     ?>
-    <div class="bPageBlock">
-        <div class="pbHeader">
-            <div class="pbTitle small-12">
-            <h3 class="accountTitleH3"><?php echo $rel_name ?></h3>
+    <div class="bPageBlock clear" >
+        <div class="pbHeader ">
+            <div class="pbTitle small-12 ">
+            <h3 class="accountTitleH3 "><?php echo $rel_name ?></h3>
         </div>
         <!--<div class="buttonWidth">
             <input type="button" title="New Case" data-contactid="<?php echo $contact_id; ?>" data-contactname="<?php echo $name; ?>"  class="btn newCase" value="New Case">
         </div>-->
        
         </div>
-         <div  class="pbBody">
+         <div  class="pbBody ">
             
           <table cellspacing="0" cellpadding="0" border="0" class="list object-<?php echo $each; ?>-list">
                 <thead class="headerObject<?php echo $each; ?>">
@@ -340,7 +340,7 @@ echo place_message();
 	</div>
 	
 </div><!-- #main-content -->
-
+</div>
 <?php
 get_footer();
 }

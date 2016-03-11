@@ -920,6 +920,7 @@ table thead tr th, table thead tr td {
 }
 table tbody  tr td {
     font-size:75%;
+    border-collapse: collapse;
 }
 .top-bar-section .has-dropdown {
     position: relative; 
@@ -1005,7 +1006,8 @@ table tbody  tr td {
     display: table; 
 }
 label {
-        text-align: center;
+        text-align: left;
+        font-size: small;
 }
 table thead {
     font-size: 0.975rem;
@@ -1238,6 +1240,10 @@ a.topnav-localicons {
 #name {
      margin-left: 100px; 
 }
+label {
+     display: inline-block;
+     font-size: x-small;
+ }
 }
 @media (max-width: 320px) {
 .nameDisp {

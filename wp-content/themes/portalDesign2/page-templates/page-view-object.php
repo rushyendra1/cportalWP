@@ -197,9 +197,10 @@ echo place_message();
     </div> -->
     <!--<div class="pbBody">-->
                <!--<div class="pbSubsection">-->
-                   <div class="" data-equalizer="foo"  >
+               <table width="100%" style="border:0px;">
+<tr width="100%"><td width="100%">                   <div class="" data-equalizer="foo"  >
                        <div class=" large-6 columns " >
-                            <div class="callout" data-equalizer-watch="foo">
+                            <div class="callout" data-equalizer-watch="foo" style="height:0px;">
                            <?php
                              $item_cnt = count($params_array);
                             $rep_cnt = ceil($item_cnt/2);
@@ -223,7 +224,7 @@ echo place_message();
                                    {
                                        $i=0;
                                        echo '</div></div><div class="large-6 columns">'
-                                       . '<div class="callout" data-equalizer-watch="foo">';
+                                       . '<div class="callout" data-equalizer-watch="foo" style="height:0px;">';
                                        //$c_class = 'callout';
                                        $c_class = 'callout cal2';
                                    }
@@ -255,7 +256,7 @@ echo place_message();
                      
                    </div>
         
-        </div>
+        </div></td></tr>
       
     <!--</div>-->
     <!--<div class="pbBottomButtons">-->
@@ -270,7 +271,8 @@ echo place_message();
         
 <!--</div>-->
 <!-- Begin RelatedListElement -->
-<div  class="bRelatedList first">
+<tr width="100%"><td width="100%">
+<div  class="bRelatedList first clear" style="">
    <!-- <a name="0032000000ck5ZE_00Nw0000003EEmL_target"></a>-->
 <!-- Begin ListElement -->
 
@@ -289,7 +291,7 @@ echo place_message();
             $rel_name = $related_list_array[$i];
             $i++;
     ?>
-    <div class="bPageBlock clear" >
+    <div class="bPageBlock " style>
         <div class="pbHeader ">
             <div class="pbTitle small-12 ">
             <h3 class="accountTitleH3 "><?php echo $rel_name ?></h3>
@@ -321,7 +323,7 @@ echo place_message();
 <!--<div class="listElementBottomNav"></div>-->
               
 <!-- End ListElement -->
-</div>
+</div></td></tr></table>
 <!-- End RelatedListElement -->
 
                <?php }  //attachment else part is closed

@@ -1314,7 +1314,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                   value = result[i][fields];  
                 if(fields != "Id")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
-           
+           console.log(i+" "+value);
                 
             }//for closed
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'&obj_name='+currentObjectName+'"">View</a><!-- &nbsp; <a>Edit</a>--></td>';

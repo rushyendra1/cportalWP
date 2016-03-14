@@ -76,14 +76,14 @@ if ($pages == "" || $pages == "home") {
                 <?php } ?>
                                                         
                                                         <?php 
-                                                        $active_class = '';
-$pages = get_current_files();
+                                                        
+                                                        $pages = get_current_files();
+                                                        if ($pages == "contact-us-2") {
+                                                        $active_class = 'active';
+                                                        }
+                                                        ?>
 
-if ($pages == "contact-us-2") {
-    $active_class = 'active';
-}
 
-?>
                     <li ><a href="<?php echo get_site_url() ?>/contact-us-2" class="<?php echo $active_class; ?>" >contact us</a></li>                        
                     </ul>
                     

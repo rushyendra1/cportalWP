@@ -888,6 +888,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
             {
                 var value =  fields =  "";
                 fields = apiFields[j];
+                
               
             if (res[i] != null && typeof (res[i][fields]) != "undefined")
                
@@ -1232,7 +1233,9 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             return false;
         }
             var  res = data;
+            
            var result = res.objectList;
+           console.log(result);
            var fieldsArray = data.fields;
            var fieldsLen = fieldsArray.length;
          
@@ -1241,7 +1244,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             
     try {
         len = res.pageRecords;
-       
+              // console.log(" "+len);
         if (typeof (res.error) != "undefined")
         {
             itemAlertData(msg, data.message);
@@ -1295,7 +1298,6 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
         } //if closed
         
         $(".headerObject"+objectType).html(headerHtml);
-    
          for (var i = 0; i < len; i++)
         {
             
@@ -1303,18 +1305,25 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
              responseHtml +='<tr  class="dataRow even first">';
             
             if (result[i] != null && typeof (result[i]['Id']) != "undefined")
+                
             id= result[i]['Id'];
+
             for(var j=0;j<lengthLimit;j++)
             {
                 var value =  fields =  "";
-                fields = fieldsArray[j];
-           
+                //fields = fieldsArray[j];
+                fields =fieldsArray[j].replace(/\s+/, "") ;
+                if(fields == "CaseType")
+                    fields = "Type";
+                if(fields == "AccountID")
+                    fields = "AccountId";
+         //  console.log(fields);
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
            
                   value = result[i][fields];  
                 if(fields != "Id")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
-           
+                   
                 
             }//for closed
             responseHtml +='<td class=" dataCell  " scope="row"><a href="'+siteUrl+'/view-object?id='+id+'&type='+objectType+'&obj_name='+currentObjectName+'"">View</a><!-- &nbsp; <a>Edit</a>--></td>';

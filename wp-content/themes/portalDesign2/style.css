@@ -636,7 +636,6 @@ a.listItem:hover{
     
      vertical-align: top;
      text-align: right;
-     font-size: 91%;
      
       border-bottom: 1px solid #ccc;
       border-top: 1px solid #ccc;
@@ -919,7 +918,7 @@ table thead tr th, table thead tr td {
 
 }
 table tbody  tr td {
-    font-size:75%;
+    font-size:100%;
     border-collapse: collapse;
 }
 .top-bar-section .has-dropdown {
@@ -1224,9 +1223,6 @@ a.topnav-localicons {
 }
 }
 @media (max-width: 768px) {
-.nameDisp {
-    margin-right: -30%;
-}
 #name {
      margin-left: 0px;
      display:inline-block;

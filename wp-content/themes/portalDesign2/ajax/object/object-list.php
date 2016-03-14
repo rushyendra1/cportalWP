@@ -23,6 +23,7 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
         $url = $instance_url.$login_time_url;
         $object_array = array("method" => "getObjectDetails",
                                 "Type" =>$type );
+        
         if($pageNum !== "")
         {
             $object_array['PageNo'] = $pageNum;
@@ -45,6 +46,7 @@ $alpha_type = (isset($_POST['alpha_type']))?trim($_POST['alpha_type']):"";
             $object_array['RecordId'] = $object_id;
             $object_array['RelatedToapi'] = $parent_obj_type;
         }
+        //echo $url;
        //echo json_encode($object_array);
         $json_response = post_request($url, $access_token, json_encode($object_array),"POST");
         //var_dump($json_response);

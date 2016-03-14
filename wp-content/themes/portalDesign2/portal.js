@@ -23,10 +23,16 @@ $(document).ready(function(){
     {
         $(".menuMobile").show();
         $(".menuStyle").hide();
+        $(".relatedlistshow").show(); 
+
+$(".mobilerelatedlisthide").hide();
         
     }else{
           $(".menuMobile").hide();        
            $(".menuStyle").show();
+           $(".relatedlistshow").hide(); 
+
+$(".mobilerelatedlisthide").show();
       }
       $(".menuMobile").on("click",function(){
          

@@ -197,6 +197,134 @@ echo place_message();
     </div> -->
     <!--<div class="pbBody">-->
                <!--<div class="pbSubsection">-->
+               <div class="relatedlistshow" style="display:none"> 
+                <div class="" data-equalizer="foo"  >
+                       <div class=" large-6 columns " >
+                            <div class="callout" data-equalizer-watch="foo">
+                           <?php
+                             $item_cnt = count($params_array);
+                            $rep_cnt = ceil($item_cnt);
+                           if($item_cnt>0)
+                           {
+                               $i=0; $j = 0;
+                                $c_class = 'callout cal1';
+                                if($item_cnt %2 >0)
+                                    $item_cnt += 1;
+                                for($j=0;$j<$item_cnt;$j){
+                               //foreach($params_array as $val){
+                                    $val = $key = $content = '';
+                                    if(isset($params_array[$j]))
+                                        $val = $params_array[$j];
+                                   //if($key != "related_types"){
+                                    if(isset($fields_array[$j]))
+                                   $key = $fields_array[$j];
+                                   //$c_class = 'panel';
+                                  
+                                   if($i == $rep_cnt)
+                                   {
+                                       $i=0;
+                                       echo '</div></div><div class="large-6 columns">'
+                                       . '<div class="callout" data-equalizer-watch="foo">';
+                                       //$c_class = 'callout';
+                                       $c_class = 'callout cal2';
+                                   }
+                                   $i++;
+                                   $j++;
+                                   
+                                   if(isset($result->$key))
+                                       $content = $result->$key;
+                               ?>
+                           <div class="row object-view-row clearfix" data-equalizer="bar"  >
+                            <div class="small-3 columns labelColItem">
+                                <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
+                                    <label > <?php echo $val; ?> </label>
+                                 </div>   
+                            </div>
+                        <div class=" small-9 columns labelColItem  oddDivObject">
+                            <div class="<?php echo $c_class ?>" data-equalizer-watch="bar">
+                            <span class="objectSpan"><?php echo nl2br($content); ?></span>
+                            </div>
+                        </div>
+                        </div>
+                               <?php 
+                                   //} // if closed
+                                   } //for closed
+                           }// if closed ?>
+                            
+                        
+                       </div>
+                     
+                   </div>
+        
+        </div>
+      
+    <!--</div>-->
+    <!--<div class="pbBottomButtons">-->
+      <!--  <div class="buttonWidth buttonEdit">
+        <input type="button"  title="Edit" name="edit" data-id="<?php echo $contact_id ?>" class="btn editContact" value=" Edit ">
+        </div>-->
+     
+    <!--</div>-->
+     <!--<div class="buttonEdit row">
+      <a  class="button buttonCss" data-id="<?php echo $contact_id ?>" class="btn editContact">Edit</a>
+      </div>-->
+        
+<!--</div>-->
+<!-- Begin RelatedListElement -->
+<div  class="bRelatedList first" >
+   <!-- <a name="0032000000ck5ZE_00Nw0000003EEmL_target"></a>-->
+<!-- Begin ListElement -->
+
+<!-- motif: Contact -->
+
+<!-- WrappingClass -->
+<div class="listRelatedObject Custom28Block">
+    <?php
+    if(count($related_types_array)>0){
+        $relateds_types = implode(",",$related_types_array);
+        $related_lists = implode(",",$related_list_array);   
+        echo '<input type="hidden" id="relatedTypes" value="'.$relateds_types.'" >';
+        echo '<input type="hidden" id="relatedLists" value="'.$related_lists.'" >';
+        $i =0 ;
+        foreach($related_types_array as $each){
+            $rel_name = $related_list_array[$i];
+            $i++;
+    ?>
+    <div class="bPageBlock">
+        <div class="pbHeader">
+            <div class="pbTitle small-12">
+            <h3 class="accountTitleH3"><?php echo $rel_name ?></h3>
+        </div>
+        <!--<div class="buttonWidth">
+            <input type="button" title="New Case" data-contactid="<?php echo $contact_id; ?>" data-contactname="<?php echo $name; ?>"  class="btn newCase" value="New Case">
+        </div>-->
+       
+        </div>
+         <div  class="pbBody">
+            
+          <table cellspacing="0" cellpadding="0" border="0" class="list object-<?php echo $each; ?>-list">
+                <thead class="headerObject<?php echo $each; ?>">
+                    
+                </thead>
+                <tbody class="Object<?php echo $each; ?>Res">
+                </tbody>
+            </table>
+            <div class="showMoreDivObject<?php echo $each; ?>"></div>
+        </div>         
+     
+
+            
+    </div>
+    
+    <?php }// if closed
+    } //for closed?>
+</div>
+<!--<div class="listElementBottomNav"></div>-->
+              
+<!-- End ListElement -->
+</div>
+               </div>
+               <div class="mobilerelatedlisthide" style="display:block">
                <table width="100%" style="border:0px;">
 <tr width="100%"><td width="100%">                   <div class="" data-equalizer="foo"  >
                        <div class=" large-6 columns " >
@@ -324,6 +452,7 @@ echo place_message();
               
 <!-- End ListElement -->
 </div></td></tr></table>
+                   </div>
 <!-- End RelatedListElement -->
 
                <?php }  //attachment else part is closed

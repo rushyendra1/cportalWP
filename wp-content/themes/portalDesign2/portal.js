@@ -896,12 +896,12 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 fields = apiFields[j];
                 
               
-            if (res[i] != null && typeof (res[i][fields]) != "undefined"){
-               if(fields=="Amount")
+            if (res[i] != null && typeof (res[i][fields]) != "undefined")
+              /* if(fields=="Amount")
                value = '$ ' + res[i][fields].toString();  
-                else
+                else */
                     value = res[i][fields];  
-           }
+           
                if(value == "null" || value == null)
                    value= "";
                if(fields != "Id")

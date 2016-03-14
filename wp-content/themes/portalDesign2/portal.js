@@ -1317,8 +1317,8 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                     fields = "Type";
                 if(fields == "AccountID")
                     fields = "AccountId";
-                if(fields="OrderId")
-                    fields="order";
+                if(fields="OrderID")
+                    fields="OrderId";
                   console.log(result);
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
            

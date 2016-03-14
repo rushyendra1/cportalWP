@@ -175,8 +175,12 @@ echo place_message();
 ?>
  <div class="">
 <div class="bPageTitle">
-    <h1 class="headTitle"> <?php echo $object_name; ?></h1>
+    <h1 class="headTitle"> <?php echo $object_name; ?>s</h1>
 </div>
+     <?php
+     if($object_name =='Opportunitys')
+     $object_name = 'opportunities';
+         ?>
      <div class="goBackDiv">
           <a  class="goBack buttonCss">Back</a>
      </div>

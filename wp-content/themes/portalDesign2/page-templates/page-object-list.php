@@ -50,7 +50,7 @@ if(isset($result->data->is_Edit))
                     <div class="">
                         <div class="bPageTitle">
 
-                            <h1  class="pageType noSecondHeader headTitle" ><?php echo $obj_name; ?></h1>
+                            <h1  class="pageType noSecondHeader headTitle" ><?php echo $obj_name; ?>s</h1>
 
                           <?php if($parent_obj != "") 
                              echo "<h2>".$parent_obj."</h2>"; ?>

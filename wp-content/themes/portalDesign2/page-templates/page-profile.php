@@ -97,9 +97,9 @@ get_template_part("menualign","none");
       <div id="section_1">
         <div class="row statusAccount" >
               <div class="links-pad">
-                  <?php if($is_edit){ ?>
+                /*  <?php if($is_edit){ ?>
                   <a  class="edit" class="headTitle" >Edit My Details</a> &nbsp; &nbsp;
-                <?php } ?>
+                <?php } ?> */
               <a  href="<?php echo get_site_url() ?>/change-password"   >Change My  Password</a> &nbsp; &nbsp;
              
               

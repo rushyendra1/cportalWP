@@ -1312,7 +1312,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             {
                 var value =  fields =  "";
                 fields = fieldsArray[j];
-                console.log(fields);
+               // console.log(fields);
                 /*fields =fieldsArray[j].replace(/\s+/, "") ;
                 if(fields == "CaseType")
                     fields = "Type";
@@ -1321,9 +1321,12 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                 if(fields=="OrderID")
                     fields="OrderId";
                   console.log(result); */
+                    //console.log(fieldsArray[j].api_fields);
+                    if(api_fields == "Amount")
+                        value = CONCAT("$", ToString(result[i][fields]));
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
-           
-                  value = result[i][fields];  
+                   value = result[i][fields];  
+             
                 if(fields != "Id")
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                    

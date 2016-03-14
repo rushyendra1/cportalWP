@@ -1236,7 +1236,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             
            var result = res.objectList;
            //console.log(result);
-           var fieldsArray = data.fields;
+           var fieldsArray = data.api_fields;
            var fieldsLen = fieldsArray.length;
          
             var msg = "Request Message";
@@ -1307,19 +1307,20 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             if (result[i] != null && typeof (result[i]['Id']) != "undefined")
                 
             id= result[i]['Id'];
-
+               // console.log(result);
             for(var j=0;j<lengthLimit;j++)
             {
                 var value =  fields =  "";
-                //fields = fieldsArray[j];
-                fields =fieldsArray[j].replace(/\s+/, "") ;
+                fields = fieldsArray[j];
+                console.log(fields);
+                /*fields =fieldsArray[j].replace(/\s+/, "") ;
                 if(fields == "CaseType")
                     fields = "Type";
                 if(fields == "AccountID")
                     fields = "AccountId";
-                if(fields="OrderID")
+                if(fields=="OrderID")
                     fields="OrderId";
-                  console.log(result);
+                  console.log(result); */
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
            
                   value = result[i][fields];  

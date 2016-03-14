@@ -1235,7 +1235,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             var  res = data;
             
            var result = res.objectList;
-           console.log(result);
+           //console.log(result);
            var fieldsArray = data.fields;
            var fieldsLen = fieldsArray.length;
          

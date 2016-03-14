@@ -890,12 +890,16 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 fields = apiFields[j];
                 
               
-            if (res[i] != null && typeof (res[i][fields]) != "undefined")
-               
-               value = res[i][fields];  
+            if (res[i] != null && typeof (res[i][fields]) != "undefined"){
+               if(fields=="Amount")
+               value = '$ ' + res[i][fields].toString();  
+                else
+                    value = res[i][fields];  
+           }
                if(value == "null" || value == null)
                    value= "";
                if(fields != "Id")
+                 
                 responseHtml +='<td class=" dataCell  " scope="row">'+nl2br(value)+'</td>';
                
                 
@@ -1296,7 +1300,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             headerHtml +='<th  scope="col">Action</th>';
             headerHtml += '</tr>';
         } //if closed
-        
+       
         $(".headerObject"+objectType).html(headerHtml);
          for (var i = 0; i < len; i++)
         {
@@ -1307,23 +1311,12 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             if (result[i] != null && typeof (result[i]['Id']) != "undefined")
                 
             id= result[i]['Id'];
-               // console.log(result);
+             
             for(var j=0;j<lengthLimit;j++)
             {
                 var value =  fields =  "";
                 fields = fieldsArray[j];
-               // console.log(fields);
-                /*fields =fieldsArray[j].replace(/\s+/, "") ;
-                if(fields == "CaseType")
-                    fields = "Type";
-                if(fields == "AccountID")
-                    fields = "AccountId";
-                if(fields=="OrderID")
-                    fields="OrderId";
-                  console.log(result); */
-                    //console.log(fieldsArray[j].api_fields);
-                    if(api_fields == "Amount")
-                        value = CONCAT("$", ToString(result[i][fields]));
+             
              if (result[i] != null && typeof (result[i][fields]) != "undefined")
                    value = result[i][fields];  
              

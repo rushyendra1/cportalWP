@@ -25,6 +25,15 @@ if ($pages == "" || $pages == "home") {
                             }
                             ?>
                             <li><a href="<?php echo get_site_url() ?>/login" class="<?php echo $active_class; ?>"><span>Login</span></a></li>
+                            
+                            <?php 
+                                                        
+                                                        $pages = get_current_files();
+                                                        if ($pages == "contact-us-2") {
+                                                        $active_class = 'active';
+                                                        }
+                                                        ?>
+                             <li ><a href="<?php echo get_site_url() ?>/contact-us-2" class="<?php echo $active_class; ?>" >contact us</a></li>  
                         <?php
                         }
 
@@ -75,22 +84,16 @@ if ($pages == "" || $pages == "home") {
                                                         </a></li>
                 <?php } ?>
                                                         
-                                                        <?php 
                                                         
-                                                        $pages = get_current_files();
-                                                        if ($pages == "contact-us-2") {
-                                                        $active_class = 'active';
-                                                        }
-                                                        ?>
 
 
-                    <li ><a href="<?php echo get_site_url() ?>/contact-us-2" class="<?php echo $active_class; ?>" >contact us</a></li>                        
-                    </ul>
+                                         
+                    
                     
                     
                     
      
-                                        </li>
+                                        
                                             <?php } ?>
 
 
@@ -101,6 +104,7 @@ if ($pages == "" || $pages == "home") {
     } //if of response array
 } // is user logged in  
 ?>   
+                                                        </ul>
 </section>                                        
             </nav>
 

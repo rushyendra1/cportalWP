@@ -16,41 +16,47 @@ get_template_part("menualign","none");?>
 </a>
  <input type="hidden" id="msg" value="<?php echo $msg ?>" >
   <div class="row toggle-full-width">
-    <div class="large-12 columns">
+    <div class="large-12 columns ">
       <!--<h4 class="right"><small><em>* = Required</em></small></h4>-->
       <h4>Contact us</h4>
       
       <hr>
 	  
 <form action="phpmailer.php" method="post">
-My Email: <input type="text" name="email"><br>
-Subject : <input type="text" name="subject"><br>
-Message:<br><textarea rows="5" name="message" cols="30"></textarea><br>
-<input type="submit" name="submit" value="Submit">
+    
+    <label for="Email">
+                
+                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Username/E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
+                    E-mail*</strong><br>
+                <input type="email" id="username" name="username" placeholder="E-mail" class="radius" tabindex="1" style="width:40%">
+             <span class="label error alert  radius " style="display:none">Required</span>
+            </label>
+    
+    <label for="subject">
+                
+                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Username/E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
+                    Subject*</strong><br>
+                <input type="text" id="subject" name="subject" placeholder="Subject" class="radius" tabindex="1" style="width:40%">
+             <span class="label error alert  radius " style="display:none">Required</span>
+            </label>
+    <label for="Message">
+                
+                <strong data-tooltip aria-haspopup="true" class="fi-info has-tip radius" title="Enter Username/E-mail.&lt;br&gt;&lt;small&gt;&lt;em&gt;This field is required.&lt;/em&gt;&lt;/small&gt;"> 
+                    Message*</strong><br>
+                <textarea type="text" id="message" rows="5" name="message" cols="30" placeholder="message" class="radius" tabindex="1" style="width:40%"></textarea>
+             <span class="label error alert  radius " style="display:none">Required</span>
+            </label>
+
 </form>
-
-
-	  
-	  
-	  
-	  
-	  
-      /*<div id="section_1">
-         
-        <div class="row">
+      <div class="clear" style="height:15px"></div>
+          <div class="row">
           <div class="columns small-12"> 
-           <?php
-           
-             $wc_phone = get_option("wc_phone");
-             $wc_email = get_option("wc_email");
-             $wc_address = get_option("wc_address");
-           ?>
+            
+              <a  id="submit" class="button radius submit link" tabindex="3">Submit</a> <br>
           </div>
-            <p>Contact us at :<?php echo $wc_phone; ?> </p>
-            <p>Email us at :<?php echo $wc_email; ?> </p>
-            <p>Post  us at :<?php echo $wc_address; ?> </p>
         </div>
-     </div> */
+     
+      </div>
     </div>
   </div>
     

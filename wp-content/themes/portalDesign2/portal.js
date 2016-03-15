@@ -897,10 +897,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 
               
             if (res[i] != null && typeof (res[i][fields]) != "undefined")
-              /* if(fields=="Amount")
-               value = '$ ' + res[i][fields].toString();  
-                else */
-                    value = res[i][fields];  
+                     value = res[i][fields];  
            
                if(value == "null" || value == null)
                    value= "";

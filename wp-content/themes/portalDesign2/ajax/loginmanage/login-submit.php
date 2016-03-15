@@ -45,6 +45,7 @@ try{
  $result = $wpdb->get_row( "SELECT ID,user_pass,user_nicename 
 				FROM ".$table_prefix."users
 				WHERE user_login='".$user."'");
+ var_dump($result);
 if(count($result) == 0)
 {
     echo "Username/password doest not match";

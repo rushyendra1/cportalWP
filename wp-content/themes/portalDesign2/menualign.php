@@ -37,7 +37,7 @@ if ($pages == "" || $pages == "home") {
                             define("RESARRAY",$res_array);
                             if (count($response_array) > 0) {
 
-                                $tab_array = $response_array['TabList'];
+                                $tab_array = $response_array['PluralList'];
 
                                //$tab_array = array("link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11","link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11");
 

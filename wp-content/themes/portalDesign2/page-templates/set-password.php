@@ -75,7 +75,7 @@ $user_id = $user_ID; */
   <input type="hidden" id="status" value="1">
 <input type="hidden" id="minPassLen" value="<?php echo $min_pass_len ?>">
 <input type="hidden" id="maxPassLen" value="<?php echo $max_pass_len ?>">
-  <div class="row toggle-full-width">
+  <div class="row toggle-full-width rowtogglewidthsetpwd">
     <div class="large-12 columns">
       <input type="hidden" id="id" value="<?php echo base64_encode($user_id) ?>" >
       <input type="hidden" id="isAdmin" value="<?php echo $is_admin?>" >

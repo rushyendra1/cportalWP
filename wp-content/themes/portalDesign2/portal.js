@@ -23,7 +23,7 @@ $(document).ready(function(){
     {
         $(".menuMobile").show();
         $(".menuStyle").hide();
-        $(".relatedlistshow").show(); 
+       // $(".relatedlistshow").show(); 
 
 $(".mobilerelatedlisthide").hide();
         

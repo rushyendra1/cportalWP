@@ -1,7 +1,7 @@
 <div class="menuMobile" style="display:none">
     <a id="menubtn" href="javascript:void(0);" class="topnav-localicons w3-left" onclick="w3_open()" title="Menu">☰</a>
 </div>
-<div class="menuStyle" style="display:none" >
+<div class="menuStyle" style="" >
            <nav class="top-bar" data-topbar>
                 
                 <section >

@@ -29,7 +29,7 @@ if ($pages == "" || $pages == "home") {
                            
                         <?php
                         }
-
+                        
                         if (is_user_logged_in()) {
 
                             /** * Connects to salesforce * */
@@ -38,12 +38,24 @@ if ($pages == "" || $pages == "home") {
                             $res_array = json_encode($response_array);
                             define("RESARRAY",$res_array);
                             if (count($response_array) > 0) {
-
-                                $tab_array = $response_array['TabList'];
+                                   
+                        //var totalRecords = data.NumberofRec;
+                        
+                            /* if(count(totalRecords) >0)
+                             {
+                                 $tab_array = $response_array['PluralList'];
+                             }
+                             else if(count(totalRecords) <1) 
+                             {
+                                 $tab_array = $response_array['TabList'];
+                             }*/
+                         $tab_array = $response_array['PluralList'];
+                              //  $tab_array = $response_array['TabList'];
 
                                //$tab_array = array("link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11","link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11");
 
                                 $api_array = $response_array['ApiList'];
+                                $single_array = $response_array['TabList'];
                                 //$api_array = array("link1cvcvcvcvcvcvcvxc", "link2cvxcvcv ccvcvc","link3","link4","link5","link6","link7","link8","link9","link10","link11");
                                 $i = 0;
                                 $j = 0;
@@ -64,7 +76,7 @@ if ($pages == "" || $pages == "home") {
                                     }
                                     if ($j < $limit) {
                                         ?>
-                                        <li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i] ?>&obj_name=<?php echo $each_tab; ?>" class="<?php echo $active_class ?>"><span><?php echo $each_tab; ?></span></a></li>
+                                        <li><a href="<?php echo get_site_url() ?>/object-list/?id=<?php echo $api_array[$i]; ?>&obj_name=<?php echo $each_tab; ?>&plu_name=<?php echo $single_array[$i]; ?>" class="<?php echo $active_class ?>"><span><?php echo $each_tab; ?></span></a></li>
                                     <?php } if ($j == $limit && count($tab_array) > $limit) { ?>
                                    
                                         <?php
@@ -96,6 +108,7 @@ if ($pages == "" || $pages == "home") {
         } //for loop
     } //if of response array
 } // is user logged in  
+                         
 ?>   
                         <?php
                         if (!is_user_logged_in()) {

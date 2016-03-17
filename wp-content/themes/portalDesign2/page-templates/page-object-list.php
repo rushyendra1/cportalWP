@@ -11,6 +11,7 @@ get_header();
 get_template_part("menualign","none");
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
 $obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
+$plu_name = (isset($_GET['plu_name']))?trim($_GET['plu_name']):"";
 $parent_obj = (isset($_GET['parent_obj']))?trim($_GET['parent_obj']):"";
 $parent_obj_type = (isset($_GET['parent_obj_type']))?trim($_GET['parent_obj_type']):"";
 $parent_obj_id = (isset($_GET['parent_obj_id']))?trim($_GET['parent_obj_id']):"";
@@ -32,6 +33,7 @@ if(isset($result->data->is_Edit))
 <input type="hidden" id="isDelete" value="<?php echo $is_delete; ?>" >
 <input type="hidden" id="object" value="<?php echo $type; ?>" >
 <input type="hidden" id="objectName" value="<?php echo $obj_name; ?>" >
+<input type="hidden" id="pluname" value="<?php echo $plu_name; ?>" >
 <input type="hidden" id="parentObjectId" value="<?php echo $parent_obj_id; ?>" >
 <input type="hidden" id="parentObj" value="<?php echo $parent_obj; ?>" > 
 <input type="hidden" id="parentObjType" value="<?php echo $parent_obj_type; ?>" > 
@@ -51,7 +53,7 @@ if(isset($result->data->is_Edit))
                         <div class="bPageTitle">
 
                             <h1  class="pageType noSecondHeader headTitle" ><?php echo $obj_name; ?></h1>
-                            
+                           
                           <?php if($parent_obj != "") 
                              echo "<h2>".$parent_obj."</h2>"; ?>
                         </div>    

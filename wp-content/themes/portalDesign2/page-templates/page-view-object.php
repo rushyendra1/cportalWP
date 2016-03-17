@@ -12,7 +12,7 @@ redirect_to_login();
 $object_type = (isset($_GET['type']))?$_GET['type']:"";
 $object_id = (isset($_GET['id']))?$_GET['id']:"";
 $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
-
+$plu_name = (isset($_GET['plu_name']))?$_GET['plu_name']:"";
 
  /*** Connect the salesforce ***/
  list($access_token,$instance_url) = get_connection_sales();
@@ -177,7 +177,7 @@ echo place_message();
  <div class="">
 <div class="bPageTitle">
     
-    <h1 class="headTitle"> <?php echo $object_name; ?></h1>
+    <h1 class="headTitle"> <?php echo $plu_name; ?></h1>
     
 </div>
      <div class="goBackDiv">

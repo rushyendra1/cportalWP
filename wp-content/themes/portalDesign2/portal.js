@@ -63,8 +63,9 @@ $(".mobilerelatedlisthide").show();
          return false;
     $(this).addClass(className);
     var objectType = $.trim($("#object").val());
+    var pluname = $.trim($("#pluname").val());
      var objectName = $.trim($("#objectName").val());
-     window.location.href = site+"/add-object?id="+objectType+"&obj_name="+objectName; 
+     window.location.href = site+"/add-object?id="+objectType+"&obj_name="+objectName+"&plu_name="+pluname; 
     });
 /*** Go back **/
 $(".goBack,.goBack1").on("click",function(e){
@@ -812,6 +813,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
     var site = $.trim($("#siteTheme").val());
      var objectType = $.trim($("#object").val());
      var objectName = $.trim($("#objectName").val());
+     var pluname = $.trim($("#pluname").val());
      var parentObjectType = $.trim($("#parentObjType").val());
      var parentObjId = $.trim($("#parentObjectId").val());
      var isEdit = parseInt($.trim($("#isEdit").val()));
@@ -918,7 +920,7 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
          
            //just comment if(isEdit)
                //just comment editLink = ' &nbsp; <a>Edit</a>';
-            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'&obj_name='+objectName+'">View</a>'+editLink+'</td>';
+            responseHtml +='<td class=" dataCell  " scope="row"><a href="'+site+'/view-object?id='+id+'&type='+objectType+'&obj_name='+objectName+'&plu_name='+pluname+'">View</a>'+editLink+'</td>';
             responseHtml +='</tr>';
         }
         $(".alphaDiv").show();
@@ -941,6 +943,24 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
         var to = pageRelArray[1];
         showLabel = 'Showing ' + from + ' to ' + to + ' of ' + totalRecords + ' entries.';
         $(".showTotalCnt").html(showLabel);
+        
+       
+          /*  if(totalRecords <= 1){
+            $(".headTitle").html(objectName);
+            }else {
+                if(!objectName.endsWith("y")){
+                    $(".headTitle").html(objectName+'s');
+                }else 
+                    $(".headTitle").html(objectName.slice(0,-1) + 'ies');
+            }*/
+           if(totalRecords > 1){
+                $(".headTitle").html(objectName); 
+            } 
+            if(totalRecords == 1){
+                $(".headTitle").html(pluname);  
+            }
+        
+       
     }
     responseHtml += '<style type="text/css">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {';
     var k = 0;

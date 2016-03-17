@@ -11,6 +11,7 @@ get_header();
 get_template_part("menualign","none");
 $type = (isset($_GET['id']))?trim($_GET['id']):"";
 $obj_name = (isset($_GET['obj_name']))?trim($_GET['obj_name']):"";
+$plu_name = (isset($_GET['plu_name']))?trim($_GET['plu_name']):"";
 global $user_ID;
 $result = get_userdata($user_ID);
 $is_edit = $is_create= $is_delete = $is_view =   0;

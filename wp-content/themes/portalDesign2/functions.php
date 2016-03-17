@@ -1499,16 +1499,48 @@ function get_home_data()
      if(count($response_array)>0)
      { 
         $tab_array = $response_array['TabList'];
+        $plural_array = $response_array['PluralList'];
         $api_array = $response_array['ApiList'];
         $i =0;
         foreach($tab_array as $each_tab)
         {
          if($each_tab != ""){
-                        
                $result.='<a href="'.get_site_url().'/object-list/?id='.$api_array[$i].'&obj_name='.$each_tab.'"  class="button radius submit link">'.$each_tab.'</a>';
                          }
                         $i++;
                         }
+                      
+                }
+              
+              
+            //$result .='<a href="#"  class="button radius submit link logouts">Logout</a>';
+             }/*else{ 
+          $result .='<a href="'.get_site_url().'/login"  class="button radius submit link">Login</a> <br>';
+          
+            } */
+            return $result;
+}
+function plural_data()
+{
+     $result = '';
+     if(is_user_logged_in()){
+            //$result .= '<a href="'.get_site_url().'/profile"  class="button radius submit link">My Profile</a>';
+     //$response_array = json_decode(RESARRAY);
+            $response_array = get_tabs_from_sales();
+     if(count($response_array)>0)
+     { 
+        $tab_array = $response_array['TabList'];
+        $plural_array = $response_array['PluralList'];
+        $api_array = $response_array['ApiList'];
+        $i =0;
+        foreach($tab_array as $each_tab)
+        {
+         if($each_tab != ""){
+               $result.='<a href="'.get_site_url().'/object-list/?id='.$api_array[$i].'&obj_name='.$each_tab.'"  class="button radius submit link">'.$each_tab.'</a>';
+                         }
+                        $i++;
+                        }
+                      
                 }
               
               

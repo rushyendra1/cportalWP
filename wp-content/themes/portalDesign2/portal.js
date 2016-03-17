@@ -387,7 +387,11 @@ $(".logouts").on("click",function(e){
          setPwdPerform(e, this); 
          return false;
      });   
-
+/** Change Password **/
+     $("#submitquery").on("click",function(e){
+         submitqueryPerform(e,this);
+         return false;
+     });
 });
 
 /**
@@ -503,23 +507,25 @@ function newPwdCheckError(status,error,ele,oldPwd)
            showLabelFocus(ele,msg);
            
             
-        }else if(newp.length <minPassLen)
+        }else if(newp.length < 5)
         {
-            var msg = "Minimum Password character length should be "+minPassLen+".";
-            $(ele).val("");
+            var msg = "Minimum Password character length should be "+5+".";
+            //$(ele).val("");
            
             error.push("n");
-            $(ele).val("");
+            //$(ele).val("");
             showLabelFocus(ele,msg);
-           
+
         }else if(!passwordValid(newp))
         {
+            
             var msg = "New Password should contains atleast one upper,one lowercase,one number and one symbol.";
             
             error.push("n");
-            $(ele).val("");
+            //$(ele).val("!passwordValid(newp)");
+          // $(ele).val("");
             showLabelFocus(ele,msg);
-            
+          
         }else if(status ==0 &&  oldPwd == newp)
         {
              var msg = "Old Password and New Password should not be same.";
@@ -897,7 +903,8 @@ function getObjectTemplate(that,classView,length,page,isMore,field,sortType,alph
                 
               
             if (res[i] != null && typeof (res[i][fields]) != "undefined")
-                     value = res[i][fields];  
+             
+                    value = res[i][fields];  
            
                if(value == "null" || value == null)
                    value= "";
@@ -1243,8 +1250,9 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
             
            var result = res.objectList;
            //console.log(result);
+           var fieldsArrayfields = data.fields;
            var fieldsArray = data.api_fields;
-           var fieldsLen = fieldsArray.length;
+           var fieldsLen = fieldsArrayfields.length;
          
             var msg = "Request Message";
             var len = 0;
@@ -1282,7 +1290,9 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                 var sortClass = "sortAsc";
                 var activeClass = "";
                 var arg = fieldsArray[i];
-                
+                var fieldtext=fieldsArrayfields[i];
+                if(field == "")
+                    field = fieldsArray[0]; 
                 if(field == arg)
                 {
                      activeClass = "activeSort";
@@ -1295,7 +1305,7 @@ function getObjectTemplateByObject(that,classView,page,alphaType,pagePart,field,
                 }
                 if(arg != "Id"){
                 headerHtml +='<th  scope="col">\n\
-                        <a title="'+arg+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+arg+'\n\
+                        <a title="'+fieldtext+'- '+sortC+'" class=" sortOrders" data-field="'+arg+'" data-type="'+orderType+'" >'+fieldtext+'\n\
                         <img title="'+sortTitle+'" class="'+sortClass+' '+activeClass+'" alt="'+sortTitle+'" src="'+root+'/images/extended/s.gif">\n\
                         </a></th>';
                 }
@@ -2038,3 +2048,5 @@ function calculatePageRel(page,totalRecords,lenPage,pageSize)
          to = totalRecords;
     return [from,to];
 } 
+
+

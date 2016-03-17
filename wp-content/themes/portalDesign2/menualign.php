@@ -26,14 +26,7 @@ if ($pages == "" || $pages == "home") {
                             ?>
                             <li><a href="<?php echo get_site_url() ?>/login" class="<?php echo $active_class; ?>"><span>Login</span></a></li>
                             
-                            <?php 
-                                                        
-                                                        $pages = get_current_files();
-                                                        if ($pages == "contact-us-2") {
-                                                        $active_class = 'active';
-                                                        }
-                                                        ?>
-                             <li ><a href="<?php echo get_site_url() ?>/contact-us-2" class="<?php echo $active_class; ?>" >contact us</a></li>  
+                           
                         <?php
                         }
 
@@ -46,7 +39,7 @@ if ($pages == "" || $pages == "home") {
                             define("RESARRAY",$res_array);
                             if (count($response_array) > 0) {
 
-                                $tab_array = $response_array['PluralList'];
+                                $tab_array = $response_array['TabList'];
 
                                //$tab_array = array("link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11","link1dfdfd dfdfd dfdfdsfsdf ", "link2dfdfdfdfsdfdfdf","link3","link4","link5","link6","link7","link8","link9","link10","link11");
 
@@ -54,7 +47,7 @@ if ($pages == "" || $pages == "home") {
                                 //$api_array = array("link1cvcvcvcvcvcvcvxc", "link2cvxcvcv ccvcvc","link3","link4","link5","link6","link7","link8","link9","link10","link11");
                                 $i = 0;
                                 $j = 0;
-                                $limit =5;
+                                $limit =count($tab_array);
                                 for ($i = 0; $i <= $limit; $i++) {
                                 //foreach($tab_array as $each_tab)
                                     $tabs = '';
@@ -104,7 +97,18 @@ if ($pages == "" || $pages == "home") {
     } //if of response array
 } // is user logged in  
 ?>   
-                                                        </ul>
+                        <?php
+                        if (!is_user_logged_in()) {
+                            $active_class = '';
+                            if ($pages == "contact-us-2") {
+                                                        $active_class = 'active';
+                                                        }
+                            ?>
+                            <li ><a href="<?php echo get_site_url() ?>/contact-us-2" class="<?php echo $active_class; ?>" >contact us</a></li>  
+                            
+                            <?php
+                        }                  
+                        ?></ul>
 </section>                                        
             </nav>
 

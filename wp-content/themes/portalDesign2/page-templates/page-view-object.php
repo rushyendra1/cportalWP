@@ -18,6 +18,7 @@ $object_name = (isset($_GET['obj_name']))?$_GET['obj_name']:"";
  list($access_token,$instance_url) = get_connection_sales();
  global $login_time_url;
   $url = $instance_url.$login_time_url;
+ // echo url;
  /*** Retrieve contact details **/
  $response = array();
  try{
@@ -175,12 +176,10 @@ echo place_message();
 ?>
  <div class="">
 <div class="bPageTitle">
+    
     <h1 class="headTitle"> <?php echo $object_name; ?></h1>
+    
 </div>
-     <?php
-     if($object_name =='Opportunitys')
-     $object_name = 'opportunities';
-         ?>
      <div class="goBackDiv">
           <a  class="goBack buttonCss">Back</a>
      </div>

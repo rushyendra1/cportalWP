@@ -653,6 +653,7 @@ a.listItem:hover{
         text-align:left;
         font-weight: normal;
         color: #999;
+        overflow: overlay;
    }
    .evenDivObject
    {
@@ -1017,7 +1018,7 @@ table thead {
     font-size: 0.975rem;
 }
 tbody.ObjectCaseRes {
-    font-size: 0.875rem;
+    
 }
 
 .row.editRow {

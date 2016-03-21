@@ -508,9 +508,9 @@ function newPwdCheckError(status,error,ele,oldPwd)
            showLabelFocus(ele,msg);
            
             
-        }else if(newp.length < 5)
+        }else if(newp.length < minPassLen)
         {
-            var msg = "Minimum Password character length should be "+5+".";
+            var msg = "Minimum Password character length should be "+minPassLen+".";
             //$(ele).val("");
            
             error.push("n");
@@ -524,7 +524,8 @@ function newPwdCheckError(status,error,ele,oldPwd)
             
             error.push("n");
             //$(ele).val("!passwordValid(newp)");
-          // $(ele).val("");
+           $(ele).val("");
+           $(ele).focus();
             showLabelFocus(ele,msg);
           
         }else if(status ==0 &&  oldPwd == newp)

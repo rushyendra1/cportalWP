@@ -1060,6 +1060,7 @@ function displayObjects()
       var page = getPageNo("displayObjects");  
       var alphaType = $.trim($(".activeAlpha").data('alphatype'));
        var type = $(".activeCont").data("type");
+       var ele = $(".activeSort").parent();
        var field = $.trim($(this).data("field"));
       getObjectTemplate(this,classView,pageSize,page,type,field,orderBy,alphaType);
    });
